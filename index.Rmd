@@ -1,0 +1,53 @@
+--- 
+title: "Következtető Statisztika Python Jegyzet"
+author: "Kovács László"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  Lecture notes on BSc level Inferential Statistics in bookdown format.
+  Mainly for Business Information Systems BSc students at Corvinus University of Budapest.
+link-citations: yes
+github-repo: KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet
+---
+
+# Előhang
+
+**!!!FRISSÍTENI szükséges a teljes jegyzethez!**
+
+Ez a jegyzet hivatalosan a Budapesti Corvinus Egyetem gazdaságinformatikus hallgatóinak készült abból a célból, hogy a Statisztika II. tárgy sikeres abszolválásához szükséges Python programnyelvi elemek felelevenítésre kerüljenek.
+
+Viszont, a jegyzet előkészítése során arra jutottam, hogy egy kicsit általánosabb célú anyagot szeretnék készíteni: egy **olyan bevezető jegyzetet a Python nyelvhez**, ami kimondottan a **statisztikai és adatelemzési feladatok elvégzéséhez szükséges elemeit és kiegészítő csomagjait mutatja be** teljesen kezdő szinten, minden **programozási előismeret feltételezése nélkül**.
+
+Ebből adódóan szeretném kicsit tételesen összefoglalni, hogy mire számíthat az olvasó a jegyzetben. Nem szeretek zsákba macskát árulni, így szeretném már előre letisztázni, hogy ez az anyag mivel foglalkozik a Python nyelven belül, és ami talán még fontosabb, hogy mivel *nem*.
+
+A jegyzet **bemutatja**:
+
+* A Python nyelv legalapvetőbb utasításait és elemeit.
+* A Python nyelv statisztikai-adatelemzési feladatok megoldására könnyen használható adatszerkezeteit (`numpy` és `pandas` csomagok).
+* A Python nyelv legalapvetőbb adatvizualizációs képességeit a `matplotlib` csomagon keresztül.
+* Egy egyszerűbb, leíró statisztikai és *nem* modellezési célú adatelemzési folyamatban felmerülő leggyakoribb adatminőségi problémák azonosítási és megoldási módjait Python nyelven
+* A *Spyder* fejlesztőkörnyezet működését és lehetőségeit adatelemzési feladatok megoldása során.
+
+A jegyzetnek **nem célja**:
+
+* Teljes körű áttekintést adni a Python nyelv elemeiről és adatszerkezeteiről. A Pythont végig csak *szkriptnyelvként* használjuk, nem pedig általános célú programnyelvként.
+* A Python minden lehetséges fejlesztőkörnyeztetét (Jupyter Notebook, Visual Studio Code, replit.com, stb.) bemutatni.
+* A `numpy`, `pandas` és `matplotlib` csomagok teljeskörű működéséről. Csak az alapvető leíró statisztikai és adatkezelési funkciókat tekintjük át.
+* Teljes körű bemutatót adni a Python képességeiről az adatminőségi kihívások azonosítsa és kezelése területén. Tényleg csak a legalapvetőbb és leggyakrabban előforduló problémákat tekintjük át, a legegyszerűbb kezelési módokkal.
+* A Python képességeinek áttekintése a következtető statisztika és a statisztikai modellezés vagy éppen gépi tanulás területén (`statmodels`, `sklearn`, `tensorflow`, stb. csomagok)
+
+Ezen kívül a jegyzet **feltételez némi leíró statisztikai előismeretet**. Konkrétan a következő fogalmak ismeretét veszem adottnak:
+
+* ismérv és azok mérési skálái
+* átlag, szórás
+* medián és egyéb kvantilisek
+* hisztogram, doboz ábra
+* eloszlások alakja
+* korreláció és pontdiagram
+
+**Ha** egy lelkes **gazdaságinformatikus hallgató forgatja a jegyzetet**, aki a *Programozás alapjai* tárgyban a Python nyelv és a `pandas` data frame-k alapjait már tökéletesen elsajátította biztosan sok "uncsi" részt fog találni a jegyzetben. Számára **leginkább csak a 8-13. fejezetek gyors átprögetését ajánlom**, hogy a statisztikai számítások elvégzéséhez és a statisztikai adattáblák kezeléséhez szükséges Python megoldásokat felelevenítse.<br>
+Ugyanakkor fontos megjegyezenem, hogy a **Statisztika II. tárgy tanóráin a jelen jegyzetben szereplő tudást ismertnek feltételezzük, és nem fogunk rá külön kitérni az oktatás során!!** Szóval, ha valaki **egy kicsit is bizonytalan a Python ismereteiben, azért olvassa át ezt az ismétlő jegyzetet, és ha bármi nem világos, KÉRDEZZEN!!**

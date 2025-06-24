@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Leíró Statisztika ismétlés és Valószínűségszámítás alapok | Következtető Statisztika Python Jegyzet</title>
+  <meta name="description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Leíró Statisztika ismétlés és Valószínűségszámítás alapok | Következtető Statisztika Python Jegyzet" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="github-repo" content="KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Leíró Statisztika ismétlés és Valószínűségszámítás alapok | Következtető Statisztika Python Jegyzet" />
+  
+  <meta name="twitter:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  
+
+<meta name="author" content="Kovács László" />
+
+
+<meta name="date" content="2025-06-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statisztikához-szükséges-python-nyelvi-alapok.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Következtető Statisztika Python Jegyzet</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Előhang</a></li>
+<li class="chapter" data-level="2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html"><i class="fa fa-check"></i><b>2</b> Statisztikához szükséges Python nyelvi alapok</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#programozási-alapelvek"><i class="fa fa-check"></i><b>2.1</b> Programozási alapelvek</a></li>
+<li class="chapter" data-level="2.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pythonról-általában"><i class="fa fa-check"></i><b>2.2</b> A Pythonról általában</a></li>
+<li class="chapter" data-level="2.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-spyder-felülete"><i class="fa fa-check"></i><b>2.3</b> A Spyder felülete</a></li>
+<li class="chapter" data-level="2.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#alapvető-python-adattípusok-és-adatszerkezetek"><i class="fa fa-check"></i><b>2.5</b> Alapvető Python adattípusok és adatszerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-adattípusok"><i class="fa fa-check"></i><b>2.5.1</b> Egyszerű adattípusok</a></li>
+<li class="chapter" data-level="2.5.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#összetett-adatszerkezetek"><i class="fa fa-check"></i><b>2.5.2</b> Összetett adatszerkezetek</a></li>
+<li class="chapter" data-level="2.5.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-numpy-tömb"><i class="fa fa-check"></i><b>2.5.3</b> A <code>numpy</code> tömb</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#vezérlési-szerkezetek"><i class="fa fa-check"></i><b>2.6</b> Vezérlési szerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#elágazás-if"><i class="fa fa-check"></i><b>2.6.1</b> Elágazás (<code>if</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#ciklusok-for"><i class="fa fa-check"></i><b>2.6.2</b> Ciklusok (<code>for</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pandas-data-frame-objektum"><i class="fa fa-check"></i><b>2.7</b> A Pandas data frame objektum</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hivatkozási-lehetőségek-data-frame-ben"><i class="fa fa-check"></i><b>2.7.1</b> Hivatkozási lehetőségek data frame-ben</a></li>
+<li class="chapter" data-level="2.7.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-módosítása"><i class="fa fa-check"></i><b>2.7.2</b> Data frame-k módosítása</a></li>
+<li class="chapter" data-level="2.7.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#szűrés-data-frame-ben-logikai-indexszálás"><i class="fa fa-check"></i><b>2.7.3</b> Szűrés data frame-ben: logikai indexszálás</a></li>
+<li class="chapter" data-level="2.7.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hiányzó-értékek-kezelése-data-frame-ben"><i class="fa fa-check"></i><b>2.7.4</b> Hiányzó értékek kezelése data frame-ben</a></li>
+<li class="chapter" data-level="2.7.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatvizualizáció-data-frame-en-keresztül"><i class="fa fa-check"></i><b>2.7.5</b> Adatvizualizáció data frame-en keresztül</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#aggregálás-data-frame-ben"><i class="fa fa-check"></i><b>2.8</b> Aggregálás data frame-ben</a></li>
+<li class="chapter" data-level="2.9" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-leíró-statisztika-data-frame-ben"><i class="fa fa-check"></i><b>2.9</b> Egyszerű leíró statisztika data frame-ben</a></li>
+<li class="chapter" data-level="2.10" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatminőségi-problémák-felismerése-és-kezelése-leíró-statisztika-segítségével"><i class="fa fa-check"></i><b>2.10</b> Adatminőségi problémák felismerése és kezelése leíró statisztika segítségével</a></li>
+<li class="chapter" data-level="2.11" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-összekapcsolása"><i class="fa fa-check"></i><b>2.11</b> Data frame-k összekapcsolása</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-kapcsolási-kulcsnak-használt-oszlop-ellenőrzése-és-javítása"><i class="fa fa-check"></i><b>2.11.1</b> A kapcsolási kulcsnak használt oszlop ellenőrzése és javítása</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#kilógó-értékek-keresése-és-kezelése"><i class="fa fa-check"></i><b>2.12</b> Kilógó értékek keresése és kezelése</a></li>
+<li class="chapter" data-level="2.13" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#korrelációs-elemzések-data-frame-ben"><i class="fa fa-check"></i><b>2.13</b> Korrelációs elemzések data frame-ben</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok"><i class="fa fa-check"></i>Gyakorló feladatok</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok-megoldása"><i class="fa fa-check"></i>Gyakorló feladatok megoldása</a>
+<ul>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat"><i class="fa fa-check"></i>1. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-1"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-2"><i class="fa fa-check"></i>3. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-3"><i class="fa fa-check"></i>4. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-4"><i class="fa fa-check"></i>5. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-5"><i class="fa fa-check"></i>6. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-6"><i class="fa fa-check"></i>7. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-7"><i class="fa fa-check"></i>8. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-8"><i class="fa fa-check"></i>9. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-9"><i class="fa fa-check"></i>10. feladat</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><i class="fa fa-check"></i><b>3</b> Leíró Statisztika ismétlés és Valószínűségszámítás alapok</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#leíró-statisztikai-mutatók"><i class="fa fa-check"></i><b>3.1</b> Leíró statisztikai mutatók</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#hisztogram-és-alakmutatók"><i class="fa fa-check"></i><b>3.1.1</b> Hisztogram és Alakmutatók</a></li>
+<li class="chapter" data-level="3.1.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-lekérése"><i class="fa fa-check"></i><b>3.1.2</b> Gyakorisági tábla lekérése</a></li>
+<li class="chapter" data-level="3.1.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-bővítése"><i class="fa fa-check"></i><b>3.1.3</b> Gyakorisági tábla bővítése</a></li>
+<li class="chapter" data-level="3.1.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#súlyozott-átlag-és-szórás-pythonban"><i class="fa fa-check"></i><b>3.1.4</b> Súlyozott átlag és szórás Pythonban</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-normális-eloszlás-és-sűrűségfüggvénye"><i class="fa fa-check"></i><b>3.2</b> A normális eloszlás és sűrűségfüggvénye</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-használata"><i class="fa fa-check"></i><b>3.2.1</b> A sűrűségfüggvény használata</a></li>
+<li class="chapter" data-level="3.2.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-integrálja"><i class="fa fa-check"></i><b>3.2.2</b> A sűrűségfüggvény integrálja</a></li>
+<li class="chapter" data-level="3.2.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#valószínűség-vs-relatív-gyakoriság"><i class="fa fa-check"></i><b>3.2.3</b> Valószínűség vs Relatív Gyakoriság</a></li>
+<li class="chapter" data-level="3.2.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#centrális-határeloszlás-tétel-cht"><i class="fa fa-check"></i><b>3.2.4</b> Centrális Határeloszlás Tétel (CHT)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#inverz-értékek"><i class="fa fa-check"></i><b>3.2.5</b> Inverz Értékek</a></li>
+<li class="chapter" data-level="3.2.6" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-standard-normális-eloszlás"><i class="fa fa-check"></i><b>3.2.6</b> A Standard Normális Eloszlás</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#az-exponenciális-eloszlás"><i class="fa fa-check"></i><b>3.3</b> Az Exponenciális eloszlás</a></li>
+<li class="chapter" data-level="3.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-varianciahányados-pythonban---kokain-a-balatonban"><i class="fa fa-check"></i><b>3.4</b> A Varianciahányados Pythonban - Kokain a Balatonban</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#további-minőségi-ismérvek-és-a-kokainmennyiség"><i class="fa fa-check"></i><b>3.4.1</b> További minőségi ismérvek és a kokainmennyiség</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve.</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Következtető Statisztika Python Jegyzet</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Leíró Statisztika ismétlés és Valószínűségszámítás alapok<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="leíró-statisztikai-mutatók" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Leíró statisztikai mutatók<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#leíró-statisztikai-mutatók" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A Stat. I. PTSD roham kiváltását kezdjük egy nagyon egyszerű kis “Móricka példán”. Vizsgáljuk meg a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/TSLA.xlsx" target="_blank">TSLA.xlsx</a> című táblában található adatokat, amik a <strong>TESLA részvények napi záróárfolyam-változásai</strong>t mutatják ki <strong>dollárban</strong> ($) 2019 májusától 2020 májusáig.</p>
+<p>Az Excel táblákat, amennyiben az adattáblánk első értéke az <em>A1</em> cellában kezdődik és csak egy darab munkalapunk van, gond nélkül be lehet olvasni a <code>pandas</code> csomag <code>read_excel</code> függvényével egy data frame-be. Több munkalap esetén a <code>read_excel</code> függvény <code>sheet_name</code> paraméterével tudjuk megadni a beolvasandó munkalap nevét stringként. Viszont ahhoz, hogy ez működőképes legyen fel kell még telepítenünk egy <code>openpyxl</code> című kiegészítő csomagot. A biztonság kedvéért ezzel a művelettel együtt rögtön importáljuk a statisztikai számításokhoz szükséges <code>numpy</code> és az ábrák megjelenítéséhez szükséges <code>matplotlib</code> csomagokat is.</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb373-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb373-1" tabindex="-1"></a>pip install openpyxl</span>
+<span id="cb373-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb373-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb373-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb373-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb373-4"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb373-4" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<p>Ezek után pedig akkor jöhet az Excel beolvasás data frame-be!</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb374-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb374-1" tabindex="-1"></a>Tesla <span class="op">=</span> pd.read_excel(<span class="st">&quot;TSLA.xlsx&quot;</span>)</span>
+<span id="cb374-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb374-2" tabindex="-1"></a></span>
+<span id="cb374-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb374-3" tabindex="-1"></a>Tesla.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 250 entries, 0 to 249
+## Data columns (total 2 columns):
+##  #   Column  Non-Null Count  Dtype         
+## ---  ------  --------------  -----         
+##  0   Dátum   250 non-null    datetime64[ns]
+##  1   TESLA   250 non-null    float64       
+## dtypes: datetime64[ns](1), float64(1)
+## memory usage: 4.0 KB</code></pre>
+<div class="sourceCode" id="cb376"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb376-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb376-1" tabindex="-1"></a>Tesla.head()</span></code></pre></div>
+<pre><code>##        Dátum      TESLA
+## 0 2019-05-07  -8.279998
+## 1 2019-05-08  -2.220002
+## 2 2019-05-09  -2.860000
+## 3 2019-05-10  -2.459992
+## 4 2019-05-13 -12.510009</code></pre>
+<p>Láthatjuk, hogy két oszlopunk van: a dátum és a részvény árváltozása az adott napon az előző napi záróárfolyamhoz képest a <strong>TESLA</strong> oszlopban. Tehát 2019.05.07-én egy Tesla részvény kb. <span class="math inline">\(8.3\)</span> dollárral ért kevesebbet a nap végére, mint amennyit 2019.05.06-án ért nap végén. Ellenben 05.13-án már <span class="math inline">\(12.5\)</span> dollárral ér kevesebbet, mint előző nap, 05.12-én. Az <code>info</code> metódus alapján <span class="math inline">\(N=250\)</span> napnyi ilyen adatunk van, ami nagyjából meg is egyezik egy évben a tőzsdei kereskedési napok számával.</p>
+<p>Nos, az első öt vizsgált nap alapján nem lennék Elon Musk helyében, elég szép mínuszokat produkál a részvénye. De lássuk, hogy a leíró statisztikai mutatók mit árulnak el, hogyan is teljesített ez a csodacég a teljes vizsgált 1 éves időtartamban! Vessük át be a data frame <code>describe</code> metódusát!</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb378-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb378-1" tabindex="-1"></a>Tesla.describe()</span></code></pre></div>
+<pre><code>##                             Dátum       TESLA
+## count                         250  250.000000
+## mean   2019-11-02 15:56:09.600000    1.783920
+## min           2019-05-07 00:00:00 -152.359986
+## 25%           2019-08-05 06:00:00   -3.770005
+## 50%           2019-10-31 12:00:00    1.420006
+## 75%           2020-02-02 06:00:00    6.957486
+## max           2020-05-01 00:00:00  129.429993
+## std                           NaN   27.192611</code></pre>
+<p>Lássuk hát milyen sztorit mesélnek a kiszámított mutatóink!</p>
+<ul>
+<li>Úgy látszik, hogy abszolút értékben a legnagyobb veszteség (<span class="math inline">\(-152\$\)</span>) némileg nagyobb, mint a legnagyobb nyereség (<span class="math inline">\(+129\$\)</span>).</li>
+<li>Ugyanakkor, egy átlagos napon nagyjából jól járunk egy Tesla részvénnyel, mert kb. <span class="math inline">\(\mu=\bar{Y}=1.8\$\)</span>-al növeli értékét.</li>
+<li>Viszont, marha nagy a rizikó a rendszerben, mert a szórás (angolul <em>standard deviation</em>, rövidítve <code>std</code>) alapján egy véletlenszerűen kiválasztott napon az árváltozás az <span class="math inline">\(\sigma=1.8\$\)</span>-os átlagtól várhatóan <span class="math inline">\(\pm27.2\$\)</span>-al térhet el. Azaz az árváltozások várható ingadozása az átlagos nyereségnek mintegy <span class="math inline">\(V=\frac{\sigma}{\mu}=\frac{27.2}{1.8}=15.1\)</span>-szerese! (<em>relatív szórás</em>)</li>
+<li>A medián árváltozás alapján azt mondhatjuk el, hogy a vizsgált időszakban a napok felében az elérhető maximális nyereség <span class="math inline">\(Me=1.42\$\)</span>, míg a napok másik felében a nyereség pedig legalább ennyi.</li>
+<li>Az alsó kvartilis alapján a kereskedési napok legrosszabb <span class="math inline">\(\frac{1}{4}\)</span>-ében a veszteség nagyobb, mint <span class="math inline">\(3.77\$\)</span>. Másképp: az árváltozás a napok negyedében kisebb, mint <span class="math inline">\(Q_1=-3.77\$\)</span>.</li>
+<li>A napjaink legjobb <span class="math inline">\(25\%\)</span>-ban pedig a nyereség legalább <span class="math inline">\(Q_3=6.96\$\)</span></li>
+</ul>
+<p>Ha a fenti megállapításokat összenézzük, akkor arra juthatunk, hogy az <strong>árváltozások eloszlása kb. szimmetrikus</strong> lehet, egy <strong>enyhe jobbra elnyúlással</strong>. A <strong>szimmetria mellett szól</strong>, hogy az átlag nem nagyon tér el a mediántól (tehát a kilógó értékekre érzékeny átlag nem nagyon mozog el a kilógó értékekre robusztus felezőponttól), és a medián nagyjából egyenlő távolságra van az alsó és felső kvartilisektől (szóval az <span class="math inline">\(50\%\)</span>-os pont a gyakoriságok szerint, értékekben is kb. a <span class="math inline">\(25\%\)</span> és <span class="math inline">\(75\%\)</span>-os pontok közepén helyezkedik el). Ellenben az <strong>enyhe jobbra elnyúlás mellett érvel</strong>, hogy azért mégis az átlag enyhén nagyobb mediánnál (tehát a felfelé kilógó értékek kicsit felfelé húzzák az átlagértéket a felezőponthoz képest), és a medián enyhén közelebb van az alsó kvartilishez, mint a felsőhöz (tehát az adatok többsége egy kicsit inkább az értéktartomány aljára koncentrálódik <span class="math inline">\(\rightarrow\)</span> a kisebb értékből egy kicsit több van). De ezek tényleg nagyon enyhe eltérések. Sőt, <strong>akár még a balra elnyúló eloszlás felé is lehet érvelni</strong> azzal, hogy <span class="math inline">\(Q_3\)</span> közelebb van a maximumhoz, mint <span class="math inline">\(Q_1\)</span> a minimumhoz, tehát a <em>felső</em> <span class="math inline">\(25\%\)</span>-ban lévő értékek “kevésbé húznak szét”, nem annyira kilógóak, mint az <em>alsó</em> <span class="math inline">\(25\%\)</span>-ban lévők.</p>
+<div id="hisztogram-és-alakmutatók" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Hisztogram és Alakmutatók<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#hisztogram-és-alakmutatók" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az előző bekezdés dilemmáit leginkább <strong>egy hisztogram segítségével tudnánk tisztázni</strong>. A <strong>hisztogramhoz</strong> viszont szükségünk van egy <strong>osztályközös gyakorisági táblára</strong>, hiszen az árfolyamváltozások értékkészlete elég tág. Az osztályközöket vegyük egyenlő hosszúra. Ezek után már csak azt kell eldöntenünk, hogy <strong>hány osztályközt</strong> hozzunk létre! Ezt ugye Stat. I-ben legtöbbször a <strong>“<span class="math inline">\(2^k\)</span> szabállyal”</strong> adtuk meg. Tehát az osztályközök száma a legkisebb olyan <span class="math inline">\(k\)</span> szám, amire igaz az, hogy <span class="math inline">\(2^k \geq N\)</span>, ahol <span class="math inline">\(N\)</span> az adataink elemszáma. Azt láttuk a <code>describe</code> eredményéből is pl., hogy <span class="math inline">\(N=250\)</span>. Ez alapján pedig a keresett <span class="math inline">\(k\)</span> az <span class="math inline">\(8\)</span> lesz, mert <span class="math inline">\(k=8:2^8 = 256 &gt;250\)</span>, ám <span class="math inline">\(k=7:2^7=128 &lt; 250\)</span>. Ha valaki ezt pitonul szeretné kiszámolni arra figyeljen, hogy ott a hatványozás jele a <code>**</code>.</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb380-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb380-1" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span><span class="dv">7</span></span></code></pre></div>
+<pre><code>## 128</code></pre>
+<div class="sourceCode" id="cb382"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb382-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb382-1" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span><span class="dv">8</span></span></code></pre></div>
+<pre><code>## 256</code></pre>
+<p>Akkor hát nézzük meg a 8 egyenlő hosszú osztályközzel bíró gyakorisági tábla alapján készített hisztogramot.</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb384-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb384-1" tabindex="-1"></a>Tesla.TESLA.hist(bins <span class="op">=</span> <span class="dv">8</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-149-33.png" width="672" /></p>
+<p>Nagyon szép, tényleg sac/kb szimmetrikus az eloszlás: középen, az <span class="math inline">\(1.8\$\)</span>-os átlag körül csoportosul a legtöbb elem, és az ennél kisebb és nagyobb értékekből arányosan kevesebb van. Bár némileg kicsit csúcsosnak néz ki az eloszlás: a középső, átlag körüli, leggyakoribb értéktartományra koncentrálódik az adatok legnagyobb része, kb. <span class="math inline">\(190\)</span> nap értéke az <span class="math inline">\(N=250\)</span>-ből. Lássuk mi mondanak erről az <span class="math inline">\(\alpha_3, \alpha_4\)</span> <strong>alakmutatók</strong>!</p>
+<p>Az <span class="math inline">\(\alpha_3\)</span> <strong>aszimmetria mutató</strong> Pythonban egy data frame oszlop <code>skew</code> metódusával, míg az <span class="math inline">\(\alpha_4\)</span> <strong>csúcsossági muató</strong> az oszlop <code>skew</code> metódusával számítható.</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb385-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb385-1" tabindex="-1"></a>Tesla.TESLA.skew()</span></code></pre></div>
+<pre><code>## -0.5253045816998407</code></pre>
+<div class="sourceCode" id="cb387"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb387-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb387-1" tabindex="-1"></a>Tesla.TESLA.kurt()</span></code></pre></div>
+<pre><code>## 9.086855960563858</code></pre>
+<p>Az <span class="math inline">\(\alpha_3\)</span> értéke nagyon picit negatív, így enyhe balra elnyúlást jelez, de a hisztogram alapján látszik, hogy ez tényleg nagyon gyenge tendencia. Ez ugyebár abból adódik hogy <span class="math inline">\(Q_3\)</span> közelebb van a maximumhoz, mint <span class="math inline">\(Q_1\)</span> a minimumhoz. Tehát ezt a nagyon enyhe “balra elnyúlást” csak a maximum némileg kilógó viselkedése okozza, amire az <span class="math inline">\(\alpha_3\)</span> ugyebár érzékeny, hiszen az átlag (<span class="math inline">\(\mu\)</span>) alapján számoljuk őt ki (átlag körüli harmadik momentum).<br>
+Ellenben az <span class="math inline">\(\alpha_4=+9.09\)</span>-es nagyon erősen pozitív értéke egyértelműen csúcsos eloszlás mutat, amit gyönyörűen látunk is a hisztogramon.</p>
+</div>
+<div id="gyakorisági-tábla-lekérése" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Gyakorisági tábla lekérése<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-lekérése" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha szeretnénk <strong>megtekinteni a hisztogram mögött lakó osztályközös gyakorisági táblát</strong>, akkor a dolgunk annyi, hogy a <code>hist</code> metódus helyett a <code>numpy</code> csomag <code>histogram</code> függvényével készítsük el a hisztogramot, és az eredményt mentsük el egy külön objektumba. A <code>histogram</code> függvény első paramétere az a data frame oszlop, amiből hisztogramot készítenénk, míg a második paramétere a <code>bins</code>, ami ugyan az, mint a data frame <code>hist</code> metódusában. Az elmentett eredményt data frame-é konvertáljuk a <code>pandas</code> csomag <code>DataFrame</code> függvénye segítségével, majd az eredményt transzponáljuk (alias 90 fokkal elforgatjuk) a data frame-k <code>transpose</code> metódusa segítségével.</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb389-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb389-1" tabindex="-1"></a>gyaktábla <span class="op">=</span> np.histogram(Tesla.TESLA, bins <span class="op">=</span> <span class="dv">8</span>)</span>
+<span id="cb389-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb389-2" tabindex="-1"></a>gyaktábla <span class="op">=</span> pd.DataFrame(gyaktábla).transpose()</span>
+<span id="cb389-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb389-3" tabindex="-1"></a>gyaktábla</span></code></pre></div>
+<pre><code>##        0           1
+## 0    1.0 -152.359986
+## 1    3.0 -117.136239
+## 2    5.0  -81.912491
+## 3   24.0  -46.688744
+## 4  193.0  -11.464996
+## 5   15.0   23.758751
+## 6    7.0   58.982498
+## 7    2.0   94.206246
+## 8    NaN  129.429993</code></pre>
+<p>Amit kaptunk az egy olyan tábla, aminek az <strong>első oszlopa a gyakoriságok</strong> értéke, míg a <strong>második az adott osztályköz alsó határa</strong>. Ezért van az utolsó sorban üres (<code>NaN</code>) érték, mert az ottani alsó határ az a vizsgált ismérvünk (árváltozásunk) maximuma, ami fölött természetesen már nincs érték.</p>
+<p>Nevezzük át tartalmuknak megfelelően az oszlopokat, majd a <code>shift</code> metódus segítségével rakjuk be a táblába az adott osztályközök felső határait is. Itt a a <code>shift</code> metódusnál az alapelv, hogy az adott osztályköz felső határa nem más, mint a következő sor alsó határa.</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb391-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb391-1" tabindex="-1"></a>gyaktábla.columns <span class="op">=</span> [<span class="st">&#39;Gyakoriság&#39;</span>, <span class="st">&#39;AlsóHatár&#39;</span>]</span>
+<span id="cb391-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb391-2" tabindex="-1"></a>gyaktábla.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 9 entries, 0 to 8
+## Data columns (total 2 columns):
+##  #   Column      Non-Null Count  Dtype  
+## ---  ------      --------------  -----  
+##  0   Gyakoriság  8 non-null      float64
+##  1   AlsóHatár   9 non-null      float64
+## dtypes: float64(2)
+## memory usage: 276.0 bytes</code></pre>
+<div class="sourceCode" id="cb393"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb393-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb393-1" tabindex="-1"></a>gyaktábla[<span class="st">&#39;FelsőHatár&#39;</span>] <span class="op">=</span> gyaktábla.AlsóHatár.shift(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb393-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb393-2" tabindex="-1"></a>gyaktábla</span></code></pre></div>
+<pre><code>##    Gyakoriság   AlsóHatár  FelsőHatár
+## 0         1.0 -152.359986 -117.136239
+## 1         3.0 -117.136239  -81.912491
+## 2         5.0  -81.912491  -46.688744
+## 3        24.0  -46.688744  -11.464996
+## 4       193.0  -11.464996   23.758751
+## 5        15.0   23.758751   58.982498
+## 6         7.0   58.982498   94.206246
+## 7         2.0   94.206246  129.429993
+## 8         NaN  129.429993         NaN</code></pre>
+<p>Na, ez egész pofás! Már csak annyi van, hogy rendezzük logikus sorrendbe az oszlopokat, és töröljük azt a nyomorult utolsó sort a <code>NaN</code>-nal.</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb395-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb395-1" tabindex="-1"></a>gyaktábla <span class="op">=</span> gyaktábla[[<span class="st">&#39;AlsóHatár&#39;</span>, <span class="st">&#39;FelsőHatár&#39;</span>, <span class="st">&#39;Gyakoriság&#39;</span>]]</span>
+<span id="cb395-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb395-2" tabindex="-1"></a>gyaktábla <span class="op">=</span> gyaktábla.drop(<span class="dv">8</span>, axis <span class="op">=</span> <span class="st">&quot;index&quot;</span>)</span>
+<span id="cb395-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb395-3" tabindex="-1"></a>gyaktábla</span></code></pre></div>
+<pre><code>##     AlsóHatár  FelsőHatár  Gyakoriság
+## 0 -152.359986 -117.136239         1.0
+## 1 -117.136239  -81.912491         3.0
+## 2  -81.912491  -46.688744         5.0
+## 3  -46.688744  -11.464996        24.0
+## 4  -11.464996   23.758751       193.0
+## 5   23.758751   58.982498        15.0
+## 6   58.982498   94.206246         7.0
+## 7   94.206246  129.429993         2.0</code></pre>
+<p>Na, ez végre tök szépen olvasható! :) Láthatjuk például, hogy <span class="math inline">\(5\)</span> olyan kereslkedési napunk volt a vizsgált időszakban, amikor az árfolyamváltozás <span class="math inline">\(-81\$\)</span> és <span class="math inline">\(-46\$\)</span> között volt, azaz a Tesla 46 és 81 dollár közti <em>veszteséget</em> produkált ezen az 5 napon. Ellenben <span class="math inline">\(15\)</span> napon <span class="math inline">\(23\$\)</span> és <span class="math inline">\(58\$\)</span> dollárt lehetett kaszálni egy Tesla részvényen. De amint a hisztogramon is látszott: a legtöbb, <span class="math inline">\(193\)</span> napon az árfolyamváltozások a <span class="math inline">\(11\$\)</span> <em>veszteség</em> és a <span class="math inline">\(23\$\)</span> <em>nyereség</em> között (tehát úgy kb az <span class="math inline">\(1.8\$\)</span> átlag környékén) ingadoztak.</p>
+</div>
+<div id="gyakorisági-tábla-bővítése" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Gyakorisági tábla bővítése<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-bővítése" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha szeretnénk, akkor a <strong>Relatív Gyakoriságokat</strong> iis ki tudjuk számítani a táblába: ugyebár minden gyakoriságot leosztunk a teljes elemszámmal (<span class="math inline">\(N\)</span>), ami a gyakoriságok összege. Ez Pythonban úgy néz ki, hogy a data frame gyakoriság oszlopát elosztjuk annak összegzett verziójával. Az összeg alias <code>sum</code> függvényt itt a <code>numpy</code> csomagból raboljuk el.</p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb397-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb397-1" tabindex="-1"></a>gyaktábla[<span class="st">&#39;RelatívGyak&#39;</span>] <span class="op">=</span> gyaktábla.Gyakoriság <span class="op">/</span> np.<span class="bu">sum</span>(gyaktábla.Gyakoriság)</span>
+<span id="cb397-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb397-2" tabindex="-1"></a>gyaktábla</span></code></pre></div>
+<pre><code>##     AlsóHatár  FelsőHatár  Gyakoriság  RelatívGyak
+## 0 -152.359986 -117.136239         1.0        0.004
+## 1 -117.136239  -81.912491         3.0        0.012
+## 2  -81.912491  -46.688744         5.0        0.020
+## 3  -46.688744  -11.464996        24.0        0.096
+## 4  -11.464996   23.758751       193.0        0.772
+## 5   23.758751   58.982498        15.0        0.060
+## 6   58.982498   94.206246         7.0        0.028
+## 7   94.206246  129.429993         2.0        0.008</code></pre>
+<p>Szuper, így már láthatjuk, hogy az az <span class="math inline">\(5\)</span> nap, amikor <span class="math inline">\(46\$\)</span> és <span class="math inline">\(81\$\)</span> közti <em>veszteségünk</em> volt az az összes vizsgált napnak <span class="math inline">\(2\%\)</span>-át jelenti.</p>
+<p>Lehet <strong>kumulálni</strong> is a <code>cumsum</code> metódus segítségével. Számítsuk is ki így a <em>kumulált relatív gyakoriságot</em>!</p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb399-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb399-1" tabindex="-1"></a>gyaktábla[<span class="st">&#39;KumRelatívGyak&#39;</span>] <span class="op">=</span> gyaktábla.RelatívGyak.cumsum()</span>
+<span id="cb399-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb399-2" tabindex="-1"></a>gyaktábla</span></code></pre></div>
+<pre><code>##     AlsóHatár  FelsőHatár  Gyakoriság  RelatívGyak  KumRelatívGyak
+## 0 -152.359986 -117.136239         1.0        0.004           0.004
+## 1 -117.136239  -81.912491         3.0        0.012           0.016
+## 2  -81.912491  -46.688744         5.0        0.020           0.036
+## 3  -46.688744  -11.464996        24.0        0.096           0.132
+## 4  -11.464996   23.758751       193.0        0.772           0.904
+## 5   23.758751   58.982498        15.0        0.060           0.964
+## 6   58.982498   94.206246         7.0        0.028           0.992
+## 7   94.206246  129.429993         2.0        0.008           1.000</code></pre>
+<p>Remek, az utolsó sorban ott a <span class="math inline">\(100\%\)</span>-os kumulált relatív gyakoriság, ahogy kell, és azt is látjuk, hogy a vizsgált napjaink <span class="math inline">\(3.6\%\)</span>-ban volt a <em>veszteség</em> nagyobb, mint <span class="math inline">\(46\$\)</span> (azaz az árváltozás kisebb, mint <span class="math inline">\(-46\$\)</span>).</p>
+</div>
+<div id="súlyozott-átlag-és-szórás-pythonban" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Súlyozott átlag és szórás Pythonban<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#súlyozott-átlag-és-szórás-pythonban" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha szeretnénk pl. <strong>súlyozott átlagot számítani</strong> a gyakorisági táblából azt is minden további nélkül megtehetjük! Kb. <strong>pont ugyan úgy, mint Excelben</strong>! Itt most a <em>SZORZATÖSSZEG</em> függvény szerepét a <code>numpy</code>-féle <code>sum</code> függvény tölti be! Ezzel ugyan úgy <strong>le tudjuk tükrözni a szummás statos képleteinket Pythonban, mint ahogy azt Excelben megtettük</strong>.</p>
+<p>Ugyebár a súlyozott átlaghoz két dolog kellenek, a <strong>gyakoriságok</strong>, alias <span class="math inline">\(f_i\)</span>-k, és az <strong>osztályközepek</strong>, az <span class="math inline">\(Y_i\)</span>-k. Előbbiek megvannak csak hozzáadom az <strong>f_i</strong> jelölést az oszlop nevéhez, mígy az <span class="math inline">\(Y_i\)</span>-ket kiszámolom, mint az osztály alsó és felső határának átlaga egy új <strong>Y_i</strong> nevű oszlopba! Majd a data frame <strong>oszlopnevekben mindig</strong> ’_’ <strong>szimbólummal jelölöm az alsó indexet</strong>!</p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb401-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb401-1" tabindex="-1"></a>gyaktábla <span class="op">=</span> gyaktábla.rename(columns <span class="op">=</span> {<span class="st">&quot;Gyakoriság&quot;</span>:<span class="st">&quot;f_i&quot;</span>})</span>
+<span id="cb401-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb401-2" tabindex="-1"></a>gyaktábla[<span class="st">&#39;Y_i&#39;</span>] <span class="op">=</span> (gyaktábla.AlsóHatár <span class="op">+</span> gyaktábla.FelsőHatár) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb401-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb401-3" tabindex="-1"></a>gyaktábla</span></code></pre></div>
+<pre><code>##     AlsóHatár  FelsőHatár    f_i  RelatívGyak  KumRelatívGyak         Y_i
+## 0 -152.359986 -117.136239    1.0        0.004           0.004 -134.748112
+## 1 -117.136239  -81.912491    3.0        0.012           0.016  -99.524365
+## 2  -81.912491  -46.688744    5.0        0.020           0.036  -64.300618
+## 3  -46.688744  -11.464996   24.0        0.096           0.132  -29.076870
+## 4  -11.464996   23.758751  193.0        0.772           0.904    6.146877
+## 5   23.758751   58.982498   15.0        0.060           0.964   41.370625
+## 6   58.982498   94.206246    7.0        0.028           0.992   76.594372
+## 7   94.206246  129.429993    2.0        0.008           1.000  111.818119</code></pre>
+<p>Nagyon jó, így mát tudom is alkalmazni a súlyozott átlag képletét: <span class="math display">\[\mu=\bar{Y}=\frac{\sum_i{f_iY_i}}{N}\]</span></p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb403-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb403-1" tabindex="-1"></a>átlag <span class="op">=</span> np.<span class="bu">sum</span>(gyaktábla.f_i <span class="op">*</span> gyaktábla.Y_i) <span class="op">/</span> <span class="bu">len</span>(Tesla.TESLA)</span>
+<span id="cb403-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb403-2" tabindex="-1"></a>átlag</span></code></pre></div>
+<pre><code>## 4.456137313500011</code></pre>
+<p>Remek, hát az osztályközepek használatával kicsit felélőttem a valóságnak (ami kb. <span class="math inline">\(1.8\$\)</span> volt ugyebár), de hát ez ugye csak egy becslés. :)</p>
+<p>A súlyozott szórást ugyan ezzel az elvvel ki lehet számolni pitonkával a képlete alapján: <span class="math display">\[\sigma=\sqrt{\frac{\sum_i{f_i(Y_i-\bar{Y})^2}}{N}}\]</span></p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb405-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb405-1" tabindex="-1"></a>gyaktábla</span></code></pre></div>
+<pre><code>##     AlsóHatár  FelsőHatár    f_i  RelatívGyak  KumRelatívGyak         Y_i
+## 0 -152.359986 -117.136239    1.0        0.004           0.004 -134.748112
+## 1 -117.136239  -81.912491    3.0        0.012           0.016  -99.524365
+## 2  -81.912491  -46.688744    5.0        0.020           0.036  -64.300618
+## 3  -46.688744  -11.464996   24.0        0.096           0.132  -29.076870
+## 4  -11.464996   23.758751  193.0        0.772           0.904    6.146877
+## 5   23.758751   58.982498   15.0        0.060           0.964   41.370625
+## 6   58.982498   94.206246    7.0        0.028           0.992   76.594372
+## 7   94.206246  129.429993    2.0        0.008           1.000  111.818119</code></pre>
+<div class="sourceCode" id="cb407"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb407-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb407-1" tabindex="-1"></a>szórás <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(gyaktábla.f_i <span class="op">*</span> (gyaktábla.Y_i<span class="op">-</span>átlag)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="bu">len</span>(Tesla.TESLA))</span>
+<span id="cb407-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb407-2" tabindex="-1"></a>szórás</span></code></pre></div>
+<pre><code>## 27.048902512450574</code></pre>
+<p>Na, ezt már nem lőttük annyira mellé a valós <span class="math inline">\(27.19\$\)</span>-hez képest. Ezzel meg is vagyunk, juppí! :)</p>
+</div>
+</div>
+<div id="a-normális-eloszlás-és-sűrűségfüggvénye" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> A normális eloszlás és sűrűségfüggvénye<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-normális-eloszlás-és-sűrűségfüggvénye" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Térjünk vissza a Tesla részvényárfolyamok hisztogramjához. Most rajzoljuk ki úgy a cuccot, hogy a <code>hist</code> metóduson bekapcsolunk egy <code>density = True</code> beállítást. Ez úgy rajzolja ki a hisztogramot, hogy az <span class="math inline">\(y\)</span> tengelyen nem a gyakoriságok jelennek meg, hanem azoknak egy úgy skálázott verziója, hogy a maximum érték az adott osztály osztályközepének és a körülötte lévő <span class="math inline">\(\pm 2\)</span> érték együttes relatív gyakoriságával arányos. Mivel egy konkrét érték gyakorisága itt most <span class="math inline">\(\frac{1}{250}\)</span>, így a maximum érték egy jó alacsony szám lesz az <span class="math inline">\(y\)</span> tenegelyen, egész konkrétan kb. <span class="math inline">\(\frac{5}{250}=0.02\)</span>. A többi oszlop magassága az eredeti gyakoriságok szerint legyártott hisztogram alapján van belőve ehhez a maximum értékhez. Szóval, a hisztogram alakja nem változik, csak az <span class="math inline">\(y\)</span> tengely van máshogy beskálázva.</p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb409-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb409-1" tabindex="-1"></a>Tesla.TESLA.hist(bins <span class="op">=</span> <span class="dv">8</span>, density <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-159-35.png" width="672" /></p>
+<p>Meg is van a csodaszépen szimmetrikus eloszlást mutató hisztogramunk.<br>
+Ezen a “<em>relatív gyakoriságos</em>” hisztogramon azt a gondolatot kell most elképzelni, hogy milyen alakzatot kapunk, ha <strong>az oszlopokat összekötjük egy folytonos vonallal</strong>.<br>
+Nos, nem kell sokat fantáziálni, a vonnallal összekötés az <strong>alábbi alakzathoz hasonló függvényt eredményez</strong>:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-160-37.png" width="672" /></p>
+<p>Amit itt látunk az nem más, mint <strong>egy normális eloszlás sűrűségfüggvénye</strong>. Sőt, pontosítok is, ez <strong>az alakzat egy <span class="math inline">\(\mu=1.8\)</span> átlagú és <span class="math inline">\(\sigma=27.19\)</span> szórású normális eloszlás sűrűségfüggvénye, hiszen ennyi volt a Tesla árfolyamváltozások adatsorának átlaga és szórása, aminek a hisztogramja alapján gondolatban kirajzoltuk ezt a sűrűségfüggvényt</strong>. Ezt ilyenkor úgy szoktuk szakszerűen mondani, hogy amit látunk az egy <span class="math inline">\(N(1.8,27.19)\)</span> eloszlás sűrűségfüggvénye. Általánosságban egy normális eloszlásra pedig <span class="math inline">\(N(\mu, \sigma)\)</span> jelöléssel hivatkozunk.</p>
+<p>Miért is van ez így? Mivel <strong>azt, hogy konkrétan milyen egy normális eloszlású sűrűségfüggvény alakja, meghatározza, hogy mennyi az adatsor átlaga és szórása, amire ezt a sűrűségfüggvényt úgymond illeszteni szeretnénk</strong>. Azt, hogy hogyan az alábbi kis interaktív ábra szemlélteti:</p>
+<center>
+<iframe src="https://kola992.shinyapps.io/normaldensityplot/?showcase=0" width="672" height="500px" data-external="1">
+</iframe>
+</center>
+<p>Amúgy a normális eloszlás sűrűségfüggvényének hozzárendelési <span class="math inline">\(f(x)\)</span> utasítása <span class="math inline">\(\mu\)</span> átlag és <span class="math inline">\(\sigma\)</span> szórás függvényében az alább alakot ölti.<span class="math display">\[f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}\]</span></p>
+<p>Mielőtt szörnyet halunk az Analízis emlékek által kiváltott PTSD-ben, megnyugtatok mindenkit: erre a épletre igazából nekünk nem lesz szükségünk, de egyszer nem árt ha látjuk a függvény mögötti képletet is. :)</p>
+<div id="a-sűrűségfüggvény-használata" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> A sűrűségfüggvény használata<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-használata" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No, de “<em>Mit adtak nekünk a rómaiak?</em>” Azaz jogosan kérdezhetjük, hogy mire tudjuk használni ezt a sűrűségfüggvényt? Első és legfontosabb funkciója, hogy ha a függvény <span class="math inline">\(f(x)\)</span> formulájába behelyettesítek egy <span class="math inline">\(x\)</span> értéket, akkor megkapom, hogy <strong>mi a valószínűsége, hogy az <span class="math inline">\(Y\)</span> adatsoromból egy véletlenszerűen kihúzott <span class="math inline">\(Y_i\)</span> érték az <span class="math inline">\(x\)</span>-et vesz fel</strong>. Magyarul <span class="math inline">\(f(x)=P(Y_i=x)\)</span>.<br>
+Most itt egy picit <strong>pontatlan voltam</strong>. Ugyanis nem egész pontosan a <span class="math inline">\(Y_i=x\)</span> esemény valószínűségét kapjuk meg, mert nagy értékkészlet esetén az gyakorlatilag <span class="math inline">\(0\)</span> lenne. Gondoljunk bele: annak a valószínűsége, hogy a Tesla napi árváltozása éppen pont <span class="math inline">\(2.760009\$\)</span> az tényleg gyakorlatilag <span class="math inline">\(0\)</span>, de a valóságban pont ennyi volt a cucc 2019. május 23-án. Szóval, abszolút nem lehetetlen… Azaz, egész pontosan az <span class="math inline">\(f(x)\)</span> sűrűségfüggvény érték <em>arányos</em> a <span class="math inline">\(P(x&lt;Y_i&lt;x+ \epsilon)\)</span> esemény valószínűségével, ahol az <span class="math inline">\(\epsilon\)</span> egy <em>nagyon kicsi</em> szám. Konkrétan, azt mondhatjuk, hogy <span class="math inline">\(P(x&lt;Y_i&lt;x+ \epsilon)=f(x) \times \epsilon\)</span>. Tehát, annak a valószínűsége, hogy a random módon kihúzott <span class="math inline">\(Y_i\)</span> értékünk az <span class="math inline">\(x\)</span>-nek egy <em>nagyon kicsi</em>, <span class="math inline">\(\epsilon\)</span>-nyi környezetébe esik, arányos az <span class="math inline">\(f(x)\)</span> sűrűségfüggvény értékével. Ha nagyobb ez a valószínűség, akkor nagyobb a sűrűségfüggvény érték is, és fordítva. Szóval, annyi biztosan elmondható, hogy amelyik <span class="math inline">\(x\)</span> pontnak nagyobb az <span class="math inline">\(f(x)\)</span> sűrűségfüggvény értéke, annak nagyobb is a bekövetkezési valószínűsége, ha véletlenszerűen kiválasztok egy tetszőleges <span class="math inline">\(Y_i\)</span> értéket. Csak a két dolog (sűrűségfüggvény és valószínűség) nem ugyan az, az eltérésük egy <span class="math inline">\(\epsilon\)</span> szorzó.<br>
+Emiatt van az is, hogy a Pythonban a <code>hist</code> metódus <code>density = True</code> beállítással a relatív gyakoriságokat a legnagyobb gyakoriságú <span class="math inline">\(Y_i\)</span> osztályközép <span class="math inline">\(\pm 2\)</span> környezet relatív gyakorisága alapján mutatja meg a hisztogram <span class="math inline">\(y\)</span> tengelyén.<br>
+De most nekünk <strong>szemléletes szempontból teljesen jó lesz, ha úgy gondolunk a helyettesítési értékre <span class="math inline">\(x\)</span> helyen, mint az <span class="math inline">\(x\)</span> érték bekövetkezési valószínűsége</strong>. Azaz, mi a <span class="math inline">\(f(x)=P(Y_i=x)\)</span> értelmezéssel megyünk tovább.</p>
+<p>Ez alapján, ha meg akarjuk tudni, hogy mennyi a valószínűsége, hogy a Tesla egy random napi árfolyamváltozása épp a 2019. május 23-i kb. <span class="math inline">\(2.76\$\)</span>-al lesz egyenlő, akkor ahhoz az alábbi csodát kell kiszámolni.<span class="math display">\[P(Y_i=2.76)=f(2.76)=\frac{1}{27.19\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{2.76-1.8}{27.19}\right)^2}\]</span></p>
+<p>Hiszen azt tudjuk, hogy a megfigyelt kereskedési napok alapján az árváltozások átlaga <span class="math inline">\(\mu=1.8\$\)</span> és szórása <span class="math inline">\(\sigma=27.19\$\)</span>.</p>
+<p>Na, ezt számolja ki kézzel az, aki papíron tanulja a Stat. II-t. :) Mi Pythonban be tudjuk vetni a <code>scipy</code> csomag <code>stats</code> névterében található függvényeket egy ilyen normális eloszlás sűrűségfüggvény-érték kiszámítására!</p>
+<p>Telepítsuk a csomagot és importáljuk a szükséges függvényeket egy <code>stats</code> névtérbe. A <strong>csomagot nagyon sokat fogjuk hazsnálni a félév során</strong>, és egy szép alapos <a href="https://docs.scipy.org/doc/scipy/reference/index.html" target="_blank">dokumentációja</a> van. Érdemes olvasgatni! :)</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb410-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb410-1" tabindex="-1"></a>pip install scipy</span>
+<span id="cb410-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb410-2" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span></code></pre></div>
+<p>Majd a névtér <code>norm.pdf</code> függvénye segítségével számoljuk ki a keresett valószínűséget! A függvény <strong>3 paraméterrel operál, ebben a sorrendben: <span class="math inline">\(x, \mu, \sigma\)</span>.</strong> Annyit érdemes megjegyezni, hogy a függvény a <span class="math inline">\(\mu\)</span> átlagot location-nek, azaz <code>loc</code>-nak, míg a <span class="math inline">\(\sigma\)</span> szórást <code>scale</code>-nek nevezi a saját kis nyelvjárásában. A függvény neve pedig az angol <em>probability density function</em>-ból (valószínűségi sűrűségfüggvény) rövidül <em>pdf</em>-nek.</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb411-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb411-1" tabindex="-1"></a>mű <span class="op">=</span> <span class="fl">1.8</span></span>
+<span id="cb411-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb411-2" tabindex="-1"></a>szigma <span class="op">=</span> <span class="fl">27.19</span></span>
+<span id="cb411-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb411-3" tabindex="-1"></a>stats.norm.pdf(x <span class="op">=</span> <span class="fl">2.76</span>, loc <span class="op">=</span> mű, scale <span class="op">=</span> szigma)</span></code></pre></div>
+<pre><code>## 0.014663247477553697</code></pre>
+<p>Szuper, ez azt jelenti, hogy kb. <span class="math inline">\(1.466\%\)</span> a valószínűsége annak, hogy egy véletlenszerű napon egy Tesla részvénnyel <span class="math inline">\(2.76\$\)</span>-t lehet kaszálni.</p>
+<p>Ezen a ponton <strong>érdemes belegondolni, hogyan is reagált a sűrűségfüggvény a szórás növekedésére…ellaposodott!</strong> Na, ez most teljesen érthetővé válik, hiszen <strong>ha a szórás nő</strong>, az azt jelenti, hogy a <strong>szélsőségesen magas vagy alacsony <span class="math inline">\(Y_i\)</span> értékek bekövetkezési valószínűsége is megnő</strong>…és ha a <strong>függvény <span class="math inline">\(f(x)\)</span> értéke épp ezekkel a <span class="math inline">\(P(Y_i=x)\)</span> valószínűségekkel egyenlő</strong>, akkor épp a <strong>két szélen fog “meghízni” a függvény képe</strong>, azaz <strong>ellaposodik</strong>!</p>
+</div>
+<div id="a-sűrűségfüggvény-integrálja" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> A sűrűségfüggvény integrálja<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-integrálja" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Azért láthatjuk, hogy egy konkrét érték bekövetkezési valószínűsége, alapól nem valami nagy, épp azért, amit fejtegettünk korábban is: az árváltozások értékkészlete elég nagy, egy konkrét érték (vagy annak kis környezetének) bekövetkezési valószínűsége elég kicsi.<br>
+Emiatt nem is ezt a kérdést szoktuk általában feltenni a sűrűségfüggvénynek, hanem pl. azt, hogy <strong>mi a valószínűsége annak, hogy egy véletlenszerűen kihúzott <span class="math inline">\(Y_i\)</span> érték egy előre megadott <span class="math inline">\(x\)</span> érték alatt helyezkedik el</strong>? Tehát a <span class="math inline">\(P(Y_i &lt; x)\)</span> valószínűséget keressük általában.<br>
+Ez pedig nem más, mint a <strong>sűrűségfüggvény <span class="math inline">\(x\)</span> alatti részének területe</strong>, vagyis a <span class="math inline">\(\int_{-\infty}^x{f(x)}dx\)</span> improprius integrál.</p>
+<p>Na, ha a sűrűségfüggvény helyettesítési értékét nem akartuk kézzel-lábbal kiszámolni, akkor ezt az improprius integrált meg pláne nem!<br>
+Szerencsére, <strong>van erre is beépített függvényünk</strong> a <code>scipy</code> csomagban <code>norm.cdf</code> néven. Ugyan úgy működik, mint a <code>norm.pdf</code>, 3 paramétere van, ugyan abban a sorrendben: <code>x, loc, scale</code>, csak a <span class="math inline">\(P(Y_i &lt; x)\)</span>-et számítja ki, nem a <span class="math inline">\(P(Y_i = x)\)</span>-t a megadott átlagú és szórású normális eloszlás sűrűségfüggvény alapján. A függvény neve az angol <em>cumulative density function</em>-ból (kumulált sűrűségfüggvény) rövidül <em>cdf</em>-nek. Ha belegondolunk ez logikus, hiszen felösszegezzük (azaz felkumuláljuk) az egyes <span class="math inline">\(Y_i\)</span> elemek bekövetkezési valószínűségét <span class="math inline">\(-\infty\)</span>-től <span class="math inline">\(x\)</span>-ig.</p>
+<p>Lássuk akkor hát pl., hogy mennyi a valószínűsége, hogy egy véletlenszerűen kiszúrt kereskedési napon a Teslával <span class="math inline">\(82\$\)</span>-nál nagyobb <em>veszteségünk</em> lesz! Tehát, a <span class="math inline">\(P(Y_i&lt;-82)\)</span> valószínűséget keressük.</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb413-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb413-1" tabindex="-1"></a>stats.norm.cdf(x <span class="op">=</span> <span class="op">-</span><span class="dv">82</span>, loc <span class="op">=</span> mű, scale <span class="op">=</span> szigma)</span></code></pre></div>
+<pre><code>## 0.0010280208392538434</code></pre>
+<p>Ez pedig a korábban megadott <span class="math inline">\(\mu\)</span> átlaggal és <span class="math inline">\(\sigma\)</span> szórással nem más, mint kb. <span class="math inline">\(0.1\%\)</span>. Szóval, szerencsére egy jó kicsi érték! :)</p>
+<p>Természetesen ha egy <span class="math inline">\(x\)</span> érték alá esési valószínűségét ki tudjuk számolni, akkor az <span class="math inline">\(x\)</span> felé esés valószínűségét már gyerekjáték kiszámolni, hiszen <strong>a “felé esés” az “alá esés” komplementer eseménye</strong>, azaz <span class="math inline">\(P(Y_i&gt;x)=1-P(Y_i&lt;x)\)</span>. Szemléletesen pedig itt a <strong>sűrűségfüggvény <span class="math inline">\(x\)</span> feletti részének területét</strong> számoljuk ki.</p>
+<p>Eszerint gyorsan meg tudjuk adni, hogy mi annak a valószínűsége, hogy egy random napon a Tesla részvényen <span class="math inline">\(20\$\)</span>-nál többet kaszálunk, hiszen <span class="math inline">\(P(Y_i&gt;20)=1-P(Y_i&lt;20)\)</span>. Tehát, az egész dolog ismét megoldható a <code>norm.cdf</code> függvény segítségével.</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb415-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb415-1" tabindex="-1"></a><span class="dv">1</span> <span class="op">-</span> stats.norm.cdf(x <span class="op">=</span> <span class="dv">20</span>, loc <span class="op">=</span> mű, scale <span class="op">=</span> szigma)</span></code></pre></div>
+<pre><code>## 0.25163173906817715</code></pre>
+<p>Na, ez nem is rossz, a <span class="math inline">\(20\$\)</span> feletti nyereség valószínűsége egy napon egy kicsit több, mint <span class="math inline">\(25\%\)</span>!</p>
+<p>Ha pedig azt szeretnénk megtudni, hogy mi a valószínűsége, hogy a véletlenszerűen kihúzott <span class="math inline">\(Y_i\)</span> értékünk épp két előre megadott <span class="math inline">\(x\)</span> és <span class="math inline">\(y\)</span> érték közé esik, akkor egyszerűen a <strong>nagyobb érték alá esés valószínűségéből kivonjuk a kisebb érték alá esés valószínűségét</strong>. Azaz, ha <span class="math inline">\(x&gt;y\)</span>, akkor <span class="math inline">\(P(y&lt;Y_i&lt;x)=P(Y_i&lt;x)-P(Y_i&lt;y)\)</span>, de ha <span class="math inline">\(x&lt;y\)</span>, akkor <span class="math inline">\(P(x&lt;Y_i&lt;y)=P(Y_i&lt;y)-P(Y_i&lt;x)\)</span> a számítás menete.Tehát, ekkor is az egész sztori megoldható pitonban a <code>norm.cdf</code> függvénnyel. Grafikusan pedig úgy képzeljük el a dolgot, mint a <strong>sűrűségfüggvény <span class="math inline">\(x\)</span> és <span class="math inline">\(y\)</span> közötti részének területe</strong>.</p>
+<p>Szóval, ha azt szeretném megtudni, hogy mi a valószínűsége annak, hogy egy véletlenszerűen kiválasztott napon egy Tesla részvénnyel <span class="math inline">\(47\$\)</span> és <span class="math inline">\(82\$\)</span> közti veszteséget produkálunk, akkor megnézem a <span class="math inline">\(-47\)</span> alá esés valószínűségét, és kivonom belőle a <span class="math inline">\(-82\)</span> alá esés valószínűségét (tartom a nagyobból vonom a kisebbet elvet ugyebár).</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb417-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb417-1" tabindex="-1"></a>stats.norm.cdf(x <span class="op">=</span> <span class="op">-</span><span class="dv">47</span>, loc <span class="op">=</span> mű, scale <span class="op">=</span> szigma) <span class="op">-</span> stats.norm.cdf(x <span class="op">=</span> <span class="op">-</span><span class="dv">82</span>, loc <span class="op">=</span> mű, scale <span class="op">=</span> szigma)</span></code></pre></div>
+<pre><code>## 0.035316558328262415</code></pre>
+<p>Nagyon jó, akkor már azt is tudjuk, hogy kb. <span class="math inline">\(3.5\%\)</span> a valószínűsége, hogy a Tesla egy napon <span class="math inline">\(47\$\)</span> és <span class="math inline">\(82\$\)</span> közti veszteséget produkál.</p>
+<p><strong>Összefogalva</strong> tehát a sűrűségfüggvény, <span class="math inline">\(f(x)\)</span> segítségével a következő események bekövetkezési valószínűsége számítható ki, ahol <span class="math inline">\(Y_i\)</span> a vizsgált adatsornak egy véletlenszerűen kihúzott <span class="math inline">\(i\)</span>-edik eleme, <span class="math inline">\(x\)</span> és <span class="math inline">\(y\)</span> pedig előre adott számok:</p>
+<ul>
+<li><span class="math inline">\(x\)</span> bekövetkezése: <span class="math inline">\(P(Y_i=x)=f(x)\)</span></li>
+<li><span class="math inline">\(x\)</span> alá esés: <span class="math inline">\(P(Y_i&lt;x)=\int_{-\infty}^x{f(x)}dx\)</span></li>
+<li><span class="math inline">\(x\)</span> felé esés: <span class="math inline">\(P(Y_i&gt;x)=1-P(Y_i&lt;x)\)</span></li>
+<li><span class="math inline">\(x\)</span> és <span class="math inline">\(y\)</span> közé esés: <span class="math inline">\(P(y&lt;Y_i&lt;x)=P(Y_i&lt;x)-P(Y_i&lt;y)\)</span></li>
+</ul>
+<p>Mindezen valószínűségek számolása a hozzájuk tartozó sűrűségfüggvény interaktív ábrájával alább tekinthetők át.<br>
+Egy <em>apró megjegyzés</em>: az alá-felé-közé esési valószínűségeknél azért hagytam el mindenhol a <span class="math inline">\(=\)</span> jelet, mert a nagy értékkészlét miatt ugyebár egy konkrét érték bekövetkezési valószínűsége nagyon kicsi, így a tartományba esésnél elhanyagolható. <em>Nem oszt, nem szoroz úgymond</em>.</p>
+<center>
+<iframe src="https://kola992.shinyapps.io/normalprobabilities/?showcase=0" width="672" height="600px" data-external="1">
+</iframe>
+</center>
+</div>
+<div id="valószínűség-vs-relatív-gyakoriság" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Valószínűség vs Relatív Gyakoriság<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#valószínűség-vs-relatív-gyakoriság" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Na jó, már tudjuk akkor használni a normális eloszlás sűrűségfüggvényét. Jó-jó, de <strong>ennek mi értelme?</strong> Oké, akkor az előbb a sűrűségfüggvénnyel kiszámoltuk, hogy a Tesla részvényekkel a <span class="math inline">\(47\$\)</span> és <span class="math inline">\(82\$\)</span> közti veszteség valószínűsége <span class="math inline">\(3.5\%\)</span>.</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb419-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb419-1" tabindex="-1"></a>stats.norm.cdf(x <span class="op">=</span> <span class="op">-</span><span class="dv">47</span>, loc <span class="op">=</span> mű, scale <span class="op">=</span> szigma) <span class="op">-</span> stats.norm.cdf(x <span class="op">=</span> <span class="op">-</span><span class="dv">82</span>, loc <span class="op">=</span> mű, scale <span class="op">=</span> szigma)</span></code></pre></div>
+<pre><code>## 0.035316558328262415</code></pre>
+<p>De ez egy olyan dolog, amit az osztályközös <strong>gyakorisági tábla relatív gyakoriságaiból is tudtunk már, nem?</strong> Hiszen ott megnéztük a <span class="math inline">\(-82\)</span> és <span class="math inline">\(-47\)</span> értékek közötti napok számát, mint kedvező esetek, és elosztottuk a teljes <span class="math inline">\(N=250\)</span> elemszámmal, mint összes eset. Tehát ilyen elven az is, a <span class="math inline">\(47\$\)</span> és <span class="math inline">\(82\$\)</span> közti veszteség valószínűsége, nem?</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb421-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb421-1" tabindex="-1"></a>gyaktábla</span></code></pre></div>
+<pre><code>##     AlsóHatár  FelsőHatár    f_i  RelatívGyak  KumRelatívGyak         Y_i
+## 0 -152.359986 -117.136239    1.0        0.004           0.004 -134.748112
+## 1 -117.136239  -81.912491    3.0        0.012           0.016  -99.524365
+## 2  -81.912491  -46.688744    5.0        0.020           0.036  -64.300618
+## 3  -46.688744  -11.464996   24.0        0.096           0.132  -29.076870
+## 4  -11.464996   23.758751  193.0        0.772           0.904    6.146877
+## 5   23.758751   58.982498   15.0        0.060           0.964   41.370625
+## 6   58.982498   94.206246    7.0        0.028           0.992   76.594372
+## 7   94.206246  129.429993    2.0        0.008           1.000  111.818119</code></pre>
+<p>Na igen ám, de itt ez a relatív gyakoriság <span class="math inline">\(2.0\%\)</span>!! Na akkor most kinek higgyek? Mi ez a keresett valószínűség? <span class="math inline">\(3.5\%\)</span> ahogy a sűrűségfüggvény mondja vagy <span class="math inline">\(2.0\%\)</span>, ahogy a relatív gyakorisággal kiszámoltam? Mi a kettő válasz közötti különbség?</p>
+<p>Nos, azt kell észrevenni, hogy a <strong>relatív gyakoriságos <span class="math inline">\(2.0\%\)</span> kiszámításánál csak a megfigyelt adatokat, azaz a megfigyelst statisztikai MINTÁT vettem csak figyelembe!!</strong> Tehát a <span class="math inline">\(2.0\%\)</span> esetén a <strong>pontos értelmezés az, hogy a megfigyelt napjainknak 2%-a volt olyan, hogy a részvénnyel 47-82 dollárt veszítettünk!!</strong></p>
+<p>Ezzel szemben a <span class="math inline">\(3.6\%\)</span>, amit az adatokra illeszkedő átlagú és szórású normális eloszlás sűrűségfüggvénye (Gauss görbéje) alapján számoltunk már egy <em>elvi valószínűség</em>! Konkréten, <strong>annak az ELVI valószínűsége, hogy a részvénnyel 47-82 dollár közti összeget veszítek <span class="math inline">\(3.6\%\)</span>!!</strong> Ez azért lehet egy elvi érték, hiszen mivel az <span class="math inline">\(x\)</span> tengely felett egy folytonos vonallal összekötött <span class="math inline">\(f(x)\)</span> függvényről beszélünk, ami így <strong>pozitív bekövetkezési valószínűséget rendel olyan <span class="math inline">\(x\)</span> értékekhez is, amik a megfigyelt adatok között még nem szerepelnek!!</strong> Tehát, <strong>a sűrűségfüggvény megfigyelt adataimon kívüli világot is figyelembe veszi!</strong> Emiatt mondhatom a sűrűségfüggvényből származó értékeket <em>valódi VALÓSZÍNŰSÉG</em>nek, és nem csak relatív gyakoriságnak!</p>
+<p><em>Nota bene</em>: ehhez azért az is kell, hogy az eloszlás, aminek a sűrűségfüggvényét használom tényleg illeszkedjen az adatokra! Itt azért most a normális eloszlással lehetnek gondok, hiszen amint láttuk pl. az <span class="math inline">\(\alpha_4\)</span> a Tesla részvények eloszlása kicsit csúcsosabb az <span class="math inline">\(N(1.8,27.19)\)</span> eloszlás sűrűségfüggvényénél.</p>
+<p>Azt, hogy egy eloszlás sűrűségfüggvény mennyire illeszkedik a megfigyelt adatok hisztogramjára a következőképpen tudjuk grafikusan megvizsgálni.</p>
+<ul>
+<li>Először elkészítjük a hisztogramot a <code>hist</code> metódussal, <code>density = True</code> paraméterrel, hogy az <span class="math inline">\(y\)</span> tengely skálázása összemérhető legyen a sűrűségfüggvény <span class="math inline">\(y\)</span> tengelyével, ami ugyebár valószínűségeket mutat ki.</li>
+<li>Utána megadjuk egy külön objektumban a sűrűségfüggvény <span class="math inline">\(x\)</span> tengelyének tartományát a <code>np.arange</code> függvénnyel. A függvény paraméterezése azt mondja nekünk el, hogy a létrehozott <span class="math inline">\(x\)</span> tengely a megfigyelt Tesla árváltozások minimuma és maximuma között fog terjedni <span class="math inline">\(0.01\)</span>-es lépésközzel.</li>
+<li>Kövi lépésben megadjuk a sűrűségfüggvény <span class="math inline">\(y\)</span> tengelyét egy külön objektumban a <code>scipy</code> csomag <code>norm.pdf</code> függvényével. Ha ennek a függvénynek az <code>x</code> paraméterében több értéket adunk át, akkor mindegyikhez szépen kiszámolja a sűrűségfüggvény <span class="math inline">\(f(x)\)</span> helyettesítési értékét. Az átlagot (<code>loc</code> paraméter) és szórást (<code>scale</code> paraméter) most közvetlenül a data frame-ből számolom ki a függvényen belül.</li>
+<li>Egy sima <code>matplotlib</code> csomag <code>plt</code> névteréből származó <code>plot</code> függvénnyel felrajzolunk egy olyan vonaldiagramot a hisztogramra, aminek az <span class="math inline">\(x\)</span> és <span class="math inline">\(y\)</span> tengelye az előző két pontban létrehozott értékekből áll.</li>
+<li>Végül a <code>plt.show()</code> paranccsal kikényszerítjük, hogy ezt a többrétegű árát így egyben mutassa meg nekünk a gépállat.</li>
+<li><strong>FONTOS!</strong> Az alábbi kódsort mindig egyben futtassuk le, mert csak így fogja szépen egyben összerakni a kívánt ábrát! Ha soronként futtatjuk, akkor két külön ábránk lesz belőle!</li>
+</ul>
+<div class="sourceCode" id="cb423"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb423-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb423-1" tabindex="-1"></a>Tesla.TESLA.hist(bins <span class="op">=</span> <span class="dv">8</span>, density <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb423-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb423-2" tabindex="-1"></a>x_tengely <span class="op">=</span> np.arange(np.<span class="bu">min</span>(Tesla.TESLA), np.<span class="bu">max</span>(Tesla.TESLA), <span class="fl">0.01</span>)</span>
+<span id="cb423-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb423-3" tabindex="-1"></a>y_tengely <span class="op">=</span> stats.norm.pdf(x <span class="op">=</span> x_tengely, loc <span class="op">=</span> np.mean(Tesla.TESLA), scale <span class="op">=</span> np.std(Tesla.TESLA))</span>
+<span id="cb423-4"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb423-4" tabindex="-1"></a>plt.plot(x_tengely, y_tengely)</span>
+<span id="cb423-5"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb423-5" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p>Egyszerűen <em>utsukushii</em>, nemigaz? :) Szépen látszik, hogy a valódi árváltozás eloszlás kissé csúcsosabb, mint amit az adatokra illeszkedő normális eloszlás sűrűségfüggvénye sugall.</p>
+<p>Egyébként majd ilyen elvi sűrűségfüggvények illeszkedési jóságát valós hisztogramokhoz egzaktabban is megtanuljuk majd mérni a félév során, mint a szemmelverés. :)</p>
+</div>
+<div id="centrális-határeloszlás-tétel-cht" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Centrális Határeloszlás Tétel (CHT)<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#centrális-határeloszlás-tétel-cht" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A normális eloszlás esetében viszont van egy <strong>valószínűségszmítási tétel, ami megadja, hogy a normális eloszlás milyen tulajdonságú adatsorok esetén</strong> lesz egy <strong>jól illeszkedő eloszlás</strong> a megfigyelt adatok hisztogramjára. Ez a tétel pedig a <strong>Centrális Határeloszlás Tétel</strong>, leánykori nevén <strong>CHT</strong>.<br>
+Maga a tétel azt mondja, hogy <strong>ha az adatsor egy <span class="math inline">\(Y_i\)</span> értéke véletlen hatások összegződéseként áll elő, akkor az adatok hisztogramja normális eloszlású sűrűségfüggvényt követ</strong>.</p>
+<p>A tétel tehát ilyen klasszikus <strong>ha –&gt; akkor</strong> típusú matematiaki tétel. És az <strong>“akkor” utáni rész az érthetőbb</strong>. Ha valami felétel teljesül, akkor az adatsorunk normális eloszlású. Ezt oké, értjük. De <strong>mit jelent az a rész, ami a tétel feltételében van?</strong> Hogy ha <strong>az <span class="math inline">\(Y_i\)</span> értékek véletlen hatások összegeként állnak elő</strong>.</p>
+<p>Nos, ez <strong>utóbbi rész megértéséhez nézzünk rá ismét a Tesla árváltozások adatsorának első 5 elemére</strong> a data frame <code>head</code> metódusával.</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb424-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb424-1" tabindex="-1"></a>Tesla.head()</span></code></pre></div>
+<pre><code>##        Dátum      TESLA
+## 0 2019-05-07  -8.279998
+## 1 2019-05-08  -2.220002
+## 2 2019-05-09  -2.860000
+## 3 2019-05-10  -2.459992
+## 4 2019-05-13 -12.510009</code></pre>
+<p>Vegyük például a 2019 május 13-i <span class="math inline">\(Y_5=-12.510009\$\)</span>-os veszteséget. Nos <strong>ez az érték úgy jött ki</strong>, hogy <strong>az adott nap</strong> (2019. 05. 13.) <strong>véletlenszerű gazdasági eseményeinek hatása összegződött</strong>, és <strong>így kötöttünk ki ott, hogy a Tesla részvény a nap végére kb. 12 és fél dollárral kevesebbet ér</strong>. Tehát, reggel mondjuk bejelentik a kínaiak, hogy vizsgálatot indítanak az egyik Tesla gyár munkakörülményei ellen, aminek hatására elkezd esni a részvény értéke, de aztán délben Musk tweetel egyet, hogy “no para, átviszem a gyárat Mexikóba”, aminek hatására nyugi lesz és elindul felfelé a részvény értéke, de aztán nap végére beesik egy hír, hogy a Mexikóban máris tümtikéznek a tervezett Tesla gyár ellen, ami megint elkezdi levinni a részvény értékét és a nap végére uda jutunk, hogy a részvény <span class="math inline">\(-12.510009\$\)</span>-al zár…<br>
+Szóval az <strong>adott nap véletlenszerű gazdasági eseményeinek összegződéseként áll elő a nap végi <span class="math inline">\(Y_i\)</span> Tesla árváltozás</strong>. Ezt jelenti az, hogy <strong>az <span class="math inline">\(Y_i\)</span> értékek véletlen hatások összegeként állnak elő</strong>. És <strong>ilyen esetekben az <span class="math inline">\(Y_i\)</span> adatsorhoz tartozó hisztogram normális eloszlású sűrűségfüggvényt követ a CHT szerint!</strong></p>
+<p>Láthatjuk a <strong>Tesla részvény vizsgálatának korábbi tapasztalataink alapján</strong>, hogy a csúcsosság miatt azért <strong>a pénzügyi piacokon ez a tétel nem érvényesül annyira pontosan</strong>, de <strong>közelítőleg</strong> igen. De <strong>több egyéb esetben elég szépen érvényesül</strong>: Pl. egy termelőgép által a nap végén gyártott selejtes termékek száma esetén. Az adott napi selejtszám értéke (ha nincs szabotőr a gyárban) az adott napi véletlen hatások összegződése állítja elő. Így, ha több nap nap végi selejtszámait vizsgáljuk, akkor azok hisztogramja csudiszép normális eloszlást kell, hogy kirajzoljon.</p>
+</div>
+<div id="inverz-értékek" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Inverz Értékek<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#inverz-értékek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A sűrűségfüggvényektől lehet “<em>visszafelé is kérdezni</em>”. Tehát, nem csak arra képesek, hogy mondok egy eseményt (pl. mi a valószínűsége, hogy <span class="math inline">\(80\$\)</span>-nál nagyobb veszteségem lesz a Teslán) és adnak hozzá valószínűséget, hanem arra is, hogy mondok nekik valószínűséget, és az <strong>inverz értékeik</strong> segítségével adnak hozzá értéket. Szóval, tudok tőlük olyat kérdezni, hogy pl. <em>Mi az az érték, aminél csak <span class="math inline">\(5\%\)</span> valószínűséggel veszítek többet a Teslán?</em><br>
+Magyarul, a <span class="math inline">\(P(Y_i &lt; x) = 0.05\)</span> kifejezésben megadja nekem a sűrűségfüggvény inverz értéke az <span class="math inline">\(x\)</span>-et. Ilyenkor az történik a háttérben, hogy a sűrűségfüggvény primitívfüggvényéből (amit hívnak eloszlásfüggvénynek is, de a mi szempontunkból ez az elnevezés nem fontos) “<em>kifejezzük az <span class="math inline">\(x\)</span>-et</em>”.</p>
+<p>Természetesen, a <code>scipy</code>-nak erre is van beépített függvénye <code>norm.ppf</code> néven, ami 3 paramétert kíván: a <span class="math inline">\(P(Y_i &lt; x)\)</span> alá esési valószínűséget (ezt a függvény <code>q</code>-nak hívja az angol kvantilis=quantile szóból), a <span class="math inline">\(\mu\)</span> átlagot (<code>loc</code>) és a <span class="math inline">\(\sigma\)</span> szórást (<code>scale</code>).<br>
+Akkor hát lássuk mi is az az érték, aminél csak <span class="math inline">\(5\%\)</span> valószínűséggel veszítek többet a Teslán?</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb426-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb426-1" tabindex="-1"></a>stats.norm.ppf(q <span class="op">=</span> <span class="fl">0.05</span>, loc <span class="op">=</span> np.mean(Tesla.TESLA), scale <span class="op">=</span> np.std(Tesla.TESLA))</span></code></pre></div>
+<pre><code>## -42.85439941594264</code></pre>
+<p>Oké, tehát csak <span class="math inline">\(5\%\)</span> valószínűséggel veszítünk kb. <span class="math inline">\(42.85\$\)</span>-nál többet. Vagy másképp: <span class="math inline">\(5\%\)</span> a valószínűsége, hogy egy random napon a Tesla árváltozás kisebb lesz, mint <span class="math inline">\(-42.85\$\)</span>. Jó tudni. :) Amúgy pénzügyekben ezeket az értékeket <em>5%-os Value at Risk</em>-nek szokás becézni, mint 5%-os kockáztatott érték. Általában úgy szól a törvényi szabályozás ezeket az értékeket a befektetési bankoknak be kell raknia biztonsági tartalékba egy-egy pénzügyi befektetési portfólió után.</p>
+<p>Ha valaki mélyebben belegondol a Stat. I-es rémképeibe, az <strong>eloszlások inverz értékeihez is találhat analógiát, mégpedig a percentiliseket!</strong> Hiszen a megfigyelt árváltozások <strong>5. percentilis</strong>e megadja, hogy mi az az érték, aminél az adatok <span class="math inline">\(5\%\)</span>-a kisebb csak. Tehát ez az értelmezés lehet a “<em>Mi az az érték, aminél csak <span class="math inline">\(5\%\)</span> a valószínűsége, hogy egy random napon a Tesla árváltozás kisebb lesz?</em>” c. kérdés analógiája.</p>
+<p>Lássuk, akkor mi a megfigyelt érváltozások 5. percentilise! Itt most a data frame <code>quantile</code> metódusát vetjük be, aminek a paraméterében tizedestörtként kell megadni a keresett percentilis sorszámát. Tehát az 5. percentilisnél <span class="math inline">\(0.05\)</span>-öt adunk meg.</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb428-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb428-1" tabindex="-1"></a>Tesla.TESLA.quantile(<span class="fl">0.05</span>)</span></code></pre></div>
+<pre><code>## -28.48700139999998</code></pre>
+<p>Ahha, ez csak kb. <span class="math inline">\(-28.5\$\)</span>! Tehát a megfigyelt napjaink <span class="math inline">\(5\%\)</span>-ban volt nagyobb veszteségünk, mint <span class="math inline">\(28.5\$\)</span>! Ez azért <strong>lényegesen kisebb érték, mint a sűrűségfüggvényből származó <span class="math inline">\(42.85\$\)</span>-os veszteség!</strong> És valószínűleg a <strong>sűrűségfüggvény</strong>ből származó éték a reálisabb, hiszen az a számolás során ugyebár <strong>olyan értékeket is figyelembe vett</strong> valami pozitív bekövetkezési valószínűséggel, <strong>amiket a megfigyelt adatsor még egyáltalán “nem is látott”</strong>, mert kisebbek pl. mint a minimum értéke.<br>
+Tehát, megint elmondhatjuk, hogy <strong>ha az elvi eloszlásból “keresek percentilist”, akkor a megfigyelt adatokon kívüli világot is figyelembe veszem!</strong> Azaz, <strong>általánosítok</strong>.</p>
+<p>Az tehát, hogy mondjuk egy befektetési bank a befketetéseinek <em>Value at Risk</em> értékét a megfigyelt korábbi adatokból, vagy egy azokra jól illeszkedő elvi eloszlásból számolja egyáltalán nem mindegy! Persze itt a jól illeszkedő eloszlás nem feltétlenül a normális eloszlás, de rengeteg egyéb, kellően egzotikus sűrűségfüggvénnyel rendelkező eloszlás van a palettán, lehet válogatni. :)<br>
+Persze a válogatáshoz dolgozni is kéne, és nagy a csábítás, hogy egyszerűen inkább a megfigyelt múltbeli adatok alapján mondjon az ember egy percentilist…a nagy befektetési bankok többsége 2008 előtt ezt is csinálta, mert megtehette. Aztán a 2008-as pénzügyi válság lett belőle. Erről is szól részben a <a href="https://en.wikipedia.org/wiki/The_Black_Swan:_The_Impact_of_the_Highly_Improbable" target="_blank">The Black Swan: The Impact of the Highly Improbable</a> c. könyv. Ajánlom minden érdeklődőnek, tartalmas és közérthető olvasmány. :)<br>
+2008 óta a törvényi szabályozás (Európában a Bázel III., 2023-tól Bázel IV.) kötelezi a bankokat, hogy a befektetéseikhez Value at Risk-et az adataikra megfelelően illeszkedő elvi eloszlásból számoljanak.</p>
+<p>Természetesen ilyen inverz érték formájában “pozitív” dolgot is kérdezhetek: <strong>Mi az az érték, aminél csak <span class="math inline">\(1\%\)</span> a valószínűsége, hogy többet nyerünk egy Tesla részvényen?</strong> Azaz, mi a <span class="math inline">\(99\%\)</span>-os valószínűséggel elérhető legnagyobb nyereség?</p>
+<p>Ekkor a kérdés ugyebár úgy szól matematikai formájában, hogy mi az az <span class="math inline">\(x\)</span>, aminél <span class="math inline">\(P(Y_i&gt;x)=0.01\)</span>-et kapunk. De mivel a <code>scipy</code> csomag <code>norm.ppf</code> függvénye <strong>csak alá esési valószínűséghez tud visszakeresni értékeket</strong>, így inkább a kérdés átfogalmazott verzióját kérdezzük meg a gépszellemtől: <strong>Mi az az <span class="math inline">\(x\)</span>, aminél <span class="math inline">\(P(Y_i&lt;x)=0.99\)</span>-et kapunk?</strong></p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb430-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb430-1" tabindex="-1"></a>stats.norm.ppf(q <span class="op">=</span> <span class="fl">0.99</span>, loc <span class="op">=</span> np.mean(Tesla.TESLA), scale <span class="op">=</span> np.std(Tesla.TESLA))</span></code></pre></div>
+<pre><code>## 64.91674710828752</code></pre>
+<p>Tehát, csak <span class="math inline">\(1\%\)</span> eséllyel tudok többet nyerni egy nap a Teslán, mint kb. <span class="math inline">\(65\$\)</span>.</p>
+</div>
+<div id="a-standard-normális-eloszlás" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> A Standard Normális Eloszlás<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-standard-normális-eloszlás" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Még egy fontos dologról kell megemlékeznünk a normális eloszlás kapcsán, a <span class="math inline">\(\mu=0\)</span> átlagú és <span class="math inline">\(\sigma=1\)</span> szórású <span class="math inline">\(N(0,1)\)</span> eloszlásról, ami <strong>standard normális eloszlás</strong> néven külön helyet kapott a pokolban.</p>
+<p>Ami miatt külön kiemelt helye van ennek a standard normális eloszlásnak az az, hogy minden <span class="math inline">\(N(\mu,\sigma)\)</span> normális eloszlás áttranszformálható strandard normális <span class="math inline">\(N(0,1)\)</span> eloszlássá. Mégpedig a következő formulával. <span class="math display">\[z_i=\frac{Y_i-\mu}{\sigma}\]</span></p>
+<p>Tehát, ha egy <strong>normális eloszlású <span class="math inline">\(Y_i\)</span> adatsor minden eleméből kivonom az átlagot és az eredményt elosztom a szórással, akkor az így előálló <span class="math inline">\(z_i\)</span> adatsor már standard normális eloszlású lesz</strong>. Ez a művelet a <strong>standardizálás/noralizálás művelet</strong>e.</p>
+<p>Amúgy azt, hogy egy adatsor/sokaság valamilyen eloszlást követ, azt <span class="math inline">\(\sim\)</span> jellel szokás jelölni. Tehát azt mondhatom, hogy <span class="math inline">\(Y_i \sim N(\mu,\sigma)\)</span>, de <span class="math inline">\(z_i \sim N(0,1)\)</span>.</p>
+<p>Lássuk is akkor a standardizálást a gyakorlatban a Tesla részvények árváltozásain, és állítsuk elő ezt a <span class="math inline">\(z_i\)</span> oszlopot.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb432-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb432-1" tabindex="-1"></a>Tesla[<span class="st">&#39;z_i&#39;</span>] <span class="op">=</span> (Tesla.TESLA <span class="op">-</span> np.mean(Tesla.TESLA))<span class="op">/</span>np.std(Tesla.TESLA)</span>
+<span id="cb432-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb432-2" tabindex="-1"></a><span class="bu">round</span>(Tesla.describe(), <span class="dv">2</span>) <span class="co"># 2 tizedesre kereítés az átláthatóság miatt</span></span></code></pre></div>
+<pre><code>##                             Dátum   TESLA     z_i
+## count                         250  250.00  250.00
+## mean   2019-11-02 15:56:09.600000    1.78    0.00
+## min           2019-05-07 00:00:00 -152.36   -5.68
+## 25%           2019-08-05 06:00:00   -3.77   -0.20
+## 50%           2019-10-31 12:00:00    1.42   -0.01
+## 75%           2020-02-02 06:00:00    6.96    0.19
+## max           2020-05-01 00:00:00  129.43    4.70
+## std                           NaN   27.19    1.00</code></pre>
+<p>Láthatjuk a leíró statisztikákból, hogy a <span class="math inline">\(z_i\)</span> adatsornak már kb. <span class="math inline">\(0\)</span> az átlaga és kb. <span class="math inline">\(1\)</span> a szórása 2 tizedesre kerekítve.</p>
+<p>De a hisztogram alapján az eloszlás továbbra is normális maradt.</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb434-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb434-1" tabindex="-1"></a>Tesla.z_i.hist(bins<span class="op">=</span><span class="dv">8</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-176-3.png" width="672" /></p>
+<p>Ami miatt szeretni szokás a standard normális eloszlást az az a jellemzője, hogy</p>
+<ul>
+<li>Az adatok kb. középső <span class="math inline">\(68.2\%\)</span>-a <span class="math inline">\(-1\)</span> és <span class="math inline">\(+1\)</span> között</li>
+<li>Az adatok kb. középső <span class="math inline">\(95.4\%\)</span>-a <span class="math inline">\(-2\)</span> és <span class="math inline">\(+2\)</span> között</li>
+<li>Az adatok kb. középső <span class="math inline">\(99.7\%\)</span>-a <span class="math inline">\(-3\)</span> és <span class="math inline">\(+3\)</span> között</li>
+</ul>
+<p>helyezkedik el.</p>
+<p>Ezt szemlélteti az alábbi ábra is.</p>
+<center>
+<img src="stnormal.png" style="width:50.0%" />
+</center>
+<p>De ezt ellenőrizhetjük is könnyen Pythonban is, pl. a <span class="math inline">\(\pm2\)</span>-re. A <code>norm.cdf</code> függvény ugyanis <code>loc=0</code> és <code>scale=1</code> beállításokkal fut, ha nem adunk meg neki mást. Tehát szűmoljuk ki <span class="math inline">\(z_i \sim N(0,1)\)</span> esetén a <span class="math inline">\(P(-2 &lt; z_i &lt; +2)\)</span> valószínűséget!</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb435-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb435-1" tabindex="-1"></a>stats.norm.cdf(<span class="dv">2</span>)<span class="op">-</span>stats.norm.cdf(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 0.9544997361036416</code></pre>
+<p>Jé, ténlyeg kb. <span class="math inline">\(95.4\%\)</span>! :) <strong>Ezt a tulajdonságát majd ki fogjuk a későbbiekben használni a standard normális eloszlásnak, szóval jól jegyezzétek meg!</strong> :)</p>
+<p>A fenti tulajdonságok miatt sokan szokták úgy keresni a kilógó értékeket egy adatsorban, hogy standardizálják őket, és megnézik melyek azok az értékek, amik kívül esnek a <span class="math inline">\(\pm2\)</span> intervallumon, mondván az ilyen értékek vagy az adatok alsó vagy a felső <span class="math inline">\(2.5\%\)</span>-ba tartoznak (a sűrűségfüggvényből látszik, hogy a 95%-on kívüli 5% egyeneletesen oszlik meg a függvény két széla között…szimmetriksu az eloszlás ugyebár :)).</p>
+<p>Ezt az elvet mi is könnyen tudjuk alkalmazni:</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb437-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb437-1" tabindex="-1"></a>Tesla[(Tesla.z_i <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>) <span class="op">|</span> (Tesla.z_i <span class="op">&gt;</span> <span class="dv">2</span>)]</span></code></pre></div>
+<pre><code>##          Dátum       TESLA       z_i
+## 185 2020-01-30   59.820008  2.138541
+## 187 2020-02-03  129.429993  4.703562
+## 188 2020-02-04  107.059998  3.879262
+## 189 2020-02-05 -152.359986 -5.679967
+## 197 2020-02-18   58.369995  2.085110
+## 198 2020-02-19   59.019959  2.109060
+## 201 2020-02-24  -67.210022 -2.542321
+## 204 2020-02-27  -99.799988 -3.743211
+## 206 2020-03-02   75.630005  2.721115
+## 211 2020-03-09  -95.479980 -3.584026
+## 214 2020-03-12  -73.679992 -2.780729
+## 216 2020-03-16 -101.549988 -3.807696
+## 218 2020-03-18  -68.980011 -2.607542
+## 219 2020-03-19   66.420014  2.381741
+## 222 2020-03-24   70.709991  2.539820
+## 235 2020-04-13   77.950012  2.806604
+## 236 2020-04-14   58.940003  2.106114
+## 241 2020-04-21  -59.640014 -2.263378
+## 245 2020-04-27   73.599976  2.646312
+## 249 2020-05-01  -80.559998 -3.034247</code></pre>
+<p>Meg is vannak a kiugróan nagy veszteséget vagy nyereséget szolgáltató napjaink. :)</p>
+<p>De <strong>ezzel a módszerrel vigyázzunk!</strong> A standardizált <span class="math inline">\(z_i\)</span> értékek alapján történő kilógó érték keresés <strong>csak akkor működik, ha az eredeti (standardizálás előtti) adatsorunk is már eleve normális eloszlású volt!</strong> Hiszen csak ekkor lesz a transzformált adatsor is szimmetrikus normális eloszlású és lesz igaz rá a <span class="math inline">\(P(-2 &lt; z_i &lt; +2)=0.954\)</span> összefüggés!<br>
+Szóval <strong>kilógó érték kereséshez inkább használjuk</strong> a tetszőleges eloszlásokon is működőképes <strong>doboz ábrás módszert</strong>! :)</p>
+<p>Még egy utolsó gondolat. A standardizált <span class="math inline">\(z_i\)</span> értékeknek van egy olyan értelmezése is, hogy megadják, az adott érték a <span class="math inline">\(\sigma\)</span> szórás hányszorosával tér el a <span class="math inline">\(\mu\)</span> átlagtól.<br>
+Tehát, pl. a fenti szűrésben szereplő 2020 január 30-i <span class="math inline">\(59.82\$\)</span>-os árváltozás a <span class="math inline">\(27.19\)</span>-es szórás kb. <span class="math inline">\(2.14\)</span>-szeresével tér el az <span class="math inline">\(1.8\$\)</span>-os átlagtól.</p>
+</div>
+</div>
+<div id="az-exponenciális-eloszlás" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Az Exponenciális eloszlás<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#az-exponenciális-eloszlás" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Na, hát akkor most engedjük el egy kicsit a Tesla részvények árváltozásait, és vizsgáljunk meg egy másik adatsort, ami a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/CancerSurvival.xlsx" target="_blank">CancerSurvival.xlsx</a> fájlban lakik. Ebben az adattáblában 58 súlyos fej- és nyakrák páciensről rögzítették, hogy <em>hány hónapig</em> maradtak életben kemoterápia után. Az adatok valósak, 1988-ból a forrás <a href="https://www.jstor.org/stable/2288857#metadata_info_tab_contents" target="_blank">ez a tanulmány</a>.</p>
+<p>Töltsük is be az adatokat egy <code>pandas</code> data frame-be!</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb439-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb439-1" tabindex="-1"></a>Surv <span class="op">=</span> pd.read_excel(<span class="st">&quot;CancerSurvival.xlsx&quot;</span>)</span>
+<span id="cb439-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb439-2" tabindex="-1"></a></span>
+<span id="cb439-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb439-3" tabindex="-1"></a>Surv.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 58 entries, 0 to 57
+## Data columns (total 2 columns):
+##  #   Column     Non-Null Count  Dtype  
+## ---  ------     --------------  -----  
+##  0   Sorszám    58 non-null     float64
+##  1   SurvMonth  58 non-null     float64
+## dtypes: float64(2)
+## memory usage: 1.0 KB</code></pre>
+<div class="sourceCode" id="cb441"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb441-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb441-1" tabindex="-1"></a>Surv.head()</span></code></pre></div>
+<pre><code>##    Sorszám  SurvMonth
+## 0      1.0       6.53
+## 1      2.0       7.00
+## 2      3.0      10.42
+## 3      4.0      14.48
+## 4      5.0      16.10</code></pre>
+<p>Mint láthatjuk, ebben a data frame-ben is csak két oszlopunk van. Az első a páciens sorszáma, a második pedig a kemoterápiától számítot túlélési idő hónapokban megadva (<em>SurvMonth</em>).</p>
+<p>Nézzünk rá egy hisztogrammal a túlélési idők eloszlására. Mivel most <span class="math inline">\(N=58\)</span>, így a legksiebb olyan <span class="math inline">\(k\)</span>, amire <span class="math inline">\(2^k\)</span> már épp nagyobb <span class="math inline">\(N\)</span>-nél az a 6 lesz, hiszen <span class="math inline">\(2^6=64\)</span>. Tehát <span class="math inline">\(6\)</span> osztályközt hozunk létre a hisztogramon.</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb443-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb443-1" tabindex="-1"></a>Surv.SurvMonth.hist(bins<span class="op">=</span><span class="dv">6</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-180-5.png" width="672" /></p>
+<p>Nos, hát itt az látszódik, hogy az eloszlásunk jobbra elnyúló: a túlélési idők nagy többsége (45 az 58-ból konkrétan) <span class="math inline">\(256\)</span> hónapon belüli, de a maradék <span class="math inline">\(13\)</span> meghaladja ezt, sőt <span class="math inline">\(3\)</span> páciens <span class="math inline">\(1000\)</span> hónapnál is hosszabb ideig élt túl a kemoterápia után.</p>
+<p>A jobbra elnyúlás miatt, ha folytonos vonallal összekötjük a hisztogram oszlopait, akkor valami ilyesmi függvényábrát kapunk, mint alább.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-181-7.png" width="672" /></p>
+<p>Ez az alakzat pedig az <strong>exponenciális eloszlás sűrűségfüggvénye</strong>. Ennek a sűrűségfüggvénynek a konkrét alakját egy <span class="math inline">\(\lambda\)</span> paraméter határozza meg. Minél nagyobb <span class="math inline">\(\lambda\)</span>, annál meredekebben jobbra elnyúló a sűrűségfüggvény. Ezt alább lehet kipróbálni.</p>
+<center>
+<iframe src="https://kola992.shinyapps.io/normaldensityplot/?distr=Exp" width="672" height="500px" data-external="1">
+</iframe>
+</center>
+<p>Természetesen a <span class="math inline">\(\lambda\)</span>-nak van köze a valós adatok átlagához és szórásához, egész konkrétan mindkét érték <span class="math inline">\(\mu=\sigma=\frac{1}{\lambda}\)</span>. Tehát, az exponenciális eloszlásban azonos átlagot és szórást tételezünk fel az adatokra, és ennek a közös értéknek a reciproka (a <span class="math inline">\(\lambda\)</span>) határozza meg, hogy mennyire meredeken nyúlik jobbra az eloszlás sűrűségfüggvénye. Emiatt az exponenciális eloszlásokat <span class="math inline">\(Exp(\lambda)\)</span> módon szokták jelölni.</p>
+<p>Persze valós adatokon gyakorlatilag sosem fog teljesülni, hogy <span class="math inline">\(\mu=\sigma\)</span>, de láthatjuk egy <code>describe</code> metódusból, hogy a túlélési adatok esetén a két mutató értéke aránylag közel esik egymáshoz: <span class="math inline">\(\mu=226.17 \approx \sigma=273.94\)</span></p>
+<pre><code>## count      58.000000
+## mean      226.173793
+## std       273.943381
+## min         6.530000
+## 25%        83.250000
+## 50%       151.500000
+## 75%       237.000000
+## max      1417.000000
+## Name: SurvMonth, dtype: float64</code></pre>
+<p>A <code>scipy</code> csomagban a <code>norm.pdf</code>, <code>norm.cdf</code> és <code>norm.ppf</code> függvények mintájára léteznek <code>expon.pdf</code>, <code>expon.cdf</code> és <code>expon.ppf</code> függvények is. Használatuk és jelentésük teljesen megegyezik a normális eloszlásnál látott függvényekkel. Egyetlen különbség ugyebár, hogy exponenciális eloszlásnál csak az egységes <span class="math inline">\(\lambda\)</span>-t kell megadni a külön <span class="math inline">\(\mu\)</span> és <span class="math inline">\(\sigma\)</span> helyett, mint ahogy a normális eloszlásnál működött a dolog.<br>
+A <code>scipy</code> csomag ezt úgy oldja meg, hogya a szórásból számolja vissza a <span class="math inline">\(\lambda\)</span>-t, tehát a függvényeknek a <code>scale</code> paraméterében kell átadni az adatok szórását, amire az exponenciális eloszlást illeszteni akarjuk.<br>
+Ez alapján akkor most a túlélési idők esetében <span class="math inline">\(\lambda=\frac{1}{\sigma}=\frac{1}{273.94}=0.00365\)</span>. Tehát az egyes <span class="math inline">\(Y_i\)</span> túlélési idők <span class="math inline">\(Exp(0.00365)\)</span> eloszlástkövetnek: <span class="math inline">\(Y_i \sim Exp(0.00365)\)</span></p>
+<p>Ezek alapján számoljunk ki pár valószínűséget a túlélési időkre vonatkozóan:</p>
+<ol style="list-style-type: decimal">
+<li>Mi a valószínűsége, hogy kemoterápia után pont egy évet, azaz <span class="math inline">\(12\)</span> hónapot fogunk élni?</li>
+</ol>
+<div class="sourceCode" id="cb445"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb445-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb445-1" tabindex="-1"></a>stats.expon.pdf(<span class="dv">12</span>, scale <span class="op">=</span> np.std(Surv.SurvMonth))</span></code></pre></div>
+<pre><code>## 0.003523104116060953</code></pre>
+<p>Ez egy jó alacsony, kb. <span class="math inline">\(0.3\%\)</span>-os valószínűség. Nem lepődünk meg, hiszen egy konkrét pont bekövetkezése a nagy túlélési idő-értékkészlet miatt itt is kicsi.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Mi a valószínűsége, hogy kemoterápia után több, mint öt évet, azaz <span class="math inline">\(60\)</span> hónapot fogunk élni?</li>
+</ol>
+<div class="sourceCode" id="cb447"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb447-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb447-1" tabindex="-1"></a><span class="dv">1</span> <span class="op">-</span> stats.expon.cdf(<span class="dv">60</span>, scale <span class="op">=</span> np.std(Surv.SurvMonth))</span></code></pre></div>
+<pre><code>## 0.8017677791228195</code></pre>
+<p>Az eredmény kb. <span class="math inline">\(80\%\)</span>, egész jó kilátások!</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Mi a valószínűsége, hogy a kemoterápia utáni harmadik év során, azaz <span class="math inline">\(24\)</span> és <span class="math inline">\(36\)</span> hónapközött fogunk elpatkolni?</li>
+</ol>
+<div class="sourceCode" id="cb449"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb449-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb449-1" tabindex="-1"></a>stats.expon.cdf(<span class="dv">36</span>, scale <span class="op">=</span> np.std(Surv.SurvMonth)) <span class="op">-</span> stats.expon.cdf(<span class="dv">24</span>, scale <span class="op">=</span> np.std(Surv.SurvMonth))</span></code></pre></div>
+<pre><code>## 0.03956914214644276</code></pre>
+<p>A számítások alapja itt is az, hogy <span class="math inline">\(f(x)=P(Y_i=x)\)</span>, tehát <strong>a sűrűségfüggvény helyettesítési értékre <span class="math inline">\(x\)</span> helyen megegyezik az <span class="math inline">\(x\)</span> érték bekövetkezési valószínűségével</strong> egy véletlen húzás esetén az adatsorból. A <span class="math inline">\(P(Y_i&lt;x)\)</span> valószínűség pedig exponenciális sűrűségfüggvény esetén is az <span class="math inline">\(\int_{-\infty}^x{f(x)}dx\)</span> improprius integrállal számítható, azaz a sűrűségfüggvény <span class="math inline">\(x\)</span> alatti területével egyezik meg.</p>
+<p>Ezeket a vizuális jelentéstartalmakat az alábbi interaktív ábrán meg lehet nézni és ki lehet próbálni úgy, ahogy a normális eloszlásnál lehetett.</p>
+<center>
+<iframe src="https://kola992.shinyapps.io/normalprobabilities/?distr=Exp" width="672" height="550px" data-external="1">
+</iframe>
+</center>
+<p>Természetesen <em>inverz értéket</em> is tudunk számolni az exponenciális eloszlásban is. Nézzük meg pl, hogy Mi az az idő, aminél csak <span class="math inline">\(1\%\)</span> a valószínűsége, hogy egy kemoterápiával kezelt fej- és nyakrák páciens tovább él.<br>
+Ugyebár a számításhoz úgy kell átfogalmazni a kérdést, hogy mi az az idő, ami esetén csak <span class="math inline">\(99\%\)</span> a valószínűsége, hogy egy kemoterápiával kezelt fej- és nyakrák páciens már <em>NEM</em> él tovább. Hiszen az <code>expon.ppf</code> függvény is <em>alá esési</em> valószínűségekból dolgozik, mint a <code>norm.ppf</code>.</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb451-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb451-1" tabindex="-1"></a>stats.expon.ppf(<span class="fl">0.99</span>, scale <span class="op">=</span> np.std(Surv.SurvMonth))</span></code></pre></div>
+<pre><code>## 1250.6331218835987</code></pre>
+<p>A megfejtés kb. <span class="math inline">\(1250\)</span> hónap, azaz <span class="math inline">\(104\)</span> év! De hát ugye ez a nagy érték alapvetően a jobbra elnyúlás miatt van, hiszen a jobbra elnyúló eloszlásokra jellemzőek a felfelé kilógó értékek, így a jobbra elnyúló sűrűségfüggvényeknek is számolnia kell ezekkel az outlier elemekkel.</p>
+<p>Végül pedig nézzük meg szépen, hogy ez az exponenciális sűrűségfüggvény mennyire illeszkedik a túlélési idők hisztogramjára, ahogy a normális eloszlás esetén is megtettük egy hisztogramra illesztett <code>matplotlib</code>-es vonaldiagrammal.</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb453-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb453-1" tabindex="-1"></a>Surv.SurvMonth.hist(bins <span class="op">=</span> <span class="dv">6</span>, density <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb453-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb453-2" tabindex="-1"></a>x_tengely <span class="op">=</span> np.arange(np.<span class="bu">min</span>(Surv.SurvMonth), np.<span class="bu">max</span>(Surv.SurvMonth), <span class="fl">0.01</span>)</span>
+<span id="cb453-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb453-3" tabindex="-1"></a>y_tengely <span class="op">=</span> stats.expon.pdf(x_tengely, scale <span class="op">=</span> np.mean(Surv.SurvMonth))</span>
+<span id="cb453-4"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb453-4" tabindex="-1"></a>plt.plot(x_tengely, y_tengely)</span>
+<span id="cb453-5"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb453-5" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p>Itt egész pofásnak tűnik az illeszkedés, így szemmelverésre jobban is illeszkedik ez az exponenciális eloszlás a túlélési időkre, mint a normális eloszlás illeszkedett a Tesla árváltozásokra. :)</p>
+</div>
+<div id="a-varianciahányados-pythonban---kokain-a-balatonban" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> A Varianciahányados Pythonban - Kokain a Balatonban<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-varianciahányados-pythonban---kokain-a-balatonban" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Egy dolgot kellene még átismételnünk a Stat. I-es rémképeink közül, ami többször is elő fog jönni a Stat. II-es tanulmányinkban: a <strong>Varianciahányados</strong> fogalmát.</p>
+<p>A varianciahányados ugyebár arra szolgál, hogy <strong>két ismérv, egy minőségi (“szöveges”) és egy mennyiségi (“számértékű”) ismérv kapcsolatának szorosságát adja meg, százalékos formában</strong>. Tehát olyan kérdéseket lehet vele megválaszolni, mint…</p>
+<ul>
+<li>Hány százalékban befolyásolja a nem (minőségi simérv) a fizetést (mennyiségi ismérv)?</li>
+<li>Hány százalékban befolyásolja a kerület (minőségi simérv) a budapesti lakások árát (mennyiségi ismérv)?</li>
+<li>Hány százalékban befolyásolja a Balaton Sound jelenléte (minőségi simérv) a Balatonban található kokain mennyiségét (mennyiségi ismérv)?</li>
+</ul>
+<p>A legutolsó kérdés a listán elsőre meredeknek tűnik, de <a href="https://setac.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/etc.4998" target="_blank">ez a tanulmány</a> épp egy ilyen kérdésekkel is foglalkozik. Az általuk használt adatok egy részét találjuk a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/BalatonSoundCocaine.xlsx" target="_blank">BalatonSoundCocaine.xlsx</a> című fájlban.</p>
+<p>A fájlban <strong>3 balatoni vízminőséget ellenőrző állomás összesen <span class="math inline">\(N=540\)</span> mérését látjuk</strong>. Egy állomás egy hónapban <span class="math inline">\(20\)</span> mérést végez, és mindhárom állomás esetén a nyári hónapok (június, július, augusztus) mérései vannak a fájlban 3 évre (2017, 2018, 2019). Így egy állomás esetében <span class="math inline">\(20 \times 3 \times 3 = 180\)</span> mérésünk van, azaz a három állomásra összesen <span class="math inline">\(3 \times 180 = 540\)</span> mérési adatunk van. Az <strong>Excel fájlunk mindegyik mérés esetében tartalmazza a mérőállomás sorszámát (1., 2., 3.), a mérés évét és hónappját, valamint a vízben mért kokain mennyiségét nanogram/literben</strong>.</p>
+<p>Olvassuk is be az Excelt egy data frame-be és lessük meg, hogy ez tényleg így van-e!</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb454-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb454-1" tabindex="-1"></a>Balcsi <span class="op">=</span> pd.read_excel(<span class="st">&quot;BalatonSoundCocaine.xlsx&quot;</span>)</span>
+<span id="cb454-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb454-2" tabindex="-1"></a></span>
+<span id="cb454-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb454-3" tabindex="-1"></a>Balcsi.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 540 entries, 0 to 539
+## Data columns (total 4 columns):
+##  #   Column   Non-Null Count  Dtype  
+## ---  ------   --------------  -----  
+##  0   Ev       540 non-null    int64  
+##  1   Honap    540 non-null    object 
+##  2   Allomas  540 non-null    object 
+##  3   Kokain   540 non-null    float64
+## dtypes: float64(1), int64(1), object(2)
+## memory usage: 17.0+ KB</code></pre>
+<div class="sourceCode" id="cb456"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb456-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb456-1" tabindex="-1"></a>Balcsi.head()</span></code></pre></div>
+<pre><code>##      Ev   Honap     Allomas   Kokain
+## 0  2017  június  1. állomás  0.03891
+## 1  2017  június  1. állomás  0.01879
+## 2  2017  június  1. állomás  0.03193
+## 3  2017  június  1. állomás  0.03510
+## 4  2017  június  1. állomás  0.01107</code></pre>
+<p>Igen, az oszlopok (ismérvek) neve és adattípusa és az első öt sor tartalma alapján úgy néz ki, hogy rendben van a tábla, azok az oszlopok szerepelnek benne, amit a leírás alapján vártunk is.</p>
+<p>Oké, akkor itt mérési adatokat látunk. Hogy a túróba jön az egészhez a Balaton Sound. Egyrészt úgy, hogy a három mérőállomás épp a Sound helyszíne környékén található Siófokon. Konkrét koordináták az alábbi ábrán.</p>
+<center>
+<img src="balcsi.jpg" style="width:50.0%" />
+</center>
+<p>És hát a mérések pont a fesztivál előtt (június), közben (július) és után (augusztus) készültek. Tehát, ha <strong>a Sound jelenlétének van hatása a víz kokain tartalmára, akkor a mérés hónapja aránylag nagy százalékban kell, hogy meghatározza a kokaintartalmat</strong>. Szóval a vizsgált <strong>minőségi ismérvünk a mérés hónapja, mennyiségi ismérvünk a kokaintartalom</strong> lesz. A két ismérv kapcsolatának szorosságát pedig akkor a varianciahányados adja meg.</p>
+<p>A varianciahányados kiszámításának első lépése egy olyan segétáblázat összeállítása, amely sorait a minőségi ismérv lehetséges értékei adják, és 3 oszlopa van, ami a minőségi ismérv <span class="math inline">\(j\)</span> indexszel jelölt csoportjai szerint bontva tartalmazza az elemszámokat (<span class="math inline">\(N_j\)</span>), a mennyiségi ismérv részátlagait (<span class="math inline">\(\bar{Y}_j\)</span>) és szórásait (<span class="math inline">\(\sigma_j\)</span>).<br>
+Ezt a segédtáblát Pythonban a data frame-k <code>groupby</code> és <code>agg</code> metódusaival hozhatjuk létre. Persze az <code>agg</code>-n belül használjuk a <code>numpy</code> csomag <code>mean</code> és <code>std</code> függvényeit is a <code>count</code> mellett (amely utóbbi függvényt stringként kell beadni az <code>agg</code>-ba, mint az oszlopneveket). Illetve, ne felejtsük el a végén a `reset_index`` metódus használatát, különben a minőségi ismérvünk értékei a data frame sorindexeiként végzik, és nem lesz külön oszlopuk!</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb458-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb458-1" tabindex="-1"></a>Segéd <span class="op">=</span> Balcsi.groupby(<span class="st">&#39;Honap&#39;</span>).agg(</span>
+<span id="cb458-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb458-2" tabindex="-1"></a>  Elemszam <span class="op">=</span> (<span class="st">&#39;Kokain&#39;</span>, <span class="st">&#39;count&#39;</span>),</span>
+<span id="cb458-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb458-3" tabindex="-1"></a>  Reszatlagok <span class="op">=</span> (<span class="st">&#39;Kokain&#39;</span>, np.mean),</span>
+<span id="cb458-4"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb458-4" tabindex="-1"></a>  Szorasok <span class="op">=</span> (<span class="st">&#39;Kokain&#39;</span>, np.std)</span>
+<span id="cb458-5"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb458-5" tabindex="-1"></a>).reset_index()</span></code></pre></div>
+<pre><code>## &lt;string&gt;:1: FutureWarning: The provided callable &lt;function mean at 0x0000021B1B4313A0&gt; is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+## &lt;string&gt;:1: FutureWarning: The provided callable &lt;function std at 0x0000021B1B4314E0&gt; is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;std&quot; instead.</code></pre>
+<div class="sourceCode" id="cb460"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb460-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb460-1" tabindex="-1"></a>Segéd</span></code></pre></div>
+<pre><code>##        Honap  Elemszam  Reszatlagok   Szorasok
+## 0  augusztus       180     0.029198   0.011618
+## 1     július       180    64.859463  95.853905
+## 2     június       180     0.029752   0.011614</code></pre>
+<p>Meg is vagyunk! Látszik, hogy <strong>a Sound hónapjának van hatása</strong>: júliusban nagyságrendekkel több az átlagos kokain mennyisége a Balaton vizének, mint a másik két nyári hónapban. De a <strong>hatás nagyságát nehéz megfogni már szemmelveréssel</strong>, mivel a <strong>kokain mennyiségek szórása is ebben a hónapban a legnagyobb</strong>. Sőt, ez az egyetlen hónap, amikor a konkrét mérések kokain mennyiségének szórása <em>nagyobb</em> az átlagos kokain mennyiségnél! Szóval, kell azért egy check arra a varianciahányadosra.</p>
+<p>A varianciahányados, a <span class="math inline">\(H^2\)</span> mutató értékéhez úgy jutunk el, hogy <strong>elkezdjük az előbb felépített segédtáblázatunk alapján kiszámolni a mennyiségi ismérv (azaz most a kokain mennyiség) teljes, hónapoktól független teljes átlagát és teljes szórását</strong>. Ugyebár a <strong>teljes átlagos kokainmennyiség (főátlag, <span class="math inline">\(\bar{Y}\)</span>), nem más, mint a részátlagok (<span class="math inline">\(\bar{Y}_j\)</span>) részelemszámokkal (<span class="math inline">\(N_j\)</span>) súlyozott átlaga</strong>: <span class="math display">\[\bar{Y}=\frac{\sum_j{N_j\bar{Y}_j}}{\sum_j{N_j}}\]</span></p>
+<p>Ilyen stílusú súlyozott átlagokat számolgattunk már az 1.4. fejezetben, csak gyakorisági táblából. Ez ugyan az a szitu, és itt is a <code>np.sum</code> függvényt be tudjuk vetni. Ellenőrzéshez ki tudjuk számolni ezt a főátlagot úgy is, hogy az <code>np.mean</code> függvényt ráeresztjük a data frame teljes <code>Kokain</code> oszlopára.</p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb462-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb462-1" tabindex="-1"></a>főátlag <span class="op">=</span> np.<span class="bu">sum</span>(Segéd.Elemszam <span class="op">*</span> Segéd.Reszatlagok)<span class="op">/</span>(np.<span class="bu">sum</span>(Segéd.Elemszam))</span>
+<span id="cb462-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb462-2" tabindex="-1"></a>főátlag</span></code></pre></div>
+<pre><code>## 21.63947090740741</code></pre>
+<div class="sourceCode" id="cb464"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb464-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb464-1" tabindex="-1"></a>np.mean(Balcsi.Kokain)</span></code></pre></div>
+<pre><code>## 21.639470907407407</code></pre>
+<p>Stimm egészen az utolsó jó sokadik tizedesjegyig. Ezzel megvagyunk. :)</p>
+<p>A variancia-hányados lelke viszont abban leledzik, hogy a kokainmennyiség (mint mennyiségi ismérv) teljes szórása (<span class="math inline">\(\sigma\)</span>) csak úgy kapható meg a segédtábla alapján, ha előbb kiszámoljuk a belső szórást (<span class="math inline">\(\sigma_B\)</span>) és a külső szórást (<span class="math inline">\(\sigma_K\)</span>).</p>
+<p>A belső szórást a <strong>belső variancián, azaz belső szórásnégyzeten keresztül kapjuk meg</strong>. Ez pedig nem más, mint a <strong>részszórások <span class="math inline">\(\sigma_j^2\)</span> négyzeteinek elemszámokkal (<span class="math inline">\(N_j\)</span>) súlyozott átlaga</strong>. <span class="math display">\[\sigma_B^2=\frac{\sum_j{N_j\sigma_j^2}}{\sum_j{N_j}}\]</span></p>
+<p>Az előző számítás alapján ez is egész könnyen tud menni Pythonban, csak a részszórások négyzetre emelésére kell figyelni.</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb466-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb466-1" tabindex="-1"></a>belső_var <span class="op">=</span> np.<span class="bu">sum</span>(Segéd.Elemszam <span class="op">*</span> Segéd.Szorasok<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(np.<span class="bu">sum</span>(Segéd.Elemszam))</span>
+<span id="cb466-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb466-2" tabindex="-1"></a>belső_var</span></code></pre></div>
+<pre><code>## 3062.6571029636407</code></pre>
+<p>A belső szórás pedig egyszerűen a belső variancia gyöke. <span class="math inline">\(\sigma_B=\sqrt{\sigma_B^2}\)</span> Általánosságban <span class="math inline">\(\sigma_B\)</span> azt jelenti, hogy <strong>egy véletlenszerűen kiválasztott egyed konkrét mennyiségi ismérv értéke várhatóan mennyivel tér el saját csoportjának átlagától</strong>.</p>
+<p>Konkrét esetünkben ez az alábbi módon néz ki.</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb468-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb468-1" tabindex="-1"></a>belső_szórás <span class="op">=</span> np.sqrt(belső_var)</span>
+<span id="cb468-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb468-2" tabindex="-1"></a>belső_szórás</span></code></pre></div>
+<pre><code>## 55.34127847243539</code></pre>
+<p>Tehát, <strong>egy mérés kokainmennyisége várhatóan <span class="math inline">\(55.3\)</span> nanogram/literrel tér el saját hónapjának átlagos kokainmennyiségtől</strong>. Ami azért nem egy elhanyagolható mennyiségű szóródás a mérési hónapokon <em>belül</em>.</p>
+<p>A másik vége a dolognak a külső szórás, ami szintén a négyzetén, a külső variancián keresztül számítható. A külső variancia pedig a <strong>részátlagok <span class="math inline">\(\bar{Y}_j\)</span> elemszámokkal (<span class="math inline">\(N_j\)</span>) súlyozott szórása a mennyiségi ismérv főátlaga <span class="math inline">\(\bar{Y}\)</span> körül</strong>. <span class="math display">\[\sigma_K^2=\frac{\sum_j{N_j(\bar{Y}_j-\bar{Y})^2}}{\sum_j{N_j}}\]</span></p>
+<p>Az 1.4. fejezet alapján ezt is meg tudjuk azért alkotni <code>np.sum</code> bevetésével.</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb470-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb470-1" tabindex="-1"></a>külső_var <span class="op">=</span> np.<span class="bu">sum</span>(Segéd.Elemszam <span class="op">*</span> (Segéd.Reszatlagok <span class="op">-</span> főátlag)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(np.<span class="bu">sum</span>(Segéd.Elemszam))</span>
+<span id="cb470-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb470-2" tabindex="-1"></a>külső_var</span></code></pre></div>
+<pre><code>## 933.983870298589</code></pre>
+<p>A külső szórás pedig egyszerűen a külső variancia gyöke. <span class="math inline">\(\sigma_K=\sqrt{\sigma_K^2}\)</span> Általánosságban <span class="math inline">\(\sigma_K\)</span> azt jelenti, hogy <strong>egy csoport átlaga várhatóan mennyivel tér el a mennyiségi ismérv főátlagától</strong>.</p>
+<p>Konkrét esetünkben ez az alábbi módon néz ki.</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb472-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb472-1" tabindex="-1"></a>külső_szórás <span class="op">=</span> np.sqrt(külső_var)</span>
+<span id="cb472-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb472-2" tabindex="-1"></a>külső_szórás</span></code></pre></div>
+<pre><code>## 30.561149688756622</code></pre>
+<p>Tehát, <strong>egy hónap átlagos kokainmennyisége várhatóan <span class="math inline">\(30.5\)</span> nanogram/literrel tér el az átlagosan mért kokainmennyiségétől</strong>. Tehát a hónapok <em>között</em> is van egy jelentős szóródásunk, viszont ez kicsit kisebb, mint a csoporton belüli szóródás.</p>
+<p>Ebből a két tényezőből pedig összeadható a <strong>teljes variancia: <span class="math inline">\(\sigma^2=\sigma_B^2+\sigma_K^2\)</span>.</strong> A teljes szórás pedig ennek a mennyiségnek a gyöke: <span class="math inline">\(\sigma=\sqrt{\sigma^2}=\sqrt{\sigma_B^2+\sigma_K^2}\)</span>. <strong>Mivel tagonként nem vonhatunk gyököt, így ez az összefüggés ugyebár a szórásokra NEM lesz igaz!!</strong></p>
+<p>A teljes szórás pedig <strong>általánosan ugye azt mutatja meg, hogy egy véletlenszerűen kiválasztott egyed konkrét mennyiségi ismérv értéke várhatóan mennyivel tér el a mennyiségi ismérv csoportoktól független, teljes főátlagától</strong>.</p>
+<p>Lássuk, hogy ez a mi esetünkben hogy fest! Ellenőrzésnek számoljuk ki a teljes szórást úgy is, hogy az <code>np.std</code> függvényt ráeresztjük a data frame teljes <code>Kokain</code> oszlopára.</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb474-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb474-1" tabindex="-1"></a>teljes_var <span class="op">=</span> belső_var <span class="op">+</span> külső_var</span>
+<span id="cb474-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb474-2" tabindex="-1"></a>teljes_szórás <span class="op">=</span> np.sqrt(teljes_var)</span>
+<span id="cb474-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb474-3" tabindex="-1"></a>teljes_szórás</span></code></pre></div>
+<pre><code>## 63.218992187966975</code></pre>
+<div class="sourceCode" id="cb476"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb476-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb476-1" tabindex="-1"></a>np.std(Balcsi.Kokain)</span></code></pre></div>
+<pre><code>## 63.08427864039577</code></pre>
+<p>Hát ez csak majdnem stimmel. Ennek az oka az, hogy a <code>Segéd</code> data frame-ben a részátlagok és részszórások <span class="math inline">\(6\)</span> tizedesjegyre le lettek kerekítve. De nagyságrendileg stimmelünk! :)</p>
+<p>Mindez pedig azt jelenti, hogy <strong>egy mérés kokainmennyisége várhatóan <span class="math inline">\(63\)</span> nanogram/literrel tér el az átlagosan mért kokainmennyiségtől</strong>.</p>
+<p>A varianciahányados logikája úgy bukik ki ebből a <span class="math inline">\(\sigma^2=\sigma_B^2+\sigma_K^2\)</span> felbontásból, hogy <strong>elképzeljük ezeket a különböző szórásokat vizuálisan, mint távolságokat</strong>. Az alábbi ábra egy egyszerűbb rendszert mutat, ahol a minőségi ismérv csak két csoportot alkot (<em>narancsok</em> és <em>zöldek</em>), nem pedig hármat, mint amennyit a mi három hónapunk generál.</p>
+<center>
+<img src="varhanyad1.jpg" style="width:80.0%" />
+</center>
+<p>Tehát vizuálisan a következőképp érdemes gondolni a különböző <span class="math inline">\(\sigma\)</span>-kra:</p>
+<ul>
+<li><span class="math inline">\(\sigma_B\)</span>: Megfigyelések távolsága saját csoportjuk átlagától</li>
+<li><span class="math inline">\(\sigma_K\)</span>: Csoportátlag távolsága a főátlagtól</li>
+<li><span class="math inline">\(\sigma\)</span>: Megfigyelések távolsága a főátlagától</li>
+</ul>
+<p>Ezek alapján nekünk az a jó a csoportosítás, azaz a minőségi ismérv magyarázóereje szempontjából, ha <strong>fix</strong> <span class="math inline">\(\sigma\)</span> mellett <span class="math inline">\(\sigma_K\)</span> <strong>nagy</strong> és <span class="math inline">\(\sigma_B\)</span> <strong>kicsi</strong>. Mert ekkor a <strong>csoportátlagok messze vannak</strong> a főátlagtól és így implicite <strong>egymástól</strong> is, míg a csoportátlagtól az egyes <strong>megfigyelések nagyon kis mértékben térnek csak el saját csoportátlaguktól</strong>:</p>
+<center>
+<img src="varhanyad2.jpg" style="width:30.0%" />
+</center>
+<p>Ebben az esetben, ahogy az ábráról is látszik a csoportosításunk, azaz a minőségi ismérvünk magyarázóereje nagy! Tehát az kell nekünk, hogy az <span class="math inline">\(\sigma\)</span> minél nagyobb részét tegye ki <span class="math inline">\(\sigma_K\)</span>. Viszont, mivel csak a teljes <strong>varianciára</strong> igaz az, hogy <strong>egyenlő a külső és belső VARIANCIA összegével</strong>, így azt mondjuk, hogy <strong>azt szeretnénk látni</strong>, hogy <strong>a <span class="math inline">\(\frac{\sigma_K^2}{\sigma^2}\)</span> hányados nagy legyen</strong>! Ez a mutató lesz tehát a <strong>varianciahányados</strong>, és a most elvégzett módszer neve a <strong>variancia-analízis, azaz ANOVA = ANalysis Of VAriances</strong>.</p>
+<p><strong>Azért a varianciákra néztük végül a dolgokat</strong>, mert <span class="math inline">\(\sigma^2=\sigma_B^2+\sigma_K^2\)</span>, így a <span class="math inline">\(\frac{\sigma_K^2}{\sigma^2}\)</span> variancia-hányados biztos, hogy <span class="math inline">\(0-1\)</span> közötti, és <strong>százalékosan</strong> is értelmezhető, hiszen <span class="math inline">\(\sigma_K^2\)</span> része <span class="math inline">\(\sigma^2\)</span>-nek. Ez alapján nekünk most:</p>
+<p><span class="math inline">\(\frac{\sigma_K^2}{\sigma^2} = \frac{933.98387}{3996.64097}=0.23369=23.369\%\)</span> –&gt; <strong>A hónap (tehát a Sound jelenléte) a Balatonban mért kokainmennyiség alakulásának (varianciájának) kb. 23%-át magyarázza a megfigyelt adatok körében!</strong> Ez egy <strong>közepes magyarázóerő</strong>nek tekinthető, mivel a variancia-hányadost a következőképpen “<em>korszakoljuk</em>”:</p>
+<ul>
+<li><strong>variancia-hányados &lt; 10% –&gt; gyenge kapcsolat</strong></li>
+<li><strong>10% &lt;= variancia-hányados &lt;= 50% –&gt; közepes kapcsolat</strong></li>
+<li><strong>variancia-hányados &gt; 50% –&gt; erős/szoros kapcsolat</strong></li>
+</ul>
+<div id="további-minőségi-ismérvek-és-a-kokainmennyiség" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> További minőségi ismérvek és a kokainmennyiség<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#további-minőségi-ismérvek-és-a-kokainmennyiség" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az eredmény tehát azt mondja, hogy a kokainmennyiség alakulásának csak kb. <span class="math inline">\(23\%\)</span>-át tudjuk csak lefedni azzal, hogy a mérés melyik hónapban készült. Tehát hónapkon <em>belül</em> is jelentős mértékű szódósás maradt a mennyiségi ismérvünkben, jelesül a kokainmennyiségben.<br>
+Mi okozhatja még a kokainmennyiség szóródását? Hát, az elérhető adatok tekintetében két dolgot tudunk még megvizsgálni: azt, hogy <strong>melyik mérőállomáson történt a mérés</strong>, illetve azt, hogy <strong>melyik évben</strong>. Reméljük, hogy <em>inkább az év magyarázza még relatíve nagyobb mértékben a kokainmennyiség alakulását</em> (pl. emelkedő trend tapasztalható a Sound népszerűségének növekedésével), mert <em>ha a kokainmennyiség szóródása inkább a mérőállomástól függ</em>, az <em>aggasztó lenne a mérés megbízhatóságára nézve</em>.</p>
+<p>Mivel mind a mérőállomás azonosítója, mind az évszám jelen szituációban minőségi ismérvként kezelhető, így e két ismérvnek a kokainmennyiséggel, mint mennyiségi ismérvvel vett varianciahányadosát kell megvizsgálnunk.</p>
+<p>Először nézzük a <strong>mérőállomások esetét</strong>.</p>
+<p>Itt is kell ugyebár egy kiinduló segédtáblázat.</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb478-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb478-1" tabindex="-1"></a>AllomasTabla <span class="op">=</span> Balcsi.groupby(<span class="st">&#39;Allomas&#39;</span>).agg(</span>
+<span id="cb478-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb478-2" tabindex="-1"></a>  Elemszam <span class="op">=</span> (<span class="st">&#39;Kokain&#39;</span>, <span class="st">&#39;count&#39;</span>),</span>
+<span id="cb478-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb478-3" tabindex="-1"></a>  Reszatlagok <span class="op">=</span> (<span class="st">&#39;Kokain&#39;</span>, np.mean),</span>
+<span id="cb478-4"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb478-4" tabindex="-1"></a>  Szorasok <span class="op">=</span> (<span class="st">&#39;Kokain&#39;</span>, np.std)</span>
+<span id="cb478-5"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb478-5" tabindex="-1"></a>).reset_index()</span></code></pre></div>
+<pre><code>## &lt;string&gt;:1: FutureWarning: The provided callable &lt;function mean at 0x0000021B1B4313A0&gt; is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+## &lt;string&gt;:1: FutureWarning: The provided callable &lt;function std at 0x0000021B1B4314E0&gt; is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;std&quot; instead.</code></pre>
+<div class="sourceCode" id="cb480"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb480-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb480-1" tabindex="-1"></a>AllomasTabla</span></code></pre></div>
+<pre><code>##       Allomas  Elemszam  Reszatlagok   Szorasok
+## 0  1. állomás       180    30.101843  84.544224
+## 1  2. állomás       180    22.314141  61.220808
+## 2  3. állomás       180    12.502428  30.877849</code></pre>
+<p>Olybá tűnik, hogy az 1. állomás átlagban némileg kicsit magasabb kokainmenyniséget mér, mint a többi, de az állomás méréseinek szórása is magas, az átlagos kokainmennyiség kb. <span class="math inline">\(\frac{84.5}{30.1}=2.8\)</span>-szorosa.<br>
+Szóval, vágjunk rendet a variancia-hányados segítségével, és lássuk mekkora hatást gyakorol a mérőállomás a kokainmennyiségre!</p>
+<p>A számításokban annyi <strong>egyszerűsítés</strong>t teszek, hogy</p>
+<ul>
+<li>A <strong>teljes varianciát örökítem</strong> az előző számolásokból, hiszen az a csoportosítás alapját képzőú minőpségi ismérv megváltozásával <strong>nem változik</strong>.</li>
+<li>Az előző pont és a belső variancia kiszámolása után pedig a varianciahányadost a <span class="math inline">\(\sigma^2=\sigma_B^2+\sigma_K^2\)</span> összefüggás átrendezésével <span class="math inline">\(H^2=\frac{\sigma^2-\sigma_B^2}{\sigma^2}=1-\frac{\sigma_B^2}{\sigma^2}\)</span> módon számolom ki</li>
+</ul>
+<p>Ezzel a két módosítással <strong>megúszom a külső szórásnégyzet</strong> kissé macerás <strong>kiszámítását</strong>.</p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb482-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb482-1" tabindex="-1"></a>belső_var_Állomás <span class="op">=</span> np.<span class="bu">sum</span>(AllomasTabla.Elemszam <span class="op">*</span> AllomasTabla.Szorasok<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>np.<span class="bu">sum</span>(AllomasTabla.Elemszam)</span>
+<span id="cb482-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb482-2" tabindex="-1"></a></span>
+<span id="cb482-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb482-3" tabindex="-1"></a>VarHányadÁllomás <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> belső_var_Állomás <span class="op">/</span> teljes_var</span>
+<span id="cb482-4"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb482-4" tabindex="-1"></a>VarHányadÁllomás</span></code></pre></div>
+<pre><code>## 0.01174053573946432</code></pre>
+<p>Az eredmény mindössze <span class="math inline">\(1.17\%\)</span>. Tehát megnyugodhatunk, az <strong>állomás a mért kokainmennyiség alakulását csak alig több, mint 1%-ban határozza meg</strong>! A <strong>mérés nem függ lényegében az állomástól</strong>, így ilyen szempointból megbízhatónak tekintehtők!</p>
+<p>Lássuk az <strong>évszámok</strong>at! Most is kezdjük a segédtáblával.</p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb484-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb484-1" tabindex="-1"></a>EvTabla <span class="op">=</span> Balcsi.groupby(<span class="st">&#39;Ev&#39;</span>).agg(</span>
+<span id="cb484-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb484-2" tabindex="-1"></a>  Elemszam <span class="op">=</span> (<span class="st">&#39;Kokain&#39;</span>, <span class="st">&#39;count&#39;</span>),</span>
+<span id="cb484-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb484-3" tabindex="-1"></a>  Reszatlagok <span class="op">=</span> (<span class="st">&#39;Kokain&#39;</span>, np.mean),</span>
+<span id="cb484-4"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb484-4" tabindex="-1"></a>  Szorasok <span class="op">=</span> (<span class="st">&#39;Kokain&#39;</span>, np.std)</span>
+<span id="cb484-5"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb484-5" tabindex="-1"></a>).reset_index()</span></code></pre></div>
+<pre><code>## &lt;string&gt;:1: FutureWarning: The provided callable &lt;function mean at 0x0000021B1B4313A0&gt; is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+## &lt;string&gt;:1: FutureWarning: The provided callable &lt;function std at 0x0000021B1B4314E0&gt; is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;std&quot; instead.</code></pre>
+<div class="sourceCode" id="cb486"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb486-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb486-1" tabindex="-1"></a>EvTabla</span></code></pre></div>
+<pre><code>##      Ev  Elemszam  Reszatlagok   Szorasok
+## 0  2017       180     0.536273   0.734331
+## 1  2018       180     1.964270   3.933046
+## 2  2019       180    62.417870  97.366788</code></pre>
+<p>Itt azért elég látványos eltéréseket találunk! A 2019-es évben hatalmasat ugrott a Balatonban mérhető kokainmennyiség. A szórása is magas, de pl. relatíve nézve 2018-ban magasabb volt: 2018-ban a szórás durván kétszerese volt az átlagnak <span class="math inline">\(\frac{3.93}{1.96}\)</span>, míg 2019-ben csak durván másfélszerese <span class="math inline">\(\frac{97.37}{62.42}=1.56\)</span>. Szóval itt lehet még komolyabb magyarázóerő!<br>
+De ne találgassunk, hanem lássuk a varianciahányadost! A számolásnál megint alkalmazzuk az állomásoknál bevezetett két <strong>egyszerűsítés</strong>t!</p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb488-1"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb488-1" tabindex="-1"></a>belső_var_Év <span class="op">=</span> np.<span class="bu">sum</span>(EvTabla.Elemszam <span class="op">*</span> EvTabla.Szorasok<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>np.<span class="bu">sum</span>(EvTabla.Elemszam)</span>
+<span id="cb488-2"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb488-2" tabindex="-1"></a></span>
+<span id="cb488-3"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb488-3" tabindex="-1"></a>VarHányadÉv <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> belső_var_Év <span class="op">/</span> teljes_var</span>
+<span id="cb488-4"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#cb488-4" tabindex="-1"></a>VarHányadÉv</span></code></pre></div>
+<pre><code>## 0.20797660221119585</code></pre>
+<p>Na, itt is egy közepes magyarázóerőnk van, kb. <span class="math inline">\(21\%\)</span>.</p>
+<p>Tehát alapvetően a Balatonban mérhető kokainmennyiséget két <em>közepes magyarázóerejű</em> dolog mozgatja nyáron:</p>
+<ul>
+<li><strong>Hónap</strong>: A Balaton Sound hónapjában (július) átlagban valamivel több a kokain</li>
+<li><strong>Év</strong>: 2019-ben sokkal több az átlagos kokainmennyiség, feltehetően a Sound megnövekedett haza és külföldi népszerűsége miatt</li>
+</ul>
+<p>Szerencsére a mérőállomás maga nem befolyásolja érdemben a mért kokain szóródását, így a mérések ilyen szempontból megbízhatóank tekinthetők!</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statisztikához-szükséges-python-nyelvi-alapok.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-LeiroStatValszam.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

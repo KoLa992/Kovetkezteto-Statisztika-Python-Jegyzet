@@ -1,0 +1,4 @@
+delete_merged_file: true
+language:
+  ui:
+output_dir: "docs"

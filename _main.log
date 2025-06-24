@@ -1,0 +1,3180 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.6.24)  24 JUN 2025 18:19
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**_main.tex
+(./_main.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-05-26>
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count271
+\c@chapter=\count272
+\c@section=\count273
+\c@subsection=\count274
+\c@subsubsection=\count275
+\c@paragraph=\count276
+\c@subparagraph=\count277
+\c@figure=\count278
+\c@table=\count279
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/06/16 v2.17y AMS math features
+\@mathmargin=\skip51
+For additional information on amsmath, use the `?' option.
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks17
+\ex@=\dimen149
+)) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen150
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count280
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count281
+\leftroot@=\count282
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count283
+\DOTSCASE@=\count284
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen151
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count285
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count286
+\dotsspace@=\muskip17
+\c@parentequation=\count287
+\dspbrk@lvl=\count288
+\tag@help=\toks18
+\row@=\count289
+\column@=\count290
+\maxfields@=\count291
+\andhelp@=\toks19
+\eqnshift@=\dimen152
+\alignsep@=\dimen153
+\tagshift@=\dimen154
+\tagwidth@=\dimen155
+\totwidth@=\dimen156
+\lineht@=\dimen157
+\@envbody=\toks20
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2949.
+LaTeX Info: Redefining \] on input line 2950.
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2025-05-26 L3 programming layer (loader) 
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+File: l3backend-xetex.def 2025-04-14 L3 backend support: XeTeX
+\g__graphics_track_int=\count292
+\g__pdfannot_backend_int=\count293
+\g__pdfannot_backend_link_int=\count294
+))
+Package: unicode-math 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLaTeX
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-xetex.sty
+Package: unicode-math-xetex 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLaTeX
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2024-08-16 L3 Experimental document command parser
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty
+Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
+\l__fontspec_script_int=\count295
+\l__fontspec_language_int=\count296
+\l__fontspec_strnum_int=\count297
+\l__fontspec_tmp_int=\count298
+\l__fontspec_tmpa_int=\count299
+\l__fontspec_tmpb_int=\count300
+\l__fontspec_tmpc_int=\count301
+\l__fontspec_em_int=\count302
+\l__fontspec_emdef_int=\count303
+\l__fontspec_strong_int=\count304
+\l__fontspec_strongdef_int=\count305
+\l__fontspec_tmpa_dim=\dimen158
+\l__fontspec_tmpb_dim=\dimen159
+\l__fontspec_tmpc_dim=\dimen160
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2024/12/21 v2.1c Standard LaTeX package
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
+LaTeX Encoding Info:    Redeclaring text command \capitalcedilla (encoding TS1) on input line 49.
+LaTeX Encoding Info:    Redeclaring text command \capitalogonek (encoding TS1) on input line 52.
+LaTeX Encoding Info:    Redeclaring text command \capitalgrave (encoding TS1) on input line 55.
+LaTeX Encoding Info:    Redeclaring text command \capitalacute (encoding TS1) on input line 56.
+LaTeX Encoding Info:    Redeclaring text command \capitalcircumflex (encoding TS1) on input line 57.
+LaTeX Encoding Info:    Redeclaring text command \capitaltilde (encoding TS1) on input line 58.
+LaTeX Encoding Info:    Redeclaring text command \capitaldieresis (encoding TS1) on input line 59.
+LaTeX Encoding Info:    Redeclaring text command \capitalhungarumlaut (encoding TS1) on input line 60.
+LaTeX Encoding Info:    Redeclaring text command \capitalring (encoding TS1) on input line 61.
+LaTeX Encoding Info:    Redeclaring text command \capitalcaron (encoding TS1) on input line 62.
+LaTeX Encoding Info:    Redeclaring text command \capitalbreve (encoding TS1) on input line 63.
+LaTeX Encoding Info:    Redeclaring text command \capitalmacron (encoding TS1) on input line 64.
+LaTeX Encoding Info:    Redeclaring text command \capitaldotaccent (encoding TS1) on input line 65.
+LaTeX Encoding Info:    Redeclaring text command \t (encoding TS1) on input line 66.
+LaTeX Encoding Info:    Redeclaring text command \capitaltie (encoding TS1) on input line 67.
+LaTeX Encoding Info:    Redeclaring text command \newtie (encoding TS1) on input line 68.
+LaTeX Encoding Info:    Redeclaring text command \capitalnewtie (encoding TS1) on input line 69.
+LaTeX Encoding Info:    Redeclaring text symbol \textcapitalcompwordmark (encoding TS1) on input line 70.
+LaTeX Encoding Info:    Redeclaring text symbol \textascendercompwordmark (encoding TS1) on input line 71.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotestraightbase (encoding TS1) on input line 72.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotestraightdblbase (encoding TS1) on input line 73.
+LaTeX Encoding Info:    Redeclaring text symbol \texttwelveudash (encoding TS1) on input line 74.
+LaTeX Encoding Info:    Redeclaring text symbol \textthreequartersemdash (encoding TS1) on input line 75.
+LaTeX Encoding Info:    Redeclaring text symbol \textleftarrow (encoding TS1) on input line 76.
+LaTeX Encoding Info:    Redeclaring text symbol \textrightarrow (encoding TS1) on input line 77.
+LaTeX Encoding Info:    Redeclaring text symbol \textblank (encoding TS1) on input line 78.
+LaTeX Encoding Info:    Redeclaring text symbol \textdollar (encoding TS1) on input line 79.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotesingle (encoding TS1) on input line 80.
+LaTeX Encoding Info:    Redeclaring text command \textasteriskcentered (encoding TS1) on input line 81.
+LaTeX Encoding Info:    Redeclaring text symbol \textdblhyphen (encoding TS1) on input line 92.
+LaTeX Encoding Info:    Redeclaring text symbol \textfractionsolidus (encoding TS1) on input line 93.
+LaTeX Encoding Info:    Redeclaring text symbol \textzerooldstyle (encoding TS1) on input line 94.
+LaTeX Encoding Info:    Redeclaring text symbol \textoneoldstyle (encoding TS1) on input line 95.
+LaTeX Encoding Info:    Redeclaring text symbol \texttwooldstyle (encoding TS1) on input line 96.
+LaTeX Encoding Info:    Redeclaring text symbol \textthreeoldstyle (encoding TS1) on input line 97.
+LaTeX Encoding Info:    Redeclaring text symbol \textfouroldstyle (encoding TS1) on input line 98.
+LaTeX Encoding Info:    Redeclaring text symbol \textfiveoldstyle (encoding TS1) on input line 99.
+LaTeX Encoding Info:    Redeclaring text symbol \textsixoldstyle (encoding TS1) on input line 100.
+LaTeX Encoding Info:    Redeclaring text symbol \textsevenoldstyle (encoding TS1) on input line 101.
+LaTeX Encoding Info:    Redeclaring text symbol \texteightoldstyle (encoding TS1) on input line 102.
+LaTeX Encoding Info:    Redeclaring text symbol \textnineoldstyle (encoding TS1) on input line 103.
+LaTeX Encoding Info:    Redeclaring text symbol \textlangle (encoding TS1) on input line 104.
+LaTeX Encoding Info:    Redeclaring text symbol \textminus (encoding TS1) on input line 105.
+LaTeX Encoding Info:    Redeclaring text symbol \textrangle (encoding TS1) on input line 106.
+LaTeX Encoding Info:    Redeclaring text symbol \textmho (encoding TS1) on input line 107.
+LaTeX Encoding Info:    Redeclaring text symbol \textbigcircle (encoding TS1) on input line 108.
+LaTeX Encoding Info:    Redeclaring text command \textcircled (encoding TS1) on input line 109.
+LaTeX Encoding Info:    Redeclaring text symbol \textohm (encoding TS1) on input line 115.
+LaTeX Encoding Info:    Redeclaring text symbol \textlbrackdbl (encoding TS1) on input line 116.
+LaTeX Encoding Info:    Redeclaring text symbol \textrbrackdbl (encoding TS1) on input line 117.
+LaTeX Encoding Info:    Redeclaring text symbol \textuparrow (encoding TS1) on input line 118.
+LaTeX Encoding Info:    Redeclaring text symbol \textdownarrow (encoding TS1) on input line 119.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciigrave (encoding TS1) on input line 120.
+LaTeX Encoding Info:    Redeclaring text symbol \textborn (encoding TS1) on input line 121.
+LaTeX Encoding Info:    Redeclaring text symbol \textdivorced (encoding TS1) on input line 122.
+LaTeX Encoding Info:    Redeclaring text symbol \textdied (encoding TS1) on input line 123.
+LaTeX Encoding Info:    Redeclaring text symbol \textleaf (encoding TS1) on input line 124.
+LaTeX Encoding Info:    Redeclaring text symbol \textmarried (encoding TS1) on input line 125.
+LaTeX Encoding Info:    Redeclaring text symbol \textmusicalnote (encoding TS1) on input line 126.
+LaTeX Encoding Info:    Redeclaring text symbol \texttildelow (encoding TS1) on input line 127.
+LaTeX Encoding Info:    Redeclaring text symbol \textdblhyphenchar (encoding TS1) on input line 128.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciibreve (encoding TS1) on input line 129.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciicaron (encoding TS1) on input line 130.
+LaTeX Encoding Info:    Redeclaring text symbol \textacutedbl (encoding TS1) on input line 131.
+LaTeX Encoding Info:    Redeclaring text symbol \textgravedbl (encoding TS1) on input line 132.
+LaTeX Encoding Info:    Redeclaring text symbol \textdagger (encoding TS1) on input line 133.
+LaTeX Encoding Info:    Redeclaring text symbol \textdaggerdbl (encoding TS1) on input line 134.
+LaTeX Encoding Info:    Redeclaring text symbol \textbardbl (encoding TS1) on input line 135.
+LaTeX Encoding Info:    Redeclaring text symbol \textperthousand (encoding TS1) on input line 136.
+LaTeX Encoding Info:    Redeclaring text symbol \textbullet (encoding TS1) on input line 137.
+LaTeX Encoding Info:    Redeclaring text symbol \textcelsius (encoding TS1) on input line 138.
+LaTeX Encoding Info:    Redeclaring text symbol \textdollaroldstyle (encoding TS1) on input line 139.
+LaTeX Encoding Info:    Redeclaring text symbol \textcentoldstyle (encoding TS1) on input line 140.
+LaTeX Encoding Info:    Redeclaring text symbol \textflorin (encoding TS1) on input line 141.
+LaTeX Encoding Info:    Redeclaring text symbol \textcolonmonetary (encoding TS1) on input line 142.
+LaTeX Encoding Info:    Redeclaring text symbol \textwon (encoding TS1) on input line 143.
+LaTeX Encoding Info:    Redeclaring text symbol \textnaira (encoding TS1) on input line 144.
+LaTeX Encoding Info:    Redeclaring text symbol \textguarani (encoding TS1) on input line 145.
+LaTeX Encoding Info:    Redeclaring text symbol \textpeso (encoding TS1) on input line 146.
+LaTeX Encoding Info:    Redeclaring text symbol \textlira (encoding TS1) on input line 147.
+LaTeX Encoding Info:    Redeclaring text symbol \textrecipe (encoding TS1) on input line 148.
+LaTeX Encoding Info:    Redeclaring text symbol \textinterrobang (encoding TS1) on input line 149.
+LaTeX Encoding Info:    Redeclaring text symbol \textinterrobangdown (encoding TS1) on input line 150.
+LaTeX Encoding Info:    Redeclaring text symbol \textdong (encoding TS1) on input line 151.
+LaTeX Encoding Info:    Redeclaring text symbol \texttrademark (encoding TS1) on input line 152.
+LaTeX Encoding Info:    Redeclaring text symbol \textpertenthousand (encoding TS1) on input line 153.
+LaTeX Encoding Info:    Redeclaring text symbol \textpilcrow (encoding TS1) on input line 154.
+LaTeX Encoding Info:    Redeclaring text symbol \textbaht (encoding TS1) on input line 155.
+LaTeX Encoding Info:    Redeclaring text symbol \textnumero (encoding TS1) on input line 156.
+LaTeX Encoding Info:    Redeclaring text symbol \textdiscount (encoding TS1) on input line 157.
+LaTeX Encoding Info:    Redeclaring text symbol \textestimated (encoding TS1) on input line 158.
+LaTeX Encoding Info:    Redeclaring text symbol \textopenbullet (encoding TS1) on input line 159.
+LaTeX Encoding Info:    Redeclaring text symbol \textservicemark (encoding TS1) on input line 160.
+LaTeX Encoding Info:    Redeclaring text symbol \textlquill (encoding TS1) on input line 161.
+LaTeX Encoding Info:    Redeclaring text symbol \textrquill (encoding TS1) on input line 162.
+LaTeX Encoding Info:    Redeclaring text symbol \textcent (encoding TS1) on input line 163.
+LaTeX Encoding Info:    Redeclaring text symbol \textsterling (encoding TS1) on input line 164.
+LaTeX Encoding Info:    Redeclaring text symbol \textcurrency (encoding TS1) on input line 165.
+LaTeX Encoding Info:    Redeclaring text symbol \textyen (encoding TS1) on input line 166.
+LaTeX Encoding Info:    Redeclaring text symbol \textbrokenbar (encoding TS1) on input line 167.
+LaTeX Encoding Info:    Redeclaring text symbol \textsection (encoding TS1) on input line 168.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciidieresis (encoding TS1) on input line 169.
+LaTeX Encoding Info:    Redeclaring text symbol \textcopyright (encoding TS1) on input line 170.
+LaTeX Encoding Info:    Redeclaring text symbol \textordfeminine (encoding TS1) on input line 171.
+LaTeX Encoding Info:    Redeclaring text symbol \textcopyleft (encoding TS1) on input line 172.
+LaTeX Encoding Info:    Redeclaring text symbol \textlnot (encoding TS1) on input line 173.
+LaTeX Encoding Info:    Redeclaring text symbol \textcircledP (encoding TS1) on input line 174.
+LaTeX Encoding Info:    Redeclaring text symbol \textregistered (encoding TS1) on input line 175.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciimacron (encoding TS1) on input line 176.
+LaTeX Encoding Info:    Redeclaring text symbol \textdegree (encoding TS1) on input line 177.
+LaTeX Encoding Info:    Redeclaring text symbol \textpm (encoding TS1) on input line 178.
+LaTeX Encoding Info:    Redeclaring text symbol \texttwosuperior (encoding TS1) on input line 179.
+LaTeX Encoding Info:    Redeclaring text symbol \textthreesuperior (encoding TS1) on input line 180.
+LaTeX Encoding Info:    Redeclaring text symbol \textasciiacute (encoding TS1) on input line 181.
+LaTeX Encoding Info:    Redeclaring text symbol \textmu (encoding TS1) on input line 182.
+LaTeX Encoding Info:    Redeclaring text symbol \textparagraph (encoding TS1) on input line 183.
+LaTeX Encoding Info:    Redeclaring text symbol \textperiodcentered (encoding TS1) on input line 184.
+LaTeX Encoding Info:    Redeclaring text symbol \textreferencemark (encoding TS1) on input line 185.
+LaTeX Encoding Info:    Redeclaring text symbol \textonesuperior (encoding TS1) on input line 186.
+LaTeX Encoding Info:    Redeclaring text symbol \textordmasculine (encoding TS1) on input line 187.
+LaTeX Encoding Info:    Redeclaring text symbol \textsurd (encoding TS1) on input line 188.
+LaTeX Encoding Info:    Redeclaring text symbol \textonequarter (encoding TS1) on input line 189.
+LaTeX Encoding Info:    Redeclaring text symbol \textonehalf (encoding TS1) on input line 190.
+LaTeX Encoding Info:    Redeclaring text symbol \textthreequarters (encoding TS1) on input line 191.
+LaTeX Encoding Info:    Redeclaring text symbol \texteuro (encoding TS1) on input line 192.
+LaTeX Encoding Info:    Redeclaring text symbol \texttimes (encoding TS1) on input line 193.
+LaTeX Encoding Info:    Redeclaring text symbol \textdiv (encoding TS1) on input line 194.
+))
+\g__um_fam_int=\count306
+\g__um_fonts_used_int=\count307
+\l__um_primecount_int=\count308
+\g__um_primekern_muskip=\muskip18
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 274.
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2022/09/22 v5.0n Graphics/color driver for xetex
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks22
+)
+\FV@CodeLineNo=\count309
+\FV@InFile=\read2
+\FV@TabBox=\box55
+\c@FancyVerbLine=\count310
+\FV@StepNumber=\count311
+\FV@OutFile=\write3
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip54
+\fb@frw=\dimen161
+\fb@frh=\dimen162
+\FrameRule=\dimen163
+\FrameSep=\dimen164
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2024-12-18 v4.23 Multi-page Table package (DPC)
+\LTleft=\skip55
+\LTright=\skip56
+\LTpre=\skip57
+\LTpost=\skip58
+\LTchunksize=\count312
+\LTcapwidth=\dimen165
+\LT@head=\box56
+\LT@firsthead=\box57
+\LT@foot=\box58
+\LT@lastfoot=\box59
+\LT@gbox=\box60
+\LT@cols=\count313
+\LT@rows=\count314
+\c@LT@tables=\count315
+\c@LT@chunks=\count316
+\LT@p@ftn=\toks23
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen166
+\lightrulewidth=\dimen167
+\cmidrulewidth=\dimen168
+\belowrulesep=\dimen169
+\belowbottomsep=\dimen170
+\aboverulesep=\dimen171
+\abovetopsep=\dimen172
+\cmidrulesep=\dimen173
+\cmidrulekern=\dimen174
+\defaultaddspace=\dimen175
+\@cmidla=\count317
+\@cmidlb=\count318
+\@aboverulesep=\dimen176
+\@belowrulesep=\dimen177
+\@thisruleclass=\count319
+\@lastruleclass=\count320
+\@thisrulewidth=\dimen178
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
+\col@sep=\dimen179
+\ar@mcellbox=\box61
+\extrarowheight=\dimen180
+\NC@list=\toks24
+\extratabsurround=\skip59
+\backup@length=\skip60
+\ar@cellbox=\box62
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count321
+\calc@Bcount=\count322
+\calc@Adimen=\dimen181
+\calc@Bdimen=\dimen182
+\calc@Askip=\skip61
+\calc@Bskip=\skip62
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count323
+\calc@Cskip=\skip63
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count324
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
+Package: footnote 1997/01/28 1.13 Save footnotes around boxes
+\fn@notes=\box63
+\fn@width=\dimen183
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 106.
+)
+\Gin@req@height=\dimen184
+\Gin@req@width=\dimen185
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2025/06/10 v25.10 The multilingual framework for pdfLaTeX, LuaLaTeX and XeLaTeX
+\babel@savecnt=\count325
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input line 2043.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input line 2045.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input line 2047.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input line 2048.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) on input line 2049.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) on input line 2051.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) on input line 2076.
+\U@D=\dimen186
+\l@unhyphenated=\language3
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/xebabel.def)
+\bbl@readstream=\read3
+\bbl@dirlevel=\count326
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel-hungarian/magyar.ldf
+Language: hungarian 2025/05/02 v1.5d Hungarian support for babel
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/locale/hu/babel-hungarian.tex
+Package babel Info: Importing font and identification data for hungarian
+(babel)             from babel-hu.ini. Reported on input line 11.
+)
+Package babel Info: Making ` an active character on input line 2778.
+\c@footnote@add=\count327
+\c@footnote@ch=\count328
+)) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip64
+\bibsep=\skip65
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count329
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2025-06-21 v7.01n Hypertext links for LaTeX
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+)) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count330
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+)
+\@linkdim=\dimen187
+\Hy@linkcounter=\count331
+\Hy@pagecounter=\count332
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2025-06-21 v7.01n Hyperref: PDFDocEncoding definition (HO)
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count333
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2025-06-21 v7.01n Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `unicode' set `true' on input line 4052.
+Package hyperref Info: Hyper figures OFF on input line 4181.
+Package hyperref Info: Link nesting OFF on input line 4186.
+Package hyperref Info: Hyper index ON on input line 4189.
+Package hyperref Info: Plain pages OFF on input line 4196.
+Package hyperref Info: Backreferencing OFF on input line 4201.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4448.
+\c@Hy@tempcnt=\count334
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip19
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4787.
+\XeTeXLinkMargin=\dimen188
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count335
+\Field@Width=\dimen189
+\Fld@charsize=\dimen190
+Package hyperref Info: Hyper figures OFF on input line 6066.
+Package hyperref Info: Link nesting OFF on input line 6071.
+Package hyperref Info: Hyper index ON on input line 6074.
+Package hyperref Info: backreferencing OFF on input line 6081.
+Package hyperref Info: Link coloring OFF on input line 6086.
+Package hyperref Info: Link coloring with OCG OFF on input line 6091.
+Package hyperref Info: PDF/A mode OFF on input line 6096.
+\Hy@abspage=\count336
+\c@Item=\count337
+\c@Hfootnote=\count338
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2025-06-21 v7.01n Hyperref driver for XeTeX
+\pdfm@box=\box64
+\c@Hy@AnnotLevel=\count339
+\HyField@AnnotCount=\count340
+\Fld@listcount=\count341
+\c@bookmark@seq@number=\count342
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
+)
+\Hy@SectionHShift=\skip66
+) (c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
+File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
+\BKM@id=\count343
+)) (./_main.aux)
+\openout1 = `_main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 126.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 126.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 126.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 126.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 126.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 126.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 126.
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'latinmodern-math.otf(0)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,BoldFont={latinmodern-math.otf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 126.
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'latinmodern-math.otf(1)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.5->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;"<6-8.5>s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-6>s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 126.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 126.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 126.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 126.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 126.
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 1.000096459334209.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'latinmodern-math.otf(2)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain=1.0001,FontAdjustment={\fontdimen
+(fontspec)             8\font =6.77pt\relax \fontdimen 9\font =3.94pt\relax
+(fontspec)             \fontdimen 10\font =4.44pt\relax \fontdimen 11\font
+(fontspec)             =6.86pt\relax \fontdimen 12\font =3.45pt\relax
+(fontspec)             \fontdimen 13\font =3.63pt\relax \fontdimen 14\font
+(fontspec)             =3.63pt\relax \fontdimen 15\font =2.89pt\relax
+(fontspec)             \fontdimen 16\font =2.47pt\relax \fontdimen 17\font
+(fontspec)             =2.47pt\relax \fontdimen 18\font =2.5pt\relax
+(fontspec)             \fontdimen 19\font =2.0pt\relax \fontdimen 22\font
+(fontspec)             =2.5pt\relax \fontdimen 20\font =0pt\relax \fontdimen
+(fontspec)             21\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.5->s*[1.000096459334209]"[latinmodern-math.otf]/OT:script=math;language=dflt;"<6-8.5>s*[1.000096459334209]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-6>s*[1.000096459334209]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[1.000096459334209]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
+
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 126.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 126.
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 126.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 126.
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9999964596882403.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9998964600422715.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'latinmodern-math.otf(3)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain=0.9999,FontAdjustment={\fontdimen
+(fontspec)             8\font =0.4pt\relax \fontdimen 9\font =2.0pt\relax
+(fontspec)             \fontdimen 10\font =1.67pt\relax \fontdimen 11\font
+(fontspec)             =1.11pt\relax \fontdimen 12\font =6.0pt\relax
+(fontspec)             \fontdimen 13\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <8.5->s*[0.9998964600422715]"[latinmodern-math.otf]/OT:script=math;language=dflt;"<6-8.5>s*[0.9998964600422715]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-6>s*[0.9998964600422715]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9998964600422715]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
+
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 126.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 126.
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 126.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 126.
+
+Package hungarian.ldf Warning: All Hungarian hyphenation= patterns missing.
+(hungarian.ldf)                To make LaTeX hyphenate Hungarian words, please
+(hungarian.ldf)                modify language.dat and rerun initex or texconfig.
+
+
+LaTeX Warning: Please use \usepackage[T1]{fontenc} with
+               \usepackage[hungarian]{babel}, to get accented chars hyphenated.
+
+
+LaTeX Warning: Please use \usepackage[latin2]{inputenc}
+               or \usepackage[utf8]{inputenc}
+               with \usepackage[hungarian]{babel}.
+
+Package hyperref Info: Link coloring OFF on input line 126.
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/book.cls
+LaTeX Info: Redefining \cal on input line 583.
+LaTeX Info: Redefining \mit on input line 584.
+)
+Package babel Info: 'hungarian' activates 'hungarian' shorthands.
+(babel)             Reported  on input line 126.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 128.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 128.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 128.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 128.
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 12.0011pt on input line 128.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 8.00073pt on input line 128.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.00055pt on input line 128.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 11.99872pt on input line 128.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.99915pt on input line 128.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.99936pt on input line 128.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 128.
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 128.
+(c:/Users/kola1/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+[1
+
+
+
+]
+
+[2
+
+] (./_main.toc
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 3.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 3.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 3.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 3.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 3.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 3.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 3.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 3.
+)
+\tf@toc=\write4
+\openout4 = `_main.toc'.
+
+
+
+[3]
+
+[4]
+1. fejezet.
+
+Underfull \hbox (badness 7273) in paragraph at lines 137--138
+\TU/lmr/m/n/10 abszolválásához szükséges Python programnyelvi elemek felelevenítésre
+ []
+
+
+Underfull \hbox (badness 1009) in paragraph at lines 139--140
+\TU/lmr/m/n/10 teljesen kezdő szinten, minden \TU/lmr/bx/n/10 programozási előismeret feltételezése
+ []
+
+
+Underfull \hbox (badness 1694) in paragraph at lines 156--157
+[]\TU/lmr/m/n/10 A \TU/lmr/m/it/10 Spyder \TU/lmr/m/n/10 fejlesztőkörnyezet működését és lehetőségeit adatelemzési
+ []
+
+
+
+[5
+
+]
+Underfull \hbox (badness 1092) in paragraph at lines 172--173
+[]\TU/lmr/m/n/10 A Python képességeinek áttekintése a következtető statisztika és a
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 193--195
+\TU/lmr/m/n/10 hogy a statisztikai számítások elvégzéséhez és a statisztikai adattáblák
+ []
+
+
+
+[6]
+2. fejezet.
+
+Overfull \hbox (4.18892pt too wide) in paragraph at lines 206--208
+[]\TU/lmr/m/n/10 A Neumann-elvek szerint a programnyelven kiadott utasításokat a számítógépben
+ []
+
+File: neumann.png Graphic file (type bmp)
+<neumann.png>
+
+
+[7
+
+]
+Underfull \hbox (badness 5217) in paragraph at lines 221--223
+\TU/lmr/m/n/10 kiegészítő csomagjai segítségével a valószínűségszámítás, statisztika és
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 221--223
+\TU/lmr/m/n/10 általánosabb adatelemzés műveletei könnyen és gyorsan elvégezhetők a
+ []
+
+
+Underfull \hbox (badness 3428) in paragraph at lines 221--223
+\TU/lmr/m/n/10 modellezési és elemzési feladatok elvégzésére alkalmas szkriptnyelvként,
+ []
+
+
+Underfull \hbox (badness 2277) in paragraph at lines 221--223
+\TU/lmr/m/n/10 szemben, hogy mivel általános célú programnyelv, így a matematikai-
+ []
+
+
+Underfull \hbox (badness 2617) in paragraph at lines 221--223
+\TU/lmr/m/n/10 statisztikai számítások eredményei sokkal könnyebben integrálhatók egy
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 221--223
+\TU/lmr/m/n/10 Ahogy az \TU/lmr/m/it/10 Előhang\TU/lmr/m/n/10 ban már jeleztem, a jegyzet kimondottan a Python
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 221--223
+\TU/lmr/m/n/10 egyrészt gyönyörködünk bennük, másrészt értelmezzük az eredményeket.
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 221--223
+\TU/lmr/m/n/10 mivel általános célú programnyelv, és nem kimondottan a matematikai-
+ []
+
+
+
+
+Overfull \hbox (6.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 8 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[8]
+Underfull \hbox (badness 1038) in paragraph at lines 224--226
+\TU/lmr/m/n/10 Itt megjegyzendő, hogy a \TU/lmr/bx/n/10 Python és a Python fejlesztőkörnyezete
+ []
+
+
+Underfull \hbox (badness 1701) in paragraph at lines 224--226
+\TU/lmr/m/n/10 írunk a számítógépünknek, hogy hajtsa végre, míg a fejlesztőkrönyezet
+ []
+
+
+Overfull \hbox (13.27202pt too wide) in paragraph at lines 227--228
+[]\TU/lmr/m/n/10 Miután telepítettük és elindítottuk az Anaconda keretrendszert, a kezdőképernyőről
+ []
+
+File: Anaconda.jpg Graphic file (type bmp)
+<Anaconda.jpg>
+File: Spyder.jpg Graphic file (type bmp)
+<Spyder.jpg>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[9]
+File: RunLine.jpg Graphic file (type bmp)
+<RunLine.jpg>
+File: RunLine.jpg Graphic file (type bmp)
+<RunLine.jpg>
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 252.
+File: RunFile.jpg Graphic file (type bmp)
+<RunFile.jpg>
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 10 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
+[]\TU/lmr/m/n/10 Az egész alapértelmezett \TU/lmr/m/it/10 Working Directory\TU/lmr/m/n/10 -val kapcsolatos okfejtés
+ []
+
+
+Overfull \hbox (24.6623pt too wide) in paragraph at lines 304--304
+[]\TU/lmr/bx/n/14.4 Alapvető Python adattípusok és adatszerkezetek 
+ []
+
+
+
+[11]
+Underfull \hbox (badness 1052) in paragraph at lines 319--321
+\TU/lmr/m/n/10 Python függvények olyan utasítások, amik a matekban megszokott $[][][][]$
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 12 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[12]
+
+[13]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 14 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[14]
+
+[15]
+Underfull \hbox (badness 2547) in paragraph at lines 606--607
+[]\TU/lmr/m/n/10 Ekkor igazából semmi galiba nem történik, minden szituáció értelmes
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 16 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[16]
+
+[17]
+Underfull \hbox (badness 1048) in paragraph at lines 742--743
+\TU/lmr/m/n/10 memóriájába, ha \TU/lmtt/m/n/10 [] \TU/lmr/m/n/10 zárójelek között vesszővel felsoroljuk az eltárolandó
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 18 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[18]
+
+[19]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 20 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[20]
+Underfull \hbox (badness 1038) in paragraph at lines 942--944
+\TU/lmr/m/n/10 hogy az egyes Python függvényeket milyen paraméterezéssel (más néven
+ []
+
+
+
+[21]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 982--982
+[]\TU/lmtt/m/n/10 ## TypeError: '<' not supported between instances of 'str' and 'int'[] 
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 22 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[22]
+
+[23]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1106.
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 24 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[24]
+
+[25]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 1297--1297
+[]\TU/lmtt/m/n/10 ## array(['88', '42', 'Hello', '1992', '9', 'There', 'Friend', '11'],[] 
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 26 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[26]
+
+[27]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 28 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[28]
+
+[29]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 30 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[30]
+Underfull \hbox (badness 5592) in paragraph at lines 1583--1584
+[]\TU/lmr/m/n/10 A \TU/lmtt/m/n/10 pandas \TU/lmr/m/n/10 data frame-ekbe a legkönnyebben talán \TU/lmr/bx/n/10 csv \TU/lmr/m/n/10 kiterjesztésű
+ []
+
+
+Underfull \hbox (badness 3068) in paragraph at lines 1583--1584
+\TU/lmr/m/n/10 állományként tárolt adattáblákat lehet beolvasni a \TU/lmtt/m/n/10 read_csv \TU/lmr/m/n/10 függvény
+ []
+
+
+
+[31]
+Underfull \hbox (badness 1184) in paragraph at lines 1607--1609
+\TU/lmr/m/n/10 a problémák (tizedespont vs tizedes vessző pl.). Részletek a függvény
+ []
+
+
+Underfull \hbox (badness 2409) in paragraph at lines 1612--1613
+[]\TU/lmr/m/n/10 Nézzük meg ezt az adatstruktúrát a \TU/lmr/bx/n/10 data frame \TU/lmtt/m/n/10 info \TU/lmr/m/n/10 metódusának
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 32 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[32]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 1661--1661
+[]\TU/lmtt/m/n/10 ##   Province/State Country/Region      Lat  ...  Confirmed Deaths  Recovered[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 1661--1661
+[]\TU/lmtt/m/n/10 ## 0            NaN    Afghanistan  33.0000  ...          0      0          0[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 1661--1661
+[]\TU/lmtt/m/n/10 ## 1            NaN        Albania  41.1533  ...          0      0          0[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 1661--1661
+[]\TU/lmtt/m/n/10 ## 2            NaN        Algeria  28.0339  ...          0      0          0[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 1661--1661
+[]\TU/lmtt/m/n/10 ## 3            NaN        Andorra  42.5063  ...          0      0          0[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 1661--1661
+[]\TU/lmtt/m/n/10 ## 4            NaN         Angola -11.2027  ...          0      0          0[] 
+ []
+
+
+
+[33]
+Overfull \hbox (80.25pt too wide) in paragraph at lines 1681--1681
+[]\TU/lmtt/m/n/10 ## Index(['Province/State', 'Country/Region', 'Lat', 'Long', 'Date', 'Confirmed',[] 
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 34 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[34]
+
+[35]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 36 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[36]
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ##               Country/Region     Date  Confirmed  Deaths  Recovered[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 0                Afghanistan  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 1                    Albania  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 2                    Algeria  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 3                    Andorra  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 4                     Angola  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## ...                      ...      ...        ...     ...        ...[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 26395         Western Sahara  4/30/20          6       0          5[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 26396  Sao Tome and Principe  4/30/20         14       0          4[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 26397                  Yemen  4/30/20          6       2          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 26398                Comoros  4/30/20          1       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1877--1877
+[]\TU/lmtt/m/n/10 ## 26399             Tajikistan  4/30/20         15       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ##               Country/Region     Date  Confirmed  Deaths  Recovered[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 0                Afghanistan  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 1                    Albania  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 2                    Algeria  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 3                    Andorra  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 4                     Angola  1/22/20          0       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## ...                      ...      ...        ...     ...        ...[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 26395         Western Sahara  4/30/20          6       0          5[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 26396  Sao Tome and Principe  4/30/20         14       0          4[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 26397                  Yemen  4/30/20          6       2          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 26398                Comoros  4/30/20          1       0          0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1900--1900
+[]\TU/lmtt/m/n/10 ## 26399             Tajikistan  4/30/20         15       0          0[] 
+ []
+
+
+
+[37]
+Overfull \hbox (54.0pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Northern Territory', 'Queensland', 'South Australia', 'Tasmania',[] 
+ []
+
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Victoria', 'Western Australia', 'Alberta', 'British Columbia',[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Prince Edward Island', 'Quebec', 'Saskatchewan', 'Anhui',[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Beijing', 'Chongqing', 'Fujian', 'Gansu', 'Guangdong', 'Guangxi',[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Guizhou', 'Hainan', 'Hebei', 'Heilongjiang', 'Henan', 'Hong Kong',[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Hubei', 'Hunan', 'Inner Mongolia', 'Jiangsu', 'Jiangxi', 'Jilin',[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Liaoning', 'Macau', 'Ningxia', 'Qinghai', 'Shaanxi', 'Shandong',[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Shanghai', 'Shanxi', 'Sichuan', 'Tianjin', 'Tibet', 'Xinjiang',[] 
+ []
+
+
+Overfull \hbox (27.75pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'French Guiana', 'French Polynesia', 'Guadeloupe', 'Mayotte',[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'New Caledonia', 'Reunion', 'Saint Barthelemy', 'St Martin',[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Martinique', 'Aruba', 'Curacao', 'Sint Maarten', 'Bermuda',[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Cayman Islands', 'Channel Islands', 'Gibraltar', 'Isle of Man',[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Montserrat', 'Diamond Princess', 'Northwest Territories', 'Yukon',[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Anguilla', 'British Virgin Islands', 'Turks and Caicos Islands',[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1931--1931
+[]\TU/lmtt/m/n/10 ##        'Falkland Islands (Malvinas)', 'Saint Pierre and Miquelon'],[] 
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 38 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[38]
+Overfull \hbox (694.5pt too wide) in paragraph at lines 1973--1973
+[]\TU/lmtt/m/n/10 ## <string>:1: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.[] 
+ []
+
+
+
+[39]
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2043--2043
+[]\TU/lmtt/m/n/10 ##   Province/State Country/Region      Lat  ...  Deaths Recovered  Active[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2043--2043
+[]\TU/lmtt/m/n/10 ## 0            NaN    Afghanistan  33.0000  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2043--2043
+[]\TU/lmtt/m/n/10 ## 1            NaN        Albania  41.1533  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2043--2043
+[]\TU/lmtt/m/n/10 ## 2            NaN        Algeria  28.0339  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2043--2043
+[]\TU/lmtt/m/n/10 ## 3            NaN        Andorra  42.5063  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2043--2043
+[]\TU/lmtt/m/n/10 ## 4            NaN         Angola -11.2027  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ##       Province/State  Country/Region      Lat  ...  Deaths Recovered  Active[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 17561            NaN           Italy  43.0000  ...   10023     12384   70065[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 17825            NaN           Italy  43.0000  ...   10779     13030   73880[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 18089            NaN           Italy  43.0000  ...   11591     14620   75528[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 18353            NaN           Italy  43.0000  ...   12428     15729   77635[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 18617            NaN           Italy  43.0000  ...   13155     16847   80572[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## ...              ...             ...      ...  ...     ...       ...     ...[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 26252            NaN          France  46.2276  ...   24376     49476   91912[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 26273            NaN           Italy  43.0000  ...   27967     75945  101551[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 26337            NaN           Spain  40.0000  ...   24543    112050   76842[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 26359            NaN  United Kingdom  55.3781  ...   26771         0  144482[] 
+ []
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2072--2072
+[]\TU/lmtt/m/n/10 ## 26361            NaN              US  37.0902  ...   62996    153947  852481[] 
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 40 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[40]
+
+[41]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 42 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[42]
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ##       Province/State Country/Region      Lat  ...  Deaths Recovered  Active[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 133              NaN           Iran  32.0000  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 137              NaN          Italy  43.0000  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 225              NaN             US  37.0902  ...       0         0       1[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 397              NaN           Iran  32.0000  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 401              NaN          Italy  43.0000  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## ...              ...            ...      ...  ...     ...       ...     ...[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 26009            NaN          Italy  43.0000  ...   27682     71252  104657[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 26097            NaN             US  37.0902  ...   60967    120720  858222[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 26269            NaN           Iran  32.0000  ...    6028     75103   13509[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 26273            NaN          Italy  43.0000  ...   27967     75945  101551[] 
+ []
+
+
+Overfull \hbox (64.5pt too wide) in paragraph at lines 2246--2246
+[]\TU/lmtt/m/n/10 ## 26361            NaN             US  37.0902  ...   62996    153947  852481[] 
+ []
+
+
+
+[43]
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ##       Province/State         Country/Region  ...  Recovered  Active[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 0                NaN            Afghanistan  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 1                NaN                Albania  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 2                NaN                Algeria  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 3                NaN                Andorra  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 4                NaN                 Angola  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## ...              ...                    ...  ...        ...     ...[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 26395            NaN         Western Sahara  ...          5       1[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 26396            NaN  Sao Tome and Principe  ...          4      10[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 26397            NaN                  Yemen  ...          0       4[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 26398            NaN                Comoros  ...          0       1[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2271--2271
+[]\TU/lmtt/m/n/10 ## 26399            NaN             Tajikistan  ...          0      15[] 
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 44 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[44]
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ##       Province/State         Country/Region  ...  Recovered  Active[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 0                NaN            Afghanistan  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 1                NaN                Albania  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 2                NaN                Algeria  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 3                NaN                Andorra  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 4                NaN                 Angola  ...          0       0[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## ...              ...                    ...  ...        ...     ...[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 26395            NaN         Western Sahara  ...          5       1[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 26396            NaN  Sao Tome and Principe  ...          4      10[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 26397            NaN                  Yemen  ...          0       4[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 26398            NaN                Comoros  ...          0       1[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2321--2321
+[]\TU/lmtt/m/n/10 ## 26399            NaN             Tajikistan  ...          0      15[] 
+ []
+
+
+
+[45]
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2368--2368
+[]\TU/lmtt/m/n/10 ##   Province/State Country/Region      Lat  ...  Deaths Recovered  Active[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2368--2368
+[]\TU/lmtt/m/n/10 ## 0                   Afghanistan  33.0000  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2368--2368
+[]\TU/lmtt/m/n/10 ## 1                       Albania  41.1533  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2368--2368
+[]\TU/lmtt/m/n/10 ## 2                       Algeria  28.0339  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2368--2368
+[]\TU/lmtt/m/n/10 ## 3                       Andorra  42.5063  ...       0         0       0[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 2368--2368
+[]\TU/lmtt/m/n/10 ## 4                        Angola -11.2027  ...       0         0       0[] 
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 46 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[46]
+Underfull \hbox (badness 4266) in paragraph at lines 2429--2430
+[]\TU/lmr/m/n/10 Ábrázoljuk a COVID-19 magyar halottainak, gyógyultjainak és aktív
+ []
+
+File: _main_files/figure-latex/unnamed-chunk-87-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-87-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[47]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 48 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[48]
+Underfull \hbox (badness 1466) in paragraph at lines 2513--2514
+\TU/lmr/m/n/10 hanem külön oszlopként szerepeljen, akkor használjuk a \TU/lmtt/m/n/10 reset_index()
+ []
+
+
+
+[49]
+Underfull \hbox (badness 2343) in paragraph at lines 2550--2552
+[]\TU/lmr/m/n/10 Amennyiben a \TU/lmtt/m/n/10 groupby \TU/lmr/m/n/10 metódus után egy általánosabb \TU/lmtt/m/n/10 agg \TU/lmr/m/n/10 metódust
+ []
+
+
+Underfull \hbox (badness 1303) in paragraph at lines 2555--2556
+\TU/lmr/m/n/10 átlagos és medián aktív koronavírus eseteiről, illetve átlagos és medián
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 50 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[50]
+Overfull \hbox (1025.25pt too wide) in paragraph at lines 2572--2572
+[]\TU/lmtt/m/n/10 ## <string>:1: FutureWarning: The provided callable <function mean at 0x00000167D93F13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.[] 
+ []
+
+
+Overfull \hbox (1056.75pt too wide) in paragraph at lines 2572--2572
+[]\TU/lmtt/m/n/10 ## <string>:1: FutureWarning: The provided callable <function median at 0x00000167D95B8720> is currently using SeriesGroupBy.median. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "median" instead.[] 
+ []
+
+
+Overfull \hbox (1025.25pt too wide) in paragraph at lines 2572--2572
+[]\TU/lmtt/m/n/10 ## <string>:1: FutureWarning: The provided callable <function mean at 0x00000167D93F13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ##          Country/Region  AtlagAktiv  MedianAktiv  AtlagHalal  MedianHalal[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 0           Afghanistan      1847.0       1847.0        64.0         64.0[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 1               Albania       272.0        272.0        31.0         31.0[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 2               Algeria      1777.0       1777.0       450.0        450.0[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 3               Andorra       235.0        235.0        42.0         42.0[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 4                Angola        18.0         18.0         2.0          2.0[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## ..                  ...         ...          ...         ...          ...[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 182  West Bank and Gaza       266.0        266.0         2.0          2.0[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 183      Western Sahara         1.0          1.0         0.0          0.0[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 184               Yemen         4.0          4.0         2.0          2.0[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 185              Zambia        48.0         48.0         3.0          3.0[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2595--2595
+[]\TU/lmtt/m/n/10 ## 186            Zimbabwe        31.0         31.0         4.0          4.0[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2611--2611
+[]\TU/lmtt/m/n/10 ##      Country/Region    AtlagAktiv  MedianAktiv   AtlagHalal  MedianHalal[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2611--2611
+[]\TU/lmtt/m/n/10 ## 62           France   8409.909091         31.0  2219.090909          1.0[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2611--2611
+[]\TU/lmtt/m/n/10 ## 177  United Kingdom  13161.818182         13.0  2440.181818          1.0[] 
+ []
+
+
+
+[51]
+Overfull \hbox (22.44002pt too wide) in paragraph at lines 2639--2640
+[]\TU/lmr/m/n/10 Nézzünk egy komplett leíró statisztikát a \TU/lmr/m/it/10 COVID_Cases \TU/lmr/m/n/10 változóra/ismérvre/oszlopra
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 52 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[52]
+File: _main_files/figure-latex/unnamed-chunk-95-3.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-95-3.pdf>
+
+Overfull \hbox (6.69003pt too wide) in paragraph at lines 2671--2672
+[]\TU/lmr/m/n/10 Alapból egyenlő hosszúságú osztályközötket képez a pitonállat a hisztogramokhoz,
+ []
+
+File: _main_files/figure-latex/unnamed-chunk-96-5.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-96-5.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[53]
+File: _main_files/figure-latex/unnamed-chunk-97-7.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-97-7.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 54 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[54]
+Underfull \hbox (badness 3690) in paragraph at lines 2693--2693
+[]\TU/lmr/bx/n/14.4 Adatminőségi problémák felismerése és
+ []
+
+
+
+
+Overfull \hbox (166.98233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 2.10. ADATMINŐSÉGI PROBLÉMÁK FELISMERÉSE ÉS KEZELÉSE LEÍRÓ STATISZTIKA SEGÍTSÉGÉVEL 55
+ []
+
+[55]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 56 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[56]
+
+
+Overfull \hbox (166.98233pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 2.10. ADATMINŐSÉGI PROBLÉMÁK FELISMERÉSE ÉS KEZELÉSE LEÍRÓ STATISZTIKA SEGÍTSÉGÉVEL 57
+ []
+
+[57]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 58 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[58]
+
+[59]
+Underfull \hbox (badness 3000) in paragraph at lines 2934--2936
+\TU/lmr/m/n/10 amelyek az elsőre megnevezett data frame-ben szerepelnek (attól
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 2941--2942
+[]\TU/lmr/m/n/10 A különböző típusú összekötési módokat remekül lehet halmazábrákkal
+ []
+
+File: JoinVennDiagram.png Graphic file (type bmp)
+<JoinVennDiagram.png>
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 2965--2965
+[]\TU/lmtt/m/n/10 ## Index(['Country', 'Pop', 'PopDensity', 'UrbanPop'], dtype='object')[] 
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 60 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[60]
+
+[61]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 62 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[62]
+Underfull \hbox (badness 1072) in paragraph at lines 3068--3069
+[]\TU/lmr/m/n/10 Szóval, akkor a 3 azonosított eltérő országnevet javítsuk a \TU/lmr/bx/n/10 population
+ []
+
+
+
+[63]
+Overfull \hbox (20.37093pt too wide) in paragraph at lines 3106--3107
+\TU/lmr/m/n/10 A sikeres data frame összekötési művelet örömére, számoljuk ki a \TU/lmr/bx/n/10 corona_extended
+ []
+
+File: _main_files/figure-latex/unnamed-chunk-116-9.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-116-9.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 64 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[64]
+Underfull \hbox (badness 2809) in paragraph at lines 3141--3142
+[]\TU/lmr/m/n/10 Rendezzük a \TU/lmr/bx/n/10 COVID_perMillion \TU/lmr/m/n/10 szerint csökkenő sorrendbe a data
+ []
+
+
+
+[65]
+File: _main_files/figure-latex/unnamed-chunk-118-11.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-118-11.pdf>
+
+Underfull \hbox (badness 1248) in paragraph at lines 3185--3186
+[]\TU/lmr/m/n/10 Egy data frame oszlop alsó kvintilisét az oszlop \TU/lmtt/m/n/10 quantile \TU/lmr/m/n/10 metódusával
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 66 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[66]
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ##               Country  COVID_Cases  ...  UrbanPop  COVID_perMillion[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 4              Angola           27  ...        67          0.821511[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 18              Benin           64  ...        48          5.279134[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 19             Bhutan            7  ...        46          9.071964[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 22           Botswana           23  ...        73          9.780463[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 27            Burundi           11  ...        14          0.925086[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 29           Cambodia          122  ...        24          7.297102[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 33               Chad           73  ...        23          4.444211[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 37            Comoros            1  ...        29          1.149953[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 54           Ethiopia          131  ...        21          1.139491[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 59             Gambia           11  ...        59          4.551722[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 69              Haiti           81  ...        57          7.103688[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 84              Kenya          396  ...        28          7.364524[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 86               Laos           19  ...        36          2.611483[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 90              Libya           61  ...        78          8.877515[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 94         Madagascar          128  ...        39          4.622437[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 95             Malawi           37  ...        18          1.934140[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 100        Mauritania            8  ...        57          1.720557[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 107        Mozambique           76  ...        38          2.431577[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 108           Namibia           16  ...        55          6.296969[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 109             Nepal           57  ...        21          1.956288[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 112         Nicaragua           14  ...        57          2.113350[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 114           Nigeria         1932  ...        52          9.372290[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 120  Papua New Guinea            8  ...        13          0.894152[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 142       South Sudan           35  ...        25          3.126752[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 149             Syria           43  ...        60          2.457050[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 151        Tajikistan           15  ...        27          1.572715[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 152          Tanzania          480  ...        37          8.035595[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 160            Uganda           83  ...        26          1.814564[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 166           Vietnam          270  ...        38          2.773823[] 
+ []
+
+
+
+[67]
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 167    Western Sahara            6  ...        87         10.044548[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 168             Yemen            6  ...        38          0.201167[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 169            Zambia          106  ...        45          5.765897[] 
+ []
+
+
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3243--3243
+[]\TU/lmtt/m/n/10 ## 170          Zimbabwe           40  ...        38          2.691260[] 
+ []
+
+
+Underfull \hbox (badness 6961) in paragraph at lines 3247--3249
+[]\TU/lmr/m/n/10 Ezeket az országokat távolítsuk el a corona_country dataframe-ből!
+ []
+
+File: _main_files/figure-latex/unnamed-chunk-121-13.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-121-13.pdf>
+
+Underfull \hbox (badness 1127) in paragraph at lines 3265--3266
+\TU/lmr/m/n/10 Nézzünk rá a numerikus adattípusú oszlopok közti korrelációs mátrixra.
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 68 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[68]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ##                   Country  PopDensity  UrbanPop  COVID_perMillion[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 0             Afghanistan          60        25         55.769130[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 1                 Albania         105        63        268.608244[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 2                 Algeria          18        73         91.354724[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 5     Antigua and Barbuda         223        26        245.075514[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 6               Argentina          17        93         97.973762[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## ..                    ...         ...       ...               ...[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 161               Ukraine          75        69        237.939741[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 162  United Arab Emirates         118        86       1261.930506[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 163        United Kingdom         281        83       2540.744366[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 164               Uruguay          20        96        185.103621[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 3290--3290
+[]\TU/lmtt/m/n/10 ## 165            Uzbekistan          79        50         60.921678[] 
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 3292--3293
+\TU/lmr/m/n/10 a korrelációszámításban érintett oszlopok közül, hiszen nem numerikus
+ []
+
+
+
+[69]
+Underfull \hbox (badness 2495) in paragraph at lines 3309--3310
+[]\TU/lmr/m/n/10 Nézzük is meg a kapcsolatot pontdiagramon! Teljesen úgy működik
+ []
+
+File: _main_files/figure-latex/unnamed-chunk-124-15.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-124-15.pdf>
+
+Underfull \hbox (badness 2326) in paragraph at lines 3319--3321
+\TU/lmr/m/n/10 esetszám jobbra elnyúló eloszlása miatt jelenlévő felfelé kiugró értékek
+ []
+
+File: _main_files/figure-latex/unnamed-chunk-125-17.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-125-17.pdf>
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 70 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[70]
+File: _main_files/figure-latex/unnamed-chunk-126-19.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-126-19.pdf>
+
+Underfull \hbox (badness 2617) in paragraph at lines 3344--3345
+[]\TU/lmr/m/n/10 A kiugró értékek hatását, és az \TU/lmr/bx/n/10 eloszlás jobbra elnyúlóból közel
+ []
+
+
+
+[71]
+File: _main_files/figure-latex/unnamed-chunk-128-21.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-128-21.pdf>
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3379--3379
+[]\TU/lmtt/m/n/10 ##                       UrbanPop  COVID_perMillion  log_COVID_perMillion[] 
+ []
+
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3379--3379
+[]\TU/lmtt/m/n/10 ## UrbanPop              1.000000          0.341160              0.464379[] 
+ []
+
+
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3379--3379
+[]\TU/lmtt/m/n/10 ## COVID_perMillion      0.341160          1.000000              0.826654[] 
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 72 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[72]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3379--3379
+[]\TU/lmtt/m/n/10 ## log_COVID_perMillion  0.464379          0.826654              1.000000[] 
+ []
+
+File: _main_files/figure-latex/unnamed-chunk-130-23.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-130-23.pdf>
+
+Underfull \hbox (badness 2165) in paragraph at lines 3400--3402
+[]\TU/lmr/m/n/10 Egyet, ami az ország sorszámát mutatja a data frame-ben $[]$-tól
+ []
+
+
+
+[73]
+Underfull \hbox (badness 1231) in paragraph at lines 3405--3406
+[]\TU/lmr/m/n/10 Fontos, hogy a két listát bejáró változó neve teljesen tetszőleges, akár
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 74 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[74]
+File: _main_files/figure-latex/unnamed-chunk-133-25.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-133-25.pdf>
+
+Underfull \hbox (badness 1043) in paragraph at lines 3468--3469
+[]\TU/lmr/m/n/10 Olvassuk be az index_2019_-_pour_import_1_1.csv nevű fájlt, és
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[75]
+Underfull \hbox (badness 3000) in paragraph at lines 3476--3478
+\TU/lmr/m/n/10 és a 2019-es sajtószabadsági index (\TU/lmr/bx/n/10 Score 2019\TU/lmr/m/n/10 ) oszlopkra lesz
+ []
+
+
+Underfull \hbox (badness 6876) in paragraph at lines 3484--3486
+[]\TU/lmr/m/n/10 Ábrázoljuk a \TU/lmr/bx/n/10 corona_extended \TU/lmr/m/n/10 data frame-ben a kapcsolatot
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3484--3486
+\TU/lmr/m/n/10 a \TU/lmr/bx/n/10 log_COVID_perMillion \TU/lmr/m/n/10 és \TU/lmr/bx/n/10 PressLiberty \TU/lmr/m/n/10 ismérvek között
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 3484--3486
+\TU/lmr/m/n/10 pontdiagramon! Értelmezze röviden szövegesen is a kapcsolatot!
+ []
+
+
+Underfull \hbox (badness 2809) in paragraph at lines 3490--3492
+[]\TU/lmr/m/n/10 Nézzük meg a korrelációs mátrixot a \TU/lmr/bx/n/10 log_COVID_perMillion\TU/lmr/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 2189) in paragraph at lines 3492--3493
+[]\TU/lmr/m/n/10 Ábrázoljuk a \TU/lmr/bx/n/10 corona_extended \TU/lmr/m/n/10 data frame-ben a kapcsolatot a
+ []
+
+
+Underfull \hbox (badness 2512) in paragraph at lines 3492--3493
+\TU/lmr/bx/n/10 COVID_perMillion \TU/lmr/m/n/10 logaritmusa és a \TU/lmr/bx/n/10 PressLiberty \TU/lmr/m/n/10 logaritmusa
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 76 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[76]
+
+[77]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 78 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[78]
+File: _main_files/figure-latex/unnamed-chunk-139-27.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-139-27.pdf>
+File: _main_files/figure-latex/unnamed-chunk-140-29.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-140-29.pdf>
+
+Underfull \vbox (badness 7433) has occurred while \output is active []
+
+
+
+[79]
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 80 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[80]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 3688--3688
+[]\TU/lmtt/m/n/10 ##                       log_COVID_perMillion  PressLiberty  log_PressLiberty[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 3688--3688
+[]\TU/lmtt/m/n/10 ## log_COVID_perMillion              1.000000     -0.381829         -0.430291[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 3688--3688
+[]\TU/lmtt/m/n/10 ## PressLiberty                     -0.381829      1.000000          0.944278[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 3688--3688
+[]\TU/lmtt/m/n/10 ## log_PressLiberty                 -0.430291      0.944278          1.000000[] 
+ []
+
+File: _main_files/figure-latex/unnamed-chunk-143-31.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-143-31.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[81]
+Underfull \hbox (badness 1484) in paragraph at lines 3708--3709
+[]\TU/lmr/m/n/10 Úgy látszik, hogy pl. a dél-amerikai \TU/lmr/m/it/10 Suriname\TU/lmr/m/n/10 -ben még a viszonylag
+ []
+
+
+
+
+Overfull \hbox (11.23563pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 82 2. FEJEZET. STATISZTIKÁHOZ SZÜKSÉGES PYTHON NYELVI ALAPOK
+ []
+
+[82]
+3. fejezet.
+
+Underfull \hbox (badness 2951) in paragraph at lines 3716--3717
+\TU/lmr/m/n/10 számításokhoz szükséges \TU/lmtt/m/n/10 numpy \TU/lmr/m/n/10 és az ábrák megjelenítéséhez szükséges
+ []
+
+
+
+[83
+
+]
+
+
+Overfull \hbox (74.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 84 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[84]
+Underfull \hbox (badness 1728) in paragraph at lines 3797--3799
+[]\TU/lmr/m/n/10 A medián árváltozás alapján azt mondhatjuk el, hogy a vizsgált
+ []
+
+
+Underfull \hbox (badness 1939) in paragraph at lines 3808--3809
+\TU/lmr/m/n/10 Az előző bekezdés dilemmáit leginkább \TU/lmr/bx/n/10 egy hisztogram segítségével
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 3808--3809
+\TU/lmr/bx/n/10 tudnánk tisztázni\TU/lmr/m/n/10 . A \TU/lmr/bx/n/10 hisztogramhoz \TU/lmr/m/n/10 viszont szükségünk van egy
+ []
+
+
+
+[85]
+File: _main_files/figure-latex/unnamed-chunk-149-33.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-149-33.pdf>
+
+
+
+Overfull \hbox (74.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 86 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[86]
+Underfull \hbox (badness 1852) in paragraph at lines 3842--3843
+[]\TU/lmr/m/n/10 Az $[][]$ \TU/lmr/bx/n/10 aszimmetria mutató \TU/lmr/m/n/10 Pythonban egy data frame oszlop \TU/lmtt/m/n/10 skew
+ []
+
+
+
+[87]
+
+
+Overfull \hbox (74.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 88 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[88]
+
+[89]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4003--4003
+[]\TU/lmtt/m/n/10 ##     AlsóHatár  FelsőHatár  Gyakoriság  RelatívGyak  KumRelatívGyak[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4003--4003
+[]\TU/lmtt/m/n/10 ## 0 -152.359986 -117.136239         1.0        0.004           0.004[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4003--4003
+[]\TU/lmtt/m/n/10 ## 1 -117.136239  -81.912491         3.0        0.012           0.016[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4003--4003
+[]\TU/lmtt/m/n/10 ## 2  -81.912491  -46.688744         5.0        0.020           0.036[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4003--4003
+[]\TU/lmtt/m/n/10 ## 3  -46.688744  -11.464996        24.0        0.096           0.132[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4003--4003
+[]\TU/lmtt/m/n/10 ## 4  -11.464996   23.758751       193.0        0.772           0.904[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4003--4003
+[]\TU/lmtt/m/n/10 ## 5   23.758751   58.982498        15.0        0.060           0.964[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4003--4003
+[]\TU/lmtt/m/n/10 ## 6   58.982498   94.206246         7.0        0.028           0.992[] 
+ []
+
+
+Overfull \hbox (17.25pt too wide) in paragraph at lines 4003--4003
+[]\TU/lmtt/m/n/10 ## 7   94.206246  129.429993         2.0        0.008           1.000[] 
+ []
+
+
+
+
+Overfull \hbox (74.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 90 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[90]
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4031--4031
+[]\TU/lmtt/m/n/10 ##     AlsóHatár  FelsőHatár    f_i  RelatívGyak  KumRelatívGyak         Y_i[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4031--4031
+[]\TU/lmtt/m/n/10 ## 0 -152.359986 -117.136239    1.0        0.004           0.004 -134.748112[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4031--4031
+[]\TU/lmtt/m/n/10 ## 1 -117.136239  -81.912491    3.0        0.012           0.016  -99.524365[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4031--4031
+[]\TU/lmtt/m/n/10 ## 2  -81.912491  -46.688744    5.0        0.020           0.036  -64.300618[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4031--4031
+[]\TU/lmtt/m/n/10 ## 3  -46.688744  -11.464996   24.0        0.096           0.132  -29.076870[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4031--4031
+[]\TU/lmtt/m/n/10 ## 4  -11.464996   23.758751  193.0        0.772           0.904    6.146877[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4031--4031
+[]\TU/lmtt/m/n/10 ## 5   23.758751   58.982498   15.0        0.060           0.964   41.370625[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4031--4031
+[]\TU/lmtt/m/n/10 ## 6   58.982498   94.206246    7.0        0.028           0.992   76.594372[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4031--4031
+[]\TU/lmtt/m/n/10 ## 7   94.206246  129.429993    2.0        0.008           1.000  111.818119[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4066--4066
+[]\TU/lmtt/m/n/10 ##     AlsóHatár  FelsőHatár    f_i  RelatívGyak  KumRelatívGyak         Y_i[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4066--4066
+[]\TU/lmtt/m/n/10 ## 0 -152.359986 -117.136239    1.0        0.004           0.004 -134.748112[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4066--4066
+[]\TU/lmtt/m/n/10 ## 1 -117.136239  -81.912491    3.0        0.012           0.016  -99.524365[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4066--4066
+[]\TU/lmtt/m/n/10 ## 2  -81.912491  -46.688744    5.0        0.020           0.036  -64.300618[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4066--4066
+[]\TU/lmtt/m/n/10 ## 3  -46.688744  -11.464996   24.0        0.096           0.132  -29.076870[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4066--4066
+[]\TU/lmtt/m/n/10 ## 4  -11.464996   23.758751  193.0        0.772           0.904    6.146877[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4066--4066
+[]\TU/lmtt/m/n/10 ## 5   23.758751   58.982498   15.0        0.060           0.964   41.370625[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4066--4066
+[]\TU/lmtt/m/n/10 ## 6   58.982498   94.206246    7.0        0.028           0.992   76.594372[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4066--4066
+[]\TU/lmtt/m/n/10 ## 7   94.206246  129.429993    2.0        0.008           1.000  111.818119[] 
+ []
+
+
+
+[91]
+File: _main_files/figure-latex/unnamed-chunk-159-35.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-159-35.pdf>
+
+
+
+Overfull \hbox (74.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 92 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[92]
+File: _main_files/figure-latex/unnamed-chunk-160-37.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-160-37.pdf>
+
+Underfull \hbox (badness 3049) in paragraph at lines 4099--4100
+[][][][][][] [][][][][][]$ \TU/lmr/m/n/10 eloszlás sűrűségfüggvénye. Általánosságban egy normális
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 4105--4106
+[]\TU/lmr/m/n/10 Mielőtt szörnyet halunk az Analízis emlékek által kiváltott PTSD-ben,
+ []
+
+
+
+[93]
+Underfull \hbox (badness 1231) in paragraph at lines 4109--4113
+\TU/lmr/m/n/10 a \TU/lmtt/m/n/10 hist \TU/lmr/m/n/10 metódus \TU/lmtt/m/n/10 density = True \TU/lmr/m/n/10 beállítással a relatív gyakoriságokat a
+ []
+
+
+
+
+Overfull \hbox (74.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 94 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[94]
+Underfull \hbox (badness 1178) in paragraph at lines 4129--4130
+[]\TU/lmr/m/n/10 Majd a névtér \TU/lmtt/m/n/10 norm.pdf \TU/lmr/m/n/10 függvénye segítségével számoljuk ki a keresett
+ []
+
+
+Overfull \hbox (7.26543pt too wide) in paragraph at lines 4145--4146
+[]\TU/lmr/m/n/10 Ezen a ponton \TU/lmr/bx/n/10 érdemes belegondolni, hogyan is reagált a sűrűségfüggvény
+ []
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 4149--4152
+\TU/lmr/m/n/10 általában feltenni a sűrűségfüggvénynek, hanem pl. azt, hogy \TU/lmr/bx/n/10 mi a
+ []
+
+
+
+[95]
+Underfull \hbox (badness 2269) in paragraph at lines 4186--4187
+[]\TU/lmr/m/n/10 Ha pedig azt szeretnénk megtudni, hogy mi a valószínűsége, hogy a
+ []
+
+
+
+
+Overfull \hbox (74.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 96 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[96]
+Underfull \hbox (badness 3068) in paragraph at lines 4216--4218
+[]\TU/lmr/m/n/10 Mindezen valószínűségek számolása a hozzájuk tartozó sűrűségfüggvény
+ []
+
+
+Underfull \hbox (badness 1231) in paragraph at lines 4216--4218
+\TU/lmr/m/n/10 értékkészlét miatt ugyebár egy konkrét érték bekövetkezési valószínűsége
+ []
+
+
+
+[97]
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4251--4251
+[]\TU/lmtt/m/n/10 ##     AlsóHatár  FelsőHatár    f_i  RelatívGyak  KumRelatívGyak         Y_i[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4251--4251
+[]\TU/lmtt/m/n/10 ## 0 -152.359986 -117.136239    1.0        0.004           0.004 -134.748112[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4251--4251
+[]\TU/lmtt/m/n/10 ## 1 -117.136239  -81.912491    3.0        0.012           0.016  -99.524365[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4251--4251
+[]\TU/lmtt/m/n/10 ## 2  -81.912491  -46.688744    5.0        0.020           0.036  -64.300618[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4251--4251
+[]\TU/lmtt/m/n/10 ## 3  -46.688744  -11.464996   24.0        0.096           0.132  -29.076870[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4251--4251
+[]\TU/lmtt/m/n/10 ## 4  -11.464996   23.758751  193.0        0.772           0.904    6.146877[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4251--4251
+[]\TU/lmtt/m/n/10 ## 5   23.758751   58.982498   15.0        0.060           0.964   41.370625[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4251--4251
+[]\TU/lmtt/m/n/10 ## 6   58.982498   94.206246    7.0        0.028           0.992   76.594372[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 4251--4251
+[]\TU/lmtt/m/n/10 ## 7   94.206246  129.429993    2.0        0.008           1.000  111.818119[] 
+ []
+
+
+Underfull \hbox (badness 2582) in paragraph at lines 4257--4258
+\TU/lmr/m/n/10 eloszlás sűrűségfüggvénye (Gauss görbéje) alapján számoltunk már egy
+ []
+
+
+Underfull \hbox (badness 1009) in paragraph at lines 4257--4258
+\TU/lmr/m/n/10 összekötött $[][][][]$ függvényről beszélünk, ami így \TU/lmr/bx/n/10 pozitív bekövetkezési
+ []
+
+
+Underfull \hbox (badness 1983) in paragraph at lines 4266--4268
+[]\TU/lmr/m/n/10 Először elkészítjük a hisztogramot a \TU/lmtt/m/n/10 hist \TU/lmr/m/n/10 metódussal, \TU/lmtt/m/n/10 density =
+ []
+
+
+Underfull \hbox (badness 2990) in paragraph at lines 4268--4270
+\TU/lmr/m/n/10 árváltozások minimuma és maximuma között fog terjedni $[][][][]$-es
+ []
+
+
+
+
+Overfull \hbox (74.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 98 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[98]
+Underfull \hbox (badness 1668) in paragraph at lines 4270--4272
+[]\TU/lmr/m/n/10 Kövi lépésben megadjuk a sűrűségfüggvény $[]$ tengelyét egy külön
+ []
+
+
+Underfull \hbox (badness 1603) in paragraph at lines 4270--4272
+\TU/lmr/m/n/10 objektumban a \TU/lmtt/m/n/10 scipy \TU/lmr/m/n/10 csomag \TU/lmtt/m/n/10 norm.pdf \TU/lmr/m/n/10 függvényével. Ha ennek
+ []
+
+
+Underfull \hbox (badness 1596) in paragraph at lines 4270--4272
+\TU/lmr/m/n/10 a függvénynek az \TU/lmtt/m/n/10 x \TU/lmr/m/n/10 paraméterében több értéket adunk át, akkor
+ []
+
+File: _main_files/figure-latex/unnamed-chunk-170-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-170-1.pdf>
+
+
+[99]
+Underfull \hbox (badness 3492) in paragraph at lines 4293--4294
+[]\TU/lmr/m/n/10 Egyébként majd ilyen elvi sűrűségfüggvények illeszkedési jóságát valós
+ []
+
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 100 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[100]
+Underfull \hbox (badness 1158) in paragraph at lines 4322--4323
+[]\TU/lmr/m/n/10 Láthatjuk a \TU/lmr/bx/n/10 Tesla részvény vizsgálatának korábbi tapasztalataink
+ []
+
+
+
+[101]
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 102 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[102]
+Underfull \hbox (badness 3168) in paragraph at lines 4391--4392
+[]\TU/lmr/m/n/10 Lássuk is akkor a standardizálást a gyakorlatban a Tesla részvények
+ []
+
+
+
+[103]
+File: _main_files/figure-latex/unnamed-chunk-176-3.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-176-3.pdf>
+File: stnormal.png Graphic file (type bmp)
+<stnormal.png>
+
+Underfull \vbox (badness 1072) has occurred while \output is active []
+
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 104 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[104]
+
+[105]
+Underfull \hbox (badness 2689) in paragraph at lines 4492--4494
+\TU/lmr/m/n/10 történő kilógó érték keresés \TU/lmr/bx/n/10 csak akkor működik, ha az eredeti
+ []
+
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 106 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[106]
+File: _main_files/figure-latex/unnamed-chunk-180-5.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-180-5.pdf>
+
+
+[107]
+File: _main_files/figure-latex/unnamed-chunk-181-7.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-181-7.pdf>
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 108 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[108]
+
+[109]
+File: _main_files/figure-latex/unnamed-chunk-189-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-189-1.pdf>
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 110 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[110]
+Underfull \hbox (badness 1769) in paragraph at lines 4682--4684
+[]\TU/lmr/m/n/10 Hány százalékban befolyásolja a nem (minőségi simérv) a fizetést
+ []
+
+
+
+
+Overfull \hbox (18.46451pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 3.4. A VARIANCIAHÁNYADOS PYTHONBAN - KOKAIN A BALATONBAN 111
+ []
+
+[111]
+File: balcsi.jpg Graphic file (type bmp)
+<balcsi.jpg>
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 112 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[112]
+Underfull \hbox (badness 2689) in paragraph at lines 4740--4742
+[]\TU/lmr/m/n/10 A varianciahányados kiszámításának első lépése egy olyan segétáblázat
+ []
+
+
+Overfull \hbox (1025.25pt too wide) in paragraph at lines 4756--4756
+[]\TU/lmtt/m/n/10 ## <string>:1: FutureWarning: The provided callable <function mean at 0x00000167D93F13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.[] 
+ []
+
+
+Overfull \hbox (1009.5pt too wide) in paragraph at lines 4756--4756
+[]\TU/lmtt/m/n/10 ## <string>:1: FutureWarning: The provided callable <function std at 0x00000167D93F14E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.[] 
+ []
+
+
+
+
+Overfull \hbox (18.46451pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 3.4. A VARIANCIAHÁNYADOS PYTHONBAN - KOKAIN A BALATONBAN 113
+ []
+
+[113]
+Underfull \hbox (badness 5924) in paragraph at lines 4773--4773
+\TU/lmr/bx/n/10 ismérv (azaz most a kokain mennyiség) teljes, hónapoktól
+ []
+
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 114 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[114]
+Underfull \hbox (badness 1308) in paragraph at lines 4849--4850
+\TU/lmr/m/n/10 Általánosságban $[][]$ azt jelenti, hogy \TU/lmr/bx/n/10 egy csoport átlaga várhatóan
+ []
+
+
+
+
+Overfull \hbox (18.46451pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 3.4. A VARIANCIAHÁNYADOS PYTHONBAN - KOKAIN A BALATONBAN 115
+ []
+
+[115]
+Overfull \hbox (30.75206pt too wide) in paragraph at lines 4864--4865
+[]\TU/lmr/m/n/10 Tehát, \TU/lmr/bx/n/10 egy hónap átlagos kokainmennyisége várhatóan $[][][][]$ nanogram/literrel
+ []
+
+
+Underfull \hbox (badness 2261) in paragraph at lines 4868--4869
+\TU/lmr/bx/n/10 várhatóan mennyivel tér el a mennyiségi ismérv csoportoktól
+ []
+
+File: varhanyad1.jpg Graphic file (type bmp)
+<varhanyad1.jpg>
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 116 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[116]
+Underfull \hbox (badness 1496) in paragraph at lines 4914--4915
+[]\TU/lmr/m/n/10 Ezek alapján nekünk az a jó a csoportosítás, azaz a minőségi ismérv
+ []
+
+File: varhanyad2.jpg Graphic file (type bmp)
+<varhanyad2.jpg>
+
+Underfull \hbox (badness 10000) in paragraph at lines 4922--4923
+\TU/lmr/bx/n/10 jelenléte) a Balatonban mért kokainmennyiség alakulásának
+ []
+
+
+Underfull \hbox (badness 1728) in paragraph at lines 4922--4923
+\TU/lmr/bx/n/10 (varianciájának) kb. 23%-át magyarázza a megfigyelt adatok
+ []
+
+
+
+
+Overfull \hbox (18.46451pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 3.4. A VARIANCIAHÁNYADOS PYTHONBAN - KOKAIN A BALATONBAN 117
+ []
+
+[117]
+Underfull \hbox (badness 1448) in paragraph at lines 4936--4938
+\TU/lmr/m/n/10 készült. Tehát hónapkon \TU/lmr/m/it/10 belül \TU/lmr/m/n/10 is jelentős mértékű szódósás maradt a
+ []
+
+
+Overfull \hbox (1025.25pt too wide) in paragraph at lines 4958--4958
+[]\TU/lmtt/m/n/10 ## <string>:1: FutureWarning: The provided callable <function mean at 0x00000167D93F13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.[] 
+ []
+
+
+Overfull \hbox (1009.5pt too wide) in paragraph at lines 4958--4958
+[]\TU/lmtt/m/n/10 ## <string>:1: FutureWarning: The provided callable <function std at 0x00000167D93F14E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.[] 
+ []
+
+
+Underfull \hbox (badness 2277) in paragraph at lines 4973--4975
+[]\TU/lmr/m/n/10 Olybá tűnik, hogy az 1. állomás átlagban némileg kicsit magasabb
+ []
+
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 118 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[118]
+Underfull \hbox (badness 4303) in paragraph at lines 4983--4984
+[]\TU/lmr/m/n/10 Az előző pont és a belső variancia kiszámolása után pedig a
+ []
+
+
+Underfull \hbox (badness 3049) in paragraph at lines 4983--4984
+\TU/lmr/m/n/10 varianciahányadost a $[][] [] [][] [] [][]$ összefüggás átrendezésével
+ []
+
+
+Overfull \hbox (1025.25pt too wide) in paragraph at lines 5018--5018
+[]\TU/lmtt/m/n/10 ## <string>:1: FutureWarning: The provided callable <function mean at 0x00000167D93F13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.[] 
+ []
+
+
+Overfull \hbox (1009.5pt too wide) in paragraph at lines 5018--5018
+[]\TU/lmtt/m/n/10 ## <string>:1: FutureWarning: The provided callable <function std at 0x00000167D93F14E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.[] 
+ []
+
+
+
+
+Overfull \hbox (18.46451pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 3.4. A VARIANCIAHÁNYADOS PYTHONBAN - KOKAIN A BALATONBAN 119
+ []
+
+[119]
+Underfull \hbox (badness 2065) in paragraph at lines 5051--5052
+[]\TU/lmr/m/n/10 Tehát alapvetően a Balatonban mérhető kokainmennyiséget két \TU/lmr/m/it/10 közepes
+ []
+
+No file _main.bbl.
+
+
+
+Overfull \hbox (79.86453pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 120 3. FEJEZET. LEÍRÓ STATISZTIKA ISMÉTLÉS ÉS VALÓSZÍNŰSÉGSZÁMÍTÁS ALAPOK
+ []
+
+[120] (./_main.aux)
+ ***********
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-05-26>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 19722 strings out of 470542
+ 370256 string characters out of 5491112
+ 934860 words of memory out of 5000000
+ 47686 multiletter control sequences out of 15000+600000
+ 633300 words of font info for 96 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 90i,6n,114p,1328b,531s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on _main.pdf (120 pages).
