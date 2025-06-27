@@ -6,12 +6,21 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Következtető Statisztika Python Jegyzet</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve.</a></li>
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
     edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
     download: ["pdf", "epub"]
+    fontsettings:
+      theme: night
+      family: sans
+      size: 1
+    sharing:
+      facebook: false
+      github: true
+      twitter: false
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
+    before_body: before_body.tex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes

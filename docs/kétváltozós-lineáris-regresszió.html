@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>12 Kétváltozós lineáris regresszió | Következtető Statisztika Python Jegyzet</title>
+  <meta name="description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="12 Kétváltozós lineáris regresszió | Következtető Statisztika Python Jegyzet" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="github-repo" content="KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="12 Kétváltozós lineáris regresszió | Következtető Statisztika Python Jegyzet" />
+  
+  <meta name="twitter:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  
+
+<meta name="author" content="Kovács László" />
+
+
+<meta name="date" content="2025-06-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="nemparaméteres-próbák.html"/>
+<link rel="next" href="többváltozós-ols-regresszió-alapjai.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Következtető Statisztika Python Jegyzet</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Előhang</a></li>
+<li class="chapter" data-level="2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html"><i class="fa fa-check"></i><b>2</b> Statisztikához szükséges Python nyelvi alapok</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#programozási-alapelvek"><i class="fa fa-check"></i><b>2.1</b> Programozási alapelvek</a></li>
+<li class="chapter" data-level="2.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pythonról-általában"><i class="fa fa-check"></i><b>2.2</b> A Pythonról általában</a></li>
+<li class="chapter" data-level="2.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-spyder-felülete"><i class="fa fa-check"></i><b>2.3</b> A Spyder felülete</a></li>
+<li class="chapter" data-level="2.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#alapvető-python-adattípusok-és-adatszerkezetek"><i class="fa fa-check"></i><b>2.5</b> Alapvető Python adattípusok és adatszerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-adattípusok"><i class="fa fa-check"></i><b>2.5.1</b> Egyszerű adattípusok</a></li>
+<li class="chapter" data-level="2.5.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#összetett-adatszerkezetek"><i class="fa fa-check"></i><b>2.5.2</b> Összetett adatszerkezetek</a></li>
+<li class="chapter" data-level="2.5.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-numpy-tömb"><i class="fa fa-check"></i><b>2.5.3</b> A <code>numpy</code> tömb</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#vezérlési-szerkezetek"><i class="fa fa-check"></i><b>2.6</b> Vezérlési szerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#elágazás-if"><i class="fa fa-check"></i><b>2.6.1</b> Elágazás (<code>if</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#ciklusok-for"><i class="fa fa-check"></i><b>2.6.2</b> Ciklusok (<code>for</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pandas-data-frame-objektum"><i class="fa fa-check"></i><b>2.7</b> A Pandas data frame objektum</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hivatkozási-lehetőségek-data-frame-ben"><i class="fa fa-check"></i><b>2.7.1</b> Hivatkozási lehetőségek data frame-ben</a></li>
+<li class="chapter" data-level="2.7.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-módosítása"><i class="fa fa-check"></i><b>2.7.2</b> Data frame-k módosítása</a></li>
+<li class="chapter" data-level="2.7.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#szűrés-data-frame-ben-logikai-indexszálás"><i class="fa fa-check"></i><b>2.7.3</b> Szűrés data frame-ben: logikai indexszálás</a></li>
+<li class="chapter" data-level="2.7.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hiányzó-értékek-kezelése-data-frame-ben"><i class="fa fa-check"></i><b>2.7.4</b> Hiányzó értékek kezelése data frame-ben</a></li>
+<li class="chapter" data-level="2.7.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatvizualizáció-data-frame-en-keresztül"><i class="fa fa-check"></i><b>2.7.5</b> Adatvizualizáció data frame-en keresztül</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#aggregálás-data-frame-ben"><i class="fa fa-check"></i><b>2.8</b> Aggregálás data frame-ben</a></li>
+<li class="chapter" data-level="2.9" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-leíró-statisztika-data-frame-ben"><i class="fa fa-check"></i><b>2.9</b> Egyszerű leíró statisztika data frame-ben</a></li>
+<li class="chapter" data-level="2.10" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatminőségi-problémák-felismerése-és-kezelése-leíró-statisztika-segítségével"><i class="fa fa-check"></i><b>2.10</b> Adatminőségi problémák felismerése és kezelése leíró statisztika segítségével</a></li>
+<li class="chapter" data-level="2.11" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-összekapcsolása"><i class="fa fa-check"></i><b>2.11</b> Data frame-k összekapcsolása</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-kapcsolási-kulcsnak-használt-oszlop-ellenőrzése-és-javítása"><i class="fa fa-check"></i><b>2.11.1</b> A kapcsolási kulcsnak használt oszlop ellenőrzése és javítása</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#kilógó-értékek-keresése-és-kezelése"><i class="fa fa-check"></i><b>2.12</b> Kilógó értékek keresése és kezelése</a></li>
+<li class="chapter" data-level="2.13" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#korrelációs-elemzések-data-frame-ben"><i class="fa fa-check"></i><b>2.13</b> Korrelációs elemzések data frame-ben</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok"><i class="fa fa-check"></i>Gyakorló feladatok</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok-megoldása"><i class="fa fa-check"></i>Gyakorló feladatok megoldása</a>
+<ul>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat"><i class="fa fa-check"></i>1. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-1"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-2"><i class="fa fa-check"></i>3. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-3"><i class="fa fa-check"></i>4. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-4"><i class="fa fa-check"></i>5. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-5"><i class="fa fa-check"></i>6. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-6"><i class="fa fa-check"></i>7. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-7"><i class="fa fa-check"></i>8. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-8"><i class="fa fa-check"></i>9. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-9"><i class="fa fa-check"></i>10. feladat</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><i class="fa fa-check"></i><b>3</b> Leíró Statisztika ismétlés és Valószínűségszámítás alapok</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#leíró-statisztikai-mutatók"><i class="fa fa-check"></i><b>3.1</b> Leíró statisztikai mutatók</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#hisztogram-és-alakmutatók"><i class="fa fa-check"></i><b>3.1.1</b> Hisztogram és Alakmutatók</a></li>
+<li class="chapter" data-level="3.1.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-lekérése"><i class="fa fa-check"></i><b>3.1.2</b> Gyakorisági tábla lekérése</a></li>
+<li class="chapter" data-level="3.1.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-bővítése"><i class="fa fa-check"></i><b>3.1.3</b> Gyakorisági tábla bővítése</a></li>
+<li class="chapter" data-level="3.1.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#súlyozott-átlag-és-szórás-pythonban"><i class="fa fa-check"></i><b>3.1.4</b> Súlyozott átlag és szórás Pythonban</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-normális-eloszlás-és-sűrűségfüggvénye"><i class="fa fa-check"></i><b>3.2</b> A normális eloszlás és sűrűségfüggvénye</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-használata"><i class="fa fa-check"></i><b>3.2.1</b> A sűrűségfüggvény használata</a></li>
+<li class="chapter" data-level="3.2.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-integrálja"><i class="fa fa-check"></i><b>3.2.2</b> A sűrűségfüggvény integrálja</a></li>
+<li class="chapter" data-level="3.2.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#valószínűség-vs-relatív-gyakoriság"><i class="fa fa-check"></i><b>3.2.3</b> Valószínűség vs Relatív Gyakoriság</a></li>
+<li class="chapter" data-level="3.2.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#centrális-határeloszlás-tétel-cht"><i class="fa fa-check"></i><b>3.2.4</b> Centrális Határeloszlás Tétel (CHT)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#inverz-értékek"><i class="fa fa-check"></i><b>3.2.5</b> Inverz Értékek</a></li>
+<li class="chapter" data-level="3.2.6" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-standard-normális-eloszlás"><i class="fa fa-check"></i><b>3.2.6</b> A Standard Normális Eloszlás</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#az-exponenciális-eloszlás"><i class="fa fa-check"></i><b>3.3</b> Az Exponenciális eloszlás</a></li>
+<li class="chapter" data-level="3.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-varianciahányados-pythonban---kokain-a-balatonban"><i class="fa fa-check"></i><b>3.4</b> A Varianciahányados Pythonban - Kokain a Balatonban</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#további-minőségi-ismérvek-és-a-kokainmennyiség"><i class="fa fa-check"></i><b>3.4.1</b> További minőségi ismérvek és a kokainmennyiség</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html"><i class="fa fa-check"></i><b>4</b> Eloszlások és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#véletlenszám-generálás-és-mintavételezés"><i class="fa fa-check"></i><b>4.1</b> Véletlenszám generálás és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintagenerálás-általános-elve"><i class="fa fa-check"></i><b>4.1.1</b> A mintagenerálás általános elve</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#nem-egyenletes-eloszlású-minták-generálása"><i class="fa fa-check"></i><b>4.1.2</b> Nem egyenletes eloszlású minták generálása</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#elvi-eloszlás-vs-megfigyelt-minta"><i class="fa fa-check"></i><b>4.2</b> Elvi Eloszlás vs Megfigyelt Minta</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#az-elvi-eloszlás-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.1</b> Az elvi eloszlás alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-megfigyelt-minta-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.2</b> A megfigyelt minta alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintavételi-hiba-mvh-koncepciója"><i class="fa fa-check"></i><b>4.2.3</b> A mintavételi hiba (MVH) koncepciója</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#statisztikai-sokaságok-fae-mintavételezése"><i class="fa fa-check"></i><b>4.3</b> Statisztikai sokaságok FAE mintavételezése</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#ismételt-mintavételezés-resampling"><i class="fa fa-check"></i><b>4.3.1</b> Ismételt Mintavételezés (<em>Resampling</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html"><i class="fa fa-check"></i><b>5</b> A becsléselmélet alapjai</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#ismétlés-balaton-átúszás-eredmények-és-ezek-fae-mintái"><i class="fa fa-check"></i><b>5.1</b> Ismétlés: Balaton átúszás eredmények és ezek FAE mintái</a></li>
+<li class="chapter" data-level="5.2" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2</b> A torzítatlanság fogalma</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-aszimptotikus-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2.1</b> Az aszimptotikus torzítatlanság fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-korrigált-mintavariancia"><i class="fa fa-check"></i><b>5.3</b> A korrigált mintavariancia</a></li>
+<li class="chapter" data-level="5.4" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-medián-torzítatlansága"><i class="fa fa-check"></i><b>5.4</b> A medián torzítatlansága</a></li>
+<li class="chapter" data-level="5.5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-standard-hiba-sh-fogalma"><i class="fa fa-check"></i><b>5.5</b> A Standard Hiba (<em>SH</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-konzisztens-becslés-fogalma"><i class="fa fa-check"></i><b>5.5.1</b> A konzisztens becslés fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-átlagos-négyzetes-hiba-mse-fogalma"><i class="fa fa-check"></i><b>5.6</b> Az átlagos négyzetes hiba (<em>MSE</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#különböző-becslőfüggvények-összehasonlítása"><i class="fa fa-check"></i><b>5.6.1</b> Különböző becslőfüggvények összehasonlítása</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html"><i class="fa fa-check"></i><b>6</b> A sokasági átlag intervallumbecslése</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#ismétlés-az-átlag-standard-hibája-a-balaton-átúszás-eredményeken"><i class="fa fa-check"></i><b>6.1</b> Ismétlés: Az átlag standard hibája a Balaton átúszás eredményeken</a></li>
+<li class="chapter" data-level="6.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-mintaátlagok-eloszlása"><i class="fa fa-check"></i><b>6.2</b> A mintaátlagok eloszlása</a></li>
+<li class="chapter" data-level="6.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-sokasági-átlag-konfidencia-intervalluma"><i class="fa fa-check"></i><b>6.3</b> A sokasági átlag konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#az-átlag-konfidencia-intervallumának-általános-alakja"><i class="fa fa-check"></i><b>6.3.1</b> Az átlag konfidencia-intervallumának általános alakja</a></li>
+<li class="chapter" data-level="6.3.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-megbízhatóságának-ellenőrzése"><i class="fa fa-check"></i><b>6.3.2</b> A konfidencia-intervallum megbízhatóságának ellenőrzése</a></li>
+<li class="chapter" data-level="6.3.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-két-fontos-tulajdonsága"><i class="fa fa-check"></i><b>6.3.3</b> 3.3. A konfidencia-intervallum két fontos tulajdonsága</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#intervallumbecslés-a-gyakorlatban"><i class="fa fa-check"></i><b>6.4</b> Intervallumbecslés a gyakorlatban</a>
+<ul>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-altatók-hatékonysága"><i class="fa fa-check"></i>1. feladat: Altatók hatékonysága</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-feladat-megoldás"><i class="fa fa-check"></i>1/a) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#b-feladat-megoldás"><i class="fa fa-check"></i>1/b) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#c-feladat-megoldás"><i class="fa fa-check"></i>1/c) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-10"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-megoldás"><i class="fa fa-check"></i>2. feladat megoldás</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#összefoglalás-az-átlag-konfidencia-intervallumairól"><i class="fa fa-check"></i><b>6.5</b> Összefoglalás az átlag konfidencia-intervallumairól</a></li>
+<li class="chapter" data-level="6.6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#esettanulmány"><i class="fa fa-check"></i><b>6.6</b> Esettanulmány</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html"><i class="fa fa-check"></i><b>7</b> További FAE becslések és a Bootstrap módszer</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-konfidencia-intervallumok-két-általános-tulajdonsága"><i class="fa fa-check"></i><b>7.1</b> A Konfidencia-intervallumok két általános tulajdonsága</a></li>
+<li class="chapter" data-level="7.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#arányok-konfidencia-intervalluma"><i class="fa fa-check"></i><b>7.2</b> Arányok konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#mintaelemszám-meghatározása-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.1</b> Mintaelemszám meghatározása aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#szükséges-minimális-elemszám-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.2</b> Szükséges minimális elemszám aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#aránybecslés-a-statsmodels-csomaggal"><i class="fa fa-check"></i><b>7.2.3</b> Aránybecslés a <code>statsmodels</code> csomaggal</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-bootstrap-becslések-általános-elve"><i class="fa fa-check"></i><b>7.3</b> A Bootstrap becslések általános elve</a></li>
+<li class="chapter" data-level="7.4" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-medián-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.4</b> A Medián Bootstrap intervallumbecslése</a></li>
+<li class="chapter" data-level="7.5" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-szórás-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.5</b> A Szórás Bootstrap intervallumbecslése</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html"><i class="fa fa-check"></i><b>8</b> Becslések EV és R mintából</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#intervallumbecslés-visszatevés-nélküli-egyszerű-véletlen-ev-mintákból"><i class="fa fa-check"></i><b>8.1</b> Intervallumbecslés visszatevés nélküli egyszerű véletlen (EV) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.1</b> Átlag becslése EV mintákból</a></li>
+<li class="chapter" data-level="8.1.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#arány-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.2</b> Arány becslése EV mintákból</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-arányosan-rétegzett-ar-mintákból"><i class="fa fa-check"></i><b>8.2</b> Átlag becslése Arányosan Rétegzett (AR) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#az-ar-mintavételek-hatékonysága"><i class="fa fa-check"></i><b>8.2.1</b> Az AR mintavételek hatékonysága</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html"><i class="fa fa-check"></i><b>9</b> Hipotézisvizsgálat alapjai</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-alapgondolata"><i class="fa fa-check"></i><b>9.1</b> A hipotézisvizsgálat alapgondolata</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-p-érték-fogalma"><i class="fa fa-check"></i><b>9.1.1</b> A p-érték fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-t-próba"><i class="fa fa-check"></i><b>9.2</b> A sokasági átlagra vonatkozó <em>t-próba</em></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-beépített-függvénnyel"><i class="fa fa-check"></i><b>9.2.1</b> A <em>t-próba</em> beépített függvénnyel</a></li>
+<li class="chapter" data-level="9.2.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-előfeltételei"><i class="fa fa-check"></i><b>9.2.2</b> A <em>t-próba</em> előfeltételei</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.3</b> A sokasági átlagra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.4" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-arányra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.4</b> A sokasági arányra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.5" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-menete-madártávlatból"><i class="fa fa-check"></i><b>9.5</b> A hipotézisvizsgálat menete madártávlatból</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html"><i class="fa fa-check"></i><b>10</b> Egymintás és Kétmintás próbák</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-szórásra-vonatkozó-chi2-próba"><i class="fa fa-check"></i><b>10.1</b> A szórásra vonatkozó <span class="math inline">\(\chi^2\)</span>-próba</a></li>
+<li class="chapter" data-level="10.2" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-kétmintás-hipotézisvizsgálatok-elve"><i class="fa fa-check"></i><b>10.2</b> A kétmintás hipotézisvizsgálatok elve</a></li>
+<li class="chapter" data-level="10.3" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-átlagokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.3</b> Az átlagokra vonatkozó kétmintás <em>z-próba</em></a></li>
+<li class="chapter" data-level="10.4" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-arányokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.4</b> Az arányokra vonatkozó kétmintás <em>z-próba</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html"><i class="fa fa-check"></i><b>11</b> Nemparaméteres próbák</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#nemparaméteres-próbák-elve"><i class="fa fa-check"></i><b>11.1</b> Nemparaméteres próbák elve</a></li>
+<li class="chapter" data-level="11.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#illeszkedésvizsgálatok"><i class="fa fa-check"></i><b>11.2</b> Illeszkedésvizsgálatok</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#reprezentativitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.1</b> Reprezentativitás vizsgálat</a></li>
+<li class="chapter" data-level="11.2.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#normalitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.2</b> Normalitás vizsgálat</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#függetlenségvizsgálatok-homogenitásvizsgálatok"><i class="fa fa-check"></i><b>11.3</b> Függetlenségvizsgálatok (homogenitásvizsgálatok)</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html"><i class="fa fa-check"></i><b>12</b> Kétváltozós lineáris regresszió</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#budapesti-lakások-vizsgálata"><i class="fa fa-check"></i><b>12.1</b> Budapesti lakások vizsgálata</a></li>
+<li class="chapter" data-level="12.2" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-kétváltozós-lineáris-regresszió-ols-elvű-becslése"><i class="fa fa-check"></i><b>12.2</b> A Kétváltozós Lineáris Regresszió OLS elvű becslése</a></li>
+<li class="chapter" data-level="12.3" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#az-ols-regresszió-magyarázóerejének-mérése"><i class="fa fa-check"></i><b>12.3</b> Az OLS Regresszió magyarázóerejének mérése</a></li>
+<li class="chapter" data-level="12.4" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-regresszió-magyarázóereje-nem-megfigyelt-adatok-körében"><i class="fa fa-check"></i><b>12.4</b> A Regresszió magyarázóereje nem megfigyelt adatok körében</a></li>
+<li class="chapter" data-level="12.5" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-modell-együtthatóinak-értelemzése"><i class="fa fa-check"></i><b>12.5</b> A modell együtthatóinak értelemzése</a></li>
+<li class="chapter" data-level="12.6" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#egy-gyakorló-példa-covid-adatokon"><i class="fa fa-check"></i><b>12.6</b> Egy gyakorló példa COVID adatokon</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html"><i class="fa fa-check"></i><b>13</b> Többváltozós OLS Regresszió alapjai</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#magyar-járások-covid-19-halálozási-arányai"><i class="fa fa-check"></i><b>13.1</b> Magyar járások COVID-19 halálozási arányai</a></li>
+<li class="chapter" data-level="13.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-többváltozós-lineáris-regresszió-ols-elvű-előállítása"><i class="fa fa-check"></i><b>13.2</b> A Többváltozós Lineáris Regresszió OLS elvű előállítása</a></li>
+<li class="chapter" data-level="13.3" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-magyarázóváltozók-marginális-hatása"><i class="fa fa-check"></i><b>13.3</b> A magyarázóváltozók marginális hatása</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#útelemzés"><i class="fa fa-check"></i><b>13.3.1</b> Útelemzés</a></li>
+<li class="chapter" data-level="13.3.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#parciális-t-próba"><i class="fa fa-check"></i><b>13.3.2</b> Parciális t-próba</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Következtető Statisztika Python Jegyzet</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="kétváltozós-lineáris-regresszió" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">12</span> Kétváltozós lineáris regresszió<a href="kétváltozós-lineáris-regresszió.html#kétváltozós-lineáris-regresszió" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="budapesti-lakások-vizsgálata" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Budapesti lakások vizsgálata<a href="kétváltozós-lineáris-regresszió.html#budapesti-lakások-vizsgálata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <a href="https://raw.githubusercontent.com/KoLa992/Statisztika-II-Python-Jegyzet/main/BP_Lakas.csv" target="_blank">BP_Lakas.csv</a> fájl egy olyan adattábla, ami 1406 budapesti lakásról 10 változó (oszlop) adatát tárolja:</p>
+<ul>
+<li>KinArMFt: lakás ára millió Ft-ban (MFt)</li>
+<li>Terulet: lakás területe négyzetméterben</li>
+<li>Terasz: teraszok száma a lakásban</li>
+<li>Szoba: szobák száma a lakásban</li>
+<li>Felszoba: félszobák száma a lakásban</li>
+<li>Furdoszoba: fürdőszobák száma a lakásban</li>
+<li>Emelet: emeletek száma a lakásban</li>
+<li>DeliTaj: lakás déli fekvésű-e? (1 = igen; 0 = nem)</li>
+<li>Buda: lakás déli fekvésű-e? (1 = igen; 0 = nem)</li>
+<li>Kerulet: lakás kerülete (1 - 22)</li>
+</ul>
+<p>Olvassuk be az adattáblát egy pandas <code>data frame</code>-be egy <code>readr_csv</code> függvény segítségével! A fájl olyan értelemben “jól vislekedő” <em>csv</em>, hogy az oszlopokat vesszők választják el egymástól, és a tizedes helyet tizedes pont jelöli, így nem kell a függvényben semmit sem külön paraméterezni. A beolvasás után egy <code>info</code> metódussal nézzük meg, hogy rendben van-e minden a betöltött <code>data frame</code>-el.</p>
+<div class="sourceCode" id="cb911"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb911-1"><a href="kétváltozós-lineáris-regresszió.html#cb911-1" tabindex="-1"></a><span class="co"># Elemzéshez és ábrázoláshoz szükséges csomagok betöltése</span></span>
+<span id="cb911-2"><a href="kétváltozós-lineáris-regresszió.html#cb911-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb911-3"><a href="kétváltozós-lineáris-regresszió.html#cb911-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb911-4"><a href="kétváltozós-lineáris-regresszió.html#cb911-4" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb911-5"><a href="kétváltozós-lineáris-regresszió.html#cb911-5" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb911-6"><a href="kétváltozós-lineáris-regresszió.html#cb911-6" tabindex="-1"></a></span>
+<span id="cb911-7"><a href="kétváltozós-lineáris-regresszió.html#cb911-7" tabindex="-1"></a><span class="co"># Budapesti lakások adatainak beolvasása</span></span>
+<span id="cb911-8"><a href="kétváltozós-lineáris-regresszió.html#cb911-8" tabindex="-1"></a>BP_Lakas <span class="op">=</span> pd.read_csv(<span class="st">&quot;BP_Lakas.csv&quot;</span>)</span>
+<span id="cb911-9"><a href="kétváltozós-lineáris-regresszió.html#cb911-9" tabindex="-1"></a>BP_Lakas.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 1406 entries, 0 to 1405
+## Data columns (total 10 columns):
+##  #   Column      Non-Null Count  Dtype  
+## ---  ------      --------------  -----  
+##  0   KinArMFt    1406 non-null   float64
+##  1   Terulet     1406 non-null   float64
+##  2   Terasz      1406 non-null   float64
+##  3   Szoba       1406 non-null   int64  
+##  4   Felszoba    1406 non-null   int64  
+##  5   Furdoszoba  1406 non-null   int64  
+##  6   Emelet      1406 non-null   int64  
+##  7   DeliTaj     1406 non-null   int64  
+##  8   Buda        1406 non-null   int64  
+##  9   Kerulet     1406 non-null   int64  
+## dtypes: float64(3), int64(7)
+## memory usage: 110.0 KB</code></pre>
+<p>Első ránézésre rendben vagyunk: 10 oszlopunk = változónk van a megfelelő oszlopnevekkel, mindenhol 1406 <code>non-null</code> megfigyeléssel.</p>
+<p>Vizsgáljuk meg a lakások kínálati árának és a területének a kapcsolatát! Mivel logikusan azt gondolhatjuk, hogy a terület fogja meghatározni az árak alakulását, és nem fordítva, így a terület lesz a magyarázóváltozónk (<em>x tengely</em>) és az ár az eredményváltozónk (<em>y tengely</em>). A pontdiagrmos ábrázoláshoz a <code>scatter</code> című <code>matplotlib</code> függvényt tudjuk bevetni. A függvényben az első paraméter legyen az az oszlop, ami a diagram x tengelyét adja, míg a második az, amelyik az y tengelyét szolgáltatja az ábrának.</p>
+<div class="sourceCode" id="cb913"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb913-1"><a href="kétváltozós-lineáris-regresszió.html#cb913-1" tabindex="-1"></a>plt.scatter(BP_Lakas.Terulet, BP_Lakas.KinArMFt)</span>
+<span id="cb913-2"><a href="kétváltozós-lineáris-regresszió.html#cb913-2" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-382-37.png" width="672" /></p>
+<p>Láthatjuk, hogy a terület növekedésével nőnek az árak, és ez a kapcsolat szoros is lehet, mert a pontokra gondolatban is elég jó pontossággal rá tudunk illeszteni egy pozitív meredekségű egyenest.<br>
+Mindezt Stat. I-es ismereteink alapján egy korreláció kiszámításával tudjuk megerősíteni. Itt Pythonban korrlációt a <code>scipy</code> csomag <code>stats</code> moduljában lakó <code>pearsonr</code> függvénnyel tudunk számolni, aminek a bemenete a két numerikus változó, amik között korrelációt akarunk számolni. Itt a sorrend mindegy, nem számít hogy a magyarázóváltozót vagy az eredményváltozót adom meg a függvénynek első paraméterként.</p>
+<div class="sourceCode" id="cb914"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb914-1"><a href="kétváltozós-lineáris-regresszió.html#cb914-1" tabindex="-1"></a>stats.pearsonr(BP_Lakas.Terulet, BP_Lakas.KinArMFt)</span></code></pre></div>
+<pre><code>## PearsonRResult(statistic=0.8597347987405766, pvalue=0.0)</code></pre>
+<p>Az eredmény <code>statistics</code> része maga a korrelációs együttható, aminek jele <span class="math inline">\(r\)</span>. Tehát, <span class="math inline">\(r=+0.8597\)</span>. Ismétlésként meg kell emlékezni arról, hogyan is kell egy korrelációt értelmezni. Először is, egy korreláció mindig <span class="math inline">\(\pm1\)</span> közötti érték, azaz <span class="math inline">\(-1\leq r \leq+1\)</span>. Egyébként, korreláció kapcsán mindig két kétdolgot kell vizsgálni:</p>
+<ol style="list-style-type: decimal">
+<li>Korreláció <strong>előjele</strong>: Ha ez <em>pozitív</em>, akkor a két változó közti kapcsolat <em>egyirányú</em> (ha nő az egyik érték,akkor várhatóan nő a másik is). Míg ha az előjel <em>negatív</em>, akkor a két változó közti kapcsolat <em>ellentétes irányú</em> (ha nő az egyik érték,akkor várhatóan csökken a másik is).</li>
+</ol>
+<ul>
+<li>Esetünkben pozitív korrelációról beszélünk, azaz ha nő a lakás területe, akkor várhatóan nő az ára is. Ez teljesen logikus.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Korreláció <strong>abszolút értéke</strong>: Ha az abszolút érték, <span class="math inline">\(0.3\)</span> alatti (<span class="math inline">\(|r|&lt;0.3\)</span>), akkor a megfigyelt kapcsolat <em>gyenge</em> erősségű. Ha <span class="math inline">\(0.3-0.7\)</span> közötti (<span class="math inline">\(0.3\leq|r|\leq0.7\)</span>), akkor <em>közepes</em>, míg <span class="math inline">\(0.7\)</span> feletti abszolút érték (<span class="math inline">\(|r|&gt;0.7\)</span>) esetén <em>erős</em> kapcsolatról bezsélünk a két változó között.</li>
+</ol>
+<ul>
+<li>Esetünkben a korreláció abszolút értéke nagyobb, mint <span class="math inline">\(0.7\)</span> (<span class="math inline">\(0.86&gt;0.7\)</span>), így a lakások területe és ára közötti kapcsolat erősnek minősíthető.</li>
+</ul>
+<p>Erre a korreláció értelmezésre utalt az a jelenség a fenti pontdiagramon, hogy a pontokra gondolatban is elég jó pontossággal (korreláció abszolút értékben magas) rá tudunk illeszteni egy pozitív meredekségű (pozitív előjelű korreláció) egyenest.</p>
+<p>Ezen a korreláción túl kapunk a függvényből egy p-értéket is. Ez egy olyan <strong>nullhipotézishez tartozik, amely azt mondja, hogy ez a korreláció a sokaságban</strong> (a nem megfigyelt lakások körében) <strong>lehet akár nulla is</strong>. Tehát, a <span class="math inline">\(H_0\)</span> itt azt mondja, hogy a mintában megfigyelt korreláció a sokaságban tök <span class="math inline">\(0\)</span>, a megfigyelt kapcsolat a sokaságban (a nem megfigyelt lakások körében) nem létezik. Szóval, itt a következő null- és alternatív hipotézis párosról van szó:</p>
+<ul>
+<li><span class="math inline">\(H_0:r=0\)</span></li>
+<li><span class="math inline">\(H_1:r\neq0\)</span></li>
+</ul>
+<p>Ez az ominózus p-érték a fenti <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> pároshoz gyakorlatilag a függvény eredménye szerint <span class="math inline">\(0.0\)</span>, szóval ez a <span class="math inline">\(H_0\)</span> minden szokásos szignifikancia-szinten elvethető, a korreláció a sokaságban (a nem megfigyelt lakások körében) nem vehető nullának, a a megfigyelt kapcsolat a sokaságban igenis szignifikánsan létezik.</p>
+<p>A korreláció (<span class="math inline">\(r\)</span>) négyzete megadja a determinációs együttható, tehát az <span class="math inline">\(R^2=r^2\)</span> értékét. Mivel a korreláció egy <span class="math inline">\([-1,+1]\)</span> közötti szám, így négyzete egy <span class="math inline">\([0,1]\)</span> közötti érték lesz, és így <em>százalékosan</em> értelmezhető: megadja, hogy az <span class="math inline">\(x\)</span> hány százalékban magyarázza <span class="math inline">\(y\)</span> alakulását/ingadozását:</p>
+<div class="sourceCode" id="cb916"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb916-1"><a href="kétváltozós-lineáris-regresszió.html#cb916-1" tabindex="-1"></a>korrelacio <span class="op">=</span> stats.pearsonr(BP_Lakas.Terulet, BP_Lakas.KinArMFt)[<span class="dv">0</span>] <span class="co"># a két számból az első, a 0. indexű volt ugye maga a korreláció</span></span>
+<span id="cb916-2"><a href="kétváltozós-lineáris-regresszió.html#cb916-2" tabindex="-1"></a>R_negyzet <span class="op">=</span> korrelacio<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb916-3"><a href="kétváltozós-lineáris-regresszió.html#cb916-3" tabindex="-1"></a>R_negyzet</span></code></pre></div>
+<pre><code>## 0.7391439241654997</code></pre>
+<p>Esetünkben tehát azt mondhatjuk, hogy a <strong>Terulet</strong> <span class="math inline">\(73.914\%\)</span>-ban határozza meg a <strong>KinAr</strong> alakulását. Vagy másképpen: a <strong>Terulet</strong> ismeretében <span class="math inline">\(73.914\%\)</span>-os pontossággal lehet megcsülni a <strong>KinAr</strong> értékét. Ez így egy egészen jó előrejelző modell lenne, mivel a 10% alatti <span class="math inline">\(R^2\)</span>-ű előrejelző modell magyarázóereje <strong>gyenge</strong>, 10%-50% között a magyarázóerőt <strong>közepesnek</strong> vesszük, és 50% felett (tehát ha a modell az eredményváltozóban lévő információ legalább felét megmagyarázta) mondjuk <strong>erősnek</strong>.</p>
+<p>Ennyiből felmerülhet bennünk, hogy csináljunk egy olyan statisztikai modellt, ami a lakásárakat akarja előrejelezni a terület segítségével (hiszen abszolút értékben ezzel erősen korrelál a lakások kínálati ára)! Ez a modell lesz a <strong>kétváltozós lineáris regresszió</strong>! Ez a regresszió vagy más néven <em>regressziós egyenes</em>, az <span class="math inline">\(y=KinAr\)</span> és <span class="math inline">\(x=Terulet\)</span> pontdiagramon a pontokra legjobban illeszkedő egyenes.</p>
+<p>Lássuk hát, hogyan is használható előrejelzésre ez a regressziós egyenes, és azt is nézzük meg, hogy miképpen tudja a <code>ggplot</code> berajzolni ezt az egyenest, mint a <em>pontdiagramra legjobban illeszkedő egyenes</em>t!</p>
+</div>
+<div id="a-kétváltozós-lineáris-regresszió-ols-elvű-becslése" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> A Kétváltozós Lineáris Regresszió OLS elvű becslése<a href="kétváltozós-lineáris-regresszió.html#a-kétváltozós-lineáris-regresszió-ols-elvű-becslése" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az előző fejezetben már bevezettük az alábbi általános jelöléseket, de most álljon itt még egyszer a dolog, emlékeztetőként:</p>
+<ul>
+<li><span class="math inline">\(y\)</span> := KinArMFt (<strong>eredményváltozó</strong>, amit előre akarunk jelezni)</li>
+<li><span class="math inline">\(x\)</span> := Terulet (<strong>magyarázóváltozó</strong>, aminek ismeretében el akarjuk végezni az előrejelzést)</li>
+</ul>
+<p>Középiskolában az <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> koordináta rendszerben egy egyenes egyenletét az alábbi általános jelölésekkel írta le az ember.</p>
+<p><span class="math display">\[y=mx+b\]</span></p>
+<p>Itt ugye <span class="math inline">\(m\)</span> volt az egyenes <em>meredeksége</em>, míg <span class="math inline">\(b\)</span> a konstans tag, vagy másnéven <em>tengelymetszet</em>. A <span class="math inline">\(b\)</span>, azaz a tengelymetszet megadja, hogy az egyenes hol metszi el az <span class="math inline">\(y\)</span> tengelyt, míg az <span class="math inline">\(m\)</span> megadja, hogy ha +1 egységet előre lépünk az <span class="math inline">\(x\)</span> tengelyen, akkor az <span class="math inline">\(y\)</span> tengelyen mennyit kell előre haladni, hogy az egyenesen maradjunk. Tehát, a <em>meredekség</em> megmutatja, hogy milyen gyorsan emelkedik/csökken az egyenes.</p>
+<p>Lineáris regresszióban a fenti egyenes egyenlet az alábbi általános alakot ölti:</p>
+<p><span class="math display">\[\hat{y}=\beta_1x+\beta_0\]</span></p>
+<p>Ebben a felírásban az <span class="math inline">\(\hat{y}\)</span> jelenti az egyenletből <strong>becsült árakat</strong>. Ez a legfontosabb módosítás az egyenletben, hiszen <span class="math inline">\(\hat{y} \neq y\)</span>!! Az <span class="math inline">\(y\)</span> a valós ára a lakásnak, míg az <span class="math inline">\(\hat{y}\)</span> a regressziós egyenes alapján, a <span class="math inline">\(Terulet\)</span> ismeretében becsült ár. Csak akkor lehetne <span class="math inline">\(\hat{y} = y\)</span> minden pontra (azaz minden lakásra), ha <span class="math inline">\(R^2=100\%\)</span> lenne, amit a pontdiagramon is láttunk, hogy nem áll fenn, mert <strong>nem illeszkedik minden pont az egyenesre</strong>! Ezen kívül tisztán látszik, hogy a második egyenletben a meredekséget és a tengelymetszetet csak “<em>átbetűztük</em>”: <span class="math inline">\(\beta_1=m\)</span> és <span class="math inline">\(\beta_0=b\)</span>.</p>
+<p>Az egyenletben <span class="math inline">\(x\)</span> ismert minden lakásra, így nekünk csak a <span class="math inline">\(\beta\)</span>-kat igazából valahogy meghatározni, hogy az egyenlet ténylegesen használható legyen a lakásárak megbecslésére. Ezt csinálja a <code>ggplot</code> is, amikor berajzolja a trendvonalat a pontdiagramon.</p>
+<p>A <span class="math inline">\(\beta\)</span>-k meghatározása teljesen logikus módon úgy történik, hogy az árakra (<span class="math inline">\(y\)</span>) adott <strong>becsléseink hibája minimális legyen</strong>. A becslési hibát az ún. <span class="math inline">\(SSE\)</span> mutatóval mérjük: <span class="math inline">\(Sum of Squared Errors (SSE) = \sum_{i=1}^n(y_i-\hat{y_i})^2\)</span>.<br>
+Az <span class="math inline">\(SSE\)</span>-ben, mint <em>hibafüggvényben</em> az egyedenkénti <span class="math inline">\(y_i-\hat{y_i}\)</span> hibatagot két okból emeljük négyzetre:</p>
+<ul>
+<li>Büntetni kell az alá- és fölébecsléseket is…</li>
+<li>…DE az abszolút érték függvény nem differenciálható, ami egy szükséges tulajdonság ha egy függvényt minimalizálni szeretnénk</li>
+</ul>
+<p>Nézzük is meg, hogyan működik az <span class="math inline">\(SSE\)</span> a gyakorlatban! Első körben adunk valami <strong>kezdeti tippeket a <span class="math inline">\(\beta\)</span>-kra</strong>, majd kiszámoljuk a <span class="math inline">\(\hat{y}\)</span>-okat mind az 1406 lakásra, tehát meglesz minden <span class="math inline">\(\hat{y_i}\)</span>, <span class="math inline">\(i=1\)</span>-től <span class="math inline">\(i=n\)</span>-ig:</p>
+<div class="sourceCode" id="cb918"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb918-1"><a href="kétváltozós-lineáris-regresszió.html#cb918-1" tabindex="-1"></a><span class="co"># Kezdetben minden Bétára azt tippeljük, hogy az értéke = 1</span></span>
+<span id="cb918-2"><a href="kétváltozós-lineáris-regresszió.html#cb918-2" tabindex="-1"></a>Beta0 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb918-3"><a href="kétváltozós-lineáris-regresszió.html#cb918-3" tabindex="-1"></a>Beta1 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb918-4"><a href="kétváltozós-lineáris-regresszió.html#cb918-4" tabindex="-1"></a></span>
+<span id="cb918-5"><a href="kétváltozós-lineáris-regresszió.html#cb918-5" tabindex="-1"></a><span class="co"># Kiszámoljuk az y kalapokat, azaz a becsült árakat ezekkel a Bétákkal</span></span>
+<span id="cb918-6"><a href="kétváltozós-lineáris-regresszió.html#cb918-6" tabindex="-1"></a>BP_Lakas[<span class="st">&#39;BecsultAr&#39;</span>] <span class="op">=</span> Beta1<span class="op">*</span>BP_Lakas.Terulet <span class="op">+</span> Beta0</span>
+<span id="cb918-7"><a href="kétváltozós-lineáris-regresszió.html#cb918-7" tabindex="-1"></a></span>
+<span id="cb918-8"><a href="kétváltozós-lineáris-regresszió.html#cb918-8" tabindex="-1"></a><span class="co"># Kiszámolhatjuk a becslések hibáját is minden lakásra</span></span>
+<span id="cb918-9"><a href="kétváltozós-lineáris-regresszió.html#cb918-9" tabindex="-1"></a>BP_Lakas[<span class="st">&#39;Hiba&#39;</span>] <span class="op">=</span> BP_Lakas.KinArMFt <span class="op">-</span> BP_Lakas.BecsultAr</span>
+<span id="cb918-10"><a href="kétváltozós-lineáris-regresszió.html#cb918-10" tabindex="-1"></a></span>
+<span id="cb918-11"><a href="kétváltozós-lineáris-regresszió.html#cb918-11" tabindex="-1"></a><span class="co"># Nézzük meg mit alkottunk</span></span>
+<span id="cb918-12"><a href="kétváltozós-lineáris-regresszió.html#cb918-12" tabindex="-1"></a>BP_Lakas.loc[:,[<span class="st">&quot;KinArMFt&quot;</span>, <span class="st">&quot;BecsultAr&quot;</span>, <span class="st">&quot;Hiba&quot;</span>]]</span></code></pre></div>
+<pre><code>##       KinArMFt  BecsultAr  Hiba
+## 0         10.7       33.0 -22.3
+## 1         10.0       33.0 -23.0
+## 2         10.5       33.0 -22.5
+## 3         12.0       35.0 -23.0
+## 4         13.0       35.0 -22.0
+## ...        ...        ...   ...
+## 1401      37.0       81.0 -44.0
+## 1402      21.0       84.0 -63.0
+## 1403      42.0       93.0 -51.0
+## 1404      22.0      101.0 -79.0
+## 1405      32.5      117.0 -84.5
+## 
+## [1406 rows x 3 columns]</code></pre>
+<p>Láthatjuk, hogy a kezdeti tippeink a Bétákra még nem valami jók, 23-24 millió Ft-ot hibázik kb. a becslésünk lakásonként.</p>
+<p>Nézzük meg, hogy a jelenlegi, csupa 1 <span class="math inline">\(\beta\)</span>-k mellett milyen alakot ölt a <strong>BecsultAr</strong> oszlopban lévő <span class="math inline">\(\hat{y_i}\)</span>-k által meghatározott regressziós egyenes! Itt egy olyan trükköt vetek be, hogy a korábban használt <code>matplotlib</code> csomag pontdiagramos <code>scatter</code> függvényére egy sima <code>plot</code> függvénnyel rárakom a regressziós egyenes <span class="math inline">\(x\)</span> és <span class="math inline">\(\hat{y}\)</span> koordinátáit, mint egy vonaldiagram. És ezzel akkor szépen ki is rajzolódik a jelenlegi <span class="math inline">\(\beta_0,\beta_1\)</span> értékekkel adódó regressziós egyenes:</p>
+<div class="sourceCode" id="cb920"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb920-1"><a href="kétváltozós-lineáris-regresszió.html#cb920-1" tabindex="-1"></a>plt.scatter(BP_Lakas.Terulet, BP_Lakas.KinArMFt)</span>
+<span id="cb920-2"><a href="kétváltozós-lineáris-regresszió.html#cb920-2" tabindex="-1"></a>plt.plot(np.array(BP_Lakas.Terulet),</span>
+<span id="cb920-3"><a href="kétváltozós-lineáris-regresszió.html#cb920-3" tabindex="-1"></a>         np.array(BP_Lakas.BecsultAr), <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb920-4"><a href="kétváltozós-lineáris-regresszió.html#cb920-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-386-39.png" width="672" /></p>
+<p>Láthatjuk, hogy ez a regressziós egyenes még jó béna: a valós pontokhoz képest sokkal magasabban fut, nem jól illeszkedik rájuk.</p>
+<p>Számoljuk is ki, hogy összességében mennyi a négyzetes hibánk, tehát az <span class="math inline">\(SSE\)</span>! Itt azt használjuk, hogy a <code>data frame</code> oszlopokkal, mint <code>vector</code>okkal tudunk az R-ben számolni:</p>
+<div class="sourceCode" id="cb921"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb921-1"><a href="kétváltozós-lineáris-regresszió.html#cb921-1" tabindex="-1"></a><span class="co"># Egyik út</span></span>
+<span id="cb921-2"><a href="kétváltozós-lineáris-regresszió.html#cb921-2" tabindex="-1"></a>np.<span class="bu">sum</span>(BP_Lakas.Hiba<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 4767764.1886</code></pre>
+<div class="sourceCode" id="cb923"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb923-1"><a href="kétváltozós-lineáris-regresszió.html#cb923-1" tabindex="-1"></a><span class="co"># Másik út</span></span>
+<span id="cb923-2"><a href="kétváltozós-lineáris-regresszió.html#cb923-2" tabindex="-1"></a>np.<span class="bu">sum</span>((BP_Lakas.KinArMFt <span class="op">-</span> BP_Lakas.BecsultAr)<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 4767764.1886</code></pre>
+<p>Giganagy az SSE, de ezen már az előbbiek alapján meg sem lepődünk. :)</p>
+<p>Az előbbi pontdiagram alapján azt láthatjuk, hogy a regressziós egyenesnek az a baja, hogy túl magasról indul (túl magas a tengelymetszet) és túl gyorsan is emelkedik (túl magas a meredekség). Szóval mindkét <span class="math inline">\(\beta\)</span>-t csökkentsük. Szemmértékre nem tűnik rossznak ha az egyenest <span class="math inline">\(\beta_0=-0.5\)</span>-ról indítjuk, és az emelkedés ütemét megfelezzük: <span class="math inline">\(\beta_1=0.5\)</span>. Nézzük is meg mit tudunk ezzel alkotni:</p>
+<div class="sourceCode" id="cb925"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb925-1"><a href="kétváltozós-lineáris-regresszió.html#cb925-1" tabindex="-1"></a><span class="co"># Újra értékadás a Bétáknak</span></span>
+<span id="cb925-2"><a href="kétváltozós-lineáris-regresszió.html#cb925-2" tabindex="-1"></a>Beta0 <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span></span>
+<span id="cb925-3"><a href="kétváltozós-lineáris-regresszió.html#cb925-3" tabindex="-1"></a>Beta1 <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb925-4"><a href="kétváltozós-lineáris-regresszió.html#cb925-4" tabindex="-1"></a></span>
+<span id="cb925-5"><a href="kétváltozós-lineáris-regresszió.html#cb925-5" tabindex="-1"></a><span class="co"># Kiszámoljuk az y kalapokat, azaz a becsült árakat ezekkel a Bétákkal</span></span>
+<span id="cb925-6"><a href="kétváltozós-lineáris-regresszió.html#cb925-6" tabindex="-1"></a>BP_Lakas.BecsultAr <span class="op">=</span> Beta1<span class="op">*</span>BP_Lakas.Terulet <span class="op">+</span> Beta0</span>
+<span id="cb925-7"><a href="kétváltozós-lineáris-regresszió.html#cb925-7" tabindex="-1"></a></span>
+<span id="cb925-8"><a href="kétváltozós-lineáris-regresszió.html#cb925-8" tabindex="-1"></a><span class="co"># Kiszámolhatjuk a becslések hibáját is minden lakásra</span></span>
+<span id="cb925-9"><a href="kétváltozós-lineáris-regresszió.html#cb925-9" tabindex="-1"></a>BP_Lakas.Hiba <span class="op">=</span> BP_Lakas.KinArMFt <span class="op">-</span> BP_Lakas.BecsultAr</span>
+<span id="cb925-10"><a href="kétváltozós-lineáris-regresszió.html#cb925-10" tabindex="-1"></a></span>
+<span id="cb925-11"><a href="kétváltozós-lineáris-regresszió.html#cb925-11" tabindex="-1"></a><span class="co"># Ábrázoljuk az új egyenest a pontdiagramon</span></span>
+<span id="cb925-12"><a href="kétváltozós-lineáris-regresszió.html#cb925-12" tabindex="-1"></a>plt.scatter(BP_Lakas.Terulet, BP_Lakas.KinArMFt)</span>
+<span id="cb925-13"><a href="kétváltozós-lineáris-regresszió.html#cb925-13" tabindex="-1"></a>plt.plot(np.array(BP_Lakas.Terulet),</span>
+<span id="cb925-14"><a href="kétváltozós-lineáris-regresszió.html#cb925-14" tabindex="-1"></a>         np.array(BP_Lakas.BecsultAr), <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb925-15"><a href="kétváltozós-lineáris-regresszió.html#cb925-15" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-388-41.png" width="672" /></p>
+<p>Ez már sokkal jobban néz ki! De vajon csökkent az <span class="math inline">\(SSE\)</span> is?</p>
+<div class="sourceCode" id="cb926"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb926-1"><a href="kétváltozós-lineáris-regresszió.html#cb926-1" tabindex="-1"></a>np.<span class="bu">sum</span>(BP_Lakas.Hiba<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 352004.66865</code></pre>
+<p>Jepp, <span class="math inline">\(352005&lt;4767764\)</span>, szóval ez objektívan, és nem csak diagramról nézve is egy jobb illeszkedés! :)</p>
+<p>Mielőtt továbblépünk bevezetek egy jelölést, <span class="math inline">\(\epsilon\)</span>-al fogjuk jelölni a regressziós modell hibatagját. Ezzel, a kódban lévő első képlet formálisan így néz ki: <span class="math inline">\(SSE=\sum_{i=1}^n(\epsilon_i)^2\)</span>.</p>
+<p>Akkor hát, hagyjunk fel a “kézimunkával”, és kerestessük meg a gépállattal azokat a <span class="math inline">\(\beta\)</span>-kat, amikkel a lehető legkisebb <span class="math inline">\(SSE\)</span>-t kapjuk!</p>
+<p>Ehhez először megcsinálunk egy külön R függvényt az <span class="math inline">\(SSE\)</span>-re, ami <span class="math inline">\(SSE(\beta_0,\beta_1)\)</span> alakot ölt. Tehát, megadja az <span class="math inline">\(SSE\)</span>-t a <span class="math inline">\(\beta\)</span>-k függvényében:</p>
+<div class="sourceCode" id="cb928"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb928-1"><a href="kétváltozós-lineáris-regresszió.html#cb928-1" tabindex="-1"></a><span class="co"># a függvény megadása</span></span>
+<span id="cb928-2"><a href="kétváltozós-lineáris-regresszió.html#cb928-2" tabindex="-1"></a><span class="kw">def</span> SSE(x):</span>
+<span id="cb928-3"><a href="kétváltozós-lineáris-regresszió.html#cb928-3" tabindex="-1"></a>  <span class="cf">return</span> np.<span class="bu">sum</span>((BP_Lakas.KinArMFt<span class="op">-</span>(x[<span class="dv">0</span>]<span class="op">+</span>x[<span class="dv">1</span>]<span class="op">*</span>BP_Lakas.Terulet))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb928-4"><a href="kétváltozós-lineáris-regresszió.html#cb928-4" tabindex="-1"></a></span>
+<span id="cb928-5"><a href="kétváltozós-lineáris-regresszió.html#cb928-5" tabindex="-1"></a><span class="co"># a függvény használata úgy, hogy mindkét Béta értéknek 1-et mondunk</span></span>
+<span id="cb928-6"><a href="kétváltozós-lineáris-regresszió.html#cb928-6" tabindex="-1"></a>SSE(np.array([<span class="dv">1</span>,<span class="dv">1</span>]))</span></code></pre></div>
+<pre><code>## 4767764.1886</code></pre>
+<p>Láss csodát a csupa 1 <span class="math inline">\(\beta\)</span>-kra ugyan azt az <span class="math inline">\(SSE\)</span>-t kapjuk, mint korábban! :)</p>
+<p>Na, ezt az <span class="math inline">\(SSE\)</span> függvényt felhasználva meg tudjuk kerestetni gépállattal hol vannak azok a <span class="math inline">\(\beta\)</span>-k, amik mellett a legkisebb összesített négyzetes modellhibát kapjuk. A használt <code>minimize</code> függvény a <code>scipy</code> csomag lakója:</p>
+<div class="sourceCode" id="cb930"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb930-1"><a href="kétváltozós-lineáris-regresszió.html#cb930-1" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize <span class="co"># függvény importja scipy-ból</span></span>
+<span id="cb930-2"><a href="kétváltozós-lineáris-regresszió.html#cb930-2" tabindex="-1"></a>eredmeny <span class="op">=</span> minimize(SSE,np.array([<span class="dv">1</span>,<span class="dv">1</span>])) <span class="co"># az hiba minimalizálást a minden Béta = 1 pontból indítjuk</span></span></code></pre></div>
+<p>Az újonnan létrehozott, <code>eredmeny</code> objektumból, ami <code>dictionary</code> típusú, ki tudjuk olvasni, hogy mik lettek a <span class="math inline">\(\beta\)</span>-k, és meg tudjuk nézni azt is, hogy mi az a legkisebb <span class="math inline">\(SSE\)</span> érték, amit el tudtunk érni:</p>
+<div class="sourceCode" id="cb931"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb931-1"><a href="kétváltozós-lineáris-regresszió.html#cb931-1" tabindex="-1"></a>eredmeny.x <span class="co"># a Béták</span></span></code></pre></div>
+<pre><code>## array([-4.31228957,  0.40019634])</code></pre>
+<div class="sourceCode" id="cb933"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb933-1"><a href="kétváltozós-lineáris-regresszió.html#cb933-1" tabindex="-1"></a>eredmeny.fun <span class="co"># a minimalizált SSE érték</span></span></code></pre></div>
+<pre><code>## 141310.92681266984</code></pre>
+<p>Ezzel a végső regressziós egyenletünk: <span class="math inline">\(BecsultAr=-4.312 + 0.400\times Terulet\)</span>. Ez így az úgynevezett <strong>OLS (Ordinary Least Squares)</strong> feladat megoldása.</p>
+<p>Meg is nézhetjük, hogy az ezekkel a <span class="math inline">\(\beta\)</span>-kal rajzolt egyenes miképpen néz ki a pontdiagramon:</p>
+<div class="sourceCode" id="cb935"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb935-1"><a href="kétváltozós-lineáris-regresszió.html#cb935-1" tabindex="-1"></a><span class="co"># Újra értékadás a Bétáknak</span></span>
+<span id="cb935-2"><a href="kétváltozós-lineáris-regresszió.html#cb935-2" tabindex="-1"></a>Beta0 <span class="op">=</span> eredmeny.x[<span class="dv">0</span>]</span>
+<span id="cb935-3"><a href="kétváltozós-lineáris-regresszió.html#cb935-3" tabindex="-1"></a>Beta1 <span class="op">=</span> eredmeny.x[<span class="dv">1</span>]</span>
+<span id="cb935-4"><a href="kétváltozós-lineáris-regresszió.html#cb935-4" tabindex="-1"></a></span>
+<span id="cb935-5"><a href="kétváltozós-lineáris-regresszió.html#cb935-5" tabindex="-1"></a><span class="co"># Kiszámoljuk az y kalapokat, azaz a becsült árakat ezekkel a Bétákkal</span></span>
+<span id="cb935-6"><a href="kétváltozós-lineáris-regresszió.html#cb935-6" tabindex="-1"></a>BP_Lakas.BecsultAr <span class="op">=</span> Beta1<span class="op">*</span>BP_Lakas.Terulet <span class="op">+</span> Beta0</span>
+<span id="cb935-7"><a href="kétváltozós-lineáris-regresszió.html#cb935-7" tabindex="-1"></a></span>
+<span id="cb935-8"><a href="kétváltozós-lineáris-regresszió.html#cb935-8" tabindex="-1"></a><span class="co"># Kiszámolhatjuk a becslések hibáját is minden lakásra</span></span>
+<span id="cb935-9"><a href="kétváltozós-lineáris-regresszió.html#cb935-9" tabindex="-1"></a>BP_Lakas.Hiba <span class="op">=</span> BP_Lakas.KinArMFt <span class="op">-</span> BP_Lakas.BecsultAr</span>
+<span id="cb935-10"><a href="kétváltozós-lineáris-regresszió.html#cb935-10" tabindex="-1"></a></span>
+<span id="cb935-11"><a href="kétváltozós-lineáris-regresszió.html#cb935-11" tabindex="-1"></a><span class="co"># Ábrázoljuk az új egyenest a pontdiagramon</span></span>
+<span id="cb935-12"><a href="kétváltozós-lineáris-regresszió.html#cb935-12" tabindex="-1"></a>plt.scatter(BP_Lakas.Terulet, BP_Lakas.KinArMFt)</span>
+<span id="cb935-13"><a href="kétváltozós-lineáris-regresszió.html#cb935-13" tabindex="-1"></a>plt.plot(np.array(BP_Lakas.Terulet),</span>
+<span id="cb935-14"><a href="kétváltozós-lineáris-regresszió.html#cb935-14" tabindex="-1"></a>         np.array(BP_Lakas.BecsultAr), <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb935-15"><a href="kétváltozós-lineáris-regresszió.html#cb935-15" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-393-43.png" width="672" /></p>
+<p>Ami nagyon fontos, hogy amiatt, hogy a hibát négyzetesen értelmeztük OLS-ben, ezek a <span class="math inline">\(\beta\)</span>-k,a mit megkaptunk <strong>egyértelműek</strong>!! Akárhányszor futtatom az optimalizálást mindig ugyan ezeket az értékeket fogom kapni! Ha a hibatagok összeadásakor abszolút értéket alkalmaztam volna, akkor ez a luxus nem lenne meg! Ott minden optimalizálásnál fennállna az esélye, hogy más <span class="math inline">\(\beta\)</span>-kat kapok, mint az előző esetben, és a <span class="math inline">\(\beta\)</span>-król nem is tudnám eldönteni, hogy ezekkel az értékekkel kapom-e ténylegesen a legkisebb becslési modellhibát!</p>
+<p>A négyzetesen mért hiba esetében ez az egyértelműségi probléma azért nincs meg, mert valójában a gép itt <strong>nem vaktában keresi</strong> a <span class="math inline">\(\beta\)</span>-kat! Az OLS feladat megoldása (tehát a legkisebb <span class="math inline">\(SSE\)</span>-t adó <span class="math inline">\(\beta\)</span>-k) kifejezhetők egy fix képlettel.</p>
+<p>Valójában a kétváltozós <span class="math inline">\(SSE(\beta_0,\beta_1)=\sum_{i=1}^n(y_i-\hat{y_i})^2=\sum_{i}(y_i-\beta_0-\beta_1x_i)^2\)</span> függvény minimumhelyének meghatározása történik ezen a ponton. Mivel a <code>data frame</code>-ben minden eredményváltozó (<span class="math inline">\(y_i\)</span>) és magyarázóváltozó (<span class="math inline">\(x_i\)</span>) érték ismert, így ezek a függvényben <em>konstansnak</em> vehetők, a függvény két változója csak a <span class="math inline">\(\beta_0\)</span> és a <span class="math inline">\(\beta_1\)</span>. Emiatt a függvény minimumhelyét úgy kereshetjük meg, hogy vesszük ennek az <span class="math inline">\(SSE(\beta_0,\beta_1)\)</span> hibafüggvénynek a parciális deriváltjait a két <span class="math inline">\(\beta\)</span> szerint, és azokat egyenlővé tesszük nullával.</p>
+<p>Magyarul megoldjuk az alábbi két egyenletből álló egyenletrendszert:</p>
+<p><span class="math display">\[\frac{\partial SSE(\beta_0,\beta_1)}{\partial \beta_0}=0\]</span></p>
+<p><span class="math display">\[\frac{\partial SSE(\beta_0,\beta_1)}{\partial \beta_1}=0\]</span></p>
+<p>Az egyenletrendszer megoldásával kifejezhető az a fix formula, amivel az OLS elven számított <span class="math inline">\(\beta_0\)</span> és <span class="math inline">\(\beta_1\)</span> értékek megadhatók:</p>
+<p><span class="math display">\[\hat{\beta_1}=\frac{\sum_{i=1}^n{(x_i-\bar{x})(y_i-\bar{y})}}{\sum_{i=1}^n{(x_i-\bar{x})^2}}\]</span></p>
+<p><span class="math display">\[\hat{\beta_0}=\bar{y}-\hat{\beta_1}x\]</span></p>
+<p>Azt, hogy konkrétan hogyan jön ki ez a csodaszép két formula szorgalmi feladatként levezethető +1 pontért. :) <br>
+A gyakorlati szempontból azt kell látni, hogy minimalizálási feladathoz nem is kell az <code>optim</code> függvény, mert a megoldása van egy-egy fix képlet. <strong>Emiatt használják az OLS regressziót mai napig előszeretettel: fix képlettel megadhatók a <span class="math inline">\(\beta\)</span> együtthatók, és nem kell a megadásukhoz optimalizálni!</strong></p>
+</div>
+<div id="az-ols-regresszió-magyarázóerejének-mérése" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Az OLS Regresszió magyarázóerejének mérése<a href="kétváltozós-lineáris-regresszió.html#az-ols-regresszió-magyarázóerejének-mérése" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Megmérhetjük azt is, hogy a lakások területe hány %-ban magyarázza az áraik ingadozását az átlagos ár körül. Sőt, igazából ezt meg is mértük már a korreláció négyzetével, a determinációs együtthatóval (<span class="math inline">\(R^2\)</span>) és <span class="math inline">\(73.899\%\)</span>-nak adódott. De ez az érték meghatározható az <span class="math inline">\(SSE\)</span> hibafüggvényünk alapján is!</p>
+<p>Ehhez ki kell számolni, hogy mennyi az eredményváltozóban lévő teljes ingadozás, azaz <strong>információtartalom</strong>, ami megmagyarázható. Ezt úgy mérjük meg, hogy megnézzük mi lenne az <span class="math inline">\(SSE\)</span>, ha az eredményváltozót (az árakat) 0 magyarázóváltozóval akarjuk megbecsülni, előrejelezni. Mondván ennél rosszabb becslést nem adhatunk az eredményváltozóra, így ennek a becslésnek az összhibáját tudjuk csökkenteni a magyarázóváltozókat használó regressziós modellel. Ha <strong>nincs magyarázóváltozónk, akkor a becslésünk minden esetben az átlagár</strong> lesz: <span class="math inline">\(\hat{y}=\bar{y}\)</span>.</p>
+<p>Ezzel azt mondhatjuk, hogy a magyarázóváltozók nélküli <strong>nullmodell</strong> <span class="math inline">\(SSE\)</span>-je valójában az <span class="math inline">\(SumOfSquaredTotals=SST=\sum_{i=1}^n(y_i-\bar{y})^2\)</span>, tehát az egyes lakások árainak négyzetes ingadozása az <em>átlagos ár</em> körül. Ezt hívjuk az <strong>eredményváltozóban lévő teljes megmagyarázható információ</strong>nak!</p>
+<p>Számoljuk is ezt ki a lásárakra!</p>
+<div class="sourceCode" id="cb936"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb936-1"><a href="kétváltozós-lineáris-regresszió.html#cb936-1" tabindex="-1"></a>SST <span class="op">=</span> np.<span class="bu">sum</span>((BP_Lakas.KinArMFt <span class="op">-</span> np.mean(BP_Lakas.KinArMFt))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb936-2"><a href="kétváltozós-lineáris-regresszió.html#cb936-2" tabindex="-1"></a></span>
+<span id="cb936-3"><a href="kétváltozós-lineáris-regresszió.html#cb936-3" tabindex="-1"></a>SST</span></code></pre></div>
+<pre><code>## 541719.8980725462</code></pre>
+<p>Ha a modell hibaszázalékát akarjuk megnézni, akkor egyszerűen az <span class="math inline">\(SSE\)</span>-t elosztom az <span class="math inline">\(SST\)</span>-vel. Hiszen ekkor megkapom, hogy a modell az összes megmagyarázható információból <span class="math inline">\(SST\)</span> mennyit <strong>nem</strong> tudott megmagyarázni (<span class="math inline">\(SSE\)</span>).<br>
+Nyilván, ha ennek a hányadosnak veszem a komplementerét (1-), akkor megkapom a modell által megmagyarázott információ-hányadot. Ez lesz a már ismerős <strong>R-négyzet</strong>, vagy szebb szóval <strong>determinációs-együttható</strong>: <span class="math inline">\(R^2=1-\frac{SSE}{SST}\)</span>.</p>
+<p>Számoljuk is ki:</p>
+<div class="sourceCode" id="cb938"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb938-1"><a href="kétváltozós-lineáris-regresszió.html#cb938-1" tabindex="-1"></a>SSE <span class="op">=</span> eredmeny.fun</span>
+<span id="cb938-2"><a href="kétváltozós-lineáris-regresszió.html#cb938-2" tabindex="-1"></a><span class="dv">1</span> <span class="op">-</span> SSE <span class="op">/</span> SST</span></code></pre></div>
+<pre><code>## 0.7391439241654998</code></pre>
+<p>Tehát, <strong>a lakások területe továbbra is 73.914%-ban magyarázza a lakások árának ingadozását</strong> (alakulását). Ez egy elég jó modell még mindig! :)</p>
+<p>Mindez képletek szintjén összefoglalva (szokjunk hozzá, hogy az angol könyvekben az SSE-t néha ESS-nek is jelölik :)):</p>
+<center>
+<img src="SS_felbontas.jpg" style="width:50.0%" />
+</center>
+<center>
+<img src="Rnegyzet.jpg" style="width:50.0%" />
+</center>
+</div>
+<div id="a-regresszió-magyarázóereje-nem-megfigyelt-adatok-körében" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> A Regresszió magyarázóereje nem megfigyelt adatok körében<a href="kétváltozós-lineáris-regresszió.html#a-regresszió-magyarázóereje-nem-megfigyelt-adatok-körében" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Szép és jó, hogy tudom, hogy a regresszióm magyarázóereje durván 74%, de ez csak azt mondja, hogy a <strong>megfigyelt 1405 lakás esetében magyarázza kb. 74%-ban a terület az árak alakulását</strong>! Szeretnék valamit mondani azért a modell magyarázóerejéről a nem megfigyelt lakások körében is! Hiszen az <span class="math inline">\(\hat{y}\)</span> becsléseket arra akarom használni, hogy új, eddig még nem látott budapesti lakások esetében is meg tudjam becsülni az árakat a terület alapján! Tehát, a regresszió viszelkedésére vagyok kíváncsi a budapesti lakások <strong>sokaság</strong>ában!</p>
+<p>Ennek az eszköze a klasszikus Statisztikában a <strong>hipotézisvizsgálat</strong>!</p>
+<p>A hipotézisvizsgálatunk kérdése tehát az, hogy mi történik a megfigyeléseinken (mintánkon) túli világban (leánykori nevén sokaságban) ezzel a regressziós modellel? Ha új lakásokra általánosítjuk ki az OLS regressziós modellt, akkor az <span class="math inline">\(R^2\)</span> értéke megmarad vagy összeomlik 0-ra?</p>
+<p>Ezt a kérdést lehet megválaszolni egy <span class="math inline">\(R^2\)</span>-re adotthipotézisvizsgálattal, a <strong>Globális F-próbával</strong>.</p>
+<p>Konkrétan ebben az esetben a hipotézisvizsgálat 4 lépéses folyamat így néz ki:</p>
+<ol style="list-style-type: decimal">
+<li>Pesszimista emberek vagyunk, azt gondoljuk, hogy modellünk a mintán kívüli világban semmit nem magyaráz, azaz <span class="math inline">\(R^2=0\)</span>
+<ul>
+<li>Hopp, ez egy egyenlőséggel adott állítás! Mehet <span class="math inline">\(H_0\)</span>-ba –&gt; <span class="math inline">\(H_0: R^2 = 0\)</span> (vagyis a modell nem szignifikáns a sokaságban)</li>
+<li>Alternatív esetben pedig legyünk optimisták: ebből a magyarázóerőből, amit a mintában mértünk, fog maradni akkor is valami, ha új lakásokat kezdünk vizsgálgatni a sokaságból –&gt; <span class="math inline">\(H_1: R^2 &gt; 0\)</span> (vagyis a modell szignifikáns a sokaságban)</li>
+</ul></li>
+<li>A próbafüggvényt számoljuk a mintában mért R-négyzet, a mintaelemszám (<span class="math inline">\(n\)</span>) és az egyenletben használt <span class="math inline">\(\beta\)</span> paraméterek száma (<span class="math inline">\(p\)</span>) alapján!
+<ul>
+<li>Nekünk: <span class="math inline">\(R^2=0.73914, n=1406, p=2\)</span></li>
+<li>Próbafüggvény képlete: <span class="math inline">\(\frac{R^2/(p-1)}{(1-R^2)/(n-p)}=\frac{0.73914/(2-1)}{(1-0.73914)/(1406-2)}=3978.197\)</span></li>
+</ul></li>
+<li>Ez a <strong>próbafüggvény igaz <span class="math inline">\(H_0\)</span> esetén</strong> egy úgynevezett <strong>F-eloszlást követ</strong>.
+<ul>
+<li>Azt, hogy ez az eloszlás sűrűségfüggvényként hogy néz ki, két szabadságfok (szf vagy df) szabályozza:
+<center>
+<img src="Fdist.png" style="width:50.0%" />
+</center></li>
+<li>Ezt a két szabadságfokot mi az elemszámból és a magyarázóváltozók számából fogjuk megkapni a saját próbafüggvényünkre.
+<ul>
+<li><span class="math inline">\(df_1=p-1=2-1=1\)</span> és <span class="math inline">\(df_2=n-p=1406-2=1404\)</span></li>
+</ul></li>
+<li><span class="math inline">\(H_0\)</span> akkor biztosan (100%-os valószínűséggel) igaz, ha <span class="math inline">\(R^2\)</span> már a mintában is 0.</li>
+<li>Ezért a p-értékkel azt mérjük le, hogy “milyen messze vagyunk” ettől a <span class="math inline">\(H_0\)</span> szempontjából ideális állapotról az igaz <span class="math inline">\(H_0\)</span> esetén fennálló eloszlásban.</li>
+<li>Egész konkrétan így:
+<center>
+<img src="pval_F.jpg" style="width:50.0%" />
+</center></li>
+<li>Tehát, a p-érték most a próbafüggvény feletti terület a megfelelő F-eloszlásban. Hiszen, így a <em>próbafüggvény = 0</em> esetben 100%-ra jön ki a p-érték, ami azt jelenti, hogy <span class="math inline">\(H_0\)</span>-t elvetni tuti, hogy hibás döntés. A próbafüggvény pedig arányosan nőni fog, ha <span class="math inline">\(R^2\)</span> is nő, így ha kellően magas az érték, akkor már nagyon kicsi lesz a felette lévő terület, így alacsony annak a valószínűsége, hogy <span class="math inline">\(H_0\)</span> elvetésével hibát követünk el.</li>
+<li>F-eloszlásban egy értékhez tartozó “felé esési” valószínűséget Pythonban a következő <code>scipy</code>-os <code>cdf</code> függvénnyel kapjuk meg (fiygeljünk arra, hogy a szabadságfokok sorrendje a 2.és 3. paraméterben számít): <code>1-stats.f.cdf(3978.197,1,1404) = 1.1102e-16</code> = 0.</li>
+</ul></li>
+<li>Ez a p-érték jó alacsony, konkrétan 0%-nak vehető. Tehát még ha azt is, mondom, hogy csak <span class="math inline">\(\alpha=1\%\)</span> valószínűséggel engedek meg igaz <span class="math inline">\(H_0\)</span>-t elutasítani, ez a valószínűség még ennél is kisebb.
+<ul>
+<li>Tehát nyugodtan elvethetem <span class="math inline">\(H_0\)</span>-t, mivel ezzel a döntéssel 0% az esélye, hogy hibázok.</li>
+</ul></li>
+</ol>
+<p><strong>!!!VIGYÁZAT!!!</strong> –&gt; <em>Kellően nagy minták esetén ebből a tesztből simán kijöhet egy 3,4%-os mintabeli <span class="math inline">\(R^2\)</span> esetén is, hogy <span class="math inline">\(H_1\)</span> állítást kell igaznak venni. Ami annyit jelent, hogy azt a 3.4%-os <span class="math inline">\(R^2\)</span>-et ki lehet általánosítani a megfigyeléseken túli világra is…de ez azért nem olyan jó eredmény, mintha egy 74%-os <span class="math inline">\(R^2\)</span>-re jön ki ugyan ez egy ilyen hipotézisvizsgálatból!</em></p>
+<p><em>Megjegyzés</em>: Globális F-próbában <span class="math inline">\(H_0\)</span>-t úgy is meg lehet fogalmazni, hogy a modellben a meredekség 0 a mintán kívüli világban: <span class="math inline">\(\beta_1=0\)</span>. A <span class="math inline">\(H_1\)</span>-et meg ilyenkor úgy lehetne felírni, hogy a meredekség nem nulla: <span class="math inline">\(\beta_1\neq0\)</span>.</p>
+</div>
+<div id="a-modell-együtthatóinak-értelemzése" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> A modell együtthatóinak értelemzése<a href="kétváltozós-lineáris-regresszió.html#a-modell-együtthatóinak-értelemzése" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A kétváltozós OLS modellünk két <span class="math inline">\(\beta\)</span> paramétere tehát az alábbiak és a következő jelentéstartalommal bírnak:</p>
+<ul>
+<li><span class="math inline">\(\beta_0=-4.312\)</span> –&gt; Ő ugye a tengelymetszet, ami megadja, hogy a regressziós egyenes hol metszi az <span class="math inline">\(y\)</span> tengelyt, ami az <span class="math inline">\(x=0\)</span> helyen történik. tehát, technikailag megadja, hogy <span class="math inline">\(x=0\)</span> esetén mi a regresszió <span class="math inline">\(\hat{y}\)</span> becslése.</li>
+<li><span class="math inline">\(\beta_1=+0.400\)</span> –&gt; Ez itt pedig a meredekség, ami megmutatja, hogy +1 egység elmozdulás esetén az <span class="math inline">\(x\)</span> tengelyen hogyan változik az <span class="math inline">\(\hat{y}\)</span>.</li>
+</ul>
+<p>A mi példánkban ez azt jelenti, hogy egy 0 <span class="math inline">\(m^2\)</span>-ú lakás <strong>becsült</strong> ára -4.312 M Ft. Nyilván ezzel az értelmezéssel most nem kell foglalkozni, mivel az <span class="math inline">\(x=0\)</span> hely jelen adatbázisunkban nem létezik. :)<br>
+A meredekség alapján pedig azt mondhatjuk, hogy +1 négyzetméter terület a lakás értékét <strong>várhatóan</strong> (hiszen <span class="math inline">\(\hat{y}\)</span>-ról beszélünk) 0.400 M Ft-tal, azaz 400 E Ft-tal növeli. Ha nagyon közgázosak akarunk lenni, akkor ez a 400 ezer Ft a +1 négyzetméter <strong>hasznossága</strong>!</p>
+<p>Kimondottan a <span class="math inline">\(\beta_1\)</span> értelmezésénél nagyon-nagyon figyeljünk oda, hogy <strong>az értelmezés nagyon mértékegységfüggő</strong>!! Tehát, a +1 egység <span class="math inline">\(x\)</span> az mindig az <span class="math inline">\(x\)</span> mértékegységében értendő, ami most nekünk négyzetméter. Míg maga a <span class="math inline">\(\beta_1\)</span>-nyi változás pedig értelemszerűen az <span class="math inline">\(y\)</span> mértékegységében adott, ami a példánkban MFt!</p>
+</div>
+<div id="egy-gyakorló-példa-covid-adatokon" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Egy gyakorló példa COVID adatokon<a href="kétváltozós-lineáris-regresszió.html#egy-gyakorló-példa-covid-adatokon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Töltsük be a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/raw/main/COVID_0326.xlsx" target="_blank">COVID_0326.xlsx</a> c. Excel fájlt egy <strong>covid</strong> nevű pandas <code>data frame</code>-be!</p>
+<div class="sourceCode" id="cb940"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb940-1"><a href="kétváltozós-lineáris-regresszió.html#cb940-1" tabindex="-1"></a>covid <span class="op">=</span> pd.read_excel(<span class="st">&quot;COVID_0326.xlsx&quot;</span>)</span>
+<span id="cb940-2"><a href="kétváltozós-lineáris-regresszió.html#cb940-2" tabindex="-1"></a>covid.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 100 entries, 0 to 99
+## Data columns (total 9 columns):
+##  #   Column                    Non-Null Count  Dtype  
+## ---  ------                    --------------  -----  
+##  0   Country                   100 non-null    object 
+##  1   Pop                       100 non-null    int64  
+##  2   PopDens                   100 non-null    int64  
+##  3   Prop_UrbanPop             100 non-null    int64  
+##  4   PressLiberty              100 non-null    float64
+##  5   PerCapita_HealthExp_2016  100 non-null    float64
+##  6   COVID19_CasesPerMillion   100 non-null    float64
+##  7   ConstitutionalForm        100 non-null    object 
+##  8   HeadOfState               100 non-null    object 
+## dtypes: float64(3), int64(3), object(3)
+## memory usage: 7.2+ KB</code></pre>
+<p>A fájlból betöltött tábla a Föld 100 országára, mint megfigyelési egységekre nézve tartalmazza az alábbi 9 változó adatait:</p>
+<ul>
+<li>Country: ország neve</li>
+<li>Pop: ország népessége (fő)</li>
+<li>PopDens: népsűrűség (fő/km2)</li>
+<li>Prop_UrbanPop: Városi népesség aránya 2019-ben (%)</li>
+<li>PressLiberty: Sajtószabadsági index 2019-ben (alacsonyabb = szabadabb sajtó)</li>
+<li>PerCapita_HealthExp_2016: Egy főre jutó eüg-i kiadások, vásárlóerő-paritáson számolva (2016)</li>
+<li>COVID19_CasesPerMillion: Egymillió főre jutó COVID-19 fertőzöttek száma 2020.03.26-án</li>
+<li>ConstitutionalForm: államforma</li>
+<li>HeadOfState: államfő jogkörei (hatalmat gyakorol vagy csak reprezentatív szerepkörű)</li>
+</ul>
+<p>Nézzünk egy kétváltozós regressziót az egymillió főre jutó COVID esetszám (<strong>COVID19_CasesPerMillion</strong>) és a sajtószabadsági index (<strong>PressLiberty</strong>) között. Egy logikus fektételezés, hogy az ország sajtószabadsági indexéből következik az, hogy a COVID járvány korai szakaszában (2020. március 26-án) hány COVID fertőzöttet regisztráltak az országban népességarányosan. Mondván egy sajtónyilvánosabb országban kevésbé tudja eltitkolni a központi egészségügy a fertőzöttek valódi számát. Ebből adódóan a magyarázóváltozó lesz a regresszióban az <strong>x = PressLiberty</strong> és az eredményváltozó pedig az <strong>y = COVID19_CasesPerMillion</strong>. És akkor a következő regressziós egyenlet <span class="math inline">\(\beta_1,\beta_0\)</span> együtthatóit kéne megbecsülni a data frame-ben található 100 ország adatai alapján <span class="math display">\[Becsült COVID19=\beta_1 \times PressLiberty+ \beta_0\]</span></p>
+<p>Szerencsére, nem kell újra a <code>minimize</code> függvénnyel szenbednünk ahhoz, hogy megkapjuk a <span class="math inline">\(\beta_1,\beta_0\)</span> regressziós együtthatók legkisebb négyzete elvű (OLS) becslését. A <code>numpy</code> csomag <code>polyfit</code> függvénye legyártja ezeket nekünk. A függvény első paramétere a magyarázóváltozó (<span class="math inline">\(x\)</span>), második az eredményváltozó (<span class="math inline">\(y\)</span>) a regresszióban. Míg a harmadik paraméterben, egy <code>deg=1</code> beállítással azt jelezzük a gépállatnak, hogy a megadott <span class="math inline">\(x\)</span> és <span class="math inline">\(y\)</span> koordinátákra egyenest illesszen, ne valami bonyolultabb alakzatot (pl. másodfokú polinomot).</p>
+<div class="sourceCode" id="cb942"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb942-1"><a href="kétváltozós-lineáris-regresszió.html#cb942-1" tabindex="-1"></a>Beta1, Beta0 <span class="op">=</span> np.polyfit(covid.PressLiberty, covid.COVID19_CasesPerMillion, deg <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb942-2"><a href="kétváltozós-lineáris-regresszió.html#cb942-2" tabindex="-1"></a><span class="bu">print</span>([Beta1, Beta0])</span></code></pre></div>
+<pre><code>## [-4.283796024297913, 214.90178214724114]</code></pre>
+<p>A 100 országra legjobban illeszkedő egyenes egyenlete tehát: <span class="math display">\[Becsült COVID19=-4.28 \times PressLiberty+ 214.9\]</span></p>
+<p>Tehát, ha a sajtószabadsági index 1 egységgel nő (azaz a sajtó egy egységgel kevésbé lesz szabad) egy országban, akkor <em>várhatóan</em> 4.28 eset/millió fővel <strong>csökken</strong> az ország fertőzötteinek száma. Érdekes eredmény, de ez feltehetőleg azért van így, mert 2020.03.26-i állapotokat tükröz az adatbázis, és akkor még intenzív tesztelést inkább csak a gazdagabb, és szabadabb sajtóval bíró országok végeztek. Plusz, a sok kis észak-európai államban (Belgium, Hollandia, Dánia, stb.) nagy a sajtószabadság, de nagy a városi népesség aránya és a népesűrűség is, így ott nyilván jobban tud terjedni a vírus. De nyilván benne van ebben a negatív együtthatóban az is, hogy ekkor egy Pakisztán nagyon igyekezett még eltitkolni a fertőzöttek valós számát és a Pakisztánnál szabadabb sajtóval bíró Olaszországban nem igazán tudták eltitkolni, hogy mekkora a baj.<br>
+Érdekességképpen elmondhatjuk, hogy egy 0 szajtószabadsági indexszel (tehát a legszabadabb sajtóval) rendelkező országan a modell 214.9 fertőzöttet becsül 1 millió főre.</p>
+<p>Nézzük meg a modell %-os magyarázóerejét, azaz az <span class="math inline">\(R^2\)</span> mutatóját.</p>
+<div class="sourceCode" id="cb944"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb944-1"><a href="kétváltozós-lineáris-regresszió.html#cb944-1" tabindex="-1"></a>(stats.pearsonr(covid.PressLiberty, covid.COVID19_CasesPerMillion)[<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
+<pre><code>## 24.40883012227656</code></pre>
+<p>Láthatjuk, hogy a modellnek csak egy közepes (de nem gyenge!) magyarázóereje van, hiszen a sajtószabadsági index csak <span class="math inline">\(24.41\%\)</span>-ban magyarázza az egymillió főre jutó esetszámok alakulását, ami 10%-50% közötti érték.</p>
+<p>Nézzük meg, hogy ez az <span class="math inline">\(R^2\)</span> lehet-e <span class="math inline">\(0\%\)</span> nem megfigyelt országok esetén (a Föld országainak telejs sokaságában)? Azaz, nézzük meg a glogális F-próba p-értékét!</p>
+<p>Ehhez először kell egy próbafüggvény a 4. fejezetből megismert képlet alapján:</p>
+<div class="sourceCode" id="cb946"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb946-1"><a href="kétváltozós-lineáris-regresszió.html#cb946-1" tabindex="-1"></a>probafuggveny_F <span class="op">=</span> (<span class="fl">0.2441</span><span class="op">/</span>(<span class="dv">2</span><span class="op">-</span><span class="dv">1</span>))<span class="op">/</span>((<span class="dv">1</span><span class="op">-</span><span class="fl">0.2441</span>)<span class="op">/</span>(<span class="dv">100</span><span class="op">-</span><span class="dv">2</span>))</span></code></pre></div>
+<p>Majd jobboldali módon jöhet a p-érték egy <span class="math inline">\(F(2-1,100-2)\)</span> eloszlásból.</p>
+<div class="sourceCode" id="cb947"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb947-1"><a href="kétváltozós-lineáris-regresszió.html#cb947-1" tabindex="-1"></a><span class="dv">1</span><span class="op">-</span>stats.f.cdf(probafuggveny_F,<span class="dv">1</span>,<span class="dv">98</span>)</span></code></pre></div>
+<pre><code>## 1.752395408782803e-07</code></pre>
+<p>Tehát, a modell F-próbájának p-értéke csupán <span class="math inline">\(1.75 \times 10^{-7}\)</span>, ami kisebb még a legkisebb szokásosnak mondható <span class="math inline">\(\alpha=1\%=0.01\)</span> szignifikancia-szintnél is, így azt mondhatjuk, hogy a modell <span class="math inline">\(24.41\%\)</span>-os magyarázóereje szignifikáns marad a 100 megfigyelt országon kívüli világban is.</p>
+<p>Mindezen eredmények vizualizálva pontdiagramon:</p>
+<div class="sourceCode" id="cb949"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb949-1"><a href="kétváltozós-lineáris-regresszió.html#cb949-1" tabindex="-1"></a><span class="co"># Kiszámoljuk az y kalapokat, azaz a becsült árakat ezekkel a Bétákkal</span></span>
+<span id="cb949-2"><a href="kétváltozós-lineáris-regresszió.html#cb949-2" tabindex="-1"></a>covid[<span class="st">&#39;BecsultCOVID&#39;</span>] <span class="op">=</span> Beta1<span class="op">*</span>covid.PressLiberty <span class="op">+</span> Beta0</span>
+<span id="cb949-3"><a href="kétváltozós-lineáris-regresszió.html#cb949-3" tabindex="-1"></a></span>
+<span id="cb949-4"><a href="kétváltozós-lineáris-regresszió.html#cb949-4" tabindex="-1"></a><span class="co"># Ábrázoljuk az új egyenest a pontdiagramon</span></span>
+<span id="cb949-5"><a href="kétváltozós-lineáris-regresszió.html#cb949-5" tabindex="-1"></a>plt.scatter(covid.PressLiberty, covid.COVID19_CasesPerMillion)</span>
+<span id="cb949-6"><a href="kétváltozós-lineáris-regresszió.html#cb949-6" tabindex="-1"></a>plt.plot(np.array(covid.PressLiberty),</span>
+<span id="cb949-7"><a href="kétváltozós-lineáris-regresszió.html#cb949-7" tabindex="-1"></a>         np.array(covid.BecsultCOVID), <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb949-8"><a href="kétváltozós-lineáris-regresszió.html#cb949-8" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-401-45.png" width="672" /></p>
+<p>Láthatjuk, hogy a pontokra legjobban illeszkedő egyenes negatív meredekségű, csökkenő trendet mutat, és aránylag jobban szóródnak az egyenes körül a pontok, és a 95%-os konfdiencia-intervalluma is viszonylag (de nem vészesen) tág, de az egymillió főre jutó esetszámok csökkenő trendje a <strong>PressLiberty</strong> függvényében még szépen kirajzolódik. Mindez az <span class="math inline">\(R^2\)</span> által is jelzett közepes erőséggű kapcsolatra utal.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="nemparaméteres-próbák.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="többváltozós-ols-regresszió-alapjai.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/11-KetvaltReg.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

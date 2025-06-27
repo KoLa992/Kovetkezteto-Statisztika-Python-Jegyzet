@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Eloszlások és Mintavételezés | Következtető Statisztika Python Jegyzet</title>
+  <meta name="description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Eloszlások és Mintavételezés | Következtető Statisztika Python Jegyzet" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="github-repo" content="KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Eloszlások és Mintavételezés | Következtető Statisztika Python Jegyzet" />
+  
+  <meta name="twitter:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  
+
+<meta name="author" content="Kovács László" />
+
+
+<meta name="date" content="2025-06-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"/>
+<link rel="next" href="a-becsléselmélet-alapjai.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Következtető Statisztika Python Jegyzet</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Előhang</a></li>
+<li class="chapter" data-level="2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html"><i class="fa fa-check"></i><b>2</b> Statisztikához szükséges Python nyelvi alapok</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#programozási-alapelvek"><i class="fa fa-check"></i><b>2.1</b> Programozási alapelvek</a></li>
+<li class="chapter" data-level="2.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pythonról-általában"><i class="fa fa-check"></i><b>2.2</b> A Pythonról általában</a></li>
+<li class="chapter" data-level="2.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-spyder-felülete"><i class="fa fa-check"></i><b>2.3</b> A Spyder felülete</a></li>
+<li class="chapter" data-level="2.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#alapvető-python-adattípusok-és-adatszerkezetek"><i class="fa fa-check"></i><b>2.5</b> Alapvető Python adattípusok és adatszerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-adattípusok"><i class="fa fa-check"></i><b>2.5.1</b> Egyszerű adattípusok</a></li>
+<li class="chapter" data-level="2.5.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#összetett-adatszerkezetek"><i class="fa fa-check"></i><b>2.5.2</b> Összetett adatszerkezetek</a></li>
+<li class="chapter" data-level="2.5.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-numpy-tömb"><i class="fa fa-check"></i><b>2.5.3</b> A <code>numpy</code> tömb</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#vezérlési-szerkezetek"><i class="fa fa-check"></i><b>2.6</b> Vezérlési szerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#elágazás-if"><i class="fa fa-check"></i><b>2.6.1</b> Elágazás (<code>if</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#ciklusok-for"><i class="fa fa-check"></i><b>2.6.2</b> Ciklusok (<code>for</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pandas-data-frame-objektum"><i class="fa fa-check"></i><b>2.7</b> A Pandas data frame objektum</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hivatkozási-lehetőségek-data-frame-ben"><i class="fa fa-check"></i><b>2.7.1</b> Hivatkozási lehetőségek data frame-ben</a></li>
+<li class="chapter" data-level="2.7.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-módosítása"><i class="fa fa-check"></i><b>2.7.2</b> Data frame-k módosítása</a></li>
+<li class="chapter" data-level="2.7.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#szűrés-data-frame-ben-logikai-indexszálás"><i class="fa fa-check"></i><b>2.7.3</b> Szűrés data frame-ben: logikai indexszálás</a></li>
+<li class="chapter" data-level="2.7.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hiányzó-értékek-kezelése-data-frame-ben"><i class="fa fa-check"></i><b>2.7.4</b> Hiányzó értékek kezelése data frame-ben</a></li>
+<li class="chapter" data-level="2.7.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatvizualizáció-data-frame-en-keresztül"><i class="fa fa-check"></i><b>2.7.5</b> Adatvizualizáció data frame-en keresztül</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#aggregálás-data-frame-ben"><i class="fa fa-check"></i><b>2.8</b> Aggregálás data frame-ben</a></li>
+<li class="chapter" data-level="2.9" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-leíró-statisztika-data-frame-ben"><i class="fa fa-check"></i><b>2.9</b> Egyszerű leíró statisztika data frame-ben</a></li>
+<li class="chapter" data-level="2.10" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatminőségi-problémák-felismerése-és-kezelése-leíró-statisztika-segítségével"><i class="fa fa-check"></i><b>2.10</b> Adatminőségi problémák felismerése és kezelése leíró statisztika segítségével</a></li>
+<li class="chapter" data-level="2.11" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-összekapcsolása"><i class="fa fa-check"></i><b>2.11</b> Data frame-k összekapcsolása</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-kapcsolási-kulcsnak-használt-oszlop-ellenőrzése-és-javítása"><i class="fa fa-check"></i><b>2.11.1</b> A kapcsolási kulcsnak használt oszlop ellenőrzése és javítása</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#kilógó-értékek-keresése-és-kezelése"><i class="fa fa-check"></i><b>2.12</b> Kilógó értékek keresése és kezelése</a></li>
+<li class="chapter" data-level="2.13" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#korrelációs-elemzések-data-frame-ben"><i class="fa fa-check"></i><b>2.13</b> Korrelációs elemzések data frame-ben</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok"><i class="fa fa-check"></i>Gyakorló feladatok</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok-megoldása"><i class="fa fa-check"></i>Gyakorló feladatok megoldása</a>
+<ul>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat"><i class="fa fa-check"></i>1. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-1"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-2"><i class="fa fa-check"></i>3. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-3"><i class="fa fa-check"></i>4. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-4"><i class="fa fa-check"></i>5. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-5"><i class="fa fa-check"></i>6. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-6"><i class="fa fa-check"></i>7. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-7"><i class="fa fa-check"></i>8. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-8"><i class="fa fa-check"></i>9. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-9"><i class="fa fa-check"></i>10. feladat</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><i class="fa fa-check"></i><b>3</b> Leíró Statisztika ismétlés és Valószínűségszámítás alapok</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#leíró-statisztikai-mutatók"><i class="fa fa-check"></i><b>3.1</b> Leíró statisztikai mutatók</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#hisztogram-és-alakmutatók"><i class="fa fa-check"></i><b>3.1.1</b> Hisztogram és Alakmutatók</a></li>
+<li class="chapter" data-level="3.1.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-lekérése"><i class="fa fa-check"></i><b>3.1.2</b> Gyakorisági tábla lekérése</a></li>
+<li class="chapter" data-level="3.1.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-bővítése"><i class="fa fa-check"></i><b>3.1.3</b> Gyakorisági tábla bővítése</a></li>
+<li class="chapter" data-level="3.1.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#súlyozott-átlag-és-szórás-pythonban"><i class="fa fa-check"></i><b>3.1.4</b> Súlyozott átlag és szórás Pythonban</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-normális-eloszlás-és-sűrűségfüggvénye"><i class="fa fa-check"></i><b>3.2</b> A normális eloszlás és sűrűségfüggvénye</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-használata"><i class="fa fa-check"></i><b>3.2.1</b> A sűrűségfüggvény használata</a></li>
+<li class="chapter" data-level="3.2.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-integrálja"><i class="fa fa-check"></i><b>3.2.2</b> A sűrűségfüggvény integrálja</a></li>
+<li class="chapter" data-level="3.2.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#valószínűség-vs-relatív-gyakoriság"><i class="fa fa-check"></i><b>3.2.3</b> Valószínűség vs Relatív Gyakoriság</a></li>
+<li class="chapter" data-level="3.2.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#centrális-határeloszlás-tétel-cht"><i class="fa fa-check"></i><b>3.2.4</b> Centrális Határeloszlás Tétel (CHT)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#inverz-értékek"><i class="fa fa-check"></i><b>3.2.5</b> Inverz Értékek</a></li>
+<li class="chapter" data-level="3.2.6" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-standard-normális-eloszlás"><i class="fa fa-check"></i><b>3.2.6</b> A Standard Normális Eloszlás</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#az-exponenciális-eloszlás"><i class="fa fa-check"></i><b>3.3</b> Az Exponenciális eloszlás</a></li>
+<li class="chapter" data-level="3.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-varianciahányados-pythonban---kokain-a-balatonban"><i class="fa fa-check"></i><b>3.4</b> A Varianciahányados Pythonban - Kokain a Balatonban</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#további-minőségi-ismérvek-és-a-kokainmennyiség"><i class="fa fa-check"></i><b>3.4.1</b> További minőségi ismérvek és a kokainmennyiség</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html"><i class="fa fa-check"></i><b>4</b> Eloszlások és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#véletlenszám-generálás-és-mintavételezés"><i class="fa fa-check"></i><b>4.1</b> Véletlenszám generálás és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintagenerálás-általános-elve"><i class="fa fa-check"></i><b>4.1.1</b> A mintagenerálás általános elve</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#nem-egyenletes-eloszlású-minták-generálása"><i class="fa fa-check"></i><b>4.1.2</b> Nem egyenletes eloszlású minták generálása</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#elvi-eloszlás-vs-megfigyelt-minta"><i class="fa fa-check"></i><b>4.2</b> Elvi Eloszlás vs Megfigyelt Minta</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#az-elvi-eloszlás-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.1</b> Az elvi eloszlás alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-megfigyelt-minta-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.2</b> A megfigyelt minta alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintavételi-hiba-mvh-koncepciója"><i class="fa fa-check"></i><b>4.2.3</b> A mintavételi hiba (MVH) koncepciója</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#statisztikai-sokaságok-fae-mintavételezése"><i class="fa fa-check"></i><b>4.3</b> Statisztikai sokaságok FAE mintavételezése</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#ismételt-mintavételezés-resampling"><i class="fa fa-check"></i><b>4.3.1</b> Ismételt Mintavételezés (<em>Resampling</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html"><i class="fa fa-check"></i><b>5</b> A becsléselmélet alapjai</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#ismétlés-balaton-átúszás-eredmények-és-ezek-fae-mintái"><i class="fa fa-check"></i><b>5.1</b> Ismétlés: Balaton átúszás eredmények és ezek FAE mintái</a></li>
+<li class="chapter" data-level="5.2" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2</b> A torzítatlanság fogalma</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-aszimptotikus-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2.1</b> Az aszimptotikus torzítatlanság fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-korrigált-mintavariancia"><i class="fa fa-check"></i><b>5.3</b> A korrigált mintavariancia</a></li>
+<li class="chapter" data-level="5.4" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-medián-torzítatlansága"><i class="fa fa-check"></i><b>5.4</b> A medián torzítatlansága</a></li>
+<li class="chapter" data-level="5.5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-standard-hiba-sh-fogalma"><i class="fa fa-check"></i><b>5.5</b> A Standard Hiba (<em>SH</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-konzisztens-becslés-fogalma"><i class="fa fa-check"></i><b>5.5.1</b> A konzisztens becslés fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-átlagos-négyzetes-hiba-mse-fogalma"><i class="fa fa-check"></i><b>5.6</b> Az átlagos négyzetes hiba (<em>MSE</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#különböző-becslőfüggvények-összehasonlítása"><i class="fa fa-check"></i><b>5.6.1</b> Különböző becslőfüggvények összehasonlítása</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html"><i class="fa fa-check"></i><b>6</b> A sokasági átlag intervallumbecslése</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#ismétlés-az-átlag-standard-hibája-a-balaton-átúszás-eredményeken"><i class="fa fa-check"></i><b>6.1</b> Ismétlés: Az átlag standard hibája a Balaton átúszás eredményeken</a></li>
+<li class="chapter" data-level="6.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-mintaátlagok-eloszlása"><i class="fa fa-check"></i><b>6.2</b> A mintaátlagok eloszlása</a></li>
+<li class="chapter" data-level="6.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-sokasági-átlag-konfidencia-intervalluma"><i class="fa fa-check"></i><b>6.3</b> A sokasági átlag konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#az-átlag-konfidencia-intervallumának-általános-alakja"><i class="fa fa-check"></i><b>6.3.1</b> Az átlag konfidencia-intervallumának általános alakja</a></li>
+<li class="chapter" data-level="6.3.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-megbízhatóságának-ellenőrzése"><i class="fa fa-check"></i><b>6.3.2</b> A konfidencia-intervallum megbízhatóságának ellenőrzése</a></li>
+<li class="chapter" data-level="6.3.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-két-fontos-tulajdonsága"><i class="fa fa-check"></i><b>6.3.3</b> 3.3. A konfidencia-intervallum két fontos tulajdonsága</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#intervallumbecslés-a-gyakorlatban"><i class="fa fa-check"></i><b>6.4</b> Intervallumbecslés a gyakorlatban</a>
+<ul>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-altatók-hatékonysága"><i class="fa fa-check"></i>1. feladat: Altatók hatékonysága</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-feladat-megoldás"><i class="fa fa-check"></i>1/a) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#b-feladat-megoldás"><i class="fa fa-check"></i>1/b) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#c-feladat-megoldás"><i class="fa fa-check"></i>1/c) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-10"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-megoldás"><i class="fa fa-check"></i>2. feladat megoldás</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#összefoglalás-az-átlag-konfidencia-intervallumairól"><i class="fa fa-check"></i><b>6.5</b> Összefoglalás az átlag konfidencia-intervallumairól</a></li>
+<li class="chapter" data-level="6.6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#esettanulmány"><i class="fa fa-check"></i><b>6.6</b> Esettanulmány</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html"><i class="fa fa-check"></i><b>7</b> További FAE becslések és a Bootstrap módszer</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-konfidencia-intervallumok-két-általános-tulajdonsága"><i class="fa fa-check"></i><b>7.1</b> A Konfidencia-intervallumok két általános tulajdonsága</a></li>
+<li class="chapter" data-level="7.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#arányok-konfidencia-intervalluma"><i class="fa fa-check"></i><b>7.2</b> Arányok konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#mintaelemszám-meghatározása-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.1</b> Mintaelemszám meghatározása aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#szükséges-minimális-elemszám-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.2</b> Szükséges minimális elemszám aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#aránybecslés-a-statsmodels-csomaggal"><i class="fa fa-check"></i><b>7.2.3</b> Aránybecslés a <code>statsmodels</code> csomaggal</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-bootstrap-becslések-általános-elve"><i class="fa fa-check"></i><b>7.3</b> A Bootstrap becslések általános elve</a></li>
+<li class="chapter" data-level="7.4" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-medián-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.4</b> A Medián Bootstrap intervallumbecslése</a></li>
+<li class="chapter" data-level="7.5" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-szórás-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.5</b> A Szórás Bootstrap intervallumbecslése</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html"><i class="fa fa-check"></i><b>8</b> Becslések EV és R mintából</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#intervallumbecslés-visszatevés-nélküli-egyszerű-véletlen-ev-mintákból"><i class="fa fa-check"></i><b>8.1</b> Intervallumbecslés visszatevés nélküli egyszerű véletlen (EV) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.1</b> Átlag becslése EV mintákból</a></li>
+<li class="chapter" data-level="8.1.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#arány-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.2</b> Arány becslése EV mintákból</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-arányosan-rétegzett-ar-mintákból"><i class="fa fa-check"></i><b>8.2</b> Átlag becslése Arányosan Rétegzett (AR) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#az-ar-mintavételek-hatékonysága"><i class="fa fa-check"></i><b>8.2.1</b> Az AR mintavételek hatékonysága</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html"><i class="fa fa-check"></i><b>9</b> Hipotézisvizsgálat alapjai</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-alapgondolata"><i class="fa fa-check"></i><b>9.1</b> A hipotézisvizsgálat alapgondolata</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-p-érték-fogalma"><i class="fa fa-check"></i><b>9.1.1</b> A p-érték fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-t-próba"><i class="fa fa-check"></i><b>9.2</b> A sokasági átlagra vonatkozó <em>t-próba</em></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-beépített-függvénnyel"><i class="fa fa-check"></i><b>9.2.1</b> A <em>t-próba</em> beépített függvénnyel</a></li>
+<li class="chapter" data-level="9.2.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-előfeltételei"><i class="fa fa-check"></i><b>9.2.2</b> A <em>t-próba</em> előfeltételei</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.3</b> A sokasági átlagra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.4" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-arányra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.4</b> A sokasági arányra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.5" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-menete-madártávlatból"><i class="fa fa-check"></i><b>9.5</b> A hipotézisvizsgálat menete madártávlatból</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html"><i class="fa fa-check"></i><b>10</b> Egymintás és Kétmintás próbák</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-szórásra-vonatkozó-chi2-próba"><i class="fa fa-check"></i><b>10.1</b> A szórásra vonatkozó <span class="math inline">\(\chi^2\)</span>-próba</a></li>
+<li class="chapter" data-level="10.2" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-kétmintás-hipotézisvizsgálatok-elve"><i class="fa fa-check"></i><b>10.2</b> A kétmintás hipotézisvizsgálatok elve</a></li>
+<li class="chapter" data-level="10.3" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-átlagokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.3</b> Az átlagokra vonatkozó kétmintás <em>z-próba</em></a></li>
+<li class="chapter" data-level="10.4" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-arányokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.4</b> Az arányokra vonatkozó kétmintás <em>z-próba</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html"><i class="fa fa-check"></i><b>11</b> Nemparaméteres próbák</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#nemparaméteres-próbák-elve"><i class="fa fa-check"></i><b>11.1</b> Nemparaméteres próbák elve</a></li>
+<li class="chapter" data-level="11.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#illeszkedésvizsgálatok"><i class="fa fa-check"></i><b>11.2</b> Illeszkedésvizsgálatok</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#reprezentativitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.1</b> Reprezentativitás vizsgálat</a></li>
+<li class="chapter" data-level="11.2.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#normalitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.2</b> Normalitás vizsgálat</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#függetlenségvizsgálatok-homogenitásvizsgálatok"><i class="fa fa-check"></i><b>11.3</b> Függetlenségvizsgálatok (homogenitásvizsgálatok)</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html"><i class="fa fa-check"></i><b>12</b> Kétváltozós lineáris regresszió</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#budapesti-lakások-vizsgálata"><i class="fa fa-check"></i><b>12.1</b> Budapesti lakások vizsgálata</a></li>
+<li class="chapter" data-level="12.2" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-kétváltozós-lineáris-regresszió-ols-elvű-becslése"><i class="fa fa-check"></i><b>12.2</b> A Kétváltozós Lineáris Regresszió OLS elvű becslése</a></li>
+<li class="chapter" data-level="12.3" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#az-ols-regresszió-magyarázóerejének-mérése"><i class="fa fa-check"></i><b>12.3</b> Az OLS Regresszió magyarázóerejének mérése</a></li>
+<li class="chapter" data-level="12.4" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-regresszió-magyarázóereje-nem-megfigyelt-adatok-körében"><i class="fa fa-check"></i><b>12.4</b> A Regresszió magyarázóereje nem megfigyelt adatok körében</a></li>
+<li class="chapter" data-level="12.5" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-modell-együtthatóinak-értelemzése"><i class="fa fa-check"></i><b>12.5</b> A modell együtthatóinak értelemzése</a></li>
+<li class="chapter" data-level="12.6" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#egy-gyakorló-példa-covid-adatokon"><i class="fa fa-check"></i><b>12.6</b> Egy gyakorló példa COVID adatokon</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html"><i class="fa fa-check"></i><b>13</b> Többváltozós OLS Regresszió alapjai</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#magyar-járások-covid-19-halálozási-arányai"><i class="fa fa-check"></i><b>13.1</b> Magyar járások COVID-19 halálozási arányai</a></li>
+<li class="chapter" data-level="13.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-többváltozós-lineáris-regresszió-ols-elvű-előállítása"><i class="fa fa-check"></i><b>13.2</b> A Többváltozós Lineáris Regresszió OLS elvű előállítása</a></li>
+<li class="chapter" data-level="13.3" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-magyarázóváltozók-marginális-hatása"><i class="fa fa-check"></i><b>13.3</b> A magyarázóváltozók marginális hatása</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#útelemzés"><i class="fa fa-check"></i><b>13.3.1</b> Útelemzés</a></li>
+<li class="chapter" data-level="13.3.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#parciális-t-próba"><i class="fa fa-check"></i><b>13.3.2</b> Parciális t-próba</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Következtető Statisztika Python Jegyzet</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eloszlások-és-mintavételezés" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Eloszlások és Mintavételezés<a href="eloszlások-és-mintavételezés.html#eloszlások-és-mintavételezés" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="véletlenszám-generálás-és-mintavételezés" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Véletlenszám generálás és Mintavételezés<a href="eloszlások-és-mintavételezés.html#véletlenszám-generálás-és-mintavételezés" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Minden programnyelv alapelemének számít egy olyan függvény, ami <span class="math inline">\(0-1\)</span> értékek közötti véletlen számokat generál. Egész pontosan ezek a függvények <strong>úgy generálnak számokat, hogy azok <span class="math inline">\(0-1\)</span> között minden értéket azonos valószínűséggel</strong>, tehát <strong>egyenletes eloszlással</strong> vehetnek fel.<br>
+Az ilyen <span class="math inline">\(0-1\)</span> között egyenletes eloszlású véletlenszám generátorok minden programnyelv alapvető eszközei, és a Számítástudományból tanult <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator" target="_blank">lineáris kongruenciarendszereken alapulnak</a>.</p>
+<p>A <span class="math inline">\(0-1\)</span> közötti teljesen véletlen számok generálásához Pythonban egy <code>random</code> c. csomagot kell importálni, és ennek a (nem meglepő módon) <code>random</code> névre keresztelt függvényével tudunk véletlen számokat dobálgatni.</p>
+<div class="sourceCode" id="cb490"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb490-1"><a href="eloszlások-és-mintavételezés.html#cb490-1" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb490-2"><a href="eloszlások-és-mintavételezés.html#cb490-2" tabindex="-1"></a></span>
+<span id="cb490-3"><a href="eloszlások-és-mintavételezés.html#cb490-3" tabindex="-1"></a>GondoltamEgySzámra <span class="op">=</span> random.random()</span>
+<span id="cb490-4"><a href="eloszlások-és-mintavételezés.html#cb490-4" tabindex="-1"></a>GondoltamEgySzámra</span></code></pre></div>
+<pre><code>## 0.42139752361930294</code></pre>
+<p>Fenti kódsort futtatva nyilván mindenkinek más eredménye lesz, hiszen <em>random</em> számot generálunk. :) A lényeg, hogy a számunk <span class="math inline">\(0-1\)</span> közötti!</p>
+<p>Node, <strong>mit csinál ez a véletlenszám generátor statisztikus szemmel tekintve</strong>? Nos, ilyenkor ők <strong>egy olyan <span class="math inline">\(Y_i\)</span> adatsorból húznak véletlenszerűen egy <span class="math inline">\(x\)</span> számértéket, aminek az eloszlása <span class="math inline">\(0-1\)</span> közötti egyenletes eloszlás</strong>. Ennek a matematikai jelölésrendszere: <span class="math inline">\(Y_i \sim U(0,1)\)</span>. Az <span class="math inline">\(U\)</span> onnan jön, hogy az egyenletes eloszlás in English <em>uniform distribution</em>.</p>
+<p>Húzzunk akkor most ebből a <span class="math inline">\(Y_i \sim U(0,1)\)</span> adatsorból <span class="math inline">\(50\)</span> db véletlen értéket, és tároljuk el az eredményeket egy Python <code>list</code> objektumban! Azaz, <strong>vegyünk a <span class="math inline">\(U(0,1)\)</span> eloszlásból egy <span class="math inline">\(n=50\)</span> elemű mintát!</strong></p>
+<p>Technikailag úgy kell eljárnunk, hogy létrhozunk egy üres listát Pythonban, és az <code>append</code> metódusa segítségével föltöltjük <span class="math inline">\(50\)</span> db random <span class="math inline">\(0-1\)</span> közötti számmal.</p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb492-1"><a href="eloszlások-és-mintavételezés.html#cb492-1" tabindex="-1"></a>SzerencsétlenVéletlenek <span class="op">=</span> [] <span class="co"># üres lista létrehozása</span></span>
+<span id="cb492-2"><a href="eloszlások-és-mintavételezés.html#cb492-2" tabindex="-1"></a></span>
+<span id="cb492-3"><a href="eloszlások-és-mintavételezés.html#cb492-3" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb492-4"><a href="eloszlások-és-mintavételezés.html#cb492-4" tabindex="-1"></a>  SzerencsétlenVéletlenek.append(random.random()) <span class="co"># véletlen szám hozzáadása a listához</span></span>
+<span id="cb492-5"><a href="eloszlások-és-mintavételezés.html#cb492-5" tabindex="-1"></a></span>
+<span id="cb492-6"><a href="eloszlások-és-mintavételezés.html#cb492-6" tabindex="-1"></a>SzerencsétlenVéletlenek</span></code></pre></div>
+<pre><code>## [0.4099010002760194, 0.9300883795427154, 0.6137666392752591, 0.35062869677959074, 0.46056709370921445, 0.9302937668465312, 0.13186296185408586, 0.9075299972974351, 0.9076711288732165, 0.5452927245396932, 0.33564356069080825, 0.8808476151520905, 0.8185246307010918, 0.5658117288075583, 0.6305189122226167, 0.8502951054648858, 0.8191689424415237, 0.5420529809590671, 0.3356988467580059, 0.7901712875092399, 0.5351126129883541, 0.720924726254237, 0.606140242975734, 0.8230916867108772, 0.4418910445885855, 0.9723006664658659, 0.9525457100252103, 0.44571463193117633, 0.64709174256627, 0.41627913254770676, 0.628459459391409, 0.9005397381785331, 0.41327754048088905, 0.9515813156815556, 0.8374642249282651, 0.6875821485719628, 0.3285758023599784, 0.4821363206245739, 0.6844122193920085, 0.8338899443608556, 0.8278983686523371, 0.7578194449822785, 0.4022841200229569, 0.903104723227127, 0.44211589789435135, 0.3631003765851488, 0.5265345130421711, 0.4397932237479282, 0.6239824796872361, 0.028200394776881632]</code></pre>
+<p>Itt is van az <span class="math inline">\(50\)</span> szép kicsi véletlen számom. Nyilván ezek megint mindenkinek más értékek. :)</p>
+<p>Következő lépésben <strong>ezt az <span class="math inline">\(50\)</span> elemű mintát transzformáljuk át olyanná, hogy ne egy <span class="math inline">\(U(0,1)\)</span> eloszlásból, hanem mondjuk egy <span class="math inline">\(U(40,160)\)</span> eloszlásból származó minta</strong>! Magyarul, az kéne, hogy ez az <span class="math inline">\(50\)</span> véletlen szám, ne <span class="math inline">\(50\)</span> db <span class="math inline">\(0-1\)</span> közötti véletlen szám, hanem <span class="math inline">\(50\)</span> db <span class="math inline">\(40-160\)</span> közötti véletlen szám legyen!</p>
+<p>Ezt a következőképpen tudjuk elérni:</p>
+<ul>
+<li>Ha a <span class="math inline">\(0-1\)</span> közti véletlenszámokat megszorozzuk <span class="math inline">\(160-40=120\)</span>-szal, akkor <span class="math inline">\(0-120\)</span> közti véletlen számok lesznek.</li>
+<li>Ha a <span class="math inline">\(0-120\)</span> közti véletlen számokhoz hozzáadunk <span class="math inline">\(40\)</span>-et, akkor <span class="math inline">\((0+40)\)</span> és <span class="math inline">\((120+40)\)</span> közti, azaz <span class="math inline">\(40-160\)</span> közti véletlen számok leszenek.</li>
+</ul>
+<p>Ahhoz, hogy ezt technikailag kivitelezni tudjuk a <code>s</code> listánkat először <code>numpy</code> tömbbé kell konvertálni. De utána elég egyszerűen menni fog a dolog.</p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb494-1"><a href="eloszlások-és-mintavételezés.html#cb494-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb494-2"><a href="eloszlások-és-mintavételezés.html#cb494-2" tabindex="-1"></a></span>
+<span id="cb494-3"><a href="eloszlások-és-mintavételezés.html#cb494-3" tabindex="-1"></a>SzerencsétlenVéletlenek <span class="op">=</span> np.array(SzerencsétlenVéletlenek)</span>
+<span id="cb494-4"><a href="eloszlások-és-mintavételezés.html#cb494-4" tabindex="-1"></a>SzerencsétlenVéletlenek <span class="op">=</span> (SzerencsétlenVéletlenek <span class="op">*</span> (<span class="dv">160</span><span class="op">-</span><span class="dv">40</span>)) <span class="op">+</span> <span class="dv">40</span></span>
+<span id="cb494-5"><a href="eloszlások-és-mintavételezés.html#cb494-5" tabindex="-1"></a>SzerencsétlenVéletlenek</span></code></pre></div>
+<pre><code>## array([ 89.18812003, 151.61060555, 113.65199671,  82.07544361,
+##         95.26805125, 151.63525202,  55.82355542, 148.90359968,
+##        148.92053546, 105.43512694,  80.27722728, 145.70171382,
+##        138.22295568, 107.89740746, 115.66226947, 142.03541266,
+##        138.30027309, 105.04635772,  80.28386161, 134.8205545 ,
+##        104.21351356, 126.51096715, 112.73682916, 138.77100241,
+##         93.02692535, 156.67607998, 154.3054852 ,  93.48575583,
+##        117.65100911,  89.95349591, 115.41513513, 148.06476858,
+##         89.59330486, 154.18975788, 140.49570699, 122.50985783,
+##         79.42909628,  97.85635847, 122.12946633, 140.06679332,
+##        139.34780424, 130.9383334 ,  88.2740944 , 148.37256679,
+##         93.05390775,  83.57204519, 103.18414157,  92.77518685,
+##        114.87789756,  43.38404737])</code></pre>
+<p>Olybá tűnik a foglalkozásunk elérte célját: tényleg nincs itt <span class="math inline">\(40\)</span>-nél kisebb és <span class="math inline">\(160\)</span>-nál nagyobb szám! :)</p>
+<p>Nézzük meg, hogy mennyire egyenletes eloszlásúak a generált <span class="math inline">\(U(40,160)\)</span> eloszlású számaink! Rajzoljuk ki a hisztogramot!<br>
+Ehhez kelleni fog a <code>matplotlib</code> csomag <code>hist</code> függvénye is. Eza függvény lényegében a <code>numpy</code> csomag <code>histogram</code> függvénye, de listákra csak ezt lehet alkalmazni. Ugyebár még nem mentettük a dolgokat <code>pandas</code> data frame-be, ezért ilyen körülményes kicsit a hisztogram rajzolás.<br>
+Mivel <span class="math inline">\(50\)</span> adatot generáltunk, így a hisztogramhoz <span class="math inline">\(k=6\)</span> osztályköz kell a <span class="math inline">\(2^k \geq N\)</span> szabály alapján (<span class="math inline">\(2^6=64\)</span>)</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb496-1"><a href="eloszlások-és-mintavételezés.html#cb496-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb496-2"><a href="eloszlások-és-mintavételezés.html#cb496-2" tabindex="-1"></a></span>
+<span id="cb496-3"><a href="eloszlások-és-mintavételezés.html#cb496-3" tabindex="-1"></a>Hisztogram <span class="op">=</span> plt.hist(SzerencsétlenVéletlenek, bins <span class="op">=</span> <span class="dv">6</span>)</span>
+<span id="cb496-4"><a href="eloszlások-és-mintavételezés.html#cb496-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-205-3.png" width="672" /></p>
+<p>Mit is kéne látni ezen a hisztogramon? Hát általánossában az <span class="math inline">\(U(a,b)\)</span> eloszlás, azaz az <span class="math inline">\((a,b)\)</span> intervallumon egyenletes eloszlás sűrűségfüggvénye <span class="math inline">\(f(x) = \frac{1}{b-a}\)</span>, hiszen a sűrűségfüggvény helyettesítési értéke az egy konkrét <span class="math inline">\(x\)</span> érték bekövetkezési valószínűsége az <span class="math inline">\(U(a,b)\)</span> eloszlásban, <span class="math inline">\(P(Y_i=x)\)</span>. Ami az egyenletes eloszlás esetén minden <span class="math inline">\(x\)</span>-re <span class="math inline">\(a-b\)</span> között ugyan annyi, nevezetesen “<em>1 per az <span class="math inline">\((a,b)\)</span> intervallum hossza</em>!</p>
+<p>Esetünkben tehát <strong>az <span class="math inline">\(U(40,160)\)</span> eloszlás sűrűségfüggvénye</strong> az <span class="math inline">\(f(x)=\frac{1}{160-40}=\frac{1}{120}=0.0083\)</span> magasságban futó <strong>vízszintes egyenes</strong>. Vagyis <strong>a hisztogramnak minden <span class="math inline">\(x\)</span> értékre kb. ugyan akkora gyakoriságot kell mutatnia, ami azért szemmel láthatóan nem így van!</strong></p>
+<p><strong>Rajzoljuk csak ki a hisztogramot <code>density = True</code> beállítással és véssük fel rá az <span class="math inline">\(U(40,160)\)</span> eloszlás sűrűségfüggvényét!</strong> Ezt az ábrát hasonlóan lehet elkészíteni, mint ahogy a normális eloszlás sűrűségfüggvény illeszkedését vizsgáltuk garfikusan a Tesla árváltozások hisztogramjára az <a href="https://kola992.github.io/Statisztika-II-Python-Jegyzet/Gyak01.html#23_Val%C3%B3sz%C3%ADn%C5%B1s%C3%A9g_vs_Relat%C3%ADv_Gyakoris%C3%A1g" target="_blank">1. heti tananyag 2.3. fejezet</a> végén.<br>
+Sőt, természetesen a <code>scipy</code> csomag <code>stats</code> névterének <code>uniform.pdf</code> függvényével is ki tudjuk számolni az <span class="math inline">\(U(40,160)\)</span> eloszlás konstans <span class="math inline">\(f(x)=0.0083\)</span>-as sűrűségfüggvényét, ahogy az 1. heti anyagban kiszámoltuk a normális eloszlás sűrűségfüggvény <span class="math inline">\(f(x)\)</span> értékeit a <code>norm.pdf</code> függvénnyel. Arra kell figyelni az <code>uniform.pdf</code> függvénynél, hogy a <code>loc</code> nevű paraméterben kell megadni az <span class="math inline">\(U(a,b)\)</span> eloszlás alsó határát, azaz <span class="math inline">\(a\)</span>-t, míg a <code>scale</code> paraméterben a <strong>terjedelemét</strong>, azaz az <span class="math inline">\(a-b=160-40=120\)</span>-at!</p>
+<div class="sourceCode" id="cb497"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb497-1"><a href="eloszlások-és-mintavételezés.html#cb497-1" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb497-2"><a href="eloszlások-és-mintavételezés.html#cb497-2" tabindex="-1"></a></span>
+<span id="cb497-3"><a href="eloszlások-és-mintavételezés.html#cb497-3" tabindex="-1"></a>eloszlás_alsó_határ <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb497-4"><a href="eloszlások-és-mintavételezés.html#cb497-4" tabindex="-1"></a>eloszlás_felső_határ <span class="op">=</span> <span class="dv">160</span></span>
+<span id="cb497-5"><a href="eloszlások-és-mintavételezés.html#cb497-5" tabindex="-1"></a>eloszlás_terjedelem <span class="op">=</span> eloszlás_felső_határ <span class="op">-</span> eloszlás_alsó_határ</span>
+<span id="cb497-6"><a href="eloszlások-és-mintavételezés.html#cb497-6" tabindex="-1"></a></span>
+<span id="cb497-7"><a href="eloszlások-és-mintavételezés.html#cb497-7" tabindex="-1"></a>Hisztogram <span class="op">=</span> plt.hist(SzerencsétlenVéletlenek, bins <span class="op">=</span> <span class="dv">6</span>, density <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb497-8"><a href="eloszlások-és-mintavételezés.html#cb497-8" tabindex="-1"></a>x_tengely <span class="op">=</span> np.arange(eloszlás_alsó_határ, eloszlás_felső_határ, <span class="fl">0.01</span>)</span>
+<span id="cb497-9"><a href="eloszlások-és-mintavételezés.html#cb497-9" tabindex="-1"></a>y_tengely <span class="op">=</span> stats.uniform.pdf(x <span class="op">=</span> x_tengely, loc <span class="op">=</span> eloszlás_alsó_határ,scale <span class="op">=</span> eloszlás_terjedelem)</span>
+<span id="cb497-10"><a href="eloszlások-és-mintavételezés.html#cb497-10" tabindex="-1"></a>plt.plot(x_tengely, y_tengely)</span>
+<span id="cb497-11"><a href="eloszlások-és-mintavételezés.html#cb497-11" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-206-5.png" width="672" /></p>
+<p>Láthatjuk azért, hogy az <span class="math inline">\(50\)</span> elemű <strong>minta tapasztalt gyakoriságai nem annyira tükrözik az egyenletes eloszlás</strong> vízszintes <span class="math inline">\(f(x) = 0.0083\)</span> magas <strong>sűrűségfüggvényét, de azért többnyire a függvény vonala körül mozognak</strong>. Azt pedig már lecsekkoltuk, hogy a vgenerált minta minden értéke tényleg a <span class="math inline">\((40,160)\)</span> intervallumban található, de ez most szépen látszik a hisztogram <span class="math inline">\(x\)</span> tengelyén is.</p>
+<p>Tehát, sikeresen <strong>eltranszformáltuk az <span class="math inline">\(U(0,1)\)</span> eloszlású <span class="math inline">\(50\)</span> elemű mintánkat <span class="math inline">\(U(40,160)\)</span> eloszlásúvá</strong>. Mindjárt látjuk, hogy <strong>az <span class="math inline">\(U(0,1)\)</span> eloszlású véletlen számokat nem csak egy másik egyenletes <span class="math inline">\(U(a,b)\)</span> eloszlásúvá, hanem tetszőleges eloszlásúvá is tudjuk tarnszformálni!!</strong></p>
+<div id="a-mintagenerálás-általános-elve" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> A mintagenerálás általános elve<a href="eloszlások-és-mintavételezés.html#a-mintagenerálás-általános-elve" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Gondolkozzunk el azon, hogyan is lehet <strong>formalizálni azt a képletet, amivel az <span class="math inline">\(U(0,1)\)</span> eloszlású véletlen számokból U(a,b) eloszlású véletlen számokat csináltunk!</strong><br>
+Ugyebár a generált számot megszoroztuk az <span class="math inline">\((a,b)\)</span> intervallum hosszával, és hozzáadtuk az alsó határt, <span class="math inline">\(a\)</span>-t. Azaz formálisan azt mondhatjuk, hogy ha <span class="math inline">\(y \sim U(0,1)\)</span>, akkor <span class="math inline">\(z = y \times (b-a) + a \sim U(a,b)\)</span>.</p>
+<p>De honnan is jön ez a képlet? <strong>Gondoljunk bele, hogy <span class="math inline">\(U(a,b)\)</span> eloszlás esetén hogyan is számolunk ki egy <span class="math inline">\(P(Y_i &lt; x)\)</span> “alá esési” valószínűséget?</strong> Azaz, mi a <span class="math inline">\(\int_{-\infty}^x{\frac{1}{b-a}}dx\)</span> improprius integrál eredménye?</p>
+<p>Ez azért nem olyan bonyi vállalkozás, mint mondjuk egy normális eloszlás esetén kiszámolni a cuccot, hiszen mivel <span class="math inline">\(a\)</span> alatt az <span class="math inline">\(a-b\)</span> közötti egyenletes eloszlásban <span class="math inline">\(0\)</span> valószínűséggel lehetnek értékek, így az improprius integrálunk rögtön határozott integrállá válik:<span class="math inline">\(\int_a^x{\frac{1}{b-a}}dx\)</span>. Ezzel pedig már könnyen elbánunk, hiszen az integrálandó függvényben nincs is benne a függvény változója, az <span class="math inline">\(x\)</span>, tehát konstans függvényről van szó: <span class="math display">\[\int_a^x{\frac{1}{b-a}}dx=\left[\frac{x}{b-a}\right]_a^x=\frac{x}{b-a}-\frac{a}{b-a}=\frac{x-a}{b-a}\]</span></p>
+<p>Az eredmény szemléletesen persze az alábbi téglalap területe, hiszen a két oldal hossza <span class="math inline">\(oldal_1=x-a\)</span>, illetve a sűrűségfüggvény maga <span class="math inline">\(oldal_2=f(x)=\frac{1}{b-a}\)</span> és a téglalap területe <span class="math inline">\(T=oldal_1 \times oldal_2 = (x-a) \times\frac{1}{b-a} = \frac{x-a}{b-a}\)</span></p>
+<center>
+<img src="unifelo.jpg" style="width:60.0%" />
+</center>
+<p>Szóval, ha <strong>véletlenszerűen húzok egy <span class="math inline">\(Y_i\)</span> számot az <span class="math inline">\(U(a,b)\)</span> eloszlásból, akkor annak a valószínűsége, hogy <span class="math inline">\(x\)</span>-nél kisebb értéket kapok nem más, mint <span class="math inline">\(P(Y_i &lt; x) = \frac{x-a}{b-a}\)</span>.</strong></p>
+<p>Nagyon jó. Akkor, <strong>nézzük meg mi most az inverz függvény az egyenletes eloszlásban!</strong> Azaz hogyan válaszolom meg azt a kérdést mi szerint: <strong>Mi az az érték, aminél csak <span class="math inline">\(5\%\)</span> valószínűséggel kapok kisebb értéket egy <span class="math inline">\(U(a,b)\)</span> eloszlásban?</strong></p>
+<p>Ugye ekkor az <span class="math inline">\(P(Y_i &lt; x) = \frac{x-a}{b-a}\)</span> összefüggésből kéne kifejeznem <span class="math inline">\(x\)</span>-et, ami aránylag könnyű művelet: <span class="math display">\[x=P(Y_i &lt; x) \times (b-a) + a\]</span></p>
+<p><strong>Hoppácska!</strong> Amit kaptunk az gyakorlatilag <strong>ugyan az a formula, amivel a <span class="math inline">\(y \sim U(0,1)\)</span> eloszlásból <span class="math inline">\(z \sim U(a,b)\)</span> eloszlást csináltunk</strong>: <span class="math inline">\(z = y \times (b-a) + a\)</span></p>
+<p>Tehát, <strong>általánosságban azt az eredményt kapjuk, hogy ha egy <span class="math inline">\(U(0,1)\)</span> eloszlású véletlen számra <span class="math inline">\(P(Y_i &lt; x)\)</span> valószínűségként tekintek, és berakom azt egy tetszőleges eloszlás inverz függvényébe, és megkeresem a hozzá tartozó <span class="math inline">\(x\)</span> értéket, akkor amit kapok eredményül az olyan eloszlású véletlen szám lesz, mint amilyen eloszlás inverz függvényébe beírtam az <span class="math inline">\(U(0,1)\)</span> eloszlású véletlen számot!!</strong><br>
+Ugyebár simán tekinthetek egy <span class="math inline">\(0-1\)</span> közötti véletlenszámra <span class="math inline">\(P(Y_i &lt; x)\)</span> valószínűségként, hiszen minden valószínűség egy <span class="math inline">\(0-1\)</span> közötti szám. :)</p>
+<p><strong>Nézzük is meg az elvet a gyakorlatban!</strong> Ugye a <code>scipy</code> csomagban minden eloszlás inverz függvényét a <code>ppf</code> rövidítésű függvénnyel számoltuk ki (lásd <a href="https://kola992.github.io/Statisztika-II-Python-Jegyzet/Gyak01.html#25_Inverz_%C3%89rt%C3%A9kek" target="_blank">1. heti tananyag 2.5. fejezetben</a>).</p>
+<div class="sourceCode" id="cb498"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb498-1"><a href="eloszlások-és-mintavételezés.html#cb498-1" tabindex="-1"></a>eloszlás_alsó_határ <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb498-2"><a href="eloszlások-és-mintavételezés.html#cb498-2" tabindex="-1"></a>eloszlás_felső_határ <span class="op">=</span> <span class="dv">160</span></span>
+<span id="cb498-3"><a href="eloszlások-és-mintavételezés.html#cb498-3" tabindex="-1"></a>eloszlás_terjedelem <span class="op">=</span> eloszlás_felső_határ <span class="op">-</span> eloszlás_alsó_határ</span>
+<span id="cb498-4"><a href="eloszlások-és-mintavételezés.html#cb498-4" tabindex="-1"></a></span>
+<span id="cb498-5"><a href="eloszlások-és-mintavételezés.html#cb498-5" tabindex="-1"></a><span class="co"># Leürítjük a korábbi véletlenszámaink listáját és új üres listát hozunk létre</span></span>
+<span id="cb498-6"><a href="eloszlások-és-mintavételezés.html#cb498-6" tabindex="-1"></a>SzerencsétlenVéletlenek <span class="op">=</span> []</span>
+<span id="cb498-7"><a href="eloszlások-és-mintavételezés.html#cb498-7" tabindex="-1"></a></span>
+<span id="cb498-8"><a href="eloszlások-és-mintavételezés.html#cb498-8" tabindex="-1"></a><span class="co"># 50 db U(0,1) eloszlású szám generálása</span></span>
+<span id="cb498-9"><a href="eloszlások-és-mintavételezés.html#cb498-9" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb498-10"><a href="eloszlások-és-mintavételezés.html#cb498-10" tabindex="-1"></a>  SzerencsétlenVéletlenek.append(random.random()) <span class="co"># véletlen szám hozzáadása a listához</span></span>
+<span id="cb498-11"><a href="eloszlások-és-mintavételezés.html#cb498-11" tabindex="-1"></a></span>
+<span id="cb498-12"><a href="eloszlások-és-mintavételezés.html#cb498-12" tabindex="-1"></a><span class="co"># U(40,160)-á transzformálás inverz függvénnyel</span></span>
+<span id="cb498-13"><a href="eloszlások-és-mintavételezés.html#cb498-13" tabindex="-1"></a>SzerencsétlenVéletlenek <span class="op">=</span> stats.uniform.ppf(</span>
+<span id="cb498-14"><a href="eloszlások-és-mintavételezés.html#cb498-14" tabindex="-1"></a>  SzerencsétlenVéletlenek,</span>
+<span id="cb498-15"><a href="eloszlások-és-mintavételezés.html#cb498-15" tabindex="-1"></a>  loc <span class="op">=</span> eloszlás_alsó_határ,</span>
+<span id="cb498-16"><a href="eloszlások-és-mintavételezés.html#cb498-16" tabindex="-1"></a>  scale <span class="op">=</span> eloszlás_terjedelem)</span>
+<span id="cb498-17"><a href="eloszlások-és-mintavételezés.html#cb498-17" tabindex="-1"></a></span>
+<span id="cb498-18"><a href="eloszlások-és-mintavételezés.html#cb498-18" tabindex="-1"></a><span class="co"># Eredmény ellenőrzése hisztogramon</span></span>
+<span id="cb498-19"><a href="eloszlások-és-mintavételezés.html#cb498-19" tabindex="-1"></a>Hisztogram <span class="op">=</span> plt.hist(SzerencsétlenVéletlenek, bins <span class="op">=</span> <span class="dv">6</span>, density <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb498-20"><a href="eloszlások-és-mintavételezés.html#cb498-20" tabindex="-1"></a>x_tengely <span class="op">=</span> np.arange(eloszlás_alsó_határ, eloszlás_felső_határ, <span class="fl">0.01</span>)</span>
+<span id="cb498-21"><a href="eloszlások-és-mintavételezés.html#cb498-21" tabindex="-1"></a>y_tengely <span class="op">=</span> stats.uniform.pdf(x <span class="op">=</span> x_tengely, loc <span class="op">=</span> eloszlás_alsó_határ,scale <span class="op">=</span> eloszlás_terjedelem)</span>
+<span id="cb498-22"><a href="eloszlások-és-mintavételezés.html#cb498-22" tabindex="-1"></a>plt.plot(x_tengely, y_tengely)</span>
+<span id="cb498-23"><a href="eloszlások-és-mintavételezés.html#cb498-23" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-207-7.png" width="672" /></p>
+<p>E voilá: siker! Az értékek <span class="math inline">\(40-160\)</span> között mozognak, és a generált minta gyakoriságai kb. az <span class="math inline">\(U(40,160)\)</span> eloszlás <span class="math inline">\(f(x)\)</span> sűrűségfüggvénye körül ingadoznak!</p>
+</div>
+<div id="nem-egyenletes-eloszlású-minták-generálása" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Nem egyenletes eloszlású minták generálása<a href="eloszlások-és-mintavételezés.html#nem-egyenletes-eloszlású-minták-generálása" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Na, akkor abban bízunk, hogy <strong>az egyenletes eloszlás esetében megfigyelt trükk működni fog más eloszlásokra is</strong>.</p>
+<p>Tehát, <strong>ha egy <span class="math inline">\(U(0,1)\)</span> eloszlású véletlen számot berakom egy tetszőleges eloszlás inverz függvényébe, akkor amit eredményül kapok az olyan eloszlású véletlen szám, mint amilyen eloszlás inverz függvényébe beírtam az kezdeti <span class="math inline">\(U(0,1)\)</span> eloszlású véletlen számot!!</strong></p>
+<p><strong>Generáljunk akkor mondjuk először egy <span class="math inline">\(N(80,20)\)</span> eloszlású <span class="math inline">\(50\)</span> elemű mintát!</strong> Tehát, a normális eloszlásunk átlaga <span class="math inline">\(\mu=80\)</span> és szórása <span class="math inline">\(\sigma = 20\)</span>. A kezdeti <span class="math inline">\(U(0,1)\)</span> számok transzformálására pedig használhatjuk akkor a <code>scipy</code> csomag <code>norm.ppf</code> függvényét.<br>
+Figyeljünk, hogy a sűrűségfüggvény rajzolásakor az <span class="math inline">\(x\)</span> tengely alsó-felső határait már a generált adatokból szedjük, mert az elvi eloszlás alapján nem lehet itt megmondani! –&gt; Nem <span class="math inline">\(U(a,b)\)</span> egyenletes eloszlásunk van már <em>úgymond</em>. :)</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb499-1"><a href="eloszlások-és-mintavételezés.html#cb499-1" tabindex="-1"></a>átlag <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb499-2"><a href="eloszlások-és-mintavételezés.html#cb499-2" tabindex="-1"></a>szórás <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb499-3"><a href="eloszlások-és-mintavételezés.html#cb499-3" tabindex="-1"></a></span>
+<span id="cb499-4"><a href="eloszlások-és-mintavételezés.html#cb499-4" tabindex="-1"></a><span class="co"># Leürítjük a korábbi véletlenszámaink listáját és új üres listát hozunk létre</span></span>
+<span id="cb499-5"><a href="eloszlások-és-mintavételezés.html#cb499-5" tabindex="-1"></a>SzerencsétlenVéletlenek <span class="op">=</span> []</span>
+<span id="cb499-6"><a href="eloszlások-és-mintavételezés.html#cb499-6" tabindex="-1"></a></span>
+<span id="cb499-7"><a href="eloszlások-és-mintavételezés.html#cb499-7" tabindex="-1"></a><span class="co"># 50 db U(0,1) eloszlású szám generálása</span></span>
+<span id="cb499-8"><a href="eloszlások-és-mintavételezés.html#cb499-8" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb499-9"><a href="eloszlások-és-mintavételezés.html#cb499-9" tabindex="-1"></a>  SzerencsétlenVéletlenek.append(random.random()) <span class="co"># véletlen szám hozzáadása a listához</span></span>
+<span id="cb499-10"><a href="eloszlások-és-mintavételezés.html#cb499-10" tabindex="-1"></a></span>
+<span id="cb499-11"><a href="eloszlások-és-mintavételezés.html#cb499-11" tabindex="-1"></a><span class="co"># N(80,20)-á transzformálás inverz függvénnyel</span></span>
+<span id="cb499-12"><a href="eloszlások-és-mintavételezés.html#cb499-12" tabindex="-1"></a>Normika <span class="op">=</span> stats.norm.ppf(</span>
+<span id="cb499-13"><a href="eloszlások-és-mintavételezés.html#cb499-13" tabindex="-1"></a>  SzerencsétlenVéletlenek,</span>
+<span id="cb499-14"><a href="eloszlások-és-mintavételezés.html#cb499-14" tabindex="-1"></a>  loc <span class="op">=</span> átlag,</span>
+<span id="cb499-15"><a href="eloszlások-és-mintavételezés.html#cb499-15" tabindex="-1"></a>  scale <span class="op">=</span> szórás)</span>
+<span id="cb499-16"><a href="eloszlások-és-mintavételezés.html#cb499-16" tabindex="-1"></a></span>
+<span id="cb499-17"><a href="eloszlások-és-mintavételezés.html#cb499-17" tabindex="-1"></a><span class="co"># Eredmény ellenőrzése hisztogramon</span></span>
+<span id="cb499-18"><a href="eloszlások-és-mintavételezés.html#cb499-18" tabindex="-1"></a>Hisztogram <span class="op">=</span> plt.hist(Normika, bins <span class="op">=</span> <span class="dv">6</span>, density <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb499-19"><a href="eloszlások-és-mintavételezés.html#cb499-19" tabindex="-1"></a>x_tengely <span class="op">=</span> np.arange(np.<span class="bu">min</span>(Normika), np.<span class="bu">max</span>(Normika), <span class="fl">0.01</span>)</span>
+<span id="cb499-20"><a href="eloszlások-és-mintavételezés.html#cb499-20" tabindex="-1"></a>y_tengely <span class="op">=</span> stats.norm.pdf(x <span class="op">=</span> x_tengely, loc <span class="op">=</span> átlag, scale <span class="op">=</span> szórás)</span>
+<span id="cb499-21"><a href="eloszlások-és-mintavételezés.html#cb499-21" tabindex="-1"></a>plt.plot(x_tengely, y_tengely)</span>
+<span id="cb499-22"><a href="eloszlások-és-mintavételezés.html#cb499-22" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-208-9.png" width="672" /></p>
+<p>Na, egészen jól illeszkednek a generált adatok gyakoriságai a normális eloszlás sűrűségfüggvényéhez! :)</p>
+<p>Természetesen, expoenciális eloszlásra is hasonlóan működik a trükk, de azt már nem nagy <em>copy-paste mágia</em> lenne lekódolni. :)</p>
+<p>A lényeg viszont, hogy ez a megoldás tényleg <strong>minden létező eloszlásra működik!</strong> Olyanokra is, amik <strong>nincsenek benne</strong> a <code>scipy</code>-ban!! Csak <strong>tudni kell az eloszlás inverz függvényének képletét, és abba beírogatva <span class="math inline">\(U(0,1)\)</span> eloszlású számokat, le is generáltunk egy mintát az eloszlásból!</strong></p>
+<p>A jó hír viszont, hogy a <code>scipy</code>-ban szereplő eloszlásoknak van egy <code>rvs</code> álnevű függvénye, ami <strong>automatikusan eljátsza a fenti trükköt, így nem kell</strong> az eddig használt hosszabb kódrészletet <strong>mindig copy-pastelni</strong>. A függvényben az aktuális eloszlásnak (egyenletes, normális, exponenciális vagy más) megfelelő módon kell megadni a <code>loc</code> és <code>scale</code> paramétereket, míg a generálandó számok mennyiségét (a minta elemszámát) a <code>size</code> paraméterben lehet beállítani.</p>
+<p>Tehát, egyszerűsítve az alábbi módon is lehet pl. <span class="math inline">\(U(40,160)\)</span> eloszlűsú adatokat (mintát) generálni.</p>
+<div class="sourceCode" id="cb500"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb500-1"><a href="eloszlások-és-mintavételezés.html#cb500-1" tabindex="-1"></a>eloszlás_alsó_határ <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb500-2"><a href="eloszlások-és-mintavételezés.html#cb500-2" tabindex="-1"></a>eloszlás_felső_határ <span class="op">=</span> <span class="dv">160</span></span>
+<span id="cb500-3"><a href="eloszlások-és-mintavételezés.html#cb500-3" tabindex="-1"></a>eloszlás_terjedelem <span class="op">=</span> eloszlás_felső_határ <span class="op">-</span> eloszlás_alsó_határ</span>
+<span id="cb500-4"><a href="eloszlások-és-mintavételezés.html#cb500-4" tabindex="-1"></a></span>
+<span id="cb500-5"><a href="eloszlások-és-mintavételezés.html#cb500-5" tabindex="-1"></a><span class="co"># U(40,160) minta generálása</span></span>
+<span id="cb500-6"><a href="eloszlások-és-mintavételezés.html#cb500-6" tabindex="-1"></a>SzerencsésebbVéletlenek <span class="op">=</span> stats.uniform.rvs(</span>
+<span id="cb500-7"><a href="eloszlások-és-mintavételezés.html#cb500-7" tabindex="-1"></a>  loc <span class="op">=</span> eloszlás_alsó_határ,</span>
+<span id="cb500-8"><a href="eloszlások-és-mintavételezés.html#cb500-8" tabindex="-1"></a>  scale <span class="op">=</span> eloszlás_terjedelem,</span>
+<span id="cb500-9"><a href="eloszlások-és-mintavételezés.html#cb500-9" tabindex="-1"></a>  size <span class="op">=</span> <span class="dv">50</span>)</span>
+<span id="cb500-10"><a href="eloszlások-és-mintavételezés.html#cb500-10" tabindex="-1"></a></span>
+<span id="cb500-11"><a href="eloszlások-és-mintavételezés.html#cb500-11" tabindex="-1"></a><span class="co"># Eredmény ellenőrzése hisztogramon</span></span>
+<span id="cb500-12"><a href="eloszlások-és-mintavételezés.html#cb500-12" tabindex="-1"></a>Hisztogram <span class="op">=</span> plt.hist(SzerencsésebbVéletlenek, bins <span class="op">=</span> <span class="dv">6</span>, density <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb500-13"><a href="eloszlások-és-mintavételezés.html#cb500-13" tabindex="-1"></a>x_tengely <span class="op">=</span> np.arange(eloszlás_alsó_határ, eloszlás_felső_határ, <span class="fl">0.01</span>)</span>
+<span id="cb500-14"><a href="eloszlások-és-mintavételezés.html#cb500-14" tabindex="-1"></a>y_tengely <span class="op">=</span> stats.uniform.pdf(x <span class="op">=</span> x_tengely, loc <span class="op">=</span> eloszlás_alsó_határ,scale <span class="op">=</span> eloszlás_terjedelem)</span>
+<span id="cb500-15"><a href="eloszlások-és-mintavételezés.html#cb500-15" tabindex="-1"></a>plt.plot(x_tengely, y_tengely)</span>
+<span id="cb500-16"><a href="eloszlások-és-mintavételezés.html#cb500-16" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-209-11.png" width="672" /></p>
+<p>Ami az <code>rvs</code> függvények további nagy előnye, hogy ha kihasználjuk a függvény <code>random_state</code> paraméterét, és <strong>mindannyian beírjuk oda ugyan azt a számot</strong>, pl. mondjuk az én szülinapom évét, ami <span class="math inline">\(1992\)</span>, akkor <strong>mindenki ugyan azt az <span class="math inline">\(50\)</span> db véletlen számot generálta le!</strong> És ugyan azt a hisztogramot fogjuk már bambulni!:)</p>
+<div class="sourceCode" id="cb501"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb501-1"><a href="eloszlások-és-mintavételezés.html#cb501-1" tabindex="-1"></a><span class="co"># U(40,160) minta generálása</span></span>
+<span id="cb501-2"><a href="eloszlások-és-mintavételezés.html#cb501-2" tabindex="-1"></a>SzerencsésebbVéletlenek <span class="op">=</span> stats.uniform.rvs(</span>
+<span id="cb501-3"><a href="eloszlások-és-mintavételezés.html#cb501-3" tabindex="-1"></a>  loc <span class="op">=</span> eloszlás_alsó_határ,</span>
+<span id="cb501-4"><a href="eloszlások-és-mintavételezés.html#cb501-4" tabindex="-1"></a>  scale <span class="op">=</span> eloszlás_terjedelem,</span>
+<span id="cb501-5"><a href="eloszlások-és-mintavételezés.html#cb501-5" tabindex="-1"></a>  size <span class="op">=</span> <span class="dv">50</span>,</span>
+<span id="cb501-6"><a href="eloszlások-és-mintavételezés.html#cb501-6" tabindex="-1"></a>  random_state <span class="op">=</span> <span class="dv">1992</span>)</span>
+<span id="cb501-7"><a href="eloszlások-és-mintavételezés.html#cb501-7" tabindex="-1"></a></span>
+<span id="cb501-8"><a href="eloszlások-és-mintavételezés.html#cb501-8" tabindex="-1"></a><span class="co"># Eredmény ellenőrzése hisztogramon</span></span>
+<span id="cb501-9"><a href="eloszlások-és-mintavételezés.html#cb501-9" tabindex="-1"></a>Hisztogram <span class="op">=</span> plt.hist(SzerencsésebbVéletlenek, bins <span class="op">=</span> <span class="dv">6</span>, density <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb501-10"><a href="eloszlások-és-mintavételezés.html#cb501-10" tabindex="-1"></a>x_tengely <span class="op">=</span> np.arange(eloszlás_alsó_határ, eloszlás_felső_határ, <span class="fl">0.01</span>)</span>
+<span id="cb501-11"><a href="eloszlások-és-mintavételezés.html#cb501-11" tabindex="-1"></a>y_tengely <span class="op">=</span> stats.uniform.pdf(x <span class="op">=</span> x_tengely, loc <span class="op">=</span> eloszlás_alsó_határ,scale <span class="op">=</span> eloszlás_terjedelem)</span>
+<span id="cb501-12"><a href="eloszlások-és-mintavételezés.html#cb501-12" tabindex="-1"></a>plt.plot(x_tengely, y_tengely)</span>
+<span id="cb501-13"><a href="eloszlások-és-mintavételezés.html#cb501-13" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-210-13.png" width="672" /></p>
+<p>Pazar! :) A <code>random_state</code> paraméterben megadott <span class="math inline">\(1992\)</span> értéket szokás a véletlenszám generálás <strong>véletlen magjának</strong> nevezni. In English <em>random seed</em>.</p>
+<p>Generáljunk még az <span class="math inline">\(U(40, 160)\)</span> eloszlás <span class="math inline">\(50\)</span> elemű mintája mellé egy <span class="math inline">\(50\)</span> elemű <span class="math inline">\(N(80,20)\)</span> és egy <span class="math inline">\(50\)</span> elemű <span class="math inline">\(Exp(0.0125)\)</span> eloszlású mintát is, szintén <span class="math inline">\(1992\)</span>-es véletlen maggal. Majd fűzzük össze az eredményeket egy <code>pandas</code> data frame-be úgy, hogy a különböző eloszlású adatok adják a tábla oszlopait (sorok száma akkor így 50 lesz ugyebár).<br>
+Az Exponenciális eloszlás <span class="math inline">\(\lambda\)</span> paramétert a <code>scipy</code> függvények <code>scale</code> paraméterében lehet megadni a reciprokával. Hiszen az Exponenciális eloszlás szórása <span class="math inline">\(\frac{1}{\lambda}\)</span>. Emlékezetetőnek lásd <a href="https://kola992.github.io/Statisztika-II-Python-Jegyzet/Gyak01.html" target="_blank">1. heti tananyag 3. fejezet</a>!</p>
+<div class="sourceCode" id="cb502"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb502-1"><a href="eloszlások-és-mintavételezés.html#cb502-1" tabindex="-1"></a><span class="co"># N(80,20) minta generálása</span></span>
+<span id="cb502-2"><a href="eloszlások-és-mintavételezés.html#cb502-2" tabindex="-1"></a>átlag <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb502-3"><a href="eloszlások-és-mintavételezés.html#cb502-3" tabindex="-1"></a>szórás <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb502-4"><a href="eloszlások-és-mintavételezés.html#cb502-4" tabindex="-1"></a></span>
+<span id="cb502-5"><a href="eloszlások-és-mintavételezés.html#cb502-5" tabindex="-1"></a>NormalisAdatok <span class="op">=</span> stats.norm.rvs(</span>
+<span id="cb502-6"><a href="eloszlások-és-mintavételezés.html#cb502-6" tabindex="-1"></a>  loc <span class="op">=</span> átlag,</span>
+<span id="cb502-7"><a href="eloszlások-és-mintavételezés.html#cb502-7" tabindex="-1"></a>  scale <span class="op">=</span> szórás,</span>
+<span id="cb502-8"><a href="eloszlások-és-mintavételezés.html#cb502-8" tabindex="-1"></a>  size <span class="op">=</span> <span class="dv">50</span>,</span>
+<span id="cb502-9"><a href="eloszlások-és-mintavételezés.html#cb502-9" tabindex="-1"></a>  random_state <span class="op">=</span> <span class="dv">1992</span>)</span>
+<span id="cb502-10"><a href="eloszlások-és-mintavételezés.html#cb502-10" tabindex="-1"></a>  </span>
+<span id="cb502-11"><a href="eloszlások-és-mintavételezés.html#cb502-11" tabindex="-1"></a><span class="co"># Exp(0.0125) minta generálása</span></span>
+<span id="cb502-12"><a href="eloszlások-és-mintavételezés.html#cb502-12" tabindex="-1"></a>lam <span class="op">=</span> <span class="fl">0.0125</span></span>
+<span id="cb502-13"><a href="eloszlások-és-mintavételezés.html#cb502-13" tabindex="-1"></a></span>
+<span id="cb502-14"><a href="eloszlások-és-mintavételezés.html#cb502-14" tabindex="-1"></a>ExpiAdatok <span class="op">=</span> stats.expon.rvs(</span>
+<span id="cb502-15"><a href="eloszlások-és-mintavételezés.html#cb502-15" tabindex="-1"></a>  scale <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>lam),</span>
+<span id="cb502-16"><a href="eloszlások-és-mintavételezés.html#cb502-16" tabindex="-1"></a>  size <span class="op">=</span> <span class="dv">50</span>,</span>
+<span id="cb502-17"><a href="eloszlások-és-mintavételezés.html#cb502-17" tabindex="-1"></a>  random_state <span class="op">=</span> <span class="dv">1992</span>)</span>
+<span id="cb502-18"><a href="eloszlások-és-mintavételezés.html#cb502-18" tabindex="-1"></a></span>
+<span id="cb502-19"><a href="eloszlások-és-mintavételezés.html#cb502-19" tabindex="-1"></a><span class="co"># Eredmények összefüzése data frame-be</span></span>
+<span id="cb502-20"><a href="eloszlások-és-mintavételezés.html#cb502-20" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb502-21"><a href="eloszlások-és-mintavételezés.html#cb502-21" tabindex="-1"></a></span>
+<span id="cb502-22"><a href="eloszlások-és-mintavételezés.html#cb502-22" tabindex="-1"></a>AdatokEgyben <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb502-23"><a href="eloszlások-és-mintavételezés.html#cb502-23" tabindex="-1"></a>  <span class="bu">list</span>(<span class="bu">zip</span>(SzerencsésebbVéletlenek, NormalisAdatok, ExpiAdatok)),</span>
+<span id="cb502-24"><a href="eloszlások-és-mintavételezés.html#cb502-24" tabindex="-1"></a>  columns<span class="op">=</span>[<span class="st">&#39;Egyenletes&#39;</span>,<span class="st">&#39;Normal&#39;</span>, <span class="st">&#39;Expon&#39;</span>])</span>
+<span id="cb502-25"><a href="eloszlások-és-mintavételezés.html#cb502-25" tabindex="-1"></a>AdatokEgyben.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 50 entries, 0 to 49
+## Data columns (total 3 columns):
+##  #   Column      Non-Null Count  Dtype  
+## ---  ------      --------------  -----  
+##  0   Egyenletes  50 non-null     float64
+##  1   Normal      50 non-null     float64
+##  2   Expon       50 non-null     float64
+## dtypes: float64(3)
+## memory usage: 1.3 KB</code></pre>
+<p>Szuper, az <code>info</code> metódus alapján megvan egyben a <span class="math inline">\(3\)</span> db <span class="math inline">\(50\)</span> elemű mintánk! Egy-egy <span class="math inline">\(k=6\)</span> osztályközzel operáló hisztogramon meg is tudjuk nézni az eredményt, hála a data frame <code>hist</code> metódusának. :)</p>
+<div class="sourceCode" id="cb504"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb504-1"><a href="eloszlások-és-mintavételezés.html#cb504-1" tabindex="-1"></a>AdatokEgyben.hist(bins <span class="op">=</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## array([[&lt;Axes: title={&#39;center&#39;: &#39;Egyenletes&#39;}&gt;,
+##         &lt;Axes: title={&#39;center&#39;: &#39;Normal&#39;}&gt;],
+##        [&lt;Axes: title={&#39;center&#39;: &#39;Expon&#39;}&gt;, &lt;Axes: &gt;]], dtype=object)</code></pre>
+<div class="sourceCode" id="cb506"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb506-1"><a href="eloszlások-és-mintavételezés.html#cb506-1" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-212-15.png" width="672" /></p>
+<p>Na, meg is vagyunk, nagyjából mindegyik hisztogram követi a neki megfelelő Egyenletes, Normális és Exponenciális sűrűségfüggvény alakot.</p>
+</div>
+</div>
+<div id="elvi-eloszlás-vs-megfigyelt-minta" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Elvi Eloszlás vs Megfigyelt Minta<a href="eloszlások-és-mintavételezés.html#elvi-eloszlás-vs-megfigyelt-minta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Azt már több soron megállapítottuk, hogy a <strong>megfigyelt adatokból készített hisztogramok NEM követik hajszálpontosan a hozzájuk tartozó eloszlások sűrűségfüggvényeit</strong>. Valamennyire eltérnek tőle, ezt az előző fejezet végén álló 3 hisztogram is szemlélteti.<br>
+Ez amúgy egy <strong>teljesen logikus és természetes jelenség</strong>, hiszen az általunk vizsgált eloszlások <span class="math inline">\(f(x)\)</span> sűrűségfüggvényei rengeteg számhoz rendelnek pozitív bekövetkezési valószínűséget egy véletlen húzás esetén:</p>
+<ul>
+<li>Az <span class="math inline">\(N(80,20)\)</span> eloszlás konkrétan <em>minden valós számnak</em> pozitív bekövetkezési esélyt tulajdonít</li>
+<li>Az <span class="math inline">\(Exp(0.0125)\)</span> eloszlás <em>minden pozitív valós számnak</em></li>
+<li>Az <span class="math inline">\(U(40,160)\)</span> pedig <em>minden <span class="math inline">\(40\)</span> és <span class="math inline">\(160\)</span> közötti valós számnak</em></li>
+</ul>
+<p>Mindegyik számhalmaz elemszáma <strong>végtelen</strong>. Tehát, <strong>akármelyik eloszlást is nézzük</strong>, ahhoz hogy a <strong>sűrűségfüggvényt teljes egészében meg tudjuk figyelni, végtelen sok elemű mintákat kéne generálni</strong>. Nyilván, ez nem nagyon fog sosem összejönni. Ezért vannak a <strong>némileg hektikus hisztogram alakok</strong>. :)</p>
+<p>Ami csak azért zavaró, mert a <strong>valóságban nem vagyunk istenségek</strong>, így a megfigyelt mintánk mögött meghúzódó <strong>valódi sűrűségfüggvényt SOSEM tudjuk megfigyelni</strong>, csak azokat az <strong>adatokat, amiket a mintánk tartalmaz</strong>. A minta elemszáma pedig sosem végtelen. <strong>Legfeljebb csak reménykedni tudunk abban, hogy a minta hisztogram alapján sac/kb be tudjuk lőni, hogy az adataink mögött milyen eloszlás lappang a háttérben</strong>.<br>
+Ugyan ez <strong>igaz a különféle statisztikai mutatókra</strong> is! Értelemszerűen <strong>más értékeket kapunk az átlagra, szórásra, mediánra vagy az <span class="math inline">\(x\)</span>-nél kisebb elemek arányára, ha azokat a megfigyelt mintaadatokból számítjuk, és nem az adatok mögöt rejtőző sűrűségfüggvény alapján</strong>!</p>
+<div id="az-elvi-eloszlás-alapján-számolt-statisztikai-mutatók" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Az elvi eloszlás alapján számolt statisztikai mutatók<a href="eloszlások-és-mintavételezés.html#az-elvi-eloszlás-alapján-számolt-statisztikai-mutatók" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vegyük csak végig, hogy a <strong>3 vizsgált eloszlásunkban</strong> hogyan is kapjuk meg a <strong>sűrűségfüggvény ismeretében az alap statisztikai mutatókat</strong>.</p>
+<ul>
+<li><span class="math inline">\(N(80,20)\)</span> eloszlás
+<ul>
+<li>Átlag: <span class="math inline">\(\mu=80\)</span></li>
+<li>Szórás: <span class="math inline">\(\sigma=20\)</span></li>
+<li>Medián: inverz függvény (<code>ppf</code>) értéke <span class="math inline">\(0.5\)</span>-nél</li>
+<li>100-nál kisebb értékek aránya: <span class="math inline">\(P(Y_i&lt;100)=\int_{-\infty}^{100}{f(x)}dx\)</span></li>
+</ul></li>
+<li><span class="math inline">\(Exp(0.0125)\)</span> eloszlás
+<ul>
+<li>Átlag: <span class="math inline">\(\mu=\frac{1}{\lambda}=\frac{1}{0.0125}=80\)</span></li>
+<li>Szórás: <span class="math inline">\(\sigma=\frac{1}{\lambda}=\frac{1}{0.0125}=80\)</span></li>
+<li>Medián: inverz függvény (<code>ppf</code>) értéke <span class="math inline">\(0.5\)</span>-nél</li>
+<li>100-nál kisebb értékek aránya: <span class="math inline">\(P(Y_i&lt;100)=\int_{-\infty}^{100}{f(x)}dx\)</span></li>
+</ul></li>
+<li><span class="math inline">\(U(40,160)\)</span> eloszlás
+<ul>
+<li>Átlag: <span class="math inline">\(\mu=\frac{a+b}{2}=\frac{40+160}{2}=100\)</span></li>
+<li>Szórás: <span class="math inline">\(\sigma=\frac{b-a}{\sqrt{12}}=\frac{160-40}{\sqrt{12}}=34.64\)</span></li>
+<li>Medián: inverz függvény (<code>ppf</code>) értéke <span class="math inline">\(0.5\)</span>-nél</li>
+<li>100-nál kisebb értékek aránya: <span class="math inline">\(P(Y_i&lt;100)=\int_{-\infty}^{100}{f(x)}dx\)</span></li>
+</ul></li>
+</ul>
+<p>Ezeket <strong>számoljuk is ki minden eloszlásra</strong> egy-egy külön <code>list</code>-be, majd fűzzük őket össze egy data frame-be! A data frame sorindexeit pedig nevezzük el a számított mutatók neve alapján!</p>
+<div class="sourceCode" id="cb507"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb507-1"><a href="eloszlások-és-mintavételezés.html#cb507-1" tabindex="-1"></a><span class="co"># N(80,20) paraméterek</span></span>
+<span id="cb507-2"><a href="eloszlások-és-mintavételezés.html#cb507-2" tabindex="-1"></a>átlag <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb507-3"><a href="eloszlások-és-mintavételezés.html#cb507-3" tabindex="-1"></a>szórás <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb507-4"><a href="eloszlások-és-mintavételezés.html#cb507-4" tabindex="-1"></a></span>
+<span id="cb507-5"><a href="eloszlások-és-mintavételezés.html#cb507-5" tabindex="-1"></a><span class="co"># Exp(0.0125) paraméterek</span></span>
+<span id="cb507-6"><a href="eloszlások-és-mintavételezés.html#cb507-6" tabindex="-1"></a>lam <span class="op">=</span> <span class="fl">0.0125</span></span>
+<span id="cb507-7"><a href="eloszlások-és-mintavételezés.html#cb507-7" tabindex="-1"></a></span>
+<span id="cb507-8"><a href="eloszlások-és-mintavételezés.html#cb507-8" tabindex="-1"></a><span class="co"># U(40,160) paraméterek</span></span>
+<span id="cb507-9"><a href="eloszlások-és-mintavételezés.html#cb507-9" tabindex="-1"></a>eloszlás_alsó_határ <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb507-10"><a href="eloszlások-és-mintavételezés.html#cb507-10" tabindex="-1"></a>eloszlás_felső_határ <span class="op">=</span> <span class="dv">160</span></span>
+<span id="cb507-11"><a href="eloszlások-és-mintavételezés.html#cb507-11" tabindex="-1"></a>eloszlás_terjedelem <span class="op">=</span> eloszlás_felső_határ <span class="op">-</span> eloszlás_alsó_határ</span>
+<span id="cb507-12"><a href="eloszlások-és-mintavételezés.html#cb507-12" tabindex="-1"></a></span>
+<span id="cb507-13"><a href="eloszlások-és-mintavételezés.html#cb507-13" tabindex="-1"></a>NormalisStat <span class="op">=</span> [</span>
+<span id="cb507-14"><a href="eloszlások-és-mintavételezés.html#cb507-14" tabindex="-1"></a>  átlag, <span class="co"># Átlag</span></span>
+<span id="cb507-15"><a href="eloszlások-és-mintavételezés.html#cb507-15" tabindex="-1"></a>  szórás, <span class="co"># Szórás</span></span>
+<span id="cb507-16"><a href="eloszlások-és-mintavételezés.html#cb507-16" tabindex="-1"></a>  stats.norm.ppf(<span class="fl">0.5</span>, loc<span class="op">=</span>átlag, scale<span class="op">=</span>szórás), <span class="co"># Medián</span></span>
+<span id="cb507-17"><a href="eloszlások-és-mintavételezés.html#cb507-17" tabindex="-1"></a>  stats.norm.cdf(<span class="dv">100</span>, loc<span class="op">=</span>átlag, scale<span class="op">=</span>szórás)] <span class="co"># P(Y_i&lt;100)</span></span>
+<span id="cb507-18"><a href="eloszlások-és-mintavételezés.html#cb507-18" tabindex="-1"></a></span>
+<span id="cb507-19"><a href="eloszlások-és-mintavételezés.html#cb507-19" tabindex="-1"></a>ExponStat <span class="op">=</span> [</span>
+<span id="cb507-20"><a href="eloszlások-és-mintavételezés.html#cb507-20" tabindex="-1"></a>  (<span class="dv">1</span><span class="op">/</span>lam), <span class="co"># Átlag</span></span>
+<span id="cb507-21"><a href="eloszlások-és-mintavételezés.html#cb507-21" tabindex="-1"></a>  (<span class="dv">1</span><span class="op">/</span>lam), <span class="co"># Szórás</span></span>
+<span id="cb507-22"><a href="eloszlások-és-mintavételezés.html#cb507-22" tabindex="-1"></a>  stats.expon.ppf(<span class="fl">0.5</span>, scale<span class="op">=</span>(<span class="dv">1</span><span class="op">/</span>lam)), <span class="co"># Medián</span></span>
+<span id="cb507-23"><a href="eloszlások-és-mintavételezés.html#cb507-23" tabindex="-1"></a>  stats.expon.cdf(<span class="dv">100</span>, scale<span class="op">=</span>(<span class="dv">1</span><span class="op">/</span>lam))] <span class="co"># P(Y_i&lt;100)</span></span>
+<span id="cb507-24"><a href="eloszlások-és-mintavételezés.html#cb507-24" tabindex="-1"></a></span>
+<span id="cb507-25"><a href="eloszlások-és-mintavételezés.html#cb507-25" tabindex="-1"></a>EgyenletesStat <span class="op">=</span> [</span>
+<span id="cb507-26"><a href="eloszlások-és-mintavételezés.html#cb507-26" tabindex="-1"></a>  ((eloszlás_alsó_határ <span class="op">+</span> eloszlás_felső_határ)<span class="op">/</span><span class="dv">2</span>), <span class="co"># Átlag</span></span>
+<span id="cb507-27"><a href="eloszlások-és-mintavételezés.html#cb507-27" tabindex="-1"></a>  ((eloszlás_felső_határ<span class="op">-</span>eloszlás_alsó_határ)<span class="op">/</span>np.sqrt(<span class="dv">12</span>)), <span class="co"># Szórás</span></span>
+<span id="cb507-28"><a href="eloszlások-és-mintavételezés.html#cb507-28" tabindex="-1"></a>  stats.uniform.ppf(<span class="fl">0.5</span>, loc<span class="op">=</span>eloszlás_alsó_határ, scale<span class="op">=</span>eloszlás_terjedelem), <span class="co"># Medián</span></span>
+<span id="cb507-29"><a href="eloszlások-és-mintavételezés.html#cb507-29" tabindex="-1"></a>  stats.uniform.cdf(<span class="dv">100</span>, loc<span class="op">=</span>eloszlás_alsó_határ, scale<span class="op">=</span>eloszlás_terjedelem)] <span class="co"># P(Y_i&lt;100)</span></span>
+<span id="cb507-30"><a href="eloszlások-és-mintavételezés.html#cb507-30" tabindex="-1"></a></span>
+<span id="cb507-31"><a href="eloszlások-és-mintavételezés.html#cb507-31" tabindex="-1"></a>ElviStatMutatok <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb507-32"><a href="eloszlások-és-mintavételezés.html#cb507-32" tabindex="-1"></a>  <span class="bu">list</span>(<span class="bu">zip</span>(EgyenletesStat, NormalisStat, ExponStat)),</span>
+<span id="cb507-33"><a href="eloszlások-és-mintavételezés.html#cb507-33" tabindex="-1"></a>  columns<span class="op">=</span>[<span class="st">&#39;Egyenletes&#39;</span>,<span class="st">&#39;Normal&#39;</span>, <span class="st">&#39;Expon&#39;</span>],</span>
+<span id="cb507-34"><a href="eloszlások-és-mintavételezés.html#cb507-34" tabindex="-1"></a>  index <span class="op">=</span> [<span class="st">&#39;Atlag&#39;</span>, <span class="st">&#39;Szoras&#39;</span>, <span class="st">&#39;Median&#39;</span>, <span class="st">&#39;P(Y_i&lt;100)&#39;</span>]</span>
+<span id="cb507-35"><a href="eloszlások-és-mintavételezés.html#cb507-35" tabindex="-1"></a>)</span>
+<span id="cb507-36"><a href="eloszlások-és-mintavételezés.html#cb507-36" tabindex="-1"></a></span>
+<span id="cb507-37"><a href="eloszlások-és-mintavételezés.html#cb507-37" tabindex="-1"></a>ElviStatMutatok</span></code></pre></div>
+<pre><code>##             Egyenletes     Normal      Expon
+## Atlag       100.000000  80.000000  80.000000
+## Szoras       34.641016  20.000000  80.000000
+## Median      100.000000  80.000000  55.451774
+## P(Y_i&lt;100)    0.500000   0.841345   0.713495</code></pre>
+<p>Meg is vagyunk!</p>
+</div>
+<div id="a-megfigyelt-minta-alapján-számolt-statisztikai-mutatók" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> A megfigyelt minta alapján számolt statisztikai mutatók<a href="eloszlások-és-mintavételezés.html#a-megfigyelt-minta-alapján-számolt-statisztikai-mutatók" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most pedig <strong>tegyük az elvi statisztikai mutatók értéke mellé az <span class="math inline">\(50\)</span> elemű mintákból számolt verzióikat!</strong> Hasonlóan összerakhatjuk őket egy data frame-be, mint fentebb csináltuk az elvi értékekkel.</p>
+<p>A <span class="math inline">\(100\)</span>-nál kisebb értékek arányának (relatív gyakoriságának) számolásához két technikai megjegyzés:</p>
+<ul>
+<li>A számolásnál azt a trükköt sütjük el, hogy pl. az <code>AdatokEgyben['Normal'] &lt; 100</code> parancs egy <code>bool</code> tömböt ad vissza aszerint, hogy az <code>AdatokEgyben['Normal'] &lt; 100</code> logikai állítás kire <code>True</code> és <code>False</code>.</li>
+<li>A <code>numpy</code> csomag <code>sum</code> függvénye pedig egy ilyen tömbre <code>True = 1</code> és <code>False = 0</code> kódolásokkal végzi el az összegzést: azaz megadja a <em>kedvező esetek</em>, a 100-nál kisebb értékek <em>darabszámát</em>.</li>
+</ul>
+<div class="sourceCode" id="cb509"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb509-1"><a href="eloszlások-és-mintavételezés.html#cb509-1" tabindex="-1"></a>NormalisMintaStat <span class="op">=</span> [</span>
+<span id="cb509-2"><a href="eloszlások-és-mintavételezés.html#cb509-2" tabindex="-1"></a>  np.mean(AdatokEgyben[<span class="st">&#39;Normal&#39;</span>]), <span class="co"># Átlag</span></span>
+<span id="cb509-3"><a href="eloszlások-és-mintavételezés.html#cb509-3" tabindex="-1"></a>  np.std(AdatokEgyben[<span class="st">&#39;Normal&#39;</span>]), <span class="co"># Szórás</span></span>
+<span id="cb509-4"><a href="eloszlások-és-mintavételezés.html#cb509-4" tabindex="-1"></a>  np.median(AdatokEgyben[<span class="st">&#39;Normal&#39;</span>]), <span class="co"># Medián</span></span>
+<span id="cb509-5"><a href="eloszlások-és-mintavételezés.html#cb509-5" tabindex="-1"></a>  np.<span class="bu">sum</span>(AdatokEgyben[<span class="st">&#39;Normal&#39;</span>] <span class="op">&lt;</span> <span class="dv">100</span>)<span class="op">/</span><span class="bu">len</span>(AdatokEgyben)] <span class="co"># P(Y_i&lt;100), most relatív gyak.</span></span>
+<span id="cb509-6"><a href="eloszlások-és-mintavételezés.html#cb509-6" tabindex="-1"></a></span>
+<span id="cb509-7"><a href="eloszlások-és-mintavételezés.html#cb509-7" tabindex="-1"></a>ExponMintaStat <span class="op">=</span> [</span>
+<span id="cb509-8"><a href="eloszlások-és-mintavételezés.html#cb509-8" tabindex="-1"></a>  np.mean(AdatokEgyben[<span class="st">&#39;Expon&#39;</span>]), <span class="co"># Átlag</span></span>
+<span id="cb509-9"><a href="eloszlások-és-mintavételezés.html#cb509-9" tabindex="-1"></a>  np.std(AdatokEgyben[<span class="st">&#39;Expon&#39;</span>]), <span class="co"># Szórás</span></span>
+<span id="cb509-10"><a href="eloszlások-és-mintavételezés.html#cb509-10" tabindex="-1"></a>  np.median(AdatokEgyben[<span class="st">&#39;Expon&#39;</span>]), <span class="co"># Medián</span></span>
+<span id="cb509-11"><a href="eloszlások-és-mintavételezés.html#cb509-11" tabindex="-1"></a>  np.<span class="bu">sum</span>(AdatokEgyben[<span class="st">&#39;Expon&#39;</span>] <span class="op">&lt;</span> <span class="dv">100</span>)<span class="op">/</span><span class="bu">len</span>(AdatokEgyben)] <span class="co"># P(Y_i&lt;100), most relatív gyak.</span></span>
+<span id="cb509-12"><a href="eloszlások-és-mintavételezés.html#cb509-12" tabindex="-1"></a></span>
+<span id="cb509-13"><a href="eloszlások-és-mintavételezés.html#cb509-13" tabindex="-1"></a>EgyenletesMintaStat <span class="op">=</span> [</span>
+<span id="cb509-14"><a href="eloszlások-és-mintavételezés.html#cb509-14" tabindex="-1"></a>  np.mean(AdatokEgyben[<span class="st">&#39;Egyenletes&#39;</span>]), <span class="co"># Átlag</span></span>
+<span id="cb509-15"><a href="eloszlások-és-mintavételezés.html#cb509-15" tabindex="-1"></a>  np.std(AdatokEgyben[<span class="st">&#39;Egyenletes&#39;</span>]), <span class="co"># Szórás</span></span>
+<span id="cb509-16"><a href="eloszlások-és-mintavételezés.html#cb509-16" tabindex="-1"></a>  np.median(AdatokEgyben[<span class="st">&#39;Egyenletes&#39;</span>]), <span class="co"># Medián</span></span>
+<span id="cb509-17"><a href="eloszlások-és-mintavételezés.html#cb509-17" tabindex="-1"></a>  np.<span class="bu">sum</span>(AdatokEgyben[<span class="st">&#39;Egyenletes&#39;</span>] <span class="op">&lt;</span> <span class="dv">100</span>)<span class="op">/</span><span class="bu">len</span>(AdatokEgyben)] <span class="co"># P(Y_i&lt;100), most relatív gyak.</span></span>
+<span id="cb509-18"><a href="eloszlások-és-mintavételezés.html#cb509-18" tabindex="-1"></a></span>
+<span id="cb509-19"><a href="eloszlások-és-mintavételezés.html#cb509-19" tabindex="-1"></a>MintaStatMutatok <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb509-20"><a href="eloszlások-és-mintavételezés.html#cb509-20" tabindex="-1"></a>  <span class="bu">list</span>(<span class="bu">zip</span>(EgyenletesMintaStat, NormalisMintaStat, ExponMintaStat)),</span>
+<span id="cb509-21"><a href="eloszlások-és-mintavételezés.html#cb509-21" tabindex="-1"></a>  columns<span class="op">=</span>[<span class="st">&#39;Egyenletes&#39;</span>,<span class="st">&#39;Normal&#39;</span>, <span class="st">&#39;Expon&#39;</span>],</span>
+<span id="cb509-22"><a href="eloszlások-és-mintavételezés.html#cb509-22" tabindex="-1"></a>  index <span class="op">=</span> [<span class="st">&#39;Atlag&#39;</span>, <span class="st">&#39;Szoras&#39;</span>, <span class="st">&#39;Median&#39;</span>, <span class="st">&#39;P(Y_i&lt;100)&#39;</span>]</span>
+<span id="cb509-23"><a href="eloszlások-és-mintavételezés.html#cb509-23" tabindex="-1"></a>)</span>
+<span id="cb509-24"><a href="eloszlások-és-mintavételezés.html#cb509-24" tabindex="-1"></a></span>
+<span id="cb509-25"><a href="eloszlások-és-mintavételezés.html#cb509-25" tabindex="-1"></a>MintaStatMutatok</span></code></pre></div>
+<pre><code>##             Egyenletes     Normal      Expon
+## Atlag       101.865225  78.951917  82.311381
+## Szoras       33.462534  18.922748  76.278763
+## Median       97.446914  76.384652  52.148485
+## P(Y_i&lt;100)    0.540000   0.880000   0.700000</code></pre>
+<p>Meg is vagyunk!</p>
+</div>
+<div id="a-mintavételi-hiba-mvh-koncepciója" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> A mintavételi hiba (MVH) koncepciója<a href="eloszlások-és-mintavételezés.html#a-mintavételi-hiba-mvh-koncepciója" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nézzük össze akkor kétféle stat. mutatókat tartalmazó data frame-et egymással!</p>
+<div class="sourceCode" id="cb511"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb511-1"><a href="eloszlások-és-mintavételezés.html#cb511-1" tabindex="-1"></a>ElviStatMutatok</span></code></pre></div>
+<pre><code>##             Egyenletes     Normal      Expon
+## Atlag       100.000000  80.000000  80.000000
+## Szoras       34.641016  20.000000  80.000000
+## Median      100.000000  80.000000  55.451774
+## P(Y_i&lt;100)    0.500000   0.841345   0.713495</code></pre>
+<div class="sourceCode" id="cb513"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb513-1"><a href="eloszlások-és-mintavételezés.html#cb513-1" tabindex="-1"></a>MintaStatMutatok</span></code></pre></div>
+<pre><code>##             Egyenletes     Normal      Expon
+## Atlag       101.865225  78.951917  82.311381
+## Szoras       33.462534  18.922748  76.278763
+## Median       97.446914  76.384652  52.148485
+## P(Y_i&lt;100)    0.540000   0.880000   0.700000</code></pre>
+<p>Láthatjuk, hogy a <strong>statisztikai mutatók terén is azt tapasztaljuk, amit a hisztogramok és a sűrűségfüggvény esetén</strong>. Az <strong>elvi értékekhez az <span class="math inline">\(50\)</span> elemű mintából számolt mutatók közel vannak, de nem egyeznek velük</strong>.</p>
+<p>A <strong>kétféle értékek (elvi és mintából számolt) közti eltérést hívjuk MINTAVÉTELI HIBÁNAK (MVH)</strong>. Mivel a gyakorlatban <strong>csak egy adott elemszámú mintát tudunk megfigyelni</strong>, és abból kellene rájönnünk a vizsgált mutatók valódi értékére, a hisztogramból meg a valódi eloszlásra, <strong>nagyon jó lenne ezt az MVH-t megmérni/kiszámolni/megbecsülni</strong>! Na, ez a <strong>statisztikai becsléselmélet alapfeladata</strong>!</p>
+<p>Az MVH kiszámolásához hosszú az út, de az <strong>MVH viselekdését megérthetjük, ha generálunk még pár extra mintát az eddig vizsgált eloszlásokból, különböző elemszámokkal</strong>.</p>
+<p>Ehhez írjunk egy Python függvényt, ami az eddig elvégzett műveleteinket egy függvényben valószítja meg tetszőleges mintaelemszám és véletlenmag mellett:</p>
+<ul>
+<li><span class="math inline">\(N(80,20)\)</span>, <span class="math inline">\(Exp(0.0125)\)</span> és <span class="math inline">\(U(40,160)\)</span> eloszlású minták generálása</li>
+<li>A mintákból a vizsgált 4 statisztikai mutató számítása és azok összefüzése data frame-be</li>
+</ul>
+<p>Ez a függvény némi copy-paste után az alábbi formát ölti.</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb515-1"><a href="eloszlások-és-mintavételezés.html#cb515-1" tabindex="-1"></a><span class="kw">def</span> MintaGeneralas(Elemszam, VeletlenMag):</span>
+<span id="cb515-2"><a href="eloszlások-és-mintavételezés.html#cb515-2" tabindex="-1"></a>    <span class="co"># U(40, 160) minta generálása</span></span>
+<span id="cb515-3"><a href="eloszlások-és-mintavételezés.html#cb515-3" tabindex="-1"></a>    eloszlás_alsó_határ <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb515-4"><a href="eloszlások-és-mintavételezés.html#cb515-4" tabindex="-1"></a>    eloszlás_terjedelem <span class="op">=</span> <span class="dv">160</span><span class="op">-</span><span class="dv">40</span></span>
+<span id="cb515-5"><a href="eloszlások-és-mintavételezés.html#cb515-5" tabindex="-1"></a>  </span>
+<span id="cb515-6"><a href="eloszlások-és-mintavételezés.html#cb515-6" tabindex="-1"></a>    SzerencsésebbVéletlenek <span class="op">=</span> stats.uniform.rvs(</span>
+<span id="cb515-7"><a href="eloszlások-és-mintavételezés.html#cb515-7" tabindex="-1"></a>      loc <span class="op">=</span> eloszlás_alsó_határ,</span>
+<span id="cb515-8"><a href="eloszlások-és-mintavételezés.html#cb515-8" tabindex="-1"></a>      scale <span class="op">=</span> eloszlás_terjedelem,</span>
+<span id="cb515-9"><a href="eloszlások-és-mintavételezés.html#cb515-9" tabindex="-1"></a>      size <span class="op">=</span> Elemszam,</span>
+<span id="cb515-10"><a href="eloszlások-és-mintavételezés.html#cb515-10" tabindex="-1"></a>      random_state <span class="op">=</span> VeletlenMag)</span>
+<span id="cb515-11"><a href="eloszlások-és-mintavételezés.html#cb515-11" tabindex="-1"></a>  </span>
+<span id="cb515-12"><a href="eloszlások-és-mintavételezés.html#cb515-12" tabindex="-1"></a>    <span class="co"># N(80,20) minta generálása</span></span>
+<span id="cb515-13"><a href="eloszlások-és-mintavételezés.html#cb515-13" tabindex="-1"></a>    átlag <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb515-14"><a href="eloszlások-és-mintavételezés.html#cb515-14" tabindex="-1"></a>    szórás <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb515-15"><a href="eloszlások-és-mintavételezés.html#cb515-15" tabindex="-1"></a></span>
+<span id="cb515-16"><a href="eloszlások-és-mintavételezés.html#cb515-16" tabindex="-1"></a>    NormalisAdatok <span class="op">=</span> stats.norm.rvs(</span>
+<span id="cb515-17"><a href="eloszlások-és-mintavételezés.html#cb515-17" tabindex="-1"></a>      loc <span class="op">=</span> átlag,</span>
+<span id="cb515-18"><a href="eloszlások-és-mintavételezés.html#cb515-18" tabindex="-1"></a>      scale <span class="op">=</span> szórás,</span>
+<span id="cb515-19"><a href="eloszlások-és-mintavételezés.html#cb515-19" tabindex="-1"></a>      size <span class="op">=</span> Elemszam,</span>
+<span id="cb515-20"><a href="eloszlások-és-mintavételezés.html#cb515-20" tabindex="-1"></a>      random_state <span class="op">=</span> VeletlenMag)</span>
+<span id="cb515-21"><a href="eloszlások-és-mintavételezés.html#cb515-21" tabindex="-1"></a>  </span>
+<span id="cb515-22"><a href="eloszlások-és-mintavételezés.html#cb515-22" tabindex="-1"></a>    <span class="co"># Exp(0.0125) minta generálása</span></span>
+<span id="cb515-23"><a href="eloszlások-és-mintavételezés.html#cb515-23" tabindex="-1"></a>    lam <span class="op">=</span> <span class="fl">0.0125</span></span>
+<span id="cb515-24"><a href="eloszlások-és-mintavételezés.html#cb515-24" tabindex="-1"></a></span>
+<span id="cb515-25"><a href="eloszlások-és-mintavételezés.html#cb515-25" tabindex="-1"></a>    ExpiAdatok <span class="op">=</span> stats.expon.rvs(</span>
+<span id="cb515-26"><a href="eloszlások-és-mintavételezés.html#cb515-26" tabindex="-1"></a>      scale <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>lam),</span>
+<span id="cb515-27"><a href="eloszlások-és-mintavételezés.html#cb515-27" tabindex="-1"></a>      size <span class="op">=</span> Elemszam,</span>
+<span id="cb515-28"><a href="eloszlások-és-mintavételezés.html#cb515-28" tabindex="-1"></a>      random_state <span class="op">=</span> VeletlenMag)</span>
+<span id="cb515-29"><a href="eloszlások-és-mintavételezés.html#cb515-29" tabindex="-1"></a></span>
+<span id="cb515-30"><a href="eloszlások-és-mintavételezés.html#cb515-30" tabindex="-1"></a>    <span class="co"># Eredmények összefüzése data frame-be</span></span>
+<span id="cb515-31"><a href="eloszlások-és-mintavételezés.html#cb515-31" tabindex="-1"></a>    AdatokEgyben <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb515-32"><a href="eloszlások-és-mintavételezés.html#cb515-32" tabindex="-1"></a>      <span class="bu">list</span>(<span class="bu">zip</span>(SzerencsésebbVéletlenek, NormalisAdatok, ExpiAdatok)),</span>
+<span id="cb515-33"><a href="eloszlások-és-mintavételezés.html#cb515-33" tabindex="-1"></a>      columns<span class="op">=</span>[<span class="st">&#39;Egyenletes&#39;</span>,<span class="st">&#39;Normal&#39;</span>, <span class="st">&#39;Expon&#39;</span>])</span>
+<span id="cb515-34"><a href="eloszlások-és-mintavételezés.html#cb515-34" tabindex="-1"></a></span>
+<span id="cb515-35"><a href="eloszlások-és-mintavételezés.html#cb515-35" tabindex="-1"></a>    NormalisMintaStat <span class="op">=</span> [</span>
+<span id="cb515-36"><a href="eloszlások-és-mintavételezés.html#cb515-36" tabindex="-1"></a>      np.mean(AdatokEgyben[<span class="st">&#39;Normal&#39;</span>]), <span class="co"># Átlag</span></span>
+<span id="cb515-37"><a href="eloszlások-és-mintavételezés.html#cb515-37" tabindex="-1"></a>      np.std(AdatokEgyben[<span class="st">&#39;Normal&#39;</span>]), <span class="co"># Szórás</span></span>
+<span id="cb515-38"><a href="eloszlások-és-mintavételezés.html#cb515-38" tabindex="-1"></a>      np.median(AdatokEgyben[<span class="st">&#39;Normal&#39;</span>]), <span class="co"># Medián</span></span>
+<span id="cb515-39"><a href="eloszlások-és-mintavételezés.html#cb515-39" tabindex="-1"></a>      np.<span class="bu">sum</span>(AdatokEgyben[<span class="st">&#39;Normal&#39;</span>] <span class="op">&lt;</span> <span class="dv">100</span>)<span class="op">/</span><span class="bu">len</span>(AdatokEgyben)] <span class="co"># P(Y_i&lt;100), most relatív gyak.</span></span>
+<span id="cb515-40"><a href="eloszlások-és-mintavételezés.html#cb515-40" tabindex="-1"></a></span>
+<span id="cb515-41"><a href="eloszlások-és-mintavételezés.html#cb515-41" tabindex="-1"></a>    ExponMintaStat <span class="op">=</span> [</span>
+<span id="cb515-42"><a href="eloszlások-és-mintavételezés.html#cb515-42" tabindex="-1"></a>      np.mean(AdatokEgyben[<span class="st">&#39;Expon&#39;</span>]), <span class="co"># Átlag</span></span>
+<span id="cb515-43"><a href="eloszlások-és-mintavételezés.html#cb515-43" tabindex="-1"></a>      np.std(AdatokEgyben[<span class="st">&#39;Expon&#39;</span>]), <span class="co"># Szórás</span></span>
+<span id="cb515-44"><a href="eloszlások-és-mintavételezés.html#cb515-44" tabindex="-1"></a>      np.median(AdatokEgyben[<span class="st">&#39;Expon&#39;</span>]), <span class="co"># Medián</span></span>
+<span id="cb515-45"><a href="eloszlások-és-mintavételezés.html#cb515-45" tabindex="-1"></a>      np.<span class="bu">sum</span>(AdatokEgyben[<span class="st">&#39;Expon&#39;</span>] <span class="op">&lt;</span> <span class="dv">100</span>)<span class="op">/</span><span class="bu">len</span>(AdatokEgyben)] <span class="co"># P(Y_i&lt;100), most relatív gyak.</span></span>
+<span id="cb515-46"><a href="eloszlások-és-mintavételezés.html#cb515-46" tabindex="-1"></a></span>
+<span id="cb515-47"><a href="eloszlások-és-mintavételezés.html#cb515-47" tabindex="-1"></a>    EgyenletesMintaStat <span class="op">=</span> [</span>
+<span id="cb515-48"><a href="eloszlások-és-mintavételezés.html#cb515-48" tabindex="-1"></a>      np.mean(AdatokEgyben[<span class="st">&#39;Egyenletes&#39;</span>]), <span class="co"># Átlag</span></span>
+<span id="cb515-49"><a href="eloszlások-és-mintavételezés.html#cb515-49" tabindex="-1"></a>      np.std(AdatokEgyben[<span class="st">&#39;Egyenletes&#39;</span>]), <span class="co"># Szórás</span></span>
+<span id="cb515-50"><a href="eloszlások-és-mintavételezés.html#cb515-50" tabindex="-1"></a>      np.median(AdatokEgyben[<span class="st">&#39;Egyenletes&#39;</span>]), <span class="co"># Medián</span></span>
+<span id="cb515-51"><a href="eloszlások-és-mintavételezés.html#cb515-51" tabindex="-1"></a>      np.<span class="bu">sum</span>(AdatokEgyben[<span class="st">&#39;Egyenletes&#39;</span>] <span class="op">&lt;</span> <span class="dv">100</span>)<span class="op">/</span><span class="bu">len</span>(AdatokEgyben)] <span class="co"># P(Y_i&lt;100), most relatív gyak.</span></span>
+<span id="cb515-52"><a href="eloszlások-és-mintavételezés.html#cb515-52" tabindex="-1"></a></span>
+<span id="cb515-53"><a href="eloszlások-és-mintavételezés.html#cb515-53" tabindex="-1"></a>    MintaStatMutatok <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb515-54"><a href="eloszlások-és-mintavételezés.html#cb515-54" tabindex="-1"></a>      <span class="bu">list</span>(<span class="bu">zip</span>(EgyenletesMintaStat, NormalisMintaStat, ExponMintaStat)),</span>
+<span id="cb515-55"><a href="eloszlások-és-mintavételezés.html#cb515-55" tabindex="-1"></a>      columns<span class="op">=</span>[<span class="st">&#39;Egyenletes&#39;</span>,<span class="st">&#39;Normal&#39;</span>, <span class="st">&#39;Expon&#39;</span>],</span>
+<span id="cb515-56"><a href="eloszlások-és-mintavételezés.html#cb515-56" tabindex="-1"></a>      index <span class="op">=</span> [<span class="st">&#39;Atlag&#39;</span>, <span class="st">&#39;Szoras&#39;</span>, <span class="st">&#39;Median&#39;</span>, <span class="st">&#39;P(Y_i&lt;100)&#39;</span>]</span>
+<span id="cb515-57"><a href="eloszlások-és-mintavételezés.html#cb515-57" tabindex="-1"></a>    )</span>
+<span id="cb515-58"><a href="eloszlások-és-mintavételezés.html#cb515-58" tabindex="-1"></a>    </span>
+<span id="cb515-59"><a href="eloszlások-és-mintavételezés.html#cb515-59" tabindex="-1"></a>    <span class="cf">return</span> MintaStatMutatok</span></code></pre></div>
+<p>Ha a <code>MintaGeneralas</code> függvény definícióját megadó fenti kód szépen lefutott, akkor a következőképpen tudjuk használni a függvényt egy <span class="math inline">\(50\)</span> elemű minta generálására <span class="math inline">\(1994\)</span>-es véletlenmag mellett.</p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb516-1"><a href="eloszlások-és-mintavételezés.html#cb516-1" tabindex="-1"></a>MintaGeneralas(<span class="dv">50</span>, <span class="dv">1994</span>)</span></code></pre></div>
+<pre><code>##             Egyenletes     Normal      Expon
+## Atlag       104.663427  81.542000  86.208355
+## Szoras       33.384088  23.684983  74.027139
+## Median      107.564478  83.357606  66.232602
+## P(Y_i&lt;100)    0.400000   0.800000   0.720000</code></pre>
+<p>Na, úgy néz ki működik! :)</p>
+<p>Akkor most lessük meg <strong>mi történik a mintából számolt és az elvi statisztikai mutatók közti különbségekkel</strong> (alias az MVH-val), ha <strong>nem <span class="math inline">\(50\)</span>, hanem mondjuk <span class="math inline">\(1000\)</span> elemű mintákat generálok az eloszlásokból</strong>.</p>
+<div class="sourceCode" id="cb518"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb518-1"><a href="eloszlások-és-mintavételezés.html#cb518-1" tabindex="-1"></a>ElviStatMutatok</span></code></pre></div>
+<pre><code>##             Egyenletes     Normal      Expon
+## Atlag       100.000000  80.000000  80.000000
+## Szoras       34.641016  20.000000  80.000000
+## Median      100.000000  80.000000  55.451774
+## P(Y_i&lt;100)    0.500000   0.841345   0.713495</code></pre>
+<div class="sourceCode" id="cb520"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb520-1"><a href="eloszlások-és-mintavételezés.html#cb520-1" tabindex="-1"></a>MintaGeneralas(<span class="dv">50</span>, <span class="dv">1992</span>)</span></code></pre></div>
+<pre><code>##             Egyenletes     Normal      Expon
+## Atlag       101.865225  78.951917  82.311381
+## Szoras       33.462534  18.922748  76.278763
+## Median       97.446914  76.384652  52.148485
+## P(Y_i&lt;100)    0.540000   0.880000   0.700000</code></pre>
+<div class="sourceCode" id="cb522"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb522-1"><a href="eloszlások-és-mintavételezés.html#cb522-1" tabindex="-1"></a>MintaGeneralas(<span class="dv">1000</span>, <span class="dv">1992</span>)</span></code></pre></div>
+<pre><code>##             Egyenletes     Normal      Expon
+## Atlag       100.646326  80.106832  81.413684
+## Szoras       34.791814  20.003538  80.432945
+## Median      100.488619  79.798321  56.105934
+## P(Y_i&lt;100)    0.499000   0.838000   0.706000</code></pre>
+<p>Na, hát ha <span class="math inline">\(1000\)</span> elemet tudtam megfigyelni az <span class="math inline">\(50\)</span> helyett, akkor minden statisztikai mutatóm mintából számolt értéke lényegesen közelebb van a valós, elvi értékhez! Tehát, olybá tűnik, hogy <strong>mintaelemszám növelésével az MVH lecsökken!</strong> Ez egy nagyon fontos tulajdonság, ami <strong>minden statisztikai mutató esetén általánosságban igaz marad!</strong><br>
+Mivel ez egy marha fontos dolog, így kaptok róla egy mémet is! <strong>Égjen csak ez be az agyakba! ;)</strong></p>
+<center>
+<img src="sample_size.jpg" style="width:40.0%" />
+</center>
+<p><br>További kísérletezgetésre a mintavétel hibával kapcsolatban, nyugodtan lehet használni az alábbi kis interaktív felületet.</p>
+<center>
+<iframe src="https://kola992.shinyapps.io/samplingfromdistributions/?showcase=0" width="120%" height="700px" data-external="1">
+</iframe>
+</center>
+<p>A felületet nyomogatva érdemes megfigyelni pár dolgot.</p>
+<ul>
+<li>A mintaelemszám növelésével a hisztogram alakja is közelebb kerül az adatok mögött álló eloszlás sűrűségfüggvényéhez. Tehát <strong>elemszám növelésével a sűrűségfüggvény mintavételi hibája is csökken</strong> úgymond.</li>
+<li>Az <strong>átlag és a 100-nál kisebb értékek aránya</strong> általában <strong>mindhárom eloszlásnál elég közel van a valós, elméleti értékéhez</strong>.</li>
+<li>Ellenben a <strong>medián és szórás</strong> értékek az <strong>exponenciális eloszlás esetében aránylag többször is durván eltérnek a valós értéktől még nagyobb</strong> (pl. 500 körüli) <strong>elemszám esetén is</strong>.</li>
+</ul>
+</div>
+</div>
+<div id="statisztikai-sokaságok-fae-mintavételezése" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Statisztikai sokaságok FAE mintavételezése<a href="eloszlások-és-mintavételezés.html#statisztikai-sokaságok-fae-mintavételezése" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Amit az első két fejezetben műveltünk az az <strong>elméleti eloszlások Független Azonos Eloszlású, leánykori nevén FAE mintavételezése</strong>.</p>
+<p>A FAE mintának ezek szerint két jellemzője van:</p>
+<ul>
+<li><strong>Független</strong>: a <strong>mintaelemek kihúzása véletlenszerű</strong>, tehát az, hogy mit húztam mondjuk 3-nak <strong>nem függ</strong> attól mit húztam 1-nek és 2-nak.</li>
+<li><strong>Azonos Eloszlású</strong>: A minta minden eleme <strong>ugyan abból az eloszlásból</strong> (pl. <span class="math inline">\(N(80,20)\)</span> vagy <span class="math inline">\(Exp(0.0125)\)</span>) származik, nincs közben váltás arra nézve, hogy épp milyen eloszlásból húzzuk ki véletlenszerűen az értékeket.</li>
+</ul>
+<p>Ezt a FAE mintavételt <strong>valós statisztikai adatsorok, azaz sokaságok esetén is el lehet végezni</strong>, nem csak elméleti eloszlások esetén.<br>
+Mondjuk meg akarom ismerni a kb. 4,5 millió magyar munkavállaló havi bruttó átlagkeresetét. Nyilván a NAV-nál megvan mind a 4,5 millió dolgos magyar <em>en_ber</em> kereseti adata tételesen (tehát ezek az értékek nem egy exponenciális eloszlással vannak megadva pl., hanem tételesen fel vannak sorolva egy táblában valahol), csak hát tudjuk mikor adják ki ezeket az adatokat bárkinek is. Ezért inkább azt csináljuk, hogy mondjuk a népességnyilvántartótól elkérjük a 4,5 millió magyar munkavállaló lakcímét, beöntjük a címeket tartalmazó cetliket egy kalapba, és becsukott szemmel, random húzunk 100 címet <em>visszatevéssel</em>, azaz egy kihúzott címet visszateszünk mindig a kalapba, és nem rakjuk félre. Majd mind a 100 címre elmegyünk és megkérdezzük az emberek havi bruttó keresetét. Ezzel a <strong>véletlen, visszatevéses mintavétellel a magyar munkavállalók sokaságából</strong> valójában <strong>FAE mintavételezést végeztünk</strong>. Miért is?</p>
+<ol style="list-style-type: decimal">
+<li>A <strong>mintaelemek függetlenek</strong>, hiszen “<em>becsukott szemmel</em>”, véletlenszerűen húztuk ki a minta elemeket.</li>
+<li>Mivel <strong>visszatevéses volt a mintavétel, így a kersetek eloszlása nem változott meg a mintavétel során</strong>. Tehát végig ugyan azt az elméleti kereseteloszlást mintavételeztünk. Pont úgy, mint amikor mindig ugyan abból az elvi sűrűségfüggvényből generáltuk a mintaelemeket az eddig elvégzett mintavételeink során.</li>
+</ol>
+<p>Tehát, bízunk abban, hogy ami mondjuk a <strong>mintából számolt átlagkereset és a teljes sokaság átlagekeresete között áll az ugyan az az MVH, mint amivel találkoztunk az eloszlások elvi átlaga és a belőlük generált minták tapasztalati átlaga esetében is!!</strong><br>
+Persze a gyakorlatban <strong>nem mindig tudunk ilyen szép FAE mintavételt végezni</strong>, mert</p>
+<ol style="list-style-type: decimal">
+<li><strong>Nem tudunk visszatenni</strong> elemeket. Ez a <strong>kisebbik gond</strong>. Hiszen, ha a <strong>minta mérete a sokaság méretéhez képest nagyon kicsi</strong> (pl. 100 főt választunk kis a 4,5 millióból és nem 2 milliót :)), akkor a <strong>visszatevéses és visszatevés nélküli mintavétel nagyjából ugyan az</strong>, mert nagyon kicsi lesz az esélye annak, hogy a visszatevéses esetben valakit tényleg kétszer beválasztunk a mintába.</li>
+<li><strong>Nem tudunk ténylegesen véletlenszerűen kiválasztani elemeket</strong>. Ez a <strong>nagyobb baj</strong>. És sajnos gyakori is. Pl. <em>nem kapunk címjegyzéket, amiből sorsolni lehet a mintánkba emberkéket</em>. Mert ekkor a mintavételi hiba mellé bejön az úgynevezett <strong>nem mintavételi hiba</strong>. Ezek olyan tényezők, amik “<em>emberi gyarlóság</em>” miatt kerülnek a rendszerbe. Pl. nagyon tetszenek a vörös hajú lányok, így aránytalanul sokat kérdezek meg belőlük ahhoz képest ahányan a sokaságban vannak. Vagy, lusta vagyok lemenni 500 fő alatti településre, így az alacsonyabb keresetű társadalmi rétegből is kevesebb embert kérdezek meg, mint ahányat kéne a sokasági elemszámuk alapján. Tehát, szakszóval azt mondom, hogy a <strong>minta nem lesz reprezentatív hajszínre és település méretre</strong>. Ezekkel a <strong>nem mintavételi hibákkal most nem foglalkozunk, feltesszük, hogy nincsenek</strong>. Mert <strong>kiszámolásuk és korrigálásuk elég bonyolult</strong>, <a href="https://tatk.elte.hu/mesterszakok/survey" target="_blank">komplett mesterszakok</a> foglalkoznak a kérdéssel.</li>
+</ol>
+<p>Szóval, első körben nézzük meg <strong>hogyan tudunk Pythonban egy ismert sokaságból FAE mintát venni</strong>. A <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájlban a 2022-es LIDL Balaton átúszás résztvevőinek <em>neve, neme és percben mért időeredménye</em> található. Olvassuk be a táblát <code>pandas</code> data frame-be!</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb524-1"><a href="eloszlások-és-mintavételezés.html#cb524-1" tabindex="-1"></a>Balcsi <span class="op">=</span> pd.read_excel(<span class="st">&quot;LIDLBalaton2022.xlsx&quot;</span>)</span>
+<span id="cb524-2"><a href="eloszlások-és-mintavételezés.html#cb524-2" tabindex="-1"></a></span>
+<span id="cb524-3"><a href="eloszlások-és-mintavételezés.html#cb524-3" tabindex="-1"></a>Balcsi.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 9751 entries, 0 to 9750
+## Data columns (total 3 columns):
+##  #   Column  Non-Null Count  Dtype  
+## ---  ------  --------------  -----  
+##  0   Nev     9751 non-null   object 
+##  1   Nem     9751 non-null   object 
+##  2   PERC    9751 non-null   float64
+## dtypes: float64(1), object(2)
+## memory usage: 228.7+ KB</code></pre>
+<div class="sourceCode" id="cb526"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb526-1"><a href="eloszlások-és-mintavételezés.html#cb526-1" tabindex="-1"></a>Balcsi.head()</span></code></pre></div>
+<pre><code>##                    Nev Nem        PERC
+## 0           Aba Attila   F  142.416667
+## 1        Abaffy Károly   F  197.883333
+## 2        Abaffy Kornél   F  197.983333
+## 3  Abelovszki Hajnalka   N  182.000000
+## 4   Abért Valentin ifj   F  222.516667</code></pre>
+<p>Szuper, úgy látszik megvan mind az <span class="math inline">\(N=9751\)</span> versenyző időeredménye hiánytalanul. <strong>Ez lesz most akkor a sokaságunk.</strong></p>
+<p>Számoljunk ki az időeredményekre három statisztikai mutatót:</p>
+<ul>
+<li>Az <strong>átlag</strong>os időt Jele: <span class="math inline">\(\bar{Y}\)</span> vagy <span class="math inline">\(\mu\)</span></li>
+<li>Az egyéni idők <strong>szórás</strong>át Jele: <span class="math inline">\(\sigma\)</span></li>
+<li>A 3 óra (180 perc) felett teljesítők <strong>arányát</strong> Jele: <span class="math inline">\(P\)</span>
+<ul>
+<li>Itt a számolásnál azt a trükköt sütjük el, hogy a <code>Balcsi.PERC &gt; 180</code> parancs egy <code>bool</code> tömböt ad vissza aszerint, hogy a <code>Balcsi.PERC &gt; 180</code> logikai állítás kire <code>True</code> és <code>False</code>.</li>
+<li>A <code>numpy</code> csomag <code>sum</code> függvénye pedig egy ilyen tömbre <code>True = 1</code> és <code>False = 0</code> kódolásokkal végzi el az összegzést: azaz megadja a <em>kedvező esetek</em>, a Balatont 180-an percnél hosszabb idő alatt átúszók <em>darabszámát</em>.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb528"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb528-1"><a href="eloszlások-és-mintavételezés.html#cb528-1" tabindex="-1"></a>SokasagiAtlag <span class="op">=</span> np.mean(Balcsi.PERC)</span>
+<span id="cb528-2"><a href="eloszlások-és-mintavételezés.html#cb528-2" tabindex="-1"></a>SokasagiSzoras <span class="op">=</span> np.std(Balcsi.PERC)</span>
+<span id="cb528-3"><a href="eloszlások-és-mintavételezés.html#cb528-3" tabindex="-1"></a>SokasagiArany <span class="op">=</span> np.<span class="bu">sum</span>(Balcsi.PERC <span class="op">&gt;</span> <span class="dv">180</span>)<span class="op">/</span><span class="bu">len</span>(Balcsi)</span>
+<span id="cb528-4"><a href="eloszlások-és-mintavételezés.html#cb528-4" tabindex="-1"></a></span>
+<span id="cb528-5"><a href="eloszlások-és-mintavételezés.html#cb528-5" tabindex="-1"></a>SokasagiAtlag</span></code></pre></div>
+<pre><code>## 167.52914060096398</code></pre>
+<div class="sourceCode" id="cb530"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb530-1"><a href="eloszlások-és-mintavételezés.html#cb530-1" tabindex="-1"></a>SokasagiSzoras</span></code></pre></div>
+<pre><code>## 44.08833385551663</code></pre>
+<div class="sourceCode" id="cb532"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb532-1"><a href="eloszlások-és-mintavételezés.html#cb532-1" tabindex="-1"></a>SokasagiArany</span></code></pre></div>
+<pre><code>## 0.3295046661880833</code></pre>
+<p>Meg is vagyunk, <strong>ezek akkor a statisztikai mutatóink valós, sokasági értékei</strong>:</p>
+<ul>
+<li><span class="math inline">\(\bar{Y}=\mu=167.5\)</span> perc</li>
+<li><span class="math inline">\(\sigma = 44.1\)</span> perc</li>
+<li><span class="math inline">\(P = 0.3295=32.95\%\)</span></li>
+</ul>
+<p>Ezek alapján a <strong>sokaság, azaz a teljes adatsor esetén a következő jelölési konvenciókkal élünk</strong>:</p>
+<ul>
+<li>Elemszám <span class="math inline">\(N\)</span></li>
+<li>Sokaságból számított statisztikai mutatók együttes jelölése: <span class="math inline">\(\theta\)</span>
+<ul>
+<li>Tehát <span class="math inline">\(\theta\)</span> egy általános jelölés egy sokasági mutatószámra.</li>
+<li>Állhat mögötte átlag (<span class="math inline">\(\bar{Y}=\mu\)</span>), szórás (<span class="math inline">\(\sigma\)</span>), arány (<span class="math inline">\(P\)</span>), de akár medián (<span class="math inline">\(Me\)</span>), módusz (<span class="math inline">\(Mo\)</span>) stb. is!</li>
+</ul></li>
+</ul>
+<p>Általános szabály, hogy a “<em>sokasági dolgokat</em>” vagy <strong>nagy</strong> vagy <strong>görög betűvel jelöljük</strong>.</p>
+<p>Akkor most <strong>vegyünk a Balaton 2022-es átúszóinak a sokaságából</strong> egy <span class="math inline">\(n=100\)</span> elemű <strong>mintát!</strong> Szerencsére Pythonban ezt könnyű végrehajtani, mivel a <code>pandas</code> data frame-nek létezik <code>sample</code> metódusa, aminek az <code>n</code> paraméterében meg lehet mondani, hogy <strong>hány elemű mintánk</strong> legyen. A <code>replace = True</code> paraméter beállítással pedig azt mondjuk meg gépállatnak, hogy <strong>visszatevéses véletlen, azaz FAE mintát</strong> szeretnénk.<br>
+Itt is van <code>random_state</code> paraméter, amit azonos számla (pl. továbbra is 1992-re) beállítva <em>ugyan azt a véletlen mintát fogjuk kapni</em>.</p>
+<div class="sourceCode" id="cb534"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb534-1"><a href="eloszlások-és-mintavételezés.html#cb534-1" tabindex="-1"></a>BalcsiMinta <span class="op">=</span> Balcsi.sample(n <span class="op">=</span> <span class="dv">100</span>, replace <span class="op">=</span> <span class="va">True</span>, random_state <span class="op">=</span> <span class="dv">1992</span>)</span>
+<span id="cb534-2"><a href="eloszlások-és-mintavételezés.html#cb534-2" tabindex="-1"></a></span>
+<span id="cb534-3"><a href="eloszlások-és-mintavételezés.html#cb534-3" tabindex="-1"></a>BalcsiMinta.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## Index: 100 entries, 7991 to 5727
+## Data columns (total 3 columns):
+##  #   Column  Non-Null Count  Dtype  
+## ---  ------  --------------  -----  
+##  0   Nev     100 non-null    object 
+##  1   Nem     100 non-null    object 
+##  2   PERC    100 non-null    float64
+## dtypes: float64(1), object(2)
+## memory usage: 3.1+ KB</code></pre>
+<p>Olybá néz ki megvan az <span class="math inline">\(n=100\)</span> elemű FAE mintánk! :)</p>
+<p>Mielőtt nekiugrunk, és kiszámoljuk a minta alapján az időeredmények átlagát, szórását és a 3 órán felül úszók arányát, itt is szögezzünk le <strong>jelölési konvenciót a mintára vonatkozóan</strong>:</p>
+<ul>
+<li>Elemszám <span class="math inline">\(n\)</span></li>
+<li>A mintából számított statisztikai mutatók együttes jelölése: <span class="math inline">\(\hat{\theta}\)</span>
+<ul>
+<li>Tehát <span class="math inline">\(\hat{\theta}\)</span> egy általános jelölés egy sokasági mutatószámra.</li>
+<li>Általánosságban a “<em>kalap</em>”, a <span class="math inline">\(\hat{}\)</span> mindig a mintából <strong>becsült</strong> érték jele.</li>
+<li>Állhat <span class="math inline">\(\hat{\theta}\)</span> mögött átlag (<span class="math inline">\(\bar{y}\)</span>), szórás (<span class="math inline">\(s^*\)</span>), arány (<span class="math inline">\(p\)</span>), de akár medián (<span class="math inline">\(me\)</span>), módusz (<span class="math inline">\(mo\)</span>) stb. is!</li>
+</ul></li>
+</ul>
+<p>Általános szabály, hogy a “<em>mintából számolt dolgokat</em>” vagy <strong>kis betűvel</strong> vagy <strong>kalappal jelöljük</strong>.</p>
+<p>Na, akkor nézzük meg <strong>a statisztikai mutatóink</strong> <span class="math inline">\(n = 100\)</span> elemű <strong>mintából számítva/becsülve</strong>!</p>
+<div class="sourceCode" id="cb536"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb536-1"><a href="eloszlások-és-mintavételezés.html#cb536-1" tabindex="-1"></a>MintaAtlag <span class="op">=</span> np.mean(BalcsiMinta.PERC)</span>
+<span id="cb536-2"><a href="eloszlások-és-mintavételezés.html#cb536-2" tabindex="-1"></a>MintaSzoras <span class="op">=</span> np.std(BalcsiMinta.PERC)</span>
+<span id="cb536-3"><a href="eloszlások-és-mintavételezés.html#cb536-3" tabindex="-1"></a>MintaArany <span class="op">=</span> np.<span class="bu">sum</span>(BalcsiMinta.PERC <span class="op">&gt;</span> <span class="dv">180</span>)<span class="op">/</span><span class="bu">len</span>(BalcsiMinta)</span>
+<span id="cb536-4"><a href="eloszlások-és-mintavételezés.html#cb536-4" tabindex="-1"></a></span>
+<span id="cb536-5"><a href="eloszlások-és-mintavételezés.html#cb536-5" tabindex="-1"></a>MintaAtlag</span></code></pre></div>
+<pre><code>## 164.44033333333334</code></pre>
+<div class="sourceCode" id="cb538"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb538-1"><a href="eloszlások-és-mintavételezés.html#cb538-1" tabindex="-1"></a>MintaSzoras</span></code></pre></div>
+<pre><code>## 38.62827175499542</code></pre>
+<div class="sourceCode" id="cb540"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb540-1"><a href="eloszlások-és-mintavételezés.html#cb540-1" tabindex="-1"></a>MintaArany</span></code></pre></div>
+<pre><code>## 0.3</code></pre>
+<p>Meg is vagyunk, <strong>ezek akkor a statisztikai mutatóink mintából becsült értékei</strong>:</p>
+<ul>
+<li><span class="math inline">\(\bar{y}=164.4\)</span> perc</li>
+<li><span class="math inline">\(s^* = 38.6\)</span> perc</li>
+<li><span class="math inline">\(p = 0.3=30\%\)</span></li>
+</ul>
+<p>Ezek sem egyeznek pontosan a mutatók valós, sokasági értékével, de <em>nem térnek el nagyon durván</em> a valóságtól. Most is abban bízunk, hogy a <strong>becsült és valós értékek közti eltérés a MVH miatt van, és akkor most ráfordulunk ennek az MVH-nak a meghatározására!</strong></p>
+<p>Ehhez a <strong>0. lépés, hogy nagyon-nagyon sok, pl. <span class="math inline">\(10000\)</span> db 100 elemű FAE mintát veszünk</strong> a sokaságunkból, és mindegyik mintában kiszámoljuk az <em>átlagot, szórást és arányt</em>.</p>
+<div id="ismételt-mintavételezés-resampling" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Ismételt Mintavételezés (<em>Resampling</em>)<a href="eloszlások-és-mintavételezés.html#ismételt-mintavételezés-resampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Amit még ebben az anyagban megnézünk az az volna, <strong>hogyan generálunk le <span class="math inline">\(10000\)</span> db 100 elemű FAE mintát</strong> a 2022-es Balaton átúszók sokaságából.</p>
+<p>Természetesen a kódunk alapja egy <span class="math inline">\(10000\)</span> iteráción végiszaladó <code>for</code> ciklus lesz. Ami némileg érdekes, hogy miképpen tároljuk el a mintavételezett adatokat. A számításokhoz igazából csak a <code>PERC</code> oszlopra van szükség, így egy olyan data frame-t generálunk, aminek <span class="math inline">\(10000\)</span> sorában lesznek a különböző mintavételek, míg <span class="math inline">\(100\)</span> oszlopában a 100 db mintaelem minden egyes mintavételezési körben.</p>
+<p>Ehhez először létrehozunk egy üres <span class="math inline">\(100\)</span> oszlopos data frame-t. Ennek a lépései:</p>
+<ul>
+<li>Létrehozzuk az oszlopneveket
+<ul>
+<li>Létrehozunk egy <code>numpy</code> tömböt, amiben <span class="math inline">\(1-100\)</span>-ig vannak az egész számok</li>
+<li>Ezt az <code>int</code> tömböt <code>string</code>gé konvertáljuk</li>
+<li>Minden számhoz hozzáfűzzük az “<em>Elem</em>” előtagot a <code>numpy</code> csomag <code>core.defchararray</code> névterében lakó <code>add</code> függvénnyel</li>
+</ul></li>
+<li>A <code>pandas</code> csomag <code>DataFrame</code> függvényével létrehozzuk az <em>üres</em> 100 oszlopos data frame-t, az előző pontban megadott oszlopnevekkel.</li>
+</ul>
+<div class="sourceCode" id="cb542"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb542-1"><a href="eloszlások-és-mintavételezés.html#cb542-1" tabindex="-1"></a>oszlopnevek <span class="op">=</span> (np.array(<span class="bu">range</span>(<span class="dv">100</span>))<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb542-2"><a href="eloszlások-és-mintavételezés.html#cb542-2" tabindex="-1"></a>oszlopnevek <span class="op">=</span> oszlopnevek.astype(<span class="bu">str</span>)</span>
+<span id="cb542-3"><a href="eloszlások-és-mintavételezés.html#cb542-3" tabindex="-1"></a>oszlopnevek <span class="op">=</span> np.core.defchararray.add(<span class="st">&quot;Elem&quot;</span>, oszlopnevek)</span>
+<span id="cb542-4"><a href="eloszlások-és-mintavételezés.html#cb542-4" tabindex="-1"></a>oszlopnevek</span></code></pre></div>
+<pre><code>## array([&#39;Elem1&#39;, &#39;Elem2&#39;, &#39;Elem3&#39;, &#39;Elem4&#39;, &#39;Elem5&#39;, &#39;Elem6&#39;, &#39;Elem7&#39;,
+##        &#39;Elem8&#39;, &#39;Elem9&#39;, &#39;Elem10&#39;, &#39;Elem11&#39;, &#39;Elem12&#39;, &#39;Elem13&#39;, &#39;Elem14&#39;,
+##        &#39;Elem15&#39;, &#39;Elem16&#39;, &#39;Elem17&#39;, &#39;Elem18&#39;, &#39;Elem19&#39;, &#39;Elem20&#39;,
+##        &#39;Elem21&#39;, &#39;Elem22&#39;, &#39;Elem23&#39;, &#39;Elem24&#39;, &#39;Elem25&#39;, &#39;Elem26&#39;,
+##        &#39;Elem27&#39;, &#39;Elem28&#39;, &#39;Elem29&#39;, &#39;Elem30&#39;, &#39;Elem31&#39;, &#39;Elem32&#39;,
+##        &#39;Elem33&#39;, &#39;Elem34&#39;, &#39;Elem35&#39;, &#39;Elem36&#39;, &#39;Elem37&#39;, &#39;Elem38&#39;,
+##        &#39;Elem39&#39;, &#39;Elem40&#39;, &#39;Elem41&#39;, &#39;Elem42&#39;, &#39;Elem43&#39;, &#39;Elem44&#39;,
+##        &#39;Elem45&#39;, &#39;Elem46&#39;, &#39;Elem47&#39;, &#39;Elem48&#39;, &#39;Elem49&#39;, &#39;Elem50&#39;,
+##        &#39;Elem51&#39;, &#39;Elem52&#39;, &#39;Elem53&#39;, &#39;Elem54&#39;, &#39;Elem55&#39;, &#39;Elem56&#39;,
+##        &#39;Elem57&#39;, &#39;Elem58&#39;, &#39;Elem59&#39;, &#39;Elem60&#39;, &#39;Elem61&#39;, &#39;Elem62&#39;,
+##        &#39;Elem63&#39;, &#39;Elem64&#39;, &#39;Elem65&#39;, &#39;Elem66&#39;, &#39;Elem67&#39;, &#39;Elem68&#39;,
+##        &#39;Elem69&#39;, &#39;Elem70&#39;, &#39;Elem71&#39;, &#39;Elem72&#39;, &#39;Elem73&#39;, &#39;Elem74&#39;,
+##        &#39;Elem75&#39;, &#39;Elem76&#39;, &#39;Elem77&#39;, &#39;Elem78&#39;, &#39;Elem79&#39;, &#39;Elem80&#39;,
+##        &#39;Elem81&#39;, &#39;Elem82&#39;, &#39;Elem83&#39;, &#39;Elem84&#39;, &#39;Elem85&#39;, &#39;Elem86&#39;,
+##        &#39;Elem87&#39;, &#39;Elem88&#39;, &#39;Elem89&#39;, &#39;Elem90&#39;, &#39;Elem91&#39;, &#39;Elem92&#39;,
+##        &#39;Elem93&#39;, &#39;Elem94&#39;, &#39;Elem95&#39;, &#39;Elem96&#39;, &#39;Elem97&#39;, &#39;Elem98&#39;,
+##        &#39;Elem99&#39;, &#39;Elem100&#39;], dtype=&#39;&lt;U15&#39;)</code></pre>
+<div class="sourceCode" id="cb544"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb544-1"><a href="eloszlások-és-mintavételezés.html#cb544-1" tabindex="-1"></a>MintaDF <span class="op">=</span> pd.DataFrame(columns <span class="op">=</span> oszlopnevek)</span>
+<span id="cb544-2"><a href="eloszlások-és-mintavételezés.html#cb544-2" tabindex="-1"></a>MintaDF</span></code></pre></div>
+<pre><code>## Empty DataFrame
+## Columns: [Elem1, Elem2, Elem3, Elem4, Elem5, Elem6, Elem7, Elem8, Elem9, Elem10, Elem11, Elem12, Elem13, Elem14, Elem15, Elem16, Elem17, Elem18, Elem19, Elem20, Elem21, Elem22, Elem23, Elem24, Elem25, Elem26, Elem27, Elem28, Elem29, Elem30, Elem31, Elem32, Elem33, Elem34, Elem35, Elem36, Elem37, Elem38, Elem39, Elem40, Elem41, Elem42, Elem43, Elem44, Elem45, Elem46, Elem47, Elem48, Elem49, Elem50, Elem51, Elem52, Elem53, Elem54, Elem55, Elem56, Elem57, Elem58, Elem59, Elem60, Elem61, Elem62, Elem63, Elem64, Elem65, Elem66, Elem67, Elem68, Elem69, Elem70, Elem71, Elem72, Elem73, Elem74, Elem75, Elem76, Elem77, Elem78, Elem79, Elem80, Elem81, Elem82, Elem83, Elem84, Elem85, Elem86, Elem87, Elem88, Elem89, Elem90, Elem91, Elem92, Elem93, Elem94, Elem95, Elem96, Elem97, Elem98, Elem99, Elem100]
+## Index: []
+## 
+## [0 rows x 100 columns]</code></pre>
+<p>Ha ezzel megvagyunk, akkor egyszerűen egy <code>for</code> ciklusban feltöltjük a data frame-t sorokkal. Ugye <em>1 sor = 1 db 100 elemű minta</em>. Ehhez pedig az 1. fejezet elején már használt <code>append</code> (egy új sor hozzáadása) metódusát vetjük be az alábbi kódban látható módon. Arra <strong>kell figyelni</strong>, hogy az <code>append</code> előtt a kiválasztott minta időadatait tartalmazó tömb <code>index</code>-eit a data frame-ünk <em>oszlopneveire</em> kell átrakni, különben az <code>append</code> nem tudja összekötni a mintaelemeket a cél data frame oszlopaival!<br>
+Természetesen most véletlenmagot nem rögzítünk a <code>sample</code> metódusban, különben a műveletnek nem lenne értelme (10000-szer vennénk ki ugyan azt a mintát ugyebár).</p>
+<p>Futtatás előtt <strong>arra készüljünk lélekben, hogy az alábbi kódrészlet futásideje elég hosszadalmas</strong> (több perc) is lehet, mivel marhára nem optimalizáltuk a <span class="math inline">\(10000\)</span> iterációjú <code>for</code> ciklusunkat… Ejjnye! :)</p>
+<div class="sourceCode" id="cb546"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb546-1"><a href="eloszlások-és-mintavételezés.html#cb546-1" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>):</span>
+<span id="cb546-2"><a href="eloszlások-és-mintavételezés.html#cb546-2" tabindex="-1"></a>  AktualisMinta <span class="op">=</span> Balcsi[<span class="st">&#39;PERC&#39;</span>].sample(n <span class="op">=</span> <span class="dv">100</span>, replace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb546-3"><a href="eloszlások-és-mintavételezés.html#cb546-3" tabindex="-1"></a>  AktualisMinta.index <span class="op">=</span> oszlopnevek</span>
+<span id="cb546-4"><a href="eloszlások-és-mintavételezés.html#cb546-4" tabindex="-1"></a>  MintaDF <span class="op">=</span> MintaDF.append(AktualisMinta, ignore_index <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb546-5"><a href="eloszlások-és-mintavételezés.html#cb546-5" tabindex="-1"></a></span>
+<span id="cb546-6"><a href="eloszlások-és-mintavételezés.html#cb546-6" tabindex="-1"></a>MintaDF</span></code></pre></div>
+<pre><code>##            Elem1       Elem2       Elem3  ...      Elem98      Elem99     Elem100
+## 0     164.800000  129.066667  156.166667  ...  207.350000  159.666667  165.883333
+## 1     152.516667  212.483333  152.900000  ...  307.266667  119.783333  128.216667
+## 2     145.666667  185.266667  169.516667  ...  167.733333  228.366667  215.633333
+## 3     185.683333  120.333333  201.250000  ...  182.766667  177.666667  112.450000
+## 4     117.483333  142.350000  320.266667  ...  188.566667  189.166667   99.916667
+## ...          ...         ...         ...  ...         ...         ...         ...
+## 9995  162.333333   83.350000  146.750000  ...  164.250000  131.933333  128.183333
+## 9996  100.416667  161.433333  187.366667  ...  160.483333  168.416667  209.300000
+## 9997  146.450000  160.783333  165.483333  ...  158.816667  167.733333  183.400000
+## 9998  139.250000  140.466667  130.933333  ...  153.616667  112.366667  196.050000
+## 9999  147.316667  173.450000  106.100000  ...  185.616667  171.800000  135.166667
+## 
+## [10000 rows x 100 columns]</code></pre>
+<p>Ezzel meg is vagyunk, van az időeredményekből <span class="math inline">\(10000\)</span> db <span class="math inline">\(n=100\)</span> elemű mintánk! :) Csak, hogy ne kelljen ezt a hosszú mintagenerálási időt végigvárni, utolsó lélegzetünkkel <strong>mentsük el az eredményünket tartalmazó data frame-t egy Excel fájlba</strong>. A data frame <code>to_excel</code> metódusának <code>index = False</code> beállításával azt érjük el, hogy a sorindexeket ne írja ki egy külön oszlopba az Excelbe. Ezek most egyszerű sorszámok csak, semmi jelentőségük, felesleges az Excelben erre elpazarolni egy oszlopot. :)</p>
+<div class="sourceCode" id="cb548"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb548-1"><a href="eloszlások-és-mintavételezés.html#cb548-1" tabindex="-1"></a>MintaDF.to_excel(<span class="st">&#39;MintaDataFrame.xlsx&#39;</span>, index <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-becsléselmélet-alapjai.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-Mintavetel.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

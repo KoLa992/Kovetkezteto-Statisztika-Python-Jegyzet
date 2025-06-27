@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Becslések EV és R mintából | Következtető Statisztika Python Jegyzet</title>
+  <meta name="description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Becslések EV és R mintából | Következtető Statisztika Python Jegyzet" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="github-repo" content="KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Becslések EV és R mintából | Következtető Statisztika Python Jegyzet" />
+  
+  <meta name="twitter:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  
+
+<meta name="author" content="Kovács László" />
+
+
+<meta name="date" content="2025-06-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="további-fae-becslések-és-a-bootstrap-módszer.html"/>
+<link rel="next" href="hipotézisvizsgálat-alapjai.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Következtető Statisztika Python Jegyzet</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Előhang</a></li>
+<li class="chapter" data-level="2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html"><i class="fa fa-check"></i><b>2</b> Statisztikához szükséges Python nyelvi alapok</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#programozási-alapelvek"><i class="fa fa-check"></i><b>2.1</b> Programozási alapelvek</a></li>
+<li class="chapter" data-level="2.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pythonról-általában"><i class="fa fa-check"></i><b>2.2</b> A Pythonról általában</a></li>
+<li class="chapter" data-level="2.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-spyder-felülete"><i class="fa fa-check"></i><b>2.3</b> A Spyder felülete</a></li>
+<li class="chapter" data-level="2.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#alapvető-python-adattípusok-és-adatszerkezetek"><i class="fa fa-check"></i><b>2.5</b> Alapvető Python adattípusok és adatszerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-adattípusok"><i class="fa fa-check"></i><b>2.5.1</b> Egyszerű adattípusok</a></li>
+<li class="chapter" data-level="2.5.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#összetett-adatszerkezetek"><i class="fa fa-check"></i><b>2.5.2</b> Összetett adatszerkezetek</a></li>
+<li class="chapter" data-level="2.5.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-numpy-tömb"><i class="fa fa-check"></i><b>2.5.3</b> A <code>numpy</code> tömb</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#vezérlési-szerkezetek"><i class="fa fa-check"></i><b>2.6</b> Vezérlési szerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#elágazás-if"><i class="fa fa-check"></i><b>2.6.1</b> Elágazás (<code>if</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#ciklusok-for"><i class="fa fa-check"></i><b>2.6.2</b> Ciklusok (<code>for</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pandas-data-frame-objektum"><i class="fa fa-check"></i><b>2.7</b> A Pandas data frame objektum</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hivatkozási-lehetőségek-data-frame-ben"><i class="fa fa-check"></i><b>2.7.1</b> Hivatkozási lehetőségek data frame-ben</a></li>
+<li class="chapter" data-level="2.7.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-módosítása"><i class="fa fa-check"></i><b>2.7.2</b> Data frame-k módosítása</a></li>
+<li class="chapter" data-level="2.7.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#szűrés-data-frame-ben-logikai-indexszálás"><i class="fa fa-check"></i><b>2.7.3</b> Szűrés data frame-ben: logikai indexszálás</a></li>
+<li class="chapter" data-level="2.7.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hiányzó-értékek-kezelése-data-frame-ben"><i class="fa fa-check"></i><b>2.7.4</b> Hiányzó értékek kezelése data frame-ben</a></li>
+<li class="chapter" data-level="2.7.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatvizualizáció-data-frame-en-keresztül"><i class="fa fa-check"></i><b>2.7.5</b> Adatvizualizáció data frame-en keresztül</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#aggregálás-data-frame-ben"><i class="fa fa-check"></i><b>2.8</b> Aggregálás data frame-ben</a></li>
+<li class="chapter" data-level="2.9" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-leíró-statisztika-data-frame-ben"><i class="fa fa-check"></i><b>2.9</b> Egyszerű leíró statisztika data frame-ben</a></li>
+<li class="chapter" data-level="2.10" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatminőségi-problémák-felismerése-és-kezelése-leíró-statisztika-segítségével"><i class="fa fa-check"></i><b>2.10</b> Adatminőségi problémák felismerése és kezelése leíró statisztika segítségével</a></li>
+<li class="chapter" data-level="2.11" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-összekapcsolása"><i class="fa fa-check"></i><b>2.11</b> Data frame-k összekapcsolása</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-kapcsolási-kulcsnak-használt-oszlop-ellenőrzése-és-javítása"><i class="fa fa-check"></i><b>2.11.1</b> A kapcsolási kulcsnak használt oszlop ellenőrzése és javítása</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#kilógó-értékek-keresése-és-kezelése"><i class="fa fa-check"></i><b>2.12</b> Kilógó értékek keresése és kezelése</a></li>
+<li class="chapter" data-level="2.13" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#korrelációs-elemzések-data-frame-ben"><i class="fa fa-check"></i><b>2.13</b> Korrelációs elemzések data frame-ben</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok"><i class="fa fa-check"></i>Gyakorló feladatok</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok-megoldása"><i class="fa fa-check"></i>Gyakorló feladatok megoldása</a>
+<ul>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat"><i class="fa fa-check"></i>1. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-1"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-2"><i class="fa fa-check"></i>3. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-3"><i class="fa fa-check"></i>4. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-4"><i class="fa fa-check"></i>5. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-5"><i class="fa fa-check"></i>6. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-6"><i class="fa fa-check"></i>7. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-7"><i class="fa fa-check"></i>8. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-8"><i class="fa fa-check"></i>9. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-9"><i class="fa fa-check"></i>10. feladat</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><i class="fa fa-check"></i><b>3</b> Leíró Statisztika ismétlés és Valószínűségszámítás alapok</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#leíró-statisztikai-mutatók"><i class="fa fa-check"></i><b>3.1</b> Leíró statisztikai mutatók</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#hisztogram-és-alakmutatók"><i class="fa fa-check"></i><b>3.1.1</b> Hisztogram és Alakmutatók</a></li>
+<li class="chapter" data-level="3.1.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-lekérése"><i class="fa fa-check"></i><b>3.1.2</b> Gyakorisági tábla lekérése</a></li>
+<li class="chapter" data-level="3.1.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-bővítése"><i class="fa fa-check"></i><b>3.1.3</b> Gyakorisági tábla bővítése</a></li>
+<li class="chapter" data-level="3.1.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#súlyozott-átlag-és-szórás-pythonban"><i class="fa fa-check"></i><b>3.1.4</b> Súlyozott átlag és szórás Pythonban</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-normális-eloszlás-és-sűrűségfüggvénye"><i class="fa fa-check"></i><b>3.2</b> A normális eloszlás és sűrűségfüggvénye</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-használata"><i class="fa fa-check"></i><b>3.2.1</b> A sűrűségfüggvény használata</a></li>
+<li class="chapter" data-level="3.2.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-integrálja"><i class="fa fa-check"></i><b>3.2.2</b> A sűrűségfüggvény integrálja</a></li>
+<li class="chapter" data-level="3.2.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#valószínűség-vs-relatív-gyakoriság"><i class="fa fa-check"></i><b>3.2.3</b> Valószínűség vs Relatív Gyakoriság</a></li>
+<li class="chapter" data-level="3.2.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#centrális-határeloszlás-tétel-cht"><i class="fa fa-check"></i><b>3.2.4</b> Centrális Határeloszlás Tétel (CHT)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#inverz-értékek"><i class="fa fa-check"></i><b>3.2.5</b> Inverz Értékek</a></li>
+<li class="chapter" data-level="3.2.6" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-standard-normális-eloszlás"><i class="fa fa-check"></i><b>3.2.6</b> A Standard Normális Eloszlás</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#az-exponenciális-eloszlás"><i class="fa fa-check"></i><b>3.3</b> Az Exponenciális eloszlás</a></li>
+<li class="chapter" data-level="3.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-varianciahányados-pythonban---kokain-a-balatonban"><i class="fa fa-check"></i><b>3.4</b> A Varianciahányados Pythonban - Kokain a Balatonban</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#további-minőségi-ismérvek-és-a-kokainmennyiség"><i class="fa fa-check"></i><b>3.4.1</b> További minőségi ismérvek és a kokainmennyiség</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html"><i class="fa fa-check"></i><b>4</b> Eloszlások és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#véletlenszám-generálás-és-mintavételezés"><i class="fa fa-check"></i><b>4.1</b> Véletlenszám generálás és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintagenerálás-általános-elve"><i class="fa fa-check"></i><b>4.1.1</b> A mintagenerálás általános elve</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#nem-egyenletes-eloszlású-minták-generálása"><i class="fa fa-check"></i><b>4.1.2</b> Nem egyenletes eloszlású minták generálása</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#elvi-eloszlás-vs-megfigyelt-minta"><i class="fa fa-check"></i><b>4.2</b> Elvi Eloszlás vs Megfigyelt Minta</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#az-elvi-eloszlás-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.1</b> Az elvi eloszlás alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-megfigyelt-minta-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.2</b> A megfigyelt minta alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintavételi-hiba-mvh-koncepciója"><i class="fa fa-check"></i><b>4.2.3</b> A mintavételi hiba (MVH) koncepciója</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#statisztikai-sokaságok-fae-mintavételezése"><i class="fa fa-check"></i><b>4.3</b> Statisztikai sokaságok FAE mintavételezése</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#ismételt-mintavételezés-resampling"><i class="fa fa-check"></i><b>4.3.1</b> Ismételt Mintavételezés (<em>Resampling</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html"><i class="fa fa-check"></i><b>5</b> A becsléselmélet alapjai</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#ismétlés-balaton-átúszás-eredmények-és-ezek-fae-mintái"><i class="fa fa-check"></i><b>5.1</b> Ismétlés: Balaton átúszás eredmények és ezek FAE mintái</a></li>
+<li class="chapter" data-level="5.2" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2</b> A torzítatlanság fogalma</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-aszimptotikus-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2.1</b> Az aszimptotikus torzítatlanság fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-korrigált-mintavariancia"><i class="fa fa-check"></i><b>5.3</b> A korrigált mintavariancia</a></li>
+<li class="chapter" data-level="5.4" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-medián-torzítatlansága"><i class="fa fa-check"></i><b>5.4</b> A medián torzítatlansága</a></li>
+<li class="chapter" data-level="5.5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-standard-hiba-sh-fogalma"><i class="fa fa-check"></i><b>5.5</b> A Standard Hiba (<em>SH</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-konzisztens-becslés-fogalma"><i class="fa fa-check"></i><b>5.5.1</b> A konzisztens becslés fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-átlagos-négyzetes-hiba-mse-fogalma"><i class="fa fa-check"></i><b>5.6</b> Az átlagos négyzetes hiba (<em>MSE</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#különböző-becslőfüggvények-összehasonlítása"><i class="fa fa-check"></i><b>5.6.1</b> Különböző becslőfüggvények összehasonlítása</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html"><i class="fa fa-check"></i><b>6</b> A sokasági átlag intervallumbecslése</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#ismétlés-az-átlag-standard-hibája-a-balaton-átúszás-eredményeken"><i class="fa fa-check"></i><b>6.1</b> Ismétlés: Az átlag standard hibája a Balaton átúszás eredményeken</a></li>
+<li class="chapter" data-level="6.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-mintaátlagok-eloszlása"><i class="fa fa-check"></i><b>6.2</b> A mintaátlagok eloszlása</a></li>
+<li class="chapter" data-level="6.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-sokasági-átlag-konfidencia-intervalluma"><i class="fa fa-check"></i><b>6.3</b> A sokasági átlag konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#az-átlag-konfidencia-intervallumának-általános-alakja"><i class="fa fa-check"></i><b>6.3.1</b> Az átlag konfidencia-intervallumának általános alakja</a></li>
+<li class="chapter" data-level="6.3.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-megbízhatóságának-ellenőrzése"><i class="fa fa-check"></i><b>6.3.2</b> A konfidencia-intervallum megbízhatóságának ellenőrzése</a></li>
+<li class="chapter" data-level="6.3.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-két-fontos-tulajdonsága"><i class="fa fa-check"></i><b>6.3.3</b> 3.3. A konfidencia-intervallum két fontos tulajdonsága</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#intervallumbecslés-a-gyakorlatban"><i class="fa fa-check"></i><b>6.4</b> Intervallumbecslés a gyakorlatban</a>
+<ul>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-altatók-hatékonysága"><i class="fa fa-check"></i>1. feladat: Altatók hatékonysága</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-feladat-megoldás"><i class="fa fa-check"></i>1/a) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#b-feladat-megoldás"><i class="fa fa-check"></i>1/b) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#c-feladat-megoldás"><i class="fa fa-check"></i>1/c) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-10"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-megoldás"><i class="fa fa-check"></i>2. feladat megoldás</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#összefoglalás-az-átlag-konfidencia-intervallumairól"><i class="fa fa-check"></i><b>6.5</b> Összefoglalás az átlag konfidencia-intervallumairól</a></li>
+<li class="chapter" data-level="6.6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#esettanulmány"><i class="fa fa-check"></i><b>6.6</b> Esettanulmány</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html"><i class="fa fa-check"></i><b>7</b> További FAE becslések és a Bootstrap módszer</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-konfidencia-intervallumok-két-általános-tulajdonsága"><i class="fa fa-check"></i><b>7.1</b> A Konfidencia-intervallumok két általános tulajdonsága</a></li>
+<li class="chapter" data-level="7.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#arányok-konfidencia-intervalluma"><i class="fa fa-check"></i><b>7.2</b> Arányok konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#mintaelemszám-meghatározása-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.1</b> Mintaelemszám meghatározása aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#szükséges-minimális-elemszám-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.2</b> Szükséges minimális elemszám aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#aránybecslés-a-statsmodels-csomaggal"><i class="fa fa-check"></i><b>7.2.3</b> Aránybecslés a <code>statsmodels</code> csomaggal</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-bootstrap-becslések-általános-elve"><i class="fa fa-check"></i><b>7.3</b> A Bootstrap becslések általános elve</a></li>
+<li class="chapter" data-level="7.4" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-medián-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.4</b> A Medián Bootstrap intervallumbecslése</a></li>
+<li class="chapter" data-level="7.5" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-szórás-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.5</b> A Szórás Bootstrap intervallumbecslése</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html"><i class="fa fa-check"></i><b>8</b> Becslések EV és R mintából</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#intervallumbecslés-visszatevés-nélküli-egyszerű-véletlen-ev-mintákból"><i class="fa fa-check"></i><b>8.1</b> Intervallumbecslés visszatevés nélküli egyszerű véletlen (EV) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.1</b> Átlag becslése EV mintákból</a></li>
+<li class="chapter" data-level="8.1.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#arány-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.2</b> Arány becslése EV mintákból</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-arányosan-rétegzett-ar-mintákból"><i class="fa fa-check"></i><b>8.2</b> Átlag becslése Arányosan Rétegzett (AR) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#az-ar-mintavételek-hatékonysága"><i class="fa fa-check"></i><b>8.2.1</b> Az AR mintavételek hatékonysága</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html"><i class="fa fa-check"></i><b>9</b> Hipotézisvizsgálat alapjai</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-alapgondolata"><i class="fa fa-check"></i><b>9.1</b> A hipotézisvizsgálat alapgondolata</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-p-érték-fogalma"><i class="fa fa-check"></i><b>9.1.1</b> A p-érték fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-t-próba"><i class="fa fa-check"></i><b>9.2</b> A sokasági átlagra vonatkozó <em>t-próba</em></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-beépített-függvénnyel"><i class="fa fa-check"></i><b>9.2.1</b> A <em>t-próba</em> beépített függvénnyel</a></li>
+<li class="chapter" data-level="9.2.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-előfeltételei"><i class="fa fa-check"></i><b>9.2.2</b> A <em>t-próba</em> előfeltételei</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.3</b> A sokasági átlagra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.4" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-arányra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.4</b> A sokasági arányra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.5" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-menete-madártávlatból"><i class="fa fa-check"></i><b>9.5</b> A hipotézisvizsgálat menete madártávlatból</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html"><i class="fa fa-check"></i><b>10</b> Egymintás és Kétmintás próbák</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-szórásra-vonatkozó-chi2-próba"><i class="fa fa-check"></i><b>10.1</b> A szórásra vonatkozó <span class="math inline">\(\chi^2\)</span>-próba</a></li>
+<li class="chapter" data-level="10.2" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-kétmintás-hipotézisvizsgálatok-elve"><i class="fa fa-check"></i><b>10.2</b> A kétmintás hipotézisvizsgálatok elve</a></li>
+<li class="chapter" data-level="10.3" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-átlagokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.3</b> Az átlagokra vonatkozó kétmintás <em>z-próba</em></a></li>
+<li class="chapter" data-level="10.4" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-arányokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.4</b> Az arányokra vonatkozó kétmintás <em>z-próba</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html"><i class="fa fa-check"></i><b>11</b> Nemparaméteres próbák</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#nemparaméteres-próbák-elve"><i class="fa fa-check"></i><b>11.1</b> Nemparaméteres próbák elve</a></li>
+<li class="chapter" data-level="11.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#illeszkedésvizsgálatok"><i class="fa fa-check"></i><b>11.2</b> Illeszkedésvizsgálatok</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#reprezentativitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.1</b> Reprezentativitás vizsgálat</a></li>
+<li class="chapter" data-level="11.2.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#normalitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.2</b> Normalitás vizsgálat</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#függetlenségvizsgálatok-homogenitásvizsgálatok"><i class="fa fa-check"></i><b>11.3</b> Függetlenségvizsgálatok (homogenitásvizsgálatok)</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html"><i class="fa fa-check"></i><b>12</b> Kétváltozós lineáris regresszió</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#budapesti-lakások-vizsgálata"><i class="fa fa-check"></i><b>12.1</b> Budapesti lakások vizsgálata</a></li>
+<li class="chapter" data-level="12.2" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-kétváltozós-lineáris-regresszió-ols-elvű-becslése"><i class="fa fa-check"></i><b>12.2</b> A Kétváltozós Lineáris Regresszió OLS elvű becslése</a></li>
+<li class="chapter" data-level="12.3" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#az-ols-regresszió-magyarázóerejének-mérése"><i class="fa fa-check"></i><b>12.3</b> Az OLS Regresszió magyarázóerejének mérése</a></li>
+<li class="chapter" data-level="12.4" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-regresszió-magyarázóereje-nem-megfigyelt-adatok-körében"><i class="fa fa-check"></i><b>12.4</b> A Regresszió magyarázóereje nem megfigyelt adatok körében</a></li>
+<li class="chapter" data-level="12.5" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-modell-együtthatóinak-értelemzése"><i class="fa fa-check"></i><b>12.5</b> A modell együtthatóinak értelemzése</a></li>
+<li class="chapter" data-level="12.6" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#egy-gyakorló-példa-covid-adatokon"><i class="fa fa-check"></i><b>12.6</b> Egy gyakorló példa COVID adatokon</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html"><i class="fa fa-check"></i><b>13</b> Többváltozós OLS Regresszió alapjai</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#magyar-járások-covid-19-halálozási-arányai"><i class="fa fa-check"></i><b>13.1</b> Magyar járások COVID-19 halálozási arányai</a></li>
+<li class="chapter" data-level="13.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-többváltozós-lineáris-regresszió-ols-elvű-előállítása"><i class="fa fa-check"></i><b>13.2</b> A Többváltozós Lineáris Regresszió OLS elvű előállítása</a></li>
+<li class="chapter" data-level="13.3" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-magyarázóváltozók-marginális-hatása"><i class="fa fa-check"></i><b>13.3</b> A magyarázóváltozók marginális hatása</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#útelemzés"><i class="fa fa-check"></i><b>13.3.1</b> Útelemzés</a></li>
+<li class="chapter" data-level="13.3.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#parciális-t-próba"><i class="fa fa-check"></i><b>13.3.2</b> Parciális t-próba</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Következtető Statisztika Python Jegyzet</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="becslések-ev-és-r-mintából" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Becslések EV és R mintából<a href="becslések-ev-és-r-mintából.html#becslések-ev-és-r-mintából" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="intervallumbecslés-visszatevés-nélküli-egyszerű-véletlen-ev-mintákból" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Intervallumbecslés visszatevés nélküli egyszerű véletlen (EV) mintákból<a href="becslések-ev-és-r-mintából.html#intervallumbecslés-visszatevés-nélküli-egyszerű-véletlen-ev-mintákból" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az eddigi hetek tananyagában végig FAE, azaz <em>visszatevéses</em> mintavételekkel dolgoztunk. Most nézzük meg, hogy mia helyzet akko, ha a <strong>mintavételünk visszatevés nélküli véletlen mintavétel</strong>, azaz <strong>EV</strong> minta.</p>
+<p>Az okoskodásunk onnan indul, hogy azt mondjuk, hogy ha a minta kiválasztási aránya kicsi, azaz <strong>ha a teljes adatsokaságunknak csak egy nagyon kis százalékát választjuk ki, akkor a FAE és EV mintavétel lényegében ugyan az</strong>. Hiszen ebben az esetben még FAE mintavétrel esetén is nagyon kicsi az esélye, hogy a visszatevés miatt ténylegesen ismétlődés legyen, azaz többször is kiválasszuk ugyan azt az egyedet a mintánkba.</p>
+<p>A minta <strong>kiválasztási arányát</strong> korábbi jelöléseinkkel élve <span class="math inline">\(\frac{n}{N}\)</span>-nek jelöljük. Tehát, ha <span class="math inline">\(\frac{n}{N} \rightarrow 0\)</span>, akkor <span class="math inline">\(FAE \approx EV\)</span>.</p>
+<p>Ha viszont <span class="math inline">\(\frac{n}{N}\)</span> egy nagyobb érték, akkor viszont az <strong>EV mintának pontosabbnak, azaz kisebb mintavételi hibájúnak kell lennie, minta FAE mintának</strong>, hiszen minden mintaelem az EV mintában biztos, hogy új információt hoz be a mintába, míg FAE esetben lehet ismétlődés a visszatevés miatt.</p>
+<p>Ezt a tényt pedig <strong>úgy képezzük le a konfidencia-intervallum képleteinkben</strong>, hogy FAE mintavételeknél tanult standard hiba képleteket egyszerűen beszorozzuk <span class="math inline">\(\sqrt{1-\frac{n}{N}}\)</span>-nel. Tehát: <span class="math display">\[SH_{EV}=SH_{FAE} \times \sqrt{1-\frac{n}{N}}\]</span></p>
+<p>Ez a képlet azért végzi azt, amit mi akarunk, mert <strong>ha nagyon <span class="math inline">\(0\)</span> közeli a kiválasztási arány</strong>, akkor az <span class="math inline">\(SH_{FAE}\)</span>-t gyakorlatilag <span class="math inline">\(1\)</span>-gyel szorozzuk, azaz <strong>nem változtatunk rajta semmit</strong>. <strong>Ha</strong> pedig a <strong>kiválasztási arány érdemben nagyobb, mint <span class="math inline">\(0\)</span>,</strong> akkor pedig egy <span class="math inline">\(0\)</span> és <span class="math inline">\(1\)</span> közti számmal szorozzuk <span class="math inline">\(SH_{FAE}\)</span>-t, így a <strong>szorzat ekkor biztosan kisebb lesz, mint <span class="math inline">\(SH_{FAE}\)</span> volt</strong>.</p>
+<p>Aki nem hiszi, nyugodtan <strong>kirajzoltathatja Pythonban, az EV korrekciós tényező, azaz a <span class="math inline">\(\sqrt{1-\frac{n}{N}}\)</span> viselkedését</strong> különböző <span class="math inline">\(\frac{n}{N}\)</span> kiválasztási arányok mellett:</p>
+<div class="sourceCode" id="cb766"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb766-1"><a href="becslések-ev-és-r-mintából.html#cb766-1" tabindex="-1"></a><span class="co"># Elemzéshez és ábrázoláshoz szükséges csomagok betöltése</span></span>
+<span id="cb766-2"><a href="becslések-ev-és-r-mintából.html#cb766-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb766-3"><a href="becslések-ev-és-r-mintából.html#cb766-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb766-4"><a href="becslések-ev-és-r-mintából.html#cb766-4" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb766-5"><a href="becslések-ev-és-r-mintából.html#cb766-5" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb766-6"><a href="becslések-ev-és-r-mintából.html#cb766-6" tabindex="-1"></a></span>
+<span id="cb766-7"><a href="becslések-ev-és-r-mintából.html#cb766-7" tabindex="-1"></a><span class="co"># Üres lista létrehozása az EV tényezők tárolására</span></span>
+<span id="cb766-8"><a href="becslések-ev-és-r-mintából.html#cb766-8" tabindex="-1"></a>EV_Lista <span class="op">=</span> []</span>
+<span id="cb766-9"><a href="becslések-ev-és-r-mintából.html#cb766-9" tabindex="-1"></a><span class="co"># Vizsgált kiválasztási arányok listájának létrehozása</span></span>
+<span id="cb766-10"><a href="becslések-ev-és-r-mintából.html#cb766-10" tabindex="-1"></a><span class="co"># 0% és 90% közötti arányokat nézünk 10%-pontos lépésközzel</span></span>
+<span id="cb766-11"><a href="becslések-ev-és-r-mintából.html#cb766-11" tabindex="-1"></a><span class="co"># Felső határ 1 = 100% a nyílt intervallum miatt</span></span>
+<span id="cb766-12"><a href="becslések-ev-és-r-mintából.html#cb766-12" tabindex="-1"></a>KivalArany_Lista <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)</span>
+<span id="cb766-13"><a href="becslések-ev-és-r-mintából.html#cb766-13" tabindex="-1"></a></span>
+<span id="cb766-14"><a href="becslések-ev-és-r-mintából.html#cb766-14" tabindex="-1"></a><span class="co"># Ciklus indítása</span></span>
+<span id="cb766-15"><a href="becslések-ev-és-r-mintából.html#cb766-15" tabindex="-1"></a><span class="cf">for</span> AktualisKivalArany <span class="kw">in</span> KivalArany_Lista:</span>
+<span id="cb766-16"><a href="becslések-ev-és-r-mintából.html#cb766-16" tabindex="-1"></a>  EV_Lista.append(np.sqrt(<span class="dv">1</span><span class="op">-</span>AktualisKivalArany))</span>
+<span id="cb766-17"><a href="becslések-ev-és-r-mintából.html#cb766-17" tabindex="-1"></a></span>
+<span id="cb766-18"><a href="becslések-ev-és-r-mintából.html#cb766-18" tabindex="-1"></a><span class="co"># Vizsgált kiválasztási arányok és a mért EV korrekciós tényezők data frame-be rendezése</span></span>
+<span id="cb766-19"><a href="becslések-ev-és-r-mintából.html#cb766-19" tabindex="-1"></a><span class="co"># Ahol a kiválasztási arányok a sorindexek</span></span>
+<span id="cb766-20"><a href="becslések-ev-és-r-mintából.html#cb766-20" tabindex="-1"></a>EV_Data <span class="op">=</span> pd.DataFrame(EV_Lista, columns<span class="op">=</span>[<span class="st">&#39;EV_Tenyezok&#39;</span>], index <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>))</span>
+<span id="cb766-21"><a href="becslések-ev-és-r-mintából.html#cb766-21" tabindex="-1"></a></span>
+<span id="cb766-22"><a href="becslések-ev-és-r-mintából.html#cb766-22" tabindex="-1"></a><span class="co"># Ábrázolás a &#39;plot&#39; metódussal: nem kell paraméterezni, mert csak egy oszlopunk van</span></span>
+<span id="cb766-23"><a href="becslések-ev-és-r-mintából.html#cb766-23" tabindex="-1"></a>EV_Data.plot()</span>
+<span id="cb766-24"><a href="becslések-ev-és-r-mintából.html#cb766-24" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-314-21.png" width="672" /></p>
+<p>Látszik, hogy ahogy nő a kiválasztási arány, annál kisebb százalékát kell venni <span class="math inline">\(SH_{FAE}\)</span>-nek az <span class="math inline">\(SH_{EV}\)</span> számolása során. Éljen! :)</p>
+<p>Nézzük meg ezt az egész rendszert a gyakorlatban az átlag intervallumbecslése során, nagy mintás esetben!</p>
+<div id="átlag-becslése-ev-mintákból" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Átlag becslése EV mintákból<a href="becslések-ev-és-r-mintából.html#átlag-becslése-ev-mintákból" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Töltsük be a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/HKF_Jovedelem.xlsx" target="_blank">HKF_Jovedelem.xlsx</a> című Excel fájl tartalmát egy <code>pandas</code> data frame-be!<br>
+A táblában <span class="math inline">\(n=8306\)</span> db magyar háztartás két ismérvét (oszlopát) látjuk:</p>
+<ol style="list-style-type: decimal">
+<li>Milyen típusú településen található a háztartás (Község, Többi város, Nagyváros, Budapest)</li>
+<li>A háztartás éves jövedelmét 2019-ben, ezer Ft-ban kifejezve</li>
+</ol>
+<p>Az adatok a <a href="https://www.ksh.hu/eletmod" target="_blank">KSH Jövedelmi és Életkörülmény Adatfelvételéből</a> (rövidítve <em>HKÉF</em> vagy <em>HKF</em>) származnak. A KSH linkelt leírása szerint az <strong>adatok a magyar háztartások sokaságából visszatevés nélkül véletlen, azaz EV mintaként kezelhetők</strong>.<br>
+Ez alapján egy nagyon fontos infó, hogy 2019-ben a magyar háztartások teljes száma 4 111 240 db volt. Tehát, a <strong>sokaságunk teljes elemszáma <span class="math inline">\(N=4111240\)</span> db</strong>.</p>
+<p>Lássuk is a beolvasást a <code>pandas</code> data frame-be!</p>
+<div class="sourceCode" id="cb767"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb767-1"><a href="becslések-ev-és-r-mintából.html#cb767-1" tabindex="-1"></a>HKF <span class="op">=</span> pd.read_excel(<span class="st">&quot;HKF_Jovedelem.xlsx&quot;</span>)</span>
+<span id="cb767-2"><a href="becslések-ev-és-r-mintából.html#cb767-2" tabindex="-1"></a>HKF.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 8306 entries, 0 to 8305
+## Data columns (total 3 columns):
+##  #   Column          Non-Null Count  Dtype  
+## ---  ------          --------------  -----  
+##  0   HaztartasID     8306 non-null   int64  
+##  1   TelepulesTipus  8306 non-null   object 
+##  2   EvesJovEFt      8306 non-null   float64
+## dtypes: float64(1), int64(1), object(1)
+## memory usage: 194.8+ KB</code></pre>
+<p>Remek: megvan a két keresett oszlopunk mind az <span class="math inline">\(n=8306\)</span> db háztartásra, plusz egy <em>ID</em> oszlop az elején, amit nem fogunk semmire sem használni. :)</p>
+<p>Ezek után simán bevethetjük az átlagos háztartási jövedelem <span class="math inline">\(99\%\)</span>-os megbízhatóságú intervalumbecslésére a jól bevált <code>stats.norm.interval</code> című függvényt. Hiszen a <span class="math inline">\(\triangle=k \times SH\)</span> képletben a nagy, <span class="math inline">\(n=8306\)</span>-os elemszám miatt a megbízhatósági szorzó simán jöhet standard normális eloszlásból, azaz <span class="math inline">\(k=z_{1-\frac{\alpha}{2}}\)</span>. Az <span class="math inline">\(SH\)</span> pedig akkor egy EV minta <span class="math inline">\(SH\)</span>-ja, ami az előző fejezet alapján <span class="math inline">\(SH_{FAE} \times \sqrt{1-\frac{n}{N}}\)</span> módon meghadható a függvény <code>scale</code> paraméterében.</p>
+<div class="sourceCode" id="cb769"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb769-1"><a href="becslések-ev-és-r-mintából.html#cb769-1" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">4111240</span></span>
+<span id="cb769-2"><a href="becslések-ev-és-r-mintából.html#cb769-2" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(HKF)</span>
+<span id="cb769-3"><a href="becslések-ev-és-r-mintából.html#cb769-3" tabindex="-1"></a></span>
+<span id="cb769-4"><a href="becslések-ev-és-r-mintából.html#cb769-4" tabindex="-1"></a>stats.norm.interval(</span>
+<span id="cb769-5"><a href="becslések-ev-és-r-mintából.html#cb769-5" tabindex="-1"></a>  confidence<span class="op">=</span><span class="fl">0.99</span>,</span>
+<span id="cb769-6"><a href="becslések-ev-és-r-mintából.html#cb769-6" tabindex="-1"></a>  loc<span class="op">=</span>np.mean(HKF.EvesJovEFt),</span>
+<span id="cb769-7"><a href="becslések-ev-és-r-mintából.html#cb769-7" tabindex="-1"></a>  scale<span class="op">=</span>stats.sem(HKF.EvesJovEFt)<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>n<span class="op">/</span>N))</span></code></pre></div>
+<pre><code>## (4567.729318773609, 4730.116789870932)</code></pre>
+<p>Tehát, viszzatevés nélküli véletlen mintavételként kezelve a HKF adatokat,azt kapjuk, hogy <strong>egy átlagos magyar háztartás éves jövedeleme</strong> <span class="math inline">\(4568\)</span> és <span class="math inline">\(4730\)</span> ezer Ft, azaz <strong><span class="math inline">\(4.5\)</span> és <span class="math inline">\(4.7\)</span> millió Ft között mozog <span class="math inline">\(99\%\)</span>-os valószínűséggel</strong>.</p>
+<p>A kiválasztási arányunk ugyebármost nagyon kicsi: <span class="math inline">\(\frac{n}{N}=\frac{8306}{4111240}=0.002\)</span>, szóval az eredmény lényegében nem különbözik attól, mintha az egészet az EV korrekciós szorzó nélkül csináltuk volna végig a műveletet:</p>
+<div class="sourceCode" id="cb771"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb771-1"><a href="becslések-ev-és-r-mintából.html#cb771-1" tabindex="-1"></a>stats.norm.interval(</span>
+<span id="cb771-2"><a href="becslések-ev-és-r-mintából.html#cb771-2" tabindex="-1"></a>  confidence<span class="op">=</span><span class="fl">0.99</span>,</span>
+<span id="cb771-3"><a href="becslések-ev-és-r-mintából.html#cb771-3" tabindex="-1"></a>  loc<span class="op">=</span>np.mean(HKF.EvesJovEFt),</span>
+<span id="cb771-4"><a href="becslések-ev-és-r-mintából.html#cb771-4" tabindex="-1"></a>  scale<span class="op">=</span>stats.sem(HKF.EvesJovEFt))</span></code></pre></div>
+<pre><code>## (4567.647175824164, 4730.198932820376)</code></pre>
+<p>A várható éves jövedelem így is kb. <span class="math inline">\(4.5\)</span> és <span class="math inline">\(4.7\)</span> millió Ft között mozog <span class="math inline">\(99\%\)</span>-os valószínűséggel.</p>
+</div>
+<div id="arány-becslése-ev-mintákból" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Arány becslése EV mintákból<a href="becslések-ev-és-r-mintából.html#arány-becslése-ev-mintákból" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ugyan ez a logika teljesen jól működik az arányok becslése esetén is. Ez nem véletlen, hiszen letisztáztuk az <a href="Gyak05.html" target="_blank">5. heti tananyagban</a>, hogy az arány, mint statisztikai mutató valójában egy olyan adatsor átlaga, hogy az arányban vizsgált tuljadonsággal bíró megfigyelések <span class="math inline">\(1\)</span>-gyel vannak kódolva, a többiek pedig <span class="math inline">\(0\)</span>-val.</p>
+<p>Csináljuk is meg egy új oszlopban azt a <span class="math inline">\(0-1\)</span> adatsort, amivel mondjuk a budapesti háztartások aránya becsülhető lesz.</p>
+<div class="sourceCode" id="cb773"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb773-1"><a href="becslések-ev-és-r-mintából.html#cb773-1" tabindex="-1"></a>HKF[<span class="st">&#39;BP_e&#39;</span>] <span class="op">=</span> np.where(HKF.TelepulesTipus<span class="op">==</span><span class="st">&quot;Budapest&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb773-2"><a href="becslések-ev-és-r-mintából.html#cb773-2" tabindex="-1"></a>np.mean(HKF.BP_e)</span></code></pre></div>
+<pre><code>## 0.18552853359017576</code></pre>
+<p>Szuper, meg is vagyunk, a megfigyelt mintában a budapesti háztartások aránya <span class="math inline">\(18.55\%\)</span>.</p>
+<p>Ezek után, ha ezen az új oszlopon alkalmazzuk a <code>stats.norm.interval</code> függvényt az 1.1. fejezetben látott módon a <code>scale</code> paraméterben a <span class="math inline">\(\sqrt{1-\frac{n}{N}}\)</span> korrekciós tényezővel, akkor meg is van a <strong>budapesti háztartások sokaságiarányának <span class="math inline">\(99\%\)</span>-os megbízhatóságú intervallumbecslése</strong>:</p>
+<div class="sourceCode" id="cb775"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb775-1"><a href="becslések-ev-és-r-mintából.html#cb775-1" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">4111240</span></span>
+<span id="cb775-2"><a href="becslések-ev-és-r-mintából.html#cb775-2" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(HKF)</span>
+<span id="cb775-3"><a href="becslések-ev-és-r-mintából.html#cb775-3" tabindex="-1"></a></span>
+<span id="cb775-4"><a href="becslések-ev-és-r-mintából.html#cb775-4" tabindex="-1"></a>stats.norm.interval(</span>
+<span id="cb775-5"><a href="becslések-ev-és-r-mintából.html#cb775-5" tabindex="-1"></a>  confidence<span class="op">=</span><span class="fl">0.99</span>,</span>
+<span id="cb775-6"><a href="becslések-ev-és-r-mintából.html#cb775-6" tabindex="-1"></a>  loc<span class="op">=</span>np.mean(HKF.BP_e),</span>
+<span id="cb775-7"><a href="becslések-ev-és-r-mintából.html#cb775-7" tabindex="-1"></a>  scale<span class="op">=</span>stats.sem(HKF.BP_e)<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>n<span class="op">/</span>N))</span></code></pre></div>
+<pre><code>## (0.1745523489357643, 0.19650471824458723)</code></pre>
+<p>Szóval az <strong>összes magyar háztartásból kb. <span class="math inline">\(17.5\% - 19.6\%\)</span> lehet budapesti</strong>, <span class="math inline">\(99\%\)</span> valószínűséggel.</p>
+</div>
+</div>
+<div id="átlag-becslése-arányosan-rétegzett-ar-mintákból" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Átlag becslése Arányosan Rétegzett (AR) mintákból<a href="becslések-ev-és-r-mintából.html#átlag-becslése-arányosan-rétegzett-ar-mintákból" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A KSH a HKF adatbázisáról nem csak simán azt állítja, hogy egyszerű véletlen (EV) minta a magyar háztartásokból, hanem, hogy <strong>településtípus szerint arányosan rétegzett EV mita</strong>. Ez azt jelenti, hogy <strong>a <span class="math inline">\(4\)</span> db településtípusból</strong> (Budapest, Nagyváros, Többi város, Község) <strong>külön-külön vettek EV mintát, úgy, hogy a végső <span class="math inline">\(n=8306\)</span> elemű mintában az egyes településtípusok aránya annyi legyen, mint a teljes sokaságban</strong> (összes magyar háztartás) <strong>a településtípusok aránya</strong>. Tehát a minta tökéletesen reprezentatívra lett beállítva a településtípusra.</p>
+<p>Ennek a mintavételi technikának a lényege, hogy ha <strong>meg akarom becsülni a magyar háztartások átlagos éves jövedelmét</strong>, akkor a <strong>standard hibában NEM KELL számolnom a településtípusok KÖZÖTTI jövedelem szórással</strong>! Hiszen ezt a <strong>külső szórást már kezelte a településtípusonkénti külön-különmintavétel!!</strong><br>
+Magyarul, az <span class="math display">\[SH_{EV} = \frac{s}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}\]</span></p>
+<p>Képlet <strong>helyett elég a standard hibában csak a belső korrigált mintaszórással</strong>, <span class="math inline">\(s_b\)</span>-vel számolnom: <span class="math display">\[SH_{AR} = \frac{s_b}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}\]</span></p>
+<p>Mivel Stat. I-ből és az <a href="Gyak01.html" target="_blank">1. heti tananyag 4. fejezetéből</a> tudjuk, hogy egy <strong>számértékű ismérv teljes varianciája, a külső és belső variancia összege</strong>, így ha a külső variancával nem kel számolni a standard hibában, csak a belsővel, akkor <strong>kijelenthető, hogy az arányosan rétegzett mintavétel becslési hibája az átlagra kisebb, mint az EV</strong> (vagy a FAE) <strong>mintavételek esetén</strong>: <span class="math inline">\(SH_{AR} \leq SH_{EV}\)</span></p>
+<p>Nézzük is meg akkor a dolgot élesben! Ugyebár tudjuk, hogy a háztartások átlagos éves jövedeleme a teljes magyar népességben <span class="math inline">\(99\%\)</span>-os valószínűséggek <span class="math inline">\(4.5\)</span> és <span class="math inline">\(4.7\)</span> millió Ft körül mozog, ha a HKF adatokat EV mintavételként kezeljük. Most a SH-t rendesen a <span class="math inline">\(SH_{EV}=\frac{s}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}\)</span> képlettel számoljuk ki, és nem vetjük be a <code>stats.sem</code> függvényt.</p>
+<div class="sourceCode" id="cb777"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb777-1"><a href="becslések-ev-és-r-mintából.html#cb777-1" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">4111240</span></span>
+<span id="cb777-2"><a href="becslések-ev-és-r-mintából.html#cb777-2" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(HKF)</span>
+<span id="cb777-3"><a href="becslések-ev-és-r-mintából.html#cb777-3" tabindex="-1"></a>s <span class="op">=</span> np.std(HKF.EvesJovEFt)</span>
+<span id="cb777-4"><a href="becslések-ev-és-r-mintából.html#cb777-4" tabindex="-1"></a></span>
+<span id="cb777-5"><a href="becslések-ev-és-r-mintából.html#cb777-5" tabindex="-1"></a>sh_ev <span class="op">=</span> s<span class="op">/</span>np.sqrt(n)<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">-</span>n<span class="op">/</span>N)</span>
+<span id="cb777-6"><a href="becslések-ev-és-r-mintából.html#cb777-6" tabindex="-1"></a></span>
+<span id="cb777-7"><a href="becslések-ev-és-r-mintából.html#cb777-7" tabindex="-1"></a>stats.norm.interval(</span>
+<span id="cb777-8"><a href="becslések-ev-és-r-mintából.html#cb777-8" tabindex="-1"></a>  confidence<span class="op">=</span><span class="fl">0.99</span>,</span>
+<span id="cb777-9"><a href="becslések-ev-és-r-mintából.html#cb777-9" tabindex="-1"></a>  loc<span class="op">=</span>np.mean(HKF.EvesJovEFt),</span>
+<span id="cb777-10"><a href="becslések-ev-és-r-mintából.html#cb777-10" tabindex="-1"></a>  scale<span class="op">=</span>sh_ev)</span></code></pre></div>
+<pre><code>## (4567.734206576373, 4730.111902068167)</code></pre>
+<p>Viszont, azt mondja az AR minta, hogy a standard hiba <span class="math inline">\(\frac{s}{\sqrt{n}}\)</span> részében <strong>elég csak a településtípusok szerinti belső szórással, <span class="math inline">\(s_b\)</span>-vel számolni</strong>. Ehhez viszont kell egy <strong>aggregált tábla településtípusonként</strong> a</p>
+<ul>
+<li><strong>mintaelemszámokról</strong> (<span class="math inline">\(n_j\)</span>)</li>
+<li><strong>mintaátlagokról</strong> (<span class="math inline">\(\bar{y}_j\)</span>)</li>
+<li><strong>korrigált mintaszórásokról</strong> (<span class="math inline">\(s_j\)</span>)</li>
+<li><strong>sokasági elemszámokról</strong> (<span class="math inline">\(N_j\)</span>)</li>
+</ul>
+<p>Láthatjuk, hogy a településtípusokat, azaz a rétegzett mintavétel <strong>rétegeit <span class="math inline">\(j\)</span> indexszel jelöljük</strong>. Ezt az aggregált táblát a data frame-k <code>groupby</code> és <code>agg</code> metódusaival könnyen összehozhatjuk, ahogy az <a href="Gyak01.html" target="_blank">1. heti tananyag 4. fejezetében</a> is láthattuk pl.</p>
+<div class="sourceCode" id="cb779"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb779-1"><a href="becslések-ev-és-r-mintából.html#cb779-1" tabindex="-1"></a>Segéd <span class="op">=</span> HKF.groupby(<span class="st">&#39;TelepulesTipus&#39;</span>).agg(</span>
+<span id="cb779-2"><a href="becslések-ev-és-r-mintából.html#cb779-2" tabindex="-1"></a>  Elemszam <span class="op">=</span> (<span class="st">&#39;EvesJovEFt&#39;</span>, <span class="st">&#39;count&#39;</span>),</span>
+<span id="cb779-3"><a href="becslések-ev-és-r-mintából.html#cb779-3" tabindex="-1"></a>  Reszatlagok <span class="op">=</span> (<span class="st">&#39;EvesJovEFt&#39;</span>, np.mean),</span>
+<span id="cb779-4"><a href="becslések-ev-és-r-mintából.html#cb779-4" tabindex="-1"></a>  KorrigalatlanSzorasok <span class="op">=</span> (<span class="st">&#39;EvesJovEFt&#39;</span>, np.std)</span>
+<span id="cb779-5"><a href="becslések-ev-és-r-mintából.html#cb779-5" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## &lt;string&gt;:1: FutureWarning: The provided callable &lt;function mean at 0x00000135D71513A0&gt; is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+## &lt;string&gt;:1: FutureWarning: The provided callable &lt;function std at 0x00000135D71514E0&gt; is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;std&quot; instead.</code></pre>
+<div class="sourceCode" id="cb781"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb781-1"><a href="becslések-ev-és-r-mintából.html#cb781-1" tabindex="-1"></a>Segéd</span></code></pre></div>
+<pre><code>##                 Elemszam  Reszatlagok  KorrigalatlanSzorasok
+## TelepulesTipus                                              
+## Budapest            1541  5395.202989            3686.786788
+## Község              2765  4344.417552            2580.432303
+## Nagyváros           1786  4790.141025            2803.906596
+## Többi város         2214  4395.863000            2516.663955</code></pre>
+<p>A fenti kód nem korrigált szórásokat számol technikailag, de a mi szempontunkból ez most nem oszt nem szoroz, mert a legkisebb elemszámú rétegben (<span class="math inline">\(n_{BP}=1541\)</span>) is a korrekció csak <span class="math inline">\(\sqrt{\frac{n}{n-1}}=\sqrt{\frac{1541}{1541-1}}=1.0006\)</span>, tehát elhanyagolható szorzótényező.</p>
+<p>De bármikor tudjuk alkalmazni a korrekciós tényezőt a szórásokon egy új oszlopban:</p>
+<div class="sourceCode" id="cb783"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb783-1"><a href="becslések-ev-és-r-mintából.html#cb783-1" tabindex="-1"></a>Segéd[<span class="st">&#39;KorrigaltSzorasok&#39;</span>] <span class="op">=</span> np.sqrt(Segéd.Elemszam<span class="op">/</span>(Segéd.Elemszam<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> Segéd.KorrigalatlanSzorasok</span>
+<span id="cb783-2"><a href="becslések-ev-és-r-mintából.html#cb783-2" tabindex="-1"></a>Segéd</span></code></pre></div>
+<pre><code>##                 Elemszam  Reszatlagok  KorrigalatlanSzorasok  KorrigaltSzorasok
+## TelepulesTipus                                                                 
+## Budapest            1541  5395.202989            3686.786788        3687.983602
+## Község              2765  4344.417552            2580.432303        2580.899054
+## Nagyváros           1786  4790.141025            2803.906596        2804.691894
+## Többi város         2214  4395.863000            2516.663955        2517.232500</code></pre>
+<p>Viszont a rend kedvéért <strong>egészítsük ki</strong> az aggregált segédtáblát a <strong>sokasági elemszámokkal</strong>. Itt <strong>kihasználjuk, hogy arányosan rétegzett mintavételről van szó</strong>. Tehát, a rétegek sokasági elemszáma a teljes sokasági elemszámhoz úgy aránylik, mint a rétegek mintabeli elemszáma a teljes mintavétel elemszámához, azaz <span class="math display">\[\frac{n_j}{n} = \frac{N_j}{N}, \forall j\]</span></p>
+<p>Ebből gyorsan ki tudjuk számolni minden réteg sokasági elemszámát, hiszen tudjuk, hogy <span class="math inline">\(N=4111240\)</span> háztartást jelent. A végén természetesen egészre kerekítjuk az <span class="math inline">\(N_j\)</span>-ket:</p>
+<div class="sourceCode" id="cb785"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb785-1"><a href="becslések-ev-és-r-mintából.html#cb785-1" tabindex="-1"></a>Segéd[<span class="st">&#39;SokasagiElemszam&#39;</span>] <span class="op">=</span> <span class="bu">round</span>(Segéd.Elemszam<span class="op">/</span>np.<span class="bu">sum</span>(Segéd.Elemszam) <span class="op">*</span> N, <span class="dv">0</span>)</span>
+<span id="cb785-2"><a href="becslések-ev-és-r-mintából.html#cb785-2" tabindex="-1"></a>Segéd</span></code></pre></div>
+<pre><code>##                 Elemszam  Reszatlagok  ...  KorrigaltSzorasok  SokasagiElemszam
+## TelepulesTipus                         ...                                     
+## Budapest            1541  5395.202989  ...        3687.983602          762752.0
+## Község              2765  4344.417552  ...        2580.899054         1368598.0
+## Nagyváros           1786  4790.141025  ...        2804.691894          884021.0
+## Többi város         2214  4395.863000  ...        2517.232500         1095869.0
+## 
+## [4 rows x 5 columns]</code></pre>
+<p>Ezzel is megvagyunk. Akkor minden adott, hogy kiszámoljuk a belső szórást a következő képlettel, ami szintén ismerős az <a href="Gyak01.html" target="_blank">1. heti tananyag 4. fejezetéből</a>. <span class="math display">\[s_b=\sqrt{\frac{\sum_j{n_j \times s_j^2}}{n}}\]</span></p>
+<p>Ezt gyorsan ki is tudjuk számolni Pythonban <code>numpy</code> függvények segítségével.</p>
+<div class="sourceCode" id="cb787"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb787-1"><a href="becslések-ev-és-r-mintából.html#cb787-1" tabindex="-1"></a>belső_szórás <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(Segéd.Elemszam <span class="op">*</span> Segéd.KorrigaltSzorasok<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>np.<span class="bu">sum</span>(Segéd.Elemszam))</span>
+<span id="cb787-2"><a href="becslések-ev-és-r-mintából.html#cb787-2" tabindex="-1"></a>belső_szórás</span></code></pre></div>
+<pre><code>## 2849.7867055139272</code></pre>
+<p>Tehát, egy konkrét <strong>háztartás éves jövdeleme a megfigyelt mintában várhatóan kb. <span class="math inline">\(s_b=\pm 2.849\)</span> milió Ft-tal </strong>(2849 ezer Ft-tal)** tér el saját településtípusának átlagos jövedelmétől**.</p>
+<p>Ha a <a href="Gyak03.html" target="_blank">3. heti tananyag 3. fejezetében bemutatott</a> számolási módját veszem figyelembe a korrigált mintaszórásnak, ami szerint <span class="math inline">\(s^2=\sqrt{\sum_{i=1}^{n}{(y_i-\bar{y})^2}/(n-1)}\)</span>, akkor úgy lenne korrekt, hogy ha a belső szórást számoló formulában is mindenhol az <span class="math inline">\(n\)</span>-t és <span class="math inline">\(n_j\)</span>-ket <span class="math inline">\(n-1\)</span>-nek és <span class="math inline">\(n_j-1\)</span>-eknek venni, mint a “sima” <span class="math inline">\(s^2\)</span> nevezőjében. Tehát, a korrigált szórás sajátosságait figyelembe vevő belső szórás képlet a következő: <span class="math display">\[s_b=\sqrt{\frac{\sum_j{(n_j-1) \times s_j^2}}{n-1}}\]</span></p>
+<p>Ezt is gyorsan ki is tudjuk számolni Pythonban <code>numpy</code> függvények segítségével.</p>
+<div class="sourceCode" id="cb789"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb789-1"><a href="becslések-ev-és-r-mintából.html#cb789-1" tabindex="-1"></a>belső_szórás_korrekcióval <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>((Segéd.Elemszam<span class="op">-</span><span class="dv">1</span>) <span class="op">*</span> Segéd.KorrigaltSzorasok<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="bu">len</span>(HKF)<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb789-2"><a href="becslések-ev-és-r-mintából.html#cb789-2" tabindex="-1"></a>belső_szórás_korrekcióval</span></code></pre></div>
+<pre><code>## 2849.2301124754485</code></pre>
+<p>Látjuk, hogy az eredmények érdemben különböznek egymmástól, mert a rétegek mintaelemszámai nagyok (ezres nagyságrendűek), így <span class="math inline">\(\pm1\)</span> ide-oda nem számít. :)</p>
+<div class="sourceCode" id="cb791"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb791-1"><a href="becslések-ev-és-r-mintából.html#cb791-1" tabindex="-1"></a>[belső_szórás, belső_szórás_korrekcióval]</span></code></pre></div>
+<pre><code>## [2849.7867055139272, 2849.2301124754485]</code></pre>
+<p>Kisebb elemszámoknál (olyan <span class="math inline">\(n_j\approx30\)</span> körül) viszont már jelentős lehet a különbség, és érdemesebb az <span class="math inline">\(n_j-1\)</span>-eket használó formulát alkalmazni, mert az konzisztens a korrigált szórás formulájával.<br>
+Mi most a rétegek nagy elemszámai, tehát az ezres nagyságrendű <span class="math inline">\(n_j\)</span>-k miatt az először kiszámolt <code>belső_szórás</code> értékkel megyünk tovább.</p>
+<p>Ha van első szórásunk, akkor pedig gyorsan meg is van az <strong>arányosan rétegzett standard hiba</strong>, ami kb. <span class="math inline">\(0.28\)</span> ezer Ft-tal (<span class="math inline">\(280\)</span> Ft-tal) <strong>kisebb, mint a sima EV módra számolt standard hiba</strong>:</p>
+<div class="sourceCode" id="cb793"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb793-1"><a href="becslések-ev-és-r-mintából.html#cb793-1" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">4111240</span></span>
+<span id="cb793-2"><a href="becslések-ev-és-r-mintából.html#cb793-2" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(HKF)</span>
+<span id="cb793-3"><a href="becslések-ev-és-r-mintából.html#cb793-3" tabindex="-1"></a></span>
+<span id="cb793-4"><a href="becslések-ev-és-r-mintából.html#cb793-4" tabindex="-1"></a>sh_ar <span class="op">=</span> belső_szórás<span class="op">/</span>np.sqrt(n) <span class="op">*</span> np.sqrt(<span class="dv">1</span><span class="op">-</span>n<span class="op">/</span>N)</span>
+<span id="cb793-5"><a href="becslések-ev-és-r-mintából.html#cb793-5" tabindex="-1"></a>sh_ar</span></code></pre></div>
+<pre><code>## 31.23757005707566</code></pre>
+<div class="sourceCode" id="cb795"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb795-1"><a href="becslések-ev-és-r-mintából.html#cb795-1" tabindex="-1"></a>sh_ev</span></code></pre></div>
+<pre><code>## 31.519498452027698</code></pre>
+<p>Ez pedig érezteti magát a <strong>némlileg szűkebb, azaz kisebb <span class="math inline">\(\triangle=SH_{AR} \times z_{1-\frac{\alpha}{2}}\)</span> becslési hibahatárral bíró <span class="math inline">\(99\%\)</span>-os konfidencia-intervallumban</strong>:</p>
+<div class="sourceCode" id="cb797"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb797-1"><a href="becslések-ev-és-r-mintából.html#cb797-1" tabindex="-1"></a>stats.norm.interval(</span>
+<span id="cb797-2"><a href="becslések-ev-és-r-mintából.html#cb797-2" tabindex="-1"></a>  confidence<span class="op">=</span><span class="fl">0.99</span>,</span>
+<span id="cb797-3"><a href="becslések-ev-és-r-mintából.html#cb797-3" tabindex="-1"></a>  loc<span class="op">=</span>np.mean(HKF.EvesJovEFt),</span>
+<span id="cb797-4"><a href="becslések-ev-és-r-mintából.html#cb797-4" tabindex="-1"></a>  scale<span class="op">=</span>sh_ar)</span></code></pre></div>
+<pre><code>## (4568.460405997593, 4729.385702646948)</code></pre>
+<p>Arányos rétegzéssel a <strong>változatlan megbízhatóságú konfidencia-intervallum</strong> <span class="math inline">\(4567 - 4730\)</span> ezer Ft-ról <span class="math inline">\(4568 - 4729\)</span> ezer Ft-ra <strong>szűkül</strong>.</p>
+<p>Na jó, ne áltassunk magunkat: <strong>ez szinte nulla csökkenés mind a standard hibában, mind a <span class="math inline">\(\triangle\)</span>-ben</strong>! Tehát kb az <span class="math inline">\(AR\)</span> mintavétel nem ért semmit. <strong>Miért van ez? Lássuk a magyarázatot!</strong></p>
+<div id="az-ar-mintavételek-hatékonysága" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Az AR mintavételek hatékonysága<a href="becslések-ev-és-r-mintából.html#az-ar-mintavételek-hatékonysága" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az, hogy mennyire jó az <span class="math inline">\(AR\)</span> mintavétel az <span class="math inline">\(EV\)</span>-hez képest attól függ, hogy <strong>mekkora a külső szórás mértéke, amit el tudunk hagyni azzal, hogy csak a belső szórással számolunk a standard hibában a teljes szórás helyett</strong>. Ezt pedig <strong>az határozza meg, hogy a rétegzéshez használt minőségi ismérv hány százalékban határozza meg annak a mennyiségi ismérvnek az alakulását, aminek az átlagát becsülni szeretnénk</strong>.<br>
+Magyarul a <strong>variancia-hányados</strong> kell nekünk: <span class="math display">\[H^2 = \frac{s_k^2}{s^2} = 1-\frac{s_b^2}{s^2}\]</span></p>
+<p>És hát valóban a 2. képlettel kiszámolva azt láthatjuk, hogy a <strong>településtípus alig határozza csak meg a háztartások éves jövdelemének alakulását</strong>:</p>
+<div class="sourceCode" id="cb799"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb799-1"><a href="becslések-ev-és-r-mintából.html#cb799-1" tabindex="-1"></a><span class="bu">round</span>((<span class="dv">1</span><span class="op">-</span>belső_szórás<span class="op">**</span><span class="dv">2</span><span class="op">/</span>s<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 1.78</code></pre>
+<p>Mindössze <span class="math inline">\(1.78\%\)</span>-ban magyarázza a jövdelemek alakulását a településtípus. Ez <strong>megegyezik azzal hány SZÁZALÉKKAL csökkenti az AR mintavétel az EV standard hiba négyzetét</strong>:</p>
+<div class="sourceCode" id="cb801"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb801-1"><a href="becslések-ev-és-r-mintából.html#cb801-1" tabindex="-1"></a><span class="bu">round</span>((sh_ar<span class="op">**</span><span class="dv">2</span><span class="op">/</span>sh_ev<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## -1.78</code></pre>
+<p>Másképpen fogalmazva az <strong>arányos rétegzés annyi SZÁZALÉKRA csökkenti a <span class="math inline">\(SH^2\)</span>-et, amennyi az <span class="math inline">\(1-H^2\)</span> értéke</strong>. Innentől kezdve ezt a csökkentés hívjuk <strong>relatív hatásfoknak</strong>, azaz: <span class="math display">\[Rel=\frac{SH_{AR}^2}{SH_{EV}^2}=1-H^2=\frac{s_b^2}{s^2}\]</span></p>
+<p>Ezek az összefüggések Pythonban is szépen kiszámíthatók.</p>
+<div class="sourceCode" id="cb803"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb803-1"><a href="becslések-ev-és-r-mintából.html#cb803-1" tabindex="-1"></a>(sh_ar<span class="op">**</span><span class="dv">2</span><span class="op">/</span>sh_ev<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 0.9821908631514376</code></pre>
+<div class="sourceCode" id="cb805"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb805-1"><a href="becslések-ev-és-r-mintából.html#cb805-1" tabindex="-1"></a>belső_szórás<span class="op">**</span><span class="dv">2</span><span class="op">/</span>s<span class="op">**</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## 0.9821908631514374</code></pre>
+<p>Tehát, az <strong>arányos rétegzés miatt <span class="math inline">\(98.2\%\)</span>-RA csökken csak a standard hiba négyzete</strong>.</p>
+<p>Természetesen az, hogy maga a <strong>standard hiba hány százalékRA csökken</strong>, azt a fenti összefüggés, zóval a <strong>relatív hatásfok gyöke</strong> adja meg.</p>
+<div class="sourceCode" id="cb807"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb807-1"><a href="becslések-ev-és-r-mintából.html#cb807-1" tabindex="-1"></a>(sh_ar<span class="op">/</span>sh_ev)</span></code></pre></div>
+<pre><code>## 0.991055428899634</code></pre>
+<div class="sourceCode" id="cb809"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb809-1"><a href="becslések-ev-és-r-mintából.html#cb809-1" tabindex="-1"></a>belső_szórás<span class="op">/</span>s</span></code></pre></div>
+<pre><code>## 0.991055428899634</code></pre>
+<p>Szóval, a <strong>standard hiba az arányos rétegzés miatt csak <span class="math inline">\(99.1\%\)</span>-RA, azaz <span class="math inline">\(0.9\%\)</span>-KAL csökkent csak le, mivel a rétegzéshez használt településtípus csak <span class="math inline">\(1.78\%\)</span>-ban magyarázza csak az éves jövedelmek alakulását, aminek az alakulását becsülni akartuk</strong>.</p>
+<p>Mindazonáltal az <strong>átlagbecslés háromféle mintavételi mód</strong> (FAE, EV, AR) <strong>szerinti standard hibája között</strong> felállítható a következő <strong>összefüggés</strong>: <span class="math display">\[SH_{FAE} \geq SH_{EV} \geq SH_{AR}\]</span></p>
+<p>Hiszen az EV standard hiba valamivel kisebb, mint a FAE a <span class="math inline">\(\sqrt{1-\frac{n}{N}}\)</span> korrekciós tényező miatt, és az AR standard hiba valamivel kisebb, mint az EV amiatt, mert csak belső szórást használunk a képletben a teljes helyett: <span class="math display">\[\frac{s}{\sqrt{n}} \geq \frac{s}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}} \geq \frac{s_b}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}\]</span></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="további-fae-becslések-és-a-bootstrap-módszer.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hipotézisvizsgálat-alapjai.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-EVesAR.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

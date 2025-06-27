@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 Nemparaméteres próbák | Következtető Statisztika Python Jegyzet</title>
+  <meta name="description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 Nemparaméteres próbák | Következtető Statisztika Python Jegyzet" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="github-repo" content="KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 Nemparaméteres próbák | Következtető Statisztika Python Jegyzet" />
+  
+  <meta name="twitter:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  
+
+<meta name="author" content="Kovács László" />
+
+
+<meta name="date" content="2025-06-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="egymintás-és-kétmintás-próbák.html"/>
+<link rel="next" href="kétváltozós-lineáris-regresszió.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Következtető Statisztika Python Jegyzet</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Előhang</a></li>
+<li class="chapter" data-level="2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html"><i class="fa fa-check"></i><b>2</b> Statisztikához szükséges Python nyelvi alapok</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#programozási-alapelvek"><i class="fa fa-check"></i><b>2.1</b> Programozási alapelvek</a></li>
+<li class="chapter" data-level="2.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pythonról-általában"><i class="fa fa-check"></i><b>2.2</b> A Pythonról általában</a></li>
+<li class="chapter" data-level="2.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-spyder-felülete"><i class="fa fa-check"></i><b>2.3</b> A Spyder felülete</a></li>
+<li class="chapter" data-level="2.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#alapvető-python-adattípusok-és-adatszerkezetek"><i class="fa fa-check"></i><b>2.5</b> Alapvető Python adattípusok és adatszerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-adattípusok"><i class="fa fa-check"></i><b>2.5.1</b> Egyszerű adattípusok</a></li>
+<li class="chapter" data-level="2.5.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#összetett-adatszerkezetek"><i class="fa fa-check"></i><b>2.5.2</b> Összetett adatszerkezetek</a></li>
+<li class="chapter" data-level="2.5.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-numpy-tömb"><i class="fa fa-check"></i><b>2.5.3</b> A <code>numpy</code> tömb</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#vezérlési-szerkezetek"><i class="fa fa-check"></i><b>2.6</b> Vezérlési szerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#elágazás-if"><i class="fa fa-check"></i><b>2.6.1</b> Elágazás (<code>if</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#ciklusok-for"><i class="fa fa-check"></i><b>2.6.2</b> Ciklusok (<code>for</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pandas-data-frame-objektum"><i class="fa fa-check"></i><b>2.7</b> A Pandas data frame objektum</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hivatkozási-lehetőségek-data-frame-ben"><i class="fa fa-check"></i><b>2.7.1</b> Hivatkozási lehetőségek data frame-ben</a></li>
+<li class="chapter" data-level="2.7.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-módosítása"><i class="fa fa-check"></i><b>2.7.2</b> Data frame-k módosítása</a></li>
+<li class="chapter" data-level="2.7.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#szűrés-data-frame-ben-logikai-indexszálás"><i class="fa fa-check"></i><b>2.7.3</b> Szűrés data frame-ben: logikai indexszálás</a></li>
+<li class="chapter" data-level="2.7.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hiányzó-értékek-kezelése-data-frame-ben"><i class="fa fa-check"></i><b>2.7.4</b> Hiányzó értékek kezelése data frame-ben</a></li>
+<li class="chapter" data-level="2.7.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatvizualizáció-data-frame-en-keresztül"><i class="fa fa-check"></i><b>2.7.5</b> Adatvizualizáció data frame-en keresztül</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#aggregálás-data-frame-ben"><i class="fa fa-check"></i><b>2.8</b> Aggregálás data frame-ben</a></li>
+<li class="chapter" data-level="2.9" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-leíró-statisztika-data-frame-ben"><i class="fa fa-check"></i><b>2.9</b> Egyszerű leíró statisztika data frame-ben</a></li>
+<li class="chapter" data-level="2.10" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatminőségi-problémák-felismerése-és-kezelése-leíró-statisztika-segítségével"><i class="fa fa-check"></i><b>2.10</b> Adatminőségi problémák felismerése és kezelése leíró statisztika segítségével</a></li>
+<li class="chapter" data-level="2.11" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-összekapcsolása"><i class="fa fa-check"></i><b>2.11</b> Data frame-k összekapcsolása</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-kapcsolási-kulcsnak-használt-oszlop-ellenőrzése-és-javítása"><i class="fa fa-check"></i><b>2.11.1</b> A kapcsolási kulcsnak használt oszlop ellenőrzése és javítása</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#kilógó-értékek-keresése-és-kezelése"><i class="fa fa-check"></i><b>2.12</b> Kilógó értékek keresése és kezelése</a></li>
+<li class="chapter" data-level="2.13" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#korrelációs-elemzések-data-frame-ben"><i class="fa fa-check"></i><b>2.13</b> Korrelációs elemzések data frame-ben</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok"><i class="fa fa-check"></i>Gyakorló feladatok</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok-megoldása"><i class="fa fa-check"></i>Gyakorló feladatok megoldása</a>
+<ul>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat"><i class="fa fa-check"></i>1. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-1"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-2"><i class="fa fa-check"></i>3. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-3"><i class="fa fa-check"></i>4. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-4"><i class="fa fa-check"></i>5. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-5"><i class="fa fa-check"></i>6. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-6"><i class="fa fa-check"></i>7. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-7"><i class="fa fa-check"></i>8. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-8"><i class="fa fa-check"></i>9. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-9"><i class="fa fa-check"></i>10. feladat</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><i class="fa fa-check"></i><b>3</b> Leíró Statisztika ismétlés és Valószínűségszámítás alapok</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#leíró-statisztikai-mutatók"><i class="fa fa-check"></i><b>3.1</b> Leíró statisztikai mutatók</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#hisztogram-és-alakmutatók"><i class="fa fa-check"></i><b>3.1.1</b> Hisztogram és Alakmutatók</a></li>
+<li class="chapter" data-level="3.1.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-lekérése"><i class="fa fa-check"></i><b>3.1.2</b> Gyakorisági tábla lekérése</a></li>
+<li class="chapter" data-level="3.1.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-bővítése"><i class="fa fa-check"></i><b>3.1.3</b> Gyakorisági tábla bővítése</a></li>
+<li class="chapter" data-level="3.1.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#súlyozott-átlag-és-szórás-pythonban"><i class="fa fa-check"></i><b>3.1.4</b> Súlyozott átlag és szórás Pythonban</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-normális-eloszlás-és-sűrűségfüggvénye"><i class="fa fa-check"></i><b>3.2</b> A normális eloszlás és sűrűségfüggvénye</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-használata"><i class="fa fa-check"></i><b>3.2.1</b> A sűrűségfüggvény használata</a></li>
+<li class="chapter" data-level="3.2.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-integrálja"><i class="fa fa-check"></i><b>3.2.2</b> A sűrűségfüggvény integrálja</a></li>
+<li class="chapter" data-level="3.2.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#valószínűség-vs-relatív-gyakoriság"><i class="fa fa-check"></i><b>3.2.3</b> Valószínűség vs Relatív Gyakoriság</a></li>
+<li class="chapter" data-level="3.2.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#centrális-határeloszlás-tétel-cht"><i class="fa fa-check"></i><b>3.2.4</b> Centrális Határeloszlás Tétel (CHT)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#inverz-értékek"><i class="fa fa-check"></i><b>3.2.5</b> Inverz Értékek</a></li>
+<li class="chapter" data-level="3.2.6" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-standard-normális-eloszlás"><i class="fa fa-check"></i><b>3.2.6</b> A Standard Normális Eloszlás</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#az-exponenciális-eloszlás"><i class="fa fa-check"></i><b>3.3</b> Az Exponenciális eloszlás</a></li>
+<li class="chapter" data-level="3.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-varianciahányados-pythonban---kokain-a-balatonban"><i class="fa fa-check"></i><b>3.4</b> A Varianciahányados Pythonban - Kokain a Balatonban</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#további-minőségi-ismérvek-és-a-kokainmennyiség"><i class="fa fa-check"></i><b>3.4.1</b> További minőségi ismérvek és a kokainmennyiség</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html"><i class="fa fa-check"></i><b>4</b> Eloszlások és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#véletlenszám-generálás-és-mintavételezés"><i class="fa fa-check"></i><b>4.1</b> Véletlenszám generálás és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintagenerálás-általános-elve"><i class="fa fa-check"></i><b>4.1.1</b> A mintagenerálás általános elve</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#nem-egyenletes-eloszlású-minták-generálása"><i class="fa fa-check"></i><b>4.1.2</b> Nem egyenletes eloszlású minták generálása</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#elvi-eloszlás-vs-megfigyelt-minta"><i class="fa fa-check"></i><b>4.2</b> Elvi Eloszlás vs Megfigyelt Minta</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#az-elvi-eloszlás-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.1</b> Az elvi eloszlás alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-megfigyelt-minta-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.2</b> A megfigyelt minta alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintavételi-hiba-mvh-koncepciója"><i class="fa fa-check"></i><b>4.2.3</b> A mintavételi hiba (MVH) koncepciója</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#statisztikai-sokaságok-fae-mintavételezése"><i class="fa fa-check"></i><b>4.3</b> Statisztikai sokaságok FAE mintavételezése</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#ismételt-mintavételezés-resampling"><i class="fa fa-check"></i><b>4.3.1</b> Ismételt Mintavételezés (<em>Resampling</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html"><i class="fa fa-check"></i><b>5</b> A becsléselmélet alapjai</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#ismétlés-balaton-átúszás-eredmények-és-ezek-fae-mintái"><i class="fa fa-check"></i><b>5.1</b> Ismétlés: Balaton átúszás eredmények és ezek FAE mintái</a></li>
+<li class="chapter" data-level="5.2" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2</b> A torzítatlanság fogalma</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-aszimptotikus-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2.1</b> Az aszimptotikus torzítatlanság fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-korrigált-mintavariancia"><i class="fa fa-check"></i><b>5.3</b> A korrigált mintavariancia</a></li>
+<li class="chapter" data-level="5.4" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-medián-torzítatlansága"><i class="fa fa-check"></i><b>5.4</b> A medián torzítatlansága</a></li>
+<li class="chapter" data-level="5.5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-standard-hiba-sh-fogalma"><i class="fa fa-check"></i><b>5.5</b> A Standard Hiba (<em>SH</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-konzisztens-becslés-fogalma"><i class="fa fa-check"></i><b>5.5.1</b> A konzisztens becslés fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-átlagos-négyzetes-hiba-mse-fogalma"><i class="fa fa-check"></i><b>5.6</b> Az átlagos négyzetes hiba (<em>MSE</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#különböző-becslőfüggvények-összehasonlítása"><i class="fa fa-check"></i><b>5.6.1</b> Különböző becslőfüggvények összehasonlítása</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html"><i class="fa fa-check"></i><b>6</b> A sokasági átlag intervallumbecslése</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#ismétlés-az-átlag-standard-hibája-a-balaton-átúszás-eredményeken"><i class="fa fa-check"></i><b>6.1</b> Ismétlés: Az átlag standard hibája a Balaton átúszás eredményeken</a></li>
+<li class="chapter" data-level="6.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-mintaátlagok-eloszlása"><i class="fa fa-check"></i><b>6.2</b> A mintaátlagok eloszlása</a></li>
+<li class="chapter" data-level="6.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-sokasági-átlag-konfidencia-intervalluma"><i class="fa fa-check"></i><b>6.3</b> A sokasági átlag konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#az-átlag-konfidencia-intervallumának-általános-alakja"><i class="fa fa-check"></i><b>6.3.1</b> Az átlag konfidencia-intervallumának általános alakja</a></li>
+<li class="chapter" data-level="6.3.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-megbízhatóságának-ellenőrzése"><i class="fa fa-check"></i><b>6.3.2</b> A konfidencia-intervallum megbízhatóságának ellenőrzése</a></li>
+<li class="chapter" data-level="6.3.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-két-fontos-tulajdonsága"><i class="fa fa-check"></i><b>6.3.3</b> 3.3. A konfidencia-intervallum két fontos tulajdonsága</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#intervallumbecslés-a-gyakorlatban"><i class="fa fa-check"></i><b>6.4</b> Intervallumbecslés a gyakorlatban</a>
+<ul>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-altatók-hatékonysága"><i class="fa fa-check"></i>1. feladat: Altatók hatékonysága</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-feladat-megoldás"><i class="fa fa-check"></i>1/a) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#b-feladat-megoldás"><i class="fa fa-check"></i>1/b) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#c-feladat-megoldás"><i class="fa fa-check"></i>1/c) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-10"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-megoldás"><i class="fa fa-check"></i>2. feladat megoldás</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#összefoglalás-az-átlag-konfidencia-intervallumairól"><i class="fa fa-check"></i><b>6.5</b> Összefoglalás az átlag konfidencia-intervallumairól</a></li>
+<li class="chapter" data-level="6.6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#esettanulmány"><i class="fa fa-check"></i><b>6.6</b> Esettanulmány</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html"><i class="fa fa-check"></i><b>7</b> További FAE becslések és a Bootstrap módszer</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-konfidencia-intervallumok-két-általános-tulajdonsága"><i class="fa fa-check"></i><b>7.1</b> A Konfidencia-intervallumok két általános tulajdonsága</a></li>
+<li class="chapter" data-level="7.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#arányok-konfidencia-intervalluma"><i class="fa fa-check"></i><b>7.2</b> Arányok konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#mintaelemszám-meghatározása-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.1</b> Mintaelemszám meghatározása aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#szükséges-minimális-elemszám-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.2</b> Szükséges minimális elemszám aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#aránybecslés-a-statsmodels-csomaggal"><i class="fa fa-check"></i><b>7.2.3</b> Aránybecslés a <code>statsmodels</code> csomaggal</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-bootstrap-becslések-általános-elve"><i class="fa fa-check"></i><b>7.3</b> A Bootstrap becslések általános elve</a></li>
+<li class="chapter" data-level="7.4" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-medián-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.4</b> A Medián Bootstrap intervallumbecslése</a></li>
+<li class="chapter" data-level="7.5" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-szórás-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.5</b> A Szórás Bootstrap intervallumbecslése</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html"><i class="fa fa-check"></i><b>8</b> Becslések EV és R mintából</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#intervallumbecslés-visszatevés-nélküli-egyszerű-véletlen-ev-mintákból"><i class="fa fa-check"></i><b>8.1</b> Intervallumbecslés visszatevés nélküli egyszerű véletlen (EV) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.1</b> Átlag becslése EV mintákból</a></li>
+<li class="chapter" data-level="8.1.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#arány-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.2</b> Arány becslése EV mintákból</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-arányosan-rétegzett-ar-mintákból"><i class="fa fa-check"></i><b>8.2</b> Átlag becslése Arányosan Rétegzett (AR) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#az-ar-mintavételek-hatékonysága"><i class="fa fa-check"></i><b>8.2.1</b> Az AR mintavételek hatékonysága</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html"><i class="fa fa-check"></i><b>9</b> Hipotézisvizsgálat alapjai</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-alapgondolata"><i class="fa fa-check"></i><b>9.1</b> A hipotézisvizsgálat alapgondolata</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-p-érték-fogalma"><i class="fa fa-check"></i><b>9.1.1</b> A p-érték fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-t-próba"><i class="fa fa-check"></i><b>9.2</b> A sokasági átlagra vonatkozó <em>t-próba</em></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-beépített-függvénnyel"><i class="fa fa-check"></i><b>9.2.1</b> A <em>t-próba</em> beépített függvénnyel</a></li>
+<li class="chapter" data-level="9.2.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-előfeltételei"><i class="fa fa-check"></i><b>9.2.2</b> A <em>t-próba</em> előfeltételei</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.3</b> A sokasági átlagra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.4" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-arányra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.4</b> A sokasági arányra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.5" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-menete-madártávlatból"><i class="fa fa-check"></i><b>9.5</b> A hipotézisvizsgálat menete madártávlatból</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html"><i class="fa fa-check"></i><b>10</b> Egymintás és Kétmintás próbák</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-szórásra-vonatkozó-chi2-próba"><i class="fa fa-check"></i><b>10.1</b> A szórásra vonatkozó <span class="math inline">\(\chi^2\)</span>-próba</a></li>
+<li class="chapter" data-level="10.2" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-kétmintás-hipotézisvizsgálatok-elve"><i class="fa fa-check"></i><b>10.2</b> A kétmintás hipotézisvizsgálatok elve</a></li>
+<li class="chapter" data-level="10.3" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-átlagokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.3</b> Az átlagokra vonatkozó kétmintás <em>z-próba</em></a></li>
+<li class="chapter" data-level="10.4" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-arányokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.4</b> Az arányokra vonatkozó kétmintás <em>z-próba</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html"><i class="fa fa-check"></i><b>11</b> Nemparaméteres próbák</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#nemparaméteres-próbák-elve"><i class="fa fa-check"></i><b>11.1</b> Nemparaméteres próbák elve</a></li>
+<li class="chapter" data-level="11.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#illeszkedésvizsgálatok"><i class="fa fa-check"></i><b>11.2</b> Illeszkedésvizsgálatok</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#reprezentativitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.1</b> Reprezentativitás vizsgálat</a></li>
+<li class="chapter" data-level="11.2.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#normalitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.2</b> Normalitás vizsgálat</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#függetlenségvizsgálatok-homogenitásvizsgálatok"><i class="fa fa-check"></i><b>11.3</b> Függetlenségvizsgálatok (homogenitásvizsgálatok)</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html"><i class="fa fa-check"></i><b>12</b> Kétváltozós lineáris regresszió</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#budapesti-lakások-vizsgálata"><i class="fa fa-check"></i><b>12.1</b> Budapesti lakások vizsgálata</a></li>
+<li class="chapter" data-level="12.2" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-kétváltozós-lineáris-regresszió-ols-elvű-becslése"><i class="fa fa-check"></i><b>12.2</b> A Kétváltozós Lineáris Regresszió OLS elvű becslése</a></li>
+<li class="chapter" data-level="12.3" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#az-ols-regresszió-magyarázóerejének-mérése"><i class="fa fa-check"></i><b>12.3</b> Az OLS Regresszió magyarázóerejének mérése</a></li>
+<li class="chapter" data-level="12.4" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-regresszió-magyarázóereje-nem-megfigyelt-adatok-körében"><i class="fa fa-check"></i><b>12.4</b> A Regresszió magyarázóereje nem megfigyelt adatok körében</a></li>
+<li class="chapter" data-level="12.5" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-modell-együtthatóinak-értelemzése"><i class="fa fa-check"></i><b>12.5</b> A modell együtthatóinak értelemzése</a></li>
+<li class="chapter" data-level="12.6" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#egy-gyakorló-példa-covid-adatokon"><i class="fa fa-check"></i><b>12.6</b> Egy gyakorló példa COVID adatokon</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html"><i class="fa fa-check"></i><b>13</b> Többváltozós OLS Regresszió alapjai</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#magyar-járások-covid-19-halálozási-arányai"><i class="fa fa-check"></i><b>13.1</b> Magyar járások COVID-19 halálozási arányai</a></li>
+<li class="chapter" data-level="13.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-többváltozós-lineáris-regresszió-ols-elvű-előállítása"><i class="fa fa-check"></i><b>13.2</b> A Többváltozós Lineáris Regresszió OLS elvű előállítása</a></li>
+<li class="chapter" data-level="13.3" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-magyarázóváltozók-marginális-hatása"><i class="fa fa-check"></i><b>13.3</b> A magyarázóváltozók marginális hatása</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#útelemzés"><i class="fa fa-check"></i><b>13.3.1</b> Útelemzés</a></li>
+<li class="chapter" data-level="13.3.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#parciális-t-próba"><i class="fa fa-check"></i><b>13.3.2</b> Parciális t-próba</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Következtető Statisztika Python Jegyzet</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="nemparaméteres-próbák" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">11</span> Nemparaméteres próbák<a href="nemparaméteres-próbák.html#nemparaméteres-próbák" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="nemparaméteres-próbák-elve" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Nemparaméteres próbák elve<a href="nemparaméteres-próbák.html#nemparaméteres-próbák-elve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Továbbra is hipotézisvizsgálatokat végzünk.</p>
+<p>EDDIG az úgynevezett <strong>paraméteres próbák</strong> esetét vizsgáltunk. Ekkor statisztikai mutatószámokra, azaz statisztikai paraméterek (pl. átlagra, szórásra, arányra, stb.) lehetséges sokasági értékeire fogalmaztunk meg állításokat, <em>hipotéziseket</em>.</p>
+<p>MOST az úgynevezett <strong>nemparaméteres próbák</strong> esetét kezdjük vizsgálni. Ekkor <strong>ismérvek sokasági eloszlására vonatkozó állításokat, hipotéziseket teszünk</strong>. Ugyebár egy ismérv eloszlása gyakorlatilag azt jelenti, hogy megadjuk, hogy a lehetséges ismérvértékek milyen arányban fordulnak elő. Szóval valójában nagyon <strong>sok arány értékéről egyszerre</strong> mondunk itt valamit a hipotézisben megfogalmazott alapállításainkban.</p>
+<p>De a <strong>négy alaplépés változatlan</strong> az eddigiekhez képest!</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> felírása</li>
+<li>Próbafüggvény számítása a megfigyelt mintából</li>
+<li>A p-érték számítása próbafüggvény és egy nevezetes eloszlás alapján</li>
+<li>Döntés p-érték alapján <span class="math inline">\(\rightarrow H_0\)</span> vagy <span class="math inline">\(H_1\)</span> vehető-e igaznak a sokaságban?</li>
+</ol>
+<p>A nemparaméteres próbák témakörét a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/StackOverflowHungary2020.xlsx" target="_blank">StackOverflowHungary2020.xlsx</a> adattáblán járjuk majd végig, ami a Stack Overflow programozói közösségi oldal 2020-as felmérése a világ amatőr és profi programozóiról <em>60</em> változó szerint. A teljes adatbázis (és a korábbi+újabb évek felmérései) <a href="https://insights.stackoverflow.com/survey">erről a linkről</a> elérhető.<br>
+A mi Moodle-n található Excel fájlunkban csak a 2020-as felmérés <em>210 magyar kitöltőjének</em> válaszai szerepelnek az alábbi <em>9</em> változó szerint :</p>
+<ul>
+<li><strong>Age</strong>: A válaszadó életkora (év)</li>
+<li><strong>Age1stCode</strong>: A válaszadó életkora első sor programkódjának megírásakor (év)</li>
+<li><strong>YearsCodePro</strong>: Programozási tapasztalat a tanulmányokat nem beleszámítva (év)</li>
+<li><strong>MonthlyHuf</strong>: Havi bruttó fizetés Forintban</li>
+<li><strong>Gender</strong>: Válaszadó neme</li>
+<li><strong>EdLevel</strong>: Legmagasabb befejezett iskolai végzettség</li>
+<li><strong>Employment</strong>: Foglalkoztatási státusz (teljes munkidő; részmunkaidő; egyéni vállalkozó)</li>
+<li><strong>JobSat</strong>: Elégedettség a jelenlegi munkahelyen</li>
+<li><strong>OpSys</strong>: Használt operációs rendszer (Windows; Linux; MacOS)</li>
+</ul>
+<p>Töltsök be az adatbázist az Excelből egy <code>pandas</code> data frame-be és nézzük meg az <code>info</code> metódussal megvan-e minden fenteb felsorolt ismérvünk!</p>
+<div class="sourceCode" id="cb882"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb882-1"><a href="nemparaméteres-próbák.html#cb882-1" tabindex="-1"></a><span class="co"># Elemzéshez és ábrázoláshoz szükséges csomagok betöltése</span></span>
+<span id="cb882-2"><a href="nemparaméteres-próbák.html#cb882-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb882-3"><a href="nemparaméteres-próbák.html#cb882-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb882-4"><a href="nemparaméteres-próbák.html#cb882-4" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb882-5"><a href="nemparaméteres-próbák.html#cb882-5" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb882-6"><a href="nemparaméteres-próbák.html#cb882-6" tabindex="-1"></a></span>
+<span id="cb882-7"><a href="nemparaméteres-próbák.html#cb882-7" tabindex="-1"></a><span class="co"># StackOverflow 2020-as kérdőív magyar kitöltő adatainak beolvasása</span></span>
+<span id="cb882-8"><a href="nemparaméteres-próbák.html#cb882-8" tabindex="-1"></a>sfH <span class="op">=</span> pd.read_excel(<span class="st">&quot;StackOverflowHungary2020.xlsx&quot;</span>)</span>
+<span id="cb882-9"><a href="nemparaméteres-próbák.html#cb882-9" tabindex="-1"></a>sfH.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 210 entries, 0 to 209
+## Data columns (total 9 columns):
+##  #   Column        Non-Null Count  Dtype  
+## ---  ------        --------------  -----  
+##  0   Age           210 non-null    int64  
+##  1   Age1stCode    210 non-null    int64  
+##  2   YearsCodePro  210 non-null    float64
+##  3   MonthlyHuf    210 non-null    float64
+##  4   Gender        210 non-null    object 
+##  5   EdLevel       210 non-null    object 
+##  6   Employment    210 non-null    object 
+##  7   JobSat        210 non-null    object 
+##  8   OpSys         210 non-null    object 
+## dtypes: float64(2), int64(2), object(5)
+## memory usage: 14.9+ KB</code></pre>
+<p>Olybá tűnik, mind a <span class="math inline">\(210\)</span> megfigyelésünk és a vizsgált <span class="math inline">\(9\)</span> változónk. Yeah! :)</p>
+</div>
+<div id="illeszkedésvizsgálatok" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Illeszkedésvizsgálatok<a href="nemparaméteres-próbák.html#illeszkedésvizsgálatok" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A nemparaméteres próbák egyik nagy alesete az illeszkedésvizsgálatok esete. Ekkor mindig azt vizsgáljuk, hogy a <strong>megfigyelt mintaelemek eloszlása illeszkedik-e valami általunk megadott elméleti eloszláshoz</strong> (pl. egyenletes eloszlás vagy normális eloszlás, ilyesmik).</p>
+<div id="reprezentativitás-vizsgálat" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> Reprezentativitás vizsgálat<a href="nemparaméteres-próbák.html#reprezentativitás-vizsgálat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Reprezentativitás egy ismérv szerint</strong>: a minta eloszlása egy konkrét ismérv szerint kb. ugyan az, mint az ismérv eloszlása a teljes adatsokaságban.</p>
+<p>A KSH 2020-as adatai szerint a magyar infokommunikációs-szektorban tevékenykedők</p>
+<ul>
+<li><span class="math inline">\(85\%\)</span>-a teljes állásban foglalkoztatott,</li>
+<li><span class="math inline">\(4\%\)</span> részmunkaidős</li>
+<li><span class="math inline">\(11\%\)</span> egyéni vállalkozó.</li>
+</ul>
+<p>Ezen munkakör tíous arányok (azaz munkakör típus eloszlás) mellett <strong>reprezentatív-e a StackOverflow kérdőív magyar mintája munkakör típusra?</strong></p>
+<p>Ekkor:</p>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> A minta <strong>reprezentatív</strong></li>
+<li><span class="math inline">\(H_1:\)</span> A minta <strong>NEM reprezentatív</strong></li>
+</ul>
+<p>Próbafüggvényünk és p-értékhez az eloszlásunk a következő <span class="math display">\[\sum_{j=1}^{k}{\frac{(f_j-f^*_j)^2}{f^*_j}} \sim \chi^2(k-1)\]</span></p>
+<p>A képletben szereplő betűk jelentése:</p>
+<ul>
+<li><span class="math inline">\(k\)</span>: A vizsgált ismérv lehetséges rtékeinek (kategóriáinak) száma</li>
+<li><span class="math inline">\(f_j\)</span>: tény gyakoriságok</li>
+<li><span class="math inline">\(f^*_j\)</span>: reprezentativitás esetén fennálló elvi gyakoriságok a mintában</li>
+</ul>
+<p>A <strong>p-érték</strong>et a <span class="math inline">\(\chi^2(k-1)\)</span> eloszlásból <strong>mindig jobboldali</strong> módon számítjuk. Részletek a jobboldali p-érték számításról a <a href="Gyak07.html" target="_blank">7. heti tananyag 2. fejezetében</a>.</p>
+<p>Számítsuk ki a szükséges <span class="math inline">\(f_j\)</span> gyakoriságokat.</p>
+<div class="sourceCode" id="cb884"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb884-1"><a href="nemparaméteres-próbák.html#cb884-1" tabindex="-1"></a>tény_gyak <span class="op">=</span> sfH.Employment.value_counts()</span>
+<span id="cb884-2"><a href="nemparaméteres-próbák.html#cb884-2" tabindex="-1"></a>tény_gyak</span></code></pre></div>
+<pre><code>## Employment
+## Employed full-time                                      167
+## Independent contractor, freelancer, or self-employed     33
+## Employed part-time                                       10
+## Name: count, dtype: int64</code></pre>
+<p>Jöjjenek az elvi <span class="math inline">\(f^*_j\)</span> gyakoriságok! Mi lenne ha az <span class="math inline">\(n=210\)</span> elemű minta teljesen reprezentatív lenne?</p>
+<div class="sourceCode" id="cb886"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb886-1"><a href="nemparaméteres-próbák.html#cb886-1" tabindex="-1"></a>elvi_gyak <span class="op">=</span> <span class="dv">210</span> <span class="op">*</span> np.array([<span class="fl">0.85</span>, <span class="fl">0.11</span>, <span class="fl">0.04</span>])</span>
+<span id="cb886-2"><a href="nemparaméteres-próbák.html#cb886-2" tabindex="-1"></a>elvi_gyak</span></code></pre></div>
+<pre><code>## array([178.5,  23.1,   8.4])</code></pre>
+<p>Az eltérés elvi és tény gyakoriságok között betudható-e a mintavételi hibának? <span class="math inline">\(\rightarrow\)</span> Hipotézisvizsg :)</p>
+<p>Próbafüggvény és p-érték beépített <code>scipy</code> függvénnyel. Most a szabadságfok <span class="math inline">\(df=k-1=3-1=2\)</span>. Ez a szabadságfok értelmezés (tehát a <span class="math inline">\(szf=k-1\)</span>) a függvény alapértelmezése, így ezt nem kell külön paraméterben beállítanunk.</p>
+<div class="sourceCode" id="cb888"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb888-1"><a href="nemparaméteres-próbák.html#cb888-1" tabindex="-1"></a>stats.chisquare(tény_gyak, elvi_gyak)</span></code></pre></div>
+<pre><code>## Power_divergenceResult(statistic=5.288515406162464, pvalue=0.07105808036191753)</code></pre>
+<p>A p-értékünk <span class="math inline">\(7.1\%\)</span> Ez beza benne van a szokásos szignifikancia- szintek tartományában (1%-10%). <strong>Nagyobb minta alapján kéne dönteni</strong>. De közelebb vagyunk a <span class="math inline">\(10\%\)</span>-oz, mint az <span class="math inline">\(1\%\)</span>-hez <span class="math inline">\(\rightarrow\)</span> <strong>inkább tűnik a minta reprezentatívnak, mint nem</strong>. :)</p>
+<p>Előfeltételünk, hogy minden elvi gyakoriság legalább <span class="math inline">\(5\)</span>, azaz <span class="math inline">\(f^*_j \geq 5\)</span>. Ellenőrizzük le gyorsan!</p>
+<div class="sourceCode" id="cb890"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb890-1"><a href="nemparaméteres-próbák.html#cb890-1" tabindex="-1"></a>elvi_gyak <span class="op">&gt;=</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## array([ True,  True,  True])</code></pre>
+<p>Mind a három esetben van legalább <span class="math inline">\(5\)</span> megfigyelés az elvi esetben, jók vagyunk! Wuhú! :)</p>
+</div>
+<div id="normalitás-vizsgálat" class="section level3 hasAnchor" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> Normalitás vizsgálat<a href="nemparaméteres-próbák.html#normalitás-vizsgálat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Állításunk, hogy a <strong>magyar programozók sokaságának az első kód megírásakor a koreloszlása normális eloszlású</strong>.</p>
+<p>Szemmelverés = Hisztogram</p>
+<div class="sourceCode" id="cb892"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb892-1"><a href="nemparaméteres-próbák.html#cb892-1" tabindex="-1"></a>sfH.Age1stCode.hist()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-371-33.png" width="672" /></p>
+<p>Nagyjából normális eloszlású a hisztogram, de kicsit jobbra nyúlik.</p>
+<p>Kérdés enyhe jobbra nyúlás a mintavételi hiba műve-e? <span class="math inline">\(\rightarrow\)</span> Hipotézisvizsgálat! :)</p>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> <strong>Normális</strong> az eloszlás</li>
+<li><span class="math inline">\(H_1:\)</span> <strong>NEM normális</strong> az eloszlás</li>
+</ul>
+<p>A <strong>próbafüggvény és p-érték számoláshoz trükközünk</strong>! Kiszámoljuk az <code>Age1stCode</code> ismérvre legjobban illeszekdő normális eloszlás kvintiliseit, azaz ötödölő pntjait! Pl. <span class="math inline">\(K_2\)</span> az az érték, aminél az adatok 40%-a (<span class="math inline">\(2/5\)</span>) kisebb, 60%-a (<span class="math inline">\(3/5\)</span>) nagyobb.<br>
+Az <code>Age1stCode</code> ismérvre legjobban illeszekdő normális eloszlás: az a normális eloszlás, aminek átlaga és szórása ugyan az, mint az <code>Age1stCode</code> ismérvé.</p>
+<p>A megfelelő átlag és szórás számolása. Szórás korrigált, hiszen mintában vagyunk, nem szeretnénk torzítást! :)</p>
+<div class="sourceCode" id="cb893"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb893-1"><a href="nemparaméteres-próbák.html#cb893-1" tabindex="-1"></a>átlag <span class="op">=</span> np.mean(sfH.Age1stCode)</span>
+<span id="cb893-2"><a href="nemparaméteres-próbák.html#cb893-2" tabindex="-1"></a>s <span class="op">=</span> np.std(sfH.Age1stCode, ddof<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<p>Normális eloszlás ötödölő pontjai a <code>scipy</code> csomag <code>stats.</code> függvényévek. Ötödölő pontok (kivintilisek) listaként való átadása. Technikai okok miatt kell a <span class="math inline">\(0\)</span> és <span class="math inline">\(1=100\%\)</span> sztópont is a <span class="math inline">\(0.2\)</span> egységekre bontó pontok = ötödölő pontok = kvintilisek mellett.</p>
+<div class="sourceCode" id="cb894"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb894-1"><a href="nemparaméteres-próbák.html#cb894-1" tabindex="-1"></a>norm_kvint<span class="op">=</span>stats.norm.ppf([<span class="dv">0</span>,<span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>,<span class="dv">1</span>], loc<span class="op">=</span>átlag, scale<span class="op">=</span>s)</span>
+<span id="cb894-2"><a href="nemparaméteres-próbák.html#cb894-2" tabindex="-1"></a>norm_kvint</span></code></pre></div>
+<pre><code>## array([       -inf,  9.60607718, 12.62407404, 15.22354501, 18.24154186,
+##                inf])</code></pre>
+<p>Tapasztalati gyakorisági tábla, <span class="math inline">\(f_j\)</span>-k megadása a normális eloszlás kvintiliseire.</p>
+<div class="sourceCode" id="cb896"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb896-1"><a href="nemparaméteres-próbák.html#cb896-1" tabindex="-1"></a>gyak_tábla <span class="op">=</span> np.histogram(sfH.Age1stCode, bins<span class="op">=</span>norm_kvint)</span>
+<span id="cb896-2"><a href="nemparaméteres-próbák.html#cb896-2" tabindex="-1"></a>gyak_tábla</span></code></pre></div>
+<pre><code>## (array([33, 60, 53, 38, 26], dtype=int64), array([       -inf,  9.60607718, 12.62407404, 15.22354501, 18.24154186,
+##                inf]))</code></pre>
+<p>Elvi gyakoriság, ha <span class="math inline">\(H_0\)</span>,azaz a normális eloszlás igaz lenne <span class="math inline">\(f^*_j=\frac{n}{5}=\frac{210}{5}=42\)</span>. Ez a <code>stats.chisquare</code> alapbeállítása <span class="math inline">\(f^*_j\)</span>-re.</p>
+<p>Számoljuk ki a próbafüggvényt és p-értéket ezzel az alapfeltételezéssel <span class="math inline">\(f^*_j\)</span>-re. Van minden: <span class="math inline">\(f_j\)</span> és <span class="math inline">\(f^*_j\)</span> is. De most az eloszlás p-értékhez <span class="math inline">\(\chi^2(k-1-b)\)</span>, ahol <span class="math inline">\(b\)</span> a becsült paraméterek száma. Ez most a legjobban illeszkedő normális eloszlás átlaga és szórása volt, így <span class="math inline">\(b=2\)</span>. Ezzel a <span class="math inline">\(b=2\)</span> értékkel felül kell írni a <code>stats.chisquare</code> függvény alapbeálítását a szabadságfok (<code>ddof</code>) paraméterre. Ezen a <code>ddof</code> paraméteren csak a <span class="math inline">\(b=2\)</span>-t kell átadni, így tudni fogja a függvény, hogy a szabadságfokot <span class="math inline">\(k-1-b\)</span> módon kell kiszámolnia.</p>
+<div class="sourceCode" id="cb898"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb898-1"><a href="nemparaméteres-próbák.html#cb898-1" tabindex="-1"></a>stats.chisquare(gyak_tábla[<span class="dv">0</span>], ddof<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Power_divergenceResult(statistic=19.0, pvalue=7.485182988770057e-05)</code></pre>
+<p>A p-értékünk <span class="math inline">\(0.0075\%\)</span>, ami kisebb még a legkisebb szokásos szignifikancia-szintnél, az <span class="math inline">\(1\%\)</span>-nál is. Azaz, a <span class="math inline">\(H_0\)</span> stabilan elvethető, így az eloszlás <strong>nem tekinthatő normálisnak</strong></p>
+<p>Tehát, a hisztogramon észrevehető enyhe jobbra nyúlás a normális eloszláshoz képest NEM mintavételi hiba műve, hanem egy szignifikáns (jelentős) eltérés, ami megmarad a mintán kívüli világban is!</p>
+</div>
+</div>
+<div id="függetlenségvizsgálatok-homogenitásvizsgálatok" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Függetlenségvizsgálatok (homogenitásvizsgálatok)<a href="nemparaméteres-próbák.html#függetlenségvizsgálatok-homogenitásvizsgálatok" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vizsgáljuk meg azt az állítást, miszerint, az összes magyar programozó sokaságában az <strong>egyes operációs rendszereket használó fejlesztők ugyan olyan munkahelyi elégedettségi arányokkal bírnak</strong>. Másképpen fogalmazva a munkahelyi elégedettség és az operációs rendszer között <strong>összefüggés ll fenn</strong>.</p>
+<p>Más szóval, függetlenségvizsgálat esetén azt vizsgáljuk, hogy a sokaságban, azaz <strong>a mintán kívüli világban, két nominális</strong> (szöveges) <strong>ismérv között összefüggés áll fenn</strong>. Ezt pedig a következő null- és alternatív hipotézis párossal írjuk le.</p>
+<ul>
+<li><strong>Két nominális</strong> ismérv: <code>JobSat</code> és <code>OpSys</code></li>
+<li><span class="math inline">\(H_0:\)</span> A két ismérv <strong>független</strong></li>
+<li><span class="math inline">\(H_1:\)</span> A két ismérv <strong>összefügg</strong></li>
+</ul>
+<p>Úgy járunk el, mint Statisztika I-en két nominális ismérv kapcsoaltának vizsgálatánál: készítünk egy kereszttávlát, ami megadja a két ismérv <em>együttes</em> gyakoriságait.</p>
+<div class="sourceCode" id="cb900"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb900-1"><a href="nemparaméteres-próbák.html#cb900-1" tabindex="-1"></a>kereszt <span class="op">=</span> pd.crosstab(sfH.JobSat, sfH.OpSys)</span>
+<span id="cb900-2"><a href="nemparaméteres-próbák.html#cb900-2" tabindex="-1"></a>kereszt</span></code></pre></div>
+<pre><code>## OpSys                               Linux-based  MacOS  Windows
+## JobSat                                                         
+## Neither satisfied nor dissatisfied            3      4       16
+## Slightly dissatisfied                        10      6       23
+## Slightly satisfied                           18      7       44
+## Very dissatisfied                             2      2       11
+## Very satisfied                               25      8       31</code></pre>
+<p>Tehát, pl. <span class="math inline">\(31\)</span> főnyi munkájával nagyon elégedett Windows felhasználó van a megfigyelt mintánkban.</p>
+<p>Sajnos, a kereszttáblában van olyan elem (azaz van olyan <span class="math inline">\(i\)</span> sor és <span class="math inline">\(j\)</span> oszlop), ahol a gyakoriság kisebb, mint <span class="math inline">\(5\)</span>, azaz <span class="math inline">\(\exists f_{ij}&lt;5\)</span>. Láasd pl. A semleges érzelmű Linuxosok esetét. Ekkor <strong>valószínűleg NEM fog teljesülni a nagy minta előfeltétel</strong>, mert nem lesz minden kereszttábla gyakoirság legalább <span class="math inline">\(5\)</span>.</p>
+<p>Emiatt a problémát úgy hidaljuk át, hogy a <em>Very satisfied</em> és <em>Slightly satisfied</em> kategóriákból készítünk egy <em>Satisfied</em> kategóriát, a többiekből pedig egy <em>Not satisdfied kategóriát</em>. Ezt a <code>numpy</code> csomag <code>where</code> függvényével tudjuk intézni, mint az <a href="Gyak05.html" target="_blank">5. heti tananyag 2. fejezetében</a> az arányok konfidencia-intervallum számolásához a <span class="math inline">\(0-1\)</span> értékű új oszlop létrehozását.</p>
+<div class="sourceCode" id="cb902"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb902-1"><a href="nemparaméteres-próbák.html#cb902-1" tabindex="-1"></a>sfH[<span class="st">&#39;JS_v2&#39;</span>] <span class="op">=</span> np.where(sfH.JobSat.isin([<span class="st">&#39;Very satisfied&#39;</span>,</span>
+<span id="cb902-2"><a href="nemparaméteres-próbák.html#cb902-2" tabindex="-1"></a>                                         <span class="st">&#39;Slightly satisfied&#39;</span>]),</span>
+<span id="cb902-3"><a href="nemparaméteres-próbák.html#cb902-3" tabindex="-1"></a>                        <span class="st">&#39;Satisfied&#39;</span>, <span class="st">&#39;Not satisf.&#39;</span>)</span>
+<span id="cb902-4"><a href="nemparaméteres-próbák.html#cb902-4" tabindex="-1"></a></span>
+<span id="cb902-5"><a href="nemparaméteres-próbák.html#cb902-5" tabindex="-1"></a></span>
+<span id="cb902-6"><a href="nemparaméteres-próbák.html#cb902-6" tabindex="-1"></a>kereszt <span class="op">=</span> pd.crosstab(sfH.JS_v2, sfH.OpSys)</span>
+<span id="cb902-7"><a href="nemparaméteres-próbák.html#cb902-7" tabindex="-1"></a>kereszt</span></code></pre></div>
+<pre><code>## OpSys        Linux-based  MacOS  Windows
+## JS_v2                                   
+## Not satisf.           15     12       50
+## Satisfied             43     15       75</code></pre>
+<p>Remek, már csak két érték van a munkahelyi elégdettséggel kapcsoaltos új oszlopban (<code>JS_v2</code>). Innentől kezdve <strong>homogenitásvizsgálat</strong>ot végzünk. Ugyanis, ha az egyik nominális ismérvnek csak <span class="math inline">\(2\)</span> lehetséges értéke van, akkor <em>függetlenségvizsgálat = homogenvizsgálat</em>. Mivel ekkor két nominális csoporton belül vizsgáljuk, hogy egy másik nominális ismérv arányai azonosnak vehetők-e. Azaz vizsgáljuk, hogy a két nominális ismérv független-e.</p>
+<p>Nézzük meg az elégedettségi arányok oprendszereken belül!</p>
+<div class="sourceCode" id="cb904"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb904-1"><a href="nemparaméteres-próbák.html#cb904-1" tabindex="-1"></a>pd.crosstab(sfH.JS_v2, sfH.OpSys, normalize<span class="op">=</span><span class="st">&#39;columns&#39;</span>)</span></code></pre></div>
+<pre><code>## OpSys        Linux-based     MacOS  Windows
+## JS_v2                                      
+## Not satisf.     0.258621  0.444444      0.4
+## Satisfied       0.741379  0.555556      0.6</code></pre>
+<p>Ezen <strong>arányok eltérése oprendszerek között csak a mintavételi hiba műve-e?</strong> <span class="math inline">\(\rightarrow\)</span> Hiptézisvizsgálat! :)</p>
+<p>Próbafüggvényünk a Stat. I-en megismert <span class="math inline">\(\chi^2\)</span> mutató, és igaz <span class="math inline">\(H_0\)</span> esetén a próbafüggvény eloszlása sok-sok mintavételből <span class="math inline">\(\chi^2((r-1)(c-1))\)</span>, ahol <span class="math inline">\(r\)</span> a kereszttábla sorainak (<em>rows</em>), míg <span class="math inline">\(c\)</span> a kereszttábla oszlopainak (<em>columns</em>) a darabszáma: <span class="math display">\[\sum_{i=1}^{r}\sum_{j=1}^{c}\frac{(f_{ij}-f^*_{ij})^2}{f^*_{ij}}\sim\chi^2((r-1)(c-1))\]</span></p>
+<p>A <strong>p-érték</strong> itt is <strong>jobboldali módon</strong> számolható, mint az illeszkedésvizsgáaltok esetében.</p>
+<p>Próbafüggvény és p-érték számolás a <code>stats.chi2_contingency</code> beépített függvénnyel. Bemenet csak a kereszttábla, a szabadságfokot is ebből ki tudja számoln a függvény.</p>
+<div class="sourceCode" id="cb906"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb906-1"><a href="nemparaméteres-próbák.html#cb906-1" tabindex="-1"></a>stats.chi2_contingency(kereszt)</span></code></pre></div>
+<pre><code>## Chi2ContingencyResult(statistic=4.217125886817357, pvalue=0.12141231749833191, dof=2, expected_freq=array([[21.26666667,  9.9       , 45.83333333],
+##        [36.73333333, 17.1       , 79.16666667]]))</code></pre>
+<p>A p-értékünk itt <span class="math inline">\(12\%\)</span>, ami nagyobb még a legnagyobbszokásos szignifikancia-szintnél a <span class="math inline">\(10\%\)</span>-nál is. A mintán kívüli világban, azaz a <strong>sokaságban a két ismérv függetlennek tekníthtő</strong>.<br>
+Az a tény, hogy a megfigyelt mintában az elégedettségi arányok eltérnek oprendszerek között csak a mintavételi hiba műve, nem szignifikáns!</p>
+<p>A függvény eredményéül kapott listában a <span class="math inline">\(4.\)</span> elem az a kereszttábla, ami igaz <span class="math inline">\(H_0\)</span>, azaz a két ismérv függetlensége esetén lenne.</p>
+<p>Ha <span class="math inline">\(H_0\)</span> elutasítható lenne, akkor érdekes lenne, hogy a megfiyelt mintában a kereszttábla (az <span class="math inline">\(f_{ij}\)</span>-k) hol tér el a legjobban a függetlenség esetén várt gyakoriságoktól, az <span class="math inline">\(f^*_{ij}\)</span>-ktől.</p>
+<p>Ezeket az <span class="math inline">\(f_{ij}-f^*_{ij}\)</span> eltérések szépen lehetne vizualizálni hőtérképen a <code>seaborn</code> csomag segítségével.</p>
+<div class="sourceCode" id="cb908"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb908-1"><a href="nemparaméteres-próbák.html#cb908-1" tabindex="-1"></a>eltérés <span class="op">=</span> kereszt <span class="op">-</span> stats.chi2_contingency(kereszt)[<span class="dv">3</span>]</span>
+<span id="cb908-2"><a href="nemparaméteres-próbák.html#cb908-2" tabindex="-1"></a>eltérés</span></code></pre></div>
+<pre><code>## OpSys        Linux-based  MacOS   Windows
+## JS_v2                                    
+## Not satisf.    -6.266667    2.1  4.166667
+## Satisfied       6.266667   -2.1 -4.166667</code></pre>
+<div class="sourceCode" id="cb910"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb910-1"><a href="nemparaméteres-próbák.html#cb910-1" tabindex="-1"></a></span>
+<span id="cb910-2"><a href="nemparaméteres-próbák.html#cb910-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns <span class="co"># seaborn csomag importja</span></span>
+<span id="cb910-3"><a href="nemparaméteres-próbák.html#cb910-3" tabindex="-1"></a>sns.heatmap(eltérés, cmap<span class="op">=</span><span class="st">&#39;RdYlGn&#39;</span>) <span class="co"># eltérés vizualizáció hőtérképen</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-380-35.png" width="672" /></p>
+<p>Látható, hogy kb. <span class="math inline">\(6\)</span>-tal több elégedett Linuxos van a mintában, mint függetlenség (<span class="math inline">\(H_0\)</span>) esetén lennie kéne, és kb. <span class="math inline">\(4\)</span>-gyel kevesebb elégedet Windowsos van a mintában, mint függetlenség esetén kéne.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="egymintás-és-kétmintás-próbák.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="kétváltozós-lineáris-regresszió.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-Nemparameteres.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

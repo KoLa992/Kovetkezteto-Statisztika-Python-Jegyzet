@@ -181,7 +181,7 @@ Amit itt látunk az nem más, mint **egy normális eloszlás sűrűségfüggvén
 Miért is van ez így? Mivel **azt, hogy konkrétan milyen egy normális eloszlású sűrűségfüggvény alakja, meghatározza, hogy mennyi az adatsor átlaga és szórása, amire ezt a sűrűségfüggvényt úgymond illeszteni szeretnénk**. Azt, hogy hogyan az alábbi kis interaktív ábra szemlélteti:
 
 <center>
-```{r echo=FALSE}
+```{r, echo=FALSE, out.width="110%"}
 knitr::include_app("https://kola992.shinyapps.io/normaldensityplot/",
                    height = "500px")
 ```
@@ -271,7 +271,7 @@ Mindezen valószínűségek számolása a hozzájuk tartozó sűrűségfüggvén
 Egy *apró megjegyzés*: az alá-felé-közé esési valószínűségeknél azért hagytam el mindenhol a $=$ jelet, mert a nagy értékkészlét miatt ugyebár egy konkrét érték bekövetkezési valószínűsége nagyon kicsi, így a tartományba esésnél elhanyagolható. *Nem oszt, nem szoroz úgymond*.
 
 <center>
-```{r echo=FALSE}
+```{r, echo=FALSE, out.width="120%"}
 knitr::include_app("https://kola992.shinyapps.io/normalprobabilities/",
                    height = "600px")
 ```
@@ -474,7 +474,7 @@ plt.show()
 Ez az alakzat pedig az **exponenciális eloszlás sűrűségfüggvénye**. Ennek a sűrűségfüggvénynek a konkrét alakját egy $\lambda$ paraméter határozza meg. Minél nagyobb $\lambda$, annál meredekebben jobbra elnyúló a sűrűségfüggvény. Ezt alább lehet kipróbálni.
 
 <center>
-```{r echo=FALSE}
+```{r, echo=FALSE, out.width="110%"}
 knitr::include_app("https://kola992.shinyapps.io/normaldensityplot/?distr=Exp",
                    height = "500px")
 ```
@@ -521,7 +521,7 @@ A számítások alapja itt is az, hogy $f(x)=P(Y_i=x)$, tehát **a sűrűségfü
 Ezeket a vizuális jelentéstartalmakat az alábbi interaktív ábrán meg lehet nézni és ki lehet próbálni úgy, ahogy a normális eloszlásnál lehetett.
 
 <center>
-```{r echo=FALSE}
+```{r, echo=FALSE, out.width="120%"}
 knitr::include_app("https://kola992.shinyapps.io/normalprobabilities/?distr=Exp",
                    height = "550px")
 ```

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 Hipotézisvizsgálat alapjai | Következtető Statisztika Python Jegyzet</title>
+  <meta name="description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 Hipotézisvizsgálat alapjai | Következtető Statisztika Python Jegyzet" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="github-repo" content="KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 Hipotézisvizsgálat alapjai | Következtető Statisztika Python Jegyzet" />
+  
+  <meta name="twitter:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  
+
+<meta name="author" content="Kovács László" />
+
+
+<meta name="date" content="2025-06-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="becslések-ev-és-r-mintából.html"/>
+<link rel="next" href="egymintás-és-kétmintás-próbák.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Következtető Statisztika Python Jegyzet</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Előhang</a></li>
+<li class="chapter" data-level="2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html"><i class="fa fa-check"></i><b>2</b> Statisztikához szükséges Python nyelvi alapok</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#programozási-alapelvek"><i class="fa fa-check"></i><b>2.1</b> Programozási alapelvek</a></li>
+<li class="chapter" data-level="2.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pythonról-általában"><i class="fa fa-check"></i><b>2.2</b> A Pythonról általában</a></li>
+<li class="chapter" data-level="2.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-spyder-felülete"><i class="fa fa-check"></i><b>2.3</b> A Spyder felülete</a></li>
+<li class="chapter" data-level="2.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#alapvető-python-adattípusok-és-adatszerkezetek"><i class="fa fa-check"></i><b>2.5</b> Alapvető Python adattípusok és adatszerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-adattípusok"><i class="fa fa-check"></i><b>2.5.1</b> Egyszerű adattípusok</a></li>
+<li class="chapter" data-level="2.5.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#összetett-adatszerkezetek"><i class="fa fa-check"></i><b>2.5.2</b> Összetett adatszerkezetek</a></li>
+<li class="chapter" data-level="2.5.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-numpy-tömb"><i class="fa fa-check"></i><b>2.5.3</b> A <code>numpy</code> tömb</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#vezérlési-szerkezetek"><i class="fa fa-check"></i><b>2.6</b> Vezérlési szerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#elágazás-if"><i class="fa fa-check"></i><b>2.6.1</b> Elágazás (<code>if</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#ciklusok-for"><i class="fa fa-check"></i><b>2.6.2</b> Ciklusok (<code>for</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pandas-data-frame-objektum"><i class="fa fa-check"></i><b>2.7</b> A Pandas data frame objektum</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hivatkozási-lehetőségek-data-frame-ben"><i class="fa fa-check"></i><b>2.7.1</b> Hivatkozási lehetőségek data frame-ben</a></li>
+<li class="chapter" data-level="2.7.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-módosítása"><i class="fa fa-check"></i><b>2.7.2</b> Data frame-k módosítása</a></li>
+<li class="chapter" data-level="2.7.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#szűrés-data-frame-ben-logikai-indexszálás"><i class="fa fa-check"></i><b>2.7.3</b> Szűrés data frame-ben: logikai indexszálás</a></li>
+<li class="chapter" data-level="2.7.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hiányzó-értékek-kezelése-data-frame-ben"><i class="fa fa-check"></i><b>2.7.4</b> Hiányzó értékek kezelése data frame-ben</a></li>
+<li class="chapter" data-level="2.7.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatvizualizáció-data-frame-en-keresztül"><i class="fa fa-check"></i><b>2.7.5</b> Adatvizualizáció data frame-en keresztül</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#aggregálás-data-frame-ben"><i class="fa fa-check"></i><b>2.8</b> Aggregálás data frame-ben</a></li>
+<li class="chapter" data-level="2.9" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-leíró-statisztika-data-frame-ben"><i class="fa fa-check"></i><b>2.9</b> Egyszerű leíró statisztika data frame-ben</a></li>
+<li class="chapter" data-level="2.10" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatminőségi-problémák-felismerése-és-kezelése-leíró-statisztika-segítségével"><i class="fa fa-check"></i><b>2.10</b> Adatminőségi problémák felismerése és kezelése leíró statisztika segítségével</a></li>
+<li class="chapter" data-level="2.11" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-összekapcsolása"><i class="fa fa-check"></i><b>2.11</b> Data frame-k összekapcsolása</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-kapcsolási-kulcsnak-használt-oszlop-ellenőrzése-és-javítása"><i class="fa fa-check"></i><b>2.11.1</b> A kapcsolási kulcsnak használt oszlop ellenőrzése és javítása</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#kilógó-értékek-keresése-és-kezelése"><i class="fa fa-check"></i><b>2.12</b> Kilógó értékek keresése és kezelése</a></li>
+<li class="chapter" data-level="2.13" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#korrelációs-elemzések-data-frame-ben"><i class="fa fa-check"></i><b>2.13</b> Korrelációs elemzések data frame-ben</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok"><i class="fa fa-check"></i>Gyakorló feladatok</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok-megoldása"><i class="fa fa-check"></i>Gyakorló feladatok megoldása</a>
+<ul>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat"><i class="fa fa-check"></i>1. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-1"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-2"><i class="fa fa-check"></i>3. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-3"><i class="fa fa-check"></i>4. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-4"><i class="fa fa-check"></i>5. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-5"><i class="fa fa-check"></i>6. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-6"><i class="fa fa-check"></i>7. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-7"><i class="fa fa-check"></i>8. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-8"><i class="fa fa-check"></i>9. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-9"><i class="fa fa-check"></i>10. feladat</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><i class="fa fa-check"></i><b>3</b> Leíró Statisztika ismétlés és Valószínűségszámítás alapok</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#leíró-statisztikai-mutatók"><i class="fa fa-check"></i><b>3.1</b> Leíró statisztikai mutatók</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#hisztogram-és-alakmutatók"><i class="fa fa-check"></i><b>3.1.1</b> Hisztogram és Alakmutatók</a></li>
+<li class="chapter" data-level="3.1.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-lekérése"><i class="fa fa-check"></i><b>3.1.2</b> Gyakorisági tábla lekérése</a></li>
+<li class="chapter" data-level="3.1.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-bővítése"><i class="fa fa-check"></i><b>3.1.3</b> Gyakorisági tábla bővítése</a></li>
+<li class="chapter" data-level="3.1.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#súlyozott-átlag-és-szórás-pythonban"><i class="fa fa-check"></i><b>3.1.4</b> Súlyozott átlag és szórás Pythonban</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-normális-eloszlás-és-sűrűségfüggvénye"><i class="fa fa-check"></i><b>3.2</b> A normális eloszlás és sűrűségfüggvénye</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-használata"><i class="fa fa-check"></i><b>3.2.1</b> A sűrűségfüggvény használata</a></li>
+<li class="chapter" data-level="3.2.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-integrálja"><i class="fa fa-check"></i><b>3.2.2</b> A sűrűségfüggvény integrálja</a></li>
+<li class="chapter" data-level="3.2.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#valószínűség-vs-relatív-gyakoriság"><i class="fa fa-check"></i><b>3.2.3</b> Valószínűség vs Relatív Gyakoriság</a></li>
+<li class="chapter" data-level="3.2.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#centrális-határeloszlás-tétel-cht"><i class="fa fa-check"></i><b>3.2.4</b> Centrális Határeloszlás Tétel (CHT)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#inverz-értékek"><i class="fa fa-check"></i><b>3.2.5</b> Inverz Értékek</a></li>
+<li class="chapter" data-level="3.2.6" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-standard-normális-eloszlás"><i class="fa fa-check"></i><b>3.2.6</b> A Standard Normális Eloszlás</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#az-exponenciális-eloszlás"><i class="fa fa-check"></i><b>3.3</b> Az Exponenciális eloszlás</a></li>
+<li class="chapter" data-level="3.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-varianciahányados-pythonban---kokain-a-balatonban"><i class="fa fa-check"></i><b>3.4</b> A Varianciahányados Pythonban - Kokain a Balatonban</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#további-minőségi-ismérvek-és-a-kokainmennyiség"><i class="fa fa-check"></i><b>3.4.1</b> További minőségi ismérvek és a kokainmennyiség</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html"><i class="fa fa-check"></i><b>4</b> Eloszlások és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#véletlenszám-generálás-és-mintavételezés"><i class="fa fa-check"></i><b>4.1</b> Véletlenszám generálás és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintagenerálás-általános-elve"><i class="fa fa-check"></i><b>4.1.1</b> A mintagenerálás általános elve</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#nem-egyenletes-eloszlású-minták-generálása"><i class="fa fa-check"></i><b>4.1.2</b> Nem egyenletes eloszlású minták generálása</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#elvi-eloszlás-vs-megfigyelt-minta"><i class="fa fa-check"></i><b>4.2</b> Elvi Eloszlás vs Megfigyelt Minta</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#az-elvi-eloszlás-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.1</b> Az elvi eloszlás alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-megfigyelt-minta-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.2</b> A megfigyelt minta alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintavételi-hiba-mvh-koncepciója"><i class="fa fa-check"></i><b>4.2.3</b> A mintavételi hiba (MVH) koncepciója</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#statisztikai-sokaságok-fae-mintavételezése"><i class="fa fa-check"></i><b>4.3</b> Statisztikai sokaságok FAE mintavételezése</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#ismételt-mintavételezés-resampling"><i class="fa fa-check"></i><b>4.3.1</b> Ismételt Mintavételezés (<em>Resampling</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html"><i class="fa fa-check"></i><b>5</b> A becsléselmélet alapjai</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#ismétlés-balaton-átúszás-eredmények-és-ezek-fae-mintái"><i class="fa fa-check"></i><b>5.1</b> Ismétlés: Balaton átúszás eredmények és ezek FAE mintái</a></li>
+<li class="chapter" data-level="5.2" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2</b> A torzítatlanság fogalma</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-aszimptotikus-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2.1</b> Az aszimptotikus torzítatlanság fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-korrigált-mintavariancia"><i class="fa fa-check"></i><b>5.3</b> A korrigált mintavariancia</a></li>
+<li class="chapter" data-level="5.4" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-medián-torzítatlansága"><i class="fa fa-check"></i><b>5.4</b> A medián torzítatlansága</a></li>
+<li class="chapter" data-level="5.5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-standard-hiba-sh-fogalma"><i class="fa fa-check"></i><b>5.5</b> A Standard Hiba (<em>SH</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-konzisztens-becslés-fogalma"><i class="fa fa-check"></i><b>5.5.1</b> A konzisztens becslés fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-átlagos-négyzetes-hiba-mse-fogalma"><i class="fa fa-check"></i><b>5.6</b> Az átlagos négyzetes hiba (<em>MSE</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#különböző-becslőfüggvények-összehasonlítása"><i class="fa fa-check"></i><b>5.6.1</b> Különböző becslőfüggvények összehasonlítása</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html"><i class="fa fa-check"></i><b>6</b> A sokasági átlag intervallumbecslése</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#ismétlés-az-átlag-standard-hibája-a-balaton-átúszás-eredményeken"><i class="fa fa-check"></i><b>6.1</b> Ismétlés: Az átlag standard hibája a Balaton átúszás eredményeken</a></li>
+<li class="chapter" data-level="6.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-mintaátlagok-eloszlása"><i class="fa fa-check"></i><b>6.2</b> A mintaátlagok eloszlása</a></li>
+<li class="chapter" data-level="6.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-sokasági-átlag-konfidencia-intervalluma"><i class="fa fa-check"></i><b>6.3</b> A sokasági átlag konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#az-átlag-konfidencia-intervallumának-általános-alakja"><i class="fa fa-check"></i><b>6.3.1</b> Az átlag konfidencia-intervallumának általános alakja</a></li>
+<li class="chapter" data-level="6.3.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-megbízhatóságának-ellenőrzése"><i class="fa fa-check"></i><b>6.3.2</b> A konfidencia-intervallum megbízhatóságának ellenőrzése</a></li>
+<li class="chapter" data-level="6.3.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-két-fontos-tulajdonsága"><i class="fa fa-check"></i><b>6.3.3</b> 3.3. A konfidencia-intervallum két fontos tulajdonsága</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#intervallumbecslés-a-gyakorlatban"><i class="fa fa-check"></i><b>6.4</b> Intervallumbecslés a gyakorlatban</a>
+<ul>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-altatók-hatékonysága"><i class="fa fa-check"></i>1. feladat: Altatók hatékonysága</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-feladat-megoldás"><i class="fa fa-check"></i>1/a) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#b-feladat-megoldás"><i class="fa fa-check"></i>1/b) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#c-feladat-megoldás"><i class="fa fa-check"></i>1/c) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-10"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-megoldás"><i class="fa fa-check"></i>2. feladat megoldás</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#összefoglalás-az-átlag-konfidencia-intervallumairól"><i class="fa fa-check"></i><b>6.5</b> Összefoglalás az átlag konfidencia-intervallumairól</a></li>
+<li class="chapter" data-level="6.6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#esettanulmány"><i class="fa fa-check"></i><b>6.6</b> Esettanulmány</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html"><i class="fa fa-check"></i><b>7</b> További FAE becslések és a Bootstrap módszer</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-konfidencia-intervallumok-két-általános-tulajdonsága"><i class="fa fa-check"></i><b>7.1</b> A Konfidencia-intervallumok két általános tulajdonsága</a></li>
+<li class="chapter" data-level="7.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#arányok-konfidencia-intervalluma"><i class="fa fa-check"></i><b>7.2</b> Arányok konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#mintaelemszám-meghatározása-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.1</b> Mintaelemszám meghatározása aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#szükséges-minimális-elemszám-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.2</b> Szükséges minimális elemszám aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#aránybecslés-a-statsmodels-csomaggal"><i class="fa fa-check"></i><b>7.2.3</b> Aránybecslés a <code>statsmodels</code> csomaggal</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-bootstrap-becslések-általános-elve"><i class="fa fa-check"></i><b>7.3</b> A Bootstrap becslések általános elve</a></li>
+<li class="chapter" data-level="7.4" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-medián-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.4</b> A Medián Bootstrap intervallumbecslése</a></li>
+<li class="chapter" data-level="7.5" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-szórás-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.5</b> A Szórás Bootstrap intervallumbecslése</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html"><i class="fa fa-check"></i><b>8</b> Becslések EV és R mintából</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#intervallumbecslés-visszatevés-nélküli-egyszerű-véletlen-ev-mintákból"><i class="fa fa-check"></i><b>8.1</b> Intervallumbecslés visszatevés nélküli egyszerű véletlen (EV) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.1</b> Átlag becslése EV mintákból</a></li>
+<li class="chapter" data-level="8.1.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#arány-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.2</b> Arány becslése EV mintákból</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-arányosan-rétegzett-ar-mintákból"><i class="fa fa-check"></i><b>8.2</b> Átlag becslése Arányosan Rétegzett (AR) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#az-ar-mintavételek-hatékonysága"><i class="fa fa-check"></i><b>8.2.1</b> Az AR mintavételek hatékonysága</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html"><i class="fa fa-check"></i><b>9</b> Hipotézisvizsgálat alapjai</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-alapgondolata"><i class="fa fa-check"></i><b>9.1</b> A hipotézisvizsgálat alapgondolata</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-p-érték-fogalma"><i class="fa fa-check"></i><b>9.1.1</b> A p-érték fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-t-próba"><i class="fa fa-check"></i><b>9.2</b> A sokasági átlagra vonatkozó <em>t-próba</em></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-beépített-függvénnyel"><i class="fa fa-check"></i><b>9.2.1</b> A <em>t-próba</em> beépített függvénnyel</a></li>
+<li class="chapter" data-level="9.2.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-előfeltételei"><i class="fa fa-check"></i><b>9.2.2</b> A <em>t-próba</em> előfeltételei</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.3</b> A sokasági átlagra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.4" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-arányra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.4</b> A sokasági arányra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.5" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-menete-madártávlatból"><i class="fa fa-check"></i><b>9.5</b> A hipotézisvizsgálat menete madártávlatból</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html"><i class="fa fa-check"></i><b>10</b> Egymintás és Kétmintás próbák</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-szórásra-vonatkozó-chi2-próba"><i class="fa fa-check"></i><b>10.1</b> A szórásra vonatkozó <span class="math inline">\(\chi^2\)</span>-próba</a></li>
+<li class="chapter" data-level="10.2" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-kétmintás-hipotézisvizsgálatok-elve"><i class="fa fa-check"></i><b>10.2</b> A kétmintás hipotézisvizsgálatok elve</a></li>
+<li class="chapter" data-level="10.3" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-átlagokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.3</b> Az átlagokra vonatkozó kétmintás <em>z-próba</em></a></li>
+<li class="chapter" data-level="10.4" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-arányokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.4</b> Az arányokra vonatkozó kétmintás <em>z-próba</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html"><i class="fa fa-check"></i><b>11</b> Nemparaméteres próbák</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#nemparaméteres-próbák-elve"><i class="fa fa-check"></i><b>11.1</b> Nemparaméteres próbák elve</a></li>
+<li class="chapter" data-level="11.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#illeszkedésvizsgálatok"><i class="fa fa-check"></i><b>11.2</b> Illeszkedésvizsgálatok</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#reprezentativitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.1</b> Reprezentativitás vizsgálat</a></li>
+<li class="chapter" data-level="11.2.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#normalitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.2</b> Normalitás vizsgálat</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#függetlenségvizsgálatok-homogenitásvizsgálatok"><i class="fa fa-check"></i><b>11.3</b> Függetlenségvizsgálatok (homogenitásvizsgálatok)</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html"><i class="fa fa-check"></i><b>12</b> Kétváltozós lineáris regresszió</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#budapesti-lakások-vizsgálata"><i class="fa fa-check"></i><b>12.1</b> Budapesti lakások vizsgálata</a></li>
+<li class="chapter" data-level="12.2" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-kétváltozós-lineáris-regresszió-ols-elvű-becslése"><i class="fa fa-check"></i><b>12.2</b> A Kétváltozós Lineáris Regresszió OLS elvű becslése</a></li>
+<li class="chapter" data-level="12.3" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#az-ols-regresszió-magyarázóerejének-mérése"><i class="fa fa-check"></i><b>12.3</b> Az OLS Regresszió magyarázóerejének mérése</a></li>
+<li class="chapter" data-level="12.4" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-regresszió-magyarázóereje-nem-megfigyelt-adatok-körében"><i class="fa fa-check"></i><b>12.4</b> A Regresszió magyarázóereje nem megfigyelt adatok körében</a></li>
+<li class="chapter" data-level="12.5" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-modell-együtthatóinak-értelemzése"><i class="fa fa-check"></i><b>12.5</b> A modell együtthatóinak értelemzése</a></li>
+<li class="chapter" data-level="12.6" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#egy-gyakorló-példa-covid-adatokon"><i class="fa fa-check"></i><b>12.6</b> Egy gyakorló példa COVID adatokon</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html"><i class="fa fa-check"></i><b>13</b> Többváltozós OLS Regresszió alapjai</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#magyar-járások-covid-19-halálozási-arányai"><i class="fa fa-check"></i><b>13.1</b> Magyar járások COVID-19 halálozási arányai</a></li>
+<li class="chapter" data-level="13.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-többváltozós-lineáris-regresszió-ols-elvű-előállítása"><i class="fa fa-check"></i><b>13.2</b> A Többváltozós Lineáris Regresszió OLS elvű előállítása</a></li>
+<li class="chapter" data-level="13.3" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-magyarázóváltozók-marginális-hatása"><i class="fa fa-check"></i><b>13.3</b> A magyarázóváltozók marginális hatása</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#útelemzés"><i class="fa fa-check"></i><b>13.3.1</b> Útelemzés</a></li>
+<li class="chapter" data-level="13.3.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#parciális-t-próba"><i class="fa fa-check"></i><b>13.3.2</b> Parciális t-próba</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Következtető Statisztika Python Jegyzet</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hipotézisvizsgálat-alapjai" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> Hipotézisvizsgálat alapjai<a href="hipotézisvizsgálat-alapjai.html#hipotézisvizsgálat-alapjai" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="a-hipotézisvizsgálat-alapgondolata" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> A hipotézisvizsgálat alapgondolata<a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-alapgondolata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Istenigazából a <strong>hipotézisvizsgálat</strong> csak egy <strong>alternatív mód a konfidencia-intervallumok mellett egy statisztikai mutatószám (paraméter) mintavételi hibájának figyelembe vételére</strong>, amikor a mutatószám egy mintából számított értékéből akarjuk megismerni a valós, sokasági értékét. Azonban, a <strong>hipotézisvizsgálat gondolatvilága a kérdést némileg eltérően közelíti meg, mint az eddig tanult konfidencia-intervallumok</strong>.</p>
+<p>Hipotézisvizsgálat során megfogalmazunk egy <strong>állítást vagy szebb szóval hipotézist egy statisztikai mutatószám</strong> (átlag, arány, medián, szórás, stb.) <strong>valós, sokasági értékéről, és utána megpróbáljuk állítani, hogy ezt a felvetést/hipotézist a megfigyelt mintaadatok alátámasztják-e vagy sem</strong>. Most így alapesetben a paraméteres statisztikai hipotézisvizsgálatokat vagy rövidebben az úgynevezett <strong>paraméteres (statisztikai) próbákat vizsgáljuk</strong>, mert a <strong>megfogalmazott hipotézisünk mindig egy statisztikai paraméter</strong> (azaz statisztikai mutatószám) valós, <strong>sokasági értékéről szól</strong> majd egyelőre.</p>
+<p>Nézzünk meg <strong>ismét egy <span class="math inline">\(n=100\)</span> elemű FAE mintát a 2022-es Balaton átúszást teljesítők sokaságából</strong> a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájl alapján.<br>
+Ahogy a <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> is néztük, ebben a fájlban a Balaton átúszás résztvevőinek <em>neve, neme és percben mért időeredménye</em> található. Ez az adatsor lesz most is a <strong>sokaságunk</strong>.</p>
+<div class="sourceCode" id="cb811"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb811-1"><a href="hipotézisvizsgálat-alapjai.html#cb811-1" tabindex="-1"></a><span class="co"># Elemzéshez és ábrázoláshoz szükséges csomagok betöltése</span></span>
+<span id="cb811-2"><a href="hipotézisvizsgálat-alapjai.html#cb811-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb811-3"><a href="hipotézisvizsgálat-alapjai.html#cb811-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb811-4"><a href="hipotézisvizsgálat-alapjai.html#cb811-4" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb811-5"><a href="hipotézisvizsgálat-alapjai.html#cb811-5" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb811-6"><a href="hipotézisvizsgálat-alapjai.html#cb811-6" tabindex="-1"></a></span>
+<span id="cb811-7"><a href="hipotézisvizsgálat-alapjai.html#cb811-7" tabindex="-1"></a><span class="co"># Adatbeolvasás data frame-be</span></span>
+<span id="cb811-8"><a href="hipotézisvizsgálat-alapjai.html#cb811-8" tabindex="-1"></a>Balcsi <span class="op">=</span> pd.read_excel(<span class="st">&quot;LIDLBalaton2022.xlsx&quot;</span>)</span>
+<span id="cb811-9"><a href="hipotézisvizsgálat-alapjai.html#cb811-9" tabindex="-1"></a></span>
+<span id="cb811-10"><a href="hipotézisvizsgálat-alapjai.html#cb811-10" tabindex="-1"></a>Balcsi.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 9751 entries, 0 to 9750
+## Data columns (total 3 columns):
+##  #   Column  Non-Null Count  Dtype  
+## ---  ------  --------------  -----  
+##  0   Nev     9751 non-null   object 
+##  1   Nem     9751 non-null   object 
+##  2   PERC    9751 non-null   float64
+## dtypes: float64(1), object(2)
+## memory usage: 228.7+ KB</code></pre>
+<p>Szuper, vegyük is ki azt az <span class="math inline">\(n=100\)</span> elemű FAE mintát! Rögzítsük meg a <code>random_state</code> paraméter <span class="math inline">\(1992\)</span>-nek, hogy mindannyian ugyan azt a <span class="math inline">\(100\)</span> elemű véletlen mintát kapjuk!</p>
+<div class="sourceCode" id="cb813"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb813-1"><a href="hipotézisvizsgálat-alapjai.html#cb813-1" tabindex="-1"></a>BalcsiMinta <span class="op">=</span> Balcsi.sample(n <span class="op">=</span> <span class="dv">100</span>, replace <span class="op">=</span> <span class="va">True</span>, random_state <span class="op">=</span> <span class="dv">1992</span>)</span>
+<span id="cb813-2"><a href="hipotézisvizsgálat-alapjai.html#cb813-2" tabindex="-1"></a></span>
+<span id="cb813-3"><a href="hipotézisvizsgálat-alapjai.html#cb813-3" tabindex="-1"></a>BalcsiMinta.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## Index: 100 entries, 7991 to 5727
+## Data columns (total 3 columns):
+##  #   Column  Non-Null Count  Dtype  
+## ---  ------  --------------  -----  
+##  0   Nev     100 non-null    object 
+##  1   Nem     100 non-null    object 
+##  2   PERC    100 non-null    float64
+## dtypes: float64(1), object(2)
+## memory usage: 3.1+ KB</code></pre>
+<p>Namármost. A <strong>teljes sokaság átlagos átúszási idejéről <span class="math inline">\(6\)</span> db különböző állítást tudok megfogalmazni</strong> egy konkrét érték, pl. az <span class="math inline">\(2.5\)</span> óra, azaz <span class="math inline">\(150\)</span>perc viszonylatában. A valós, sokasági átlagos időeredményt most is <span class="math inline">\(\mu\)</span>-vel jelöljük:</p>
+<ol style="list-style-type: decimal">
+<li>Optimista vagyok, és azt mondom, hogy gyorsak voltak a népek és az átlagos átúszási idő a sokaságban kisebb, mint <span class="math inline">\(150\)</span> perc: <span class="math inline">\(\mu &lt; 150\)</span></li>
+<li>Pesszimista magyarként azt is mondhatom, hogy lassú volt az úszótömeg és az átlagos időeredmény a sokaságban nagyobb, mint <span class="math inline">\(150\)</span> perc: <span class="math inline">\(\mu &gt; 150\)</span></li>
+<li>De még azt is el tudom képzelni, hogy a valós átlag úszási idő épp <span class="math inline">\(150\)</span> perc: <span class="math inline">\(\mu = 150\)</span></li>
+<li>Vagy abban is hihetek, hogy a sokaságban az átlag időeredmény minden csak nem <span class="math inline">\(150\)</span> perc: <span class="math inline">\(\mu \neq 150\)</span></li>
+<li>A <em>félig optimista</em> mondhatja azt, hogy a sokasági átlagos időeredmény <em>legfeljebb</em> <span class="math inline">\(150\)</span> perc: <span class="math inline">\(\mu \leq 150\)</span></li>
+<li>Kizárásos alapon a <em>félig pesszimista</em> pedig úgy fog vélekedni, hogy a sokasági átlagos úszási idő <em>legalább</em> <span class="math inline">\(150\)</span> perc: <span class="math inline">\(\mu \geq 150\)</span></li>
+</ol>
+<p>Oké, akkor van <span class="math inline">\(6\)</span> db elméletem…azaz <em>hipotézis</em>em. Nézzük meg mennyi az <strong>átlag a megfigyelt <span class="math inline">\(100\)</span> elemű mintában</strong>:</p>
+<div class="sourceCode" id="cb815"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb815-1"><a href="hipotézisvizsgálat-alapjai.html#cb815-1" tabindex="-1"></a>BalcsiMinta.PERC.mean()</span></code></pre></div>
+<pre><code>## 164.44033333333334</code></pre>
+<p>No, a megfigyelt <span class="math inline">\(100\)</span> átúszó alapján a mintaátlag kb. <span class="math inline">\(164\)</span> perc. Ez alapján a 2. állítás, a pesszimista ürge mondása tűnik igaznak, az <strong>átlag nagyobb, mint</strong> <span class="math inline">\(150\)</span> perc. NODE! <strong>Amit itt látunk az csak <span class="math inline">\(100\)</span> ember átlagos ideje, a teljes sokaságban az átlagos átúszási idő ettől eltérhet!</strong><br>
+Szebben fogalmazva, <strong>a <span class="math inline">\(164\)</span> és <span class="math inline">\(150\)</span> közti különbség simán betudható a mintavételi hibának is!!</strong><br>
+<strong>Ezért végzünk hipotézisvizsgálatot</strong>, hogy eldöntsük, hogy a <span class="math inline">\(\mu &gt; 150\)</span> hipotézis (állítás) igaznak vehető-e még a mintavételi hibával együtt is.</p>
+<p>Igazából, ha belegondolunk, akkor mind a <span class="math inline">\(6\)</span> állítás visszavezethető ahhoz a kérdéshez, hogy a valós, sokasági átlag, <span class="math inline">\(\mu\)</span> <strong>eltér-e</strong> annyira a <span class="math inline">\(150\)</span>-től, hogy az <strong>eltérés már meghaladja a mintavételi hibát</strong>. Ezt úgy mondjuk szépen, hogy <strong>azt vizsgáljuk, SZIGNIFIKÁNS-e az eltérés a valós <span class="math inline">\(\mu\)</span> és <span class="math inline">\(150\)</span> között!</strong></p>
+<p>Most itt éppen ki tudjuk számolni a teljes sokaság ismeretében, hogy <span class="math inline">\(\mu=167\)</span> perc, ami <strong>tényleg magasabb, mint</strong> <span class="math inline">\(150\)</span>.</p>
+<div class="sourceCode" id="cb817"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb817-1"><a href="hipotézisvizsgálat-alapjai.html#cb817-1" tabindex="-1"></a>Balcsi.PERC.mean()</span></code></pre></div>
+<pre><code>## 167.52914060096398</code></pre>
+<p>A <strong>gyakorlatban viszont mindezt NEM tudjatjuk, hiszen csak az <span class="math inline">\(n=100\)</span> elemű minta áll rendelkezésünkre!!</strong> Szóval <strong>marad az, hogy hipotézisvizsgálattal ellenőrizzük, hogy a <span class="math inline">\(\bar{y}=164\)</span> megfigyelt mintaátlag szignifikánsan eltér-e a <span class="math inline">\(150\)</span>-től</strong>.</p>
+<p>Az eddigi logikánk alapján létre tudunk hozni egy úgynevezett <strong>nullhipotézist</strong> (<span class="math inline">\(H_0\)</span>) és <strong>alternatyv hipotézist</strong> (<span class="math inline">\(H_1\)</span>) az <strong>eredeti állításunkból</strong>.</p>
+<p>A pontos logika itt a következő. A <span class="math inline">\(H_0\)</span>-ban mindig olyan állítást fogalmazunk meg, ami <strong>a vizsgált statisztikai paraméter tekintetében megengedi az egyenlőséget</strong>.<br>
+A <span class="math inline">\(H_1\)</span> pedig az <strong>eredeti állítástól függ</strong>:</p>
+<ul>
+<li>Ha az <strong>eredeti állítás megengedi az egyenlőséget</strong>, akkor az állítás <span class="math inline">\(H_0\)</span>-ba kerül és <strong>a <span class="math inline">\(H_1\)</span>-ben tagadjuk az eredeti állítást</strong>. Ebből adódóan azt várjuk, hogy a hipotézisvizsgálat végén <strong>a <span class="math inline">\(H_0\)</span> állítás bizonyuljon igaznak</strong>. Ebben az esetben azt szeretnénk, hogy <strong>a valós sokasági átlag átúszási idő ne különbözzön szignifikánsan a <span class="math inline">\(150\)</span> perctől</strong>.</li>
+<li>Ha az <strong>eredeti állítás nem engedi meg az egyenlőséget</strong>, akkor az a <span class="math inline">\(H_1\)</span>-be “költözik”, és <strong>a <span class="math inline">\(H_0\)</span>-ban az eredeti állítást tagadjuk</strong>. Ebből adódóan azt várjuk, hogy a hipotézisvizsgálat végén <strong>a <span class="math inline">\(H_1\)</span> állítás bizonyuljon igaznak</strong>. Ebben az esetben azt szeretnénk, hogy <strong>a valós sokasági átlag átúszási idő szignifikánsan különbözzön a <span class="math inline">\(150\)</span> perctől</strong>.</li>
+</ul>
+<p>Ezen elveket figyelembe véve a <span class="math inline">\(6\)</span> eredeti állításunkhoz a következő <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> párok adhatók meg:</p>
+<ol style="list-style-type: decimal">
+<li>Állítás: <span class="math inline">\(\mu &lt; 150\)</span> || <span class="math inline">\(H_0:\mu \geq 150\)</span> || <span class="math inline">\(H_1:\mu &lt; 150\)</span> || Állítás a <span class="math inline">\(H_1\)</span>-ben található.</li>
+<li>Állítás: <span class="math inline">\(\mu &gt; 150\)</span> || <span class="math inline">\(H_0:\mu \leq 150\)</span> || <span class="math inline">\(H_1:\mu &gt; 150\)</span> || Állítás a <span class="math inline">\(H_1\)</span>-ben található.</li>
+<li>Állítás: <span class="math inline">\(\mu = 150\)</span> || <span class="math inline">\(H_0:\mu = 150\)</span> || <span class="math inline">\(H_1:\mu \neq 150\)</span> || Állítás a <span class="math inline">\(H_0\)</span>-ban található.</li>
+<li>Állítás: <span class="math inline">\(\mu \neq 150\)</span> || <span class="math inline">\(H_0:\mu = 150\)</span> || <span class="math inline">\(H_1:\mu \neq 150\)</span> || Állítás a <span class="math inline">\(H_1\)</span>-ben található.</li>
+<li>Állítás: <span class="math inline">\(\mu \leq 150\)</span> || <span class="math inline">\(H_0:\mu \leq 150\)</span> || <span class="math inline">\(H_1:\mu &gt; 150\)</span> || Állítás a <span class="math inline">\(H_0\)</span>-ban található.</li>
+<li>Állítás: <span class="math inline">\(\mu \geq 150\)</span> || <span class="math inline">\(H_0:\mu \geq 150\)</span> || <span class="math inline">\(H_1:\mu &lt; 150\)</span> || Állítás a <span class="math inline">\(H_0\)</span>-ban található.</li>
+</ol>
+<p>Az 1-2. és 5-6 állításokban, ahol <strong>nem “tiszta” egyenlőség van <span class="math inline">\(H_0\)</span>-ban szoktunk úgynevezett technikai nullhipotézist, <span class="math inline">\(H_0^T\)</span>-t alkalmazni</strong>. Ez csak annyit jelent, hogy a <strong>nem “tiszta” egyenlőséggel adott <span class="math inline">\(H_0\)</span>-t átírjuk tiszta egyenlőségre</strong>.<br>
+Tehát, pl. az <strong>1. és 5. állítás technikai nullhipotézissel</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Állítás: <span class="math inline">\(\mu &lt; 150\)</span> || <span class="math inline">\(H_0^T:\mu = 150\)</span> || <span class="math inline">\(H_1:\mu &lt; 150\)</span> || Állítás a <span class="math inline">\(H_1\)</span>-ben található.</li>
+<li>Állítás: <span class="math inline">\(\mu \leq 150\)</span> || <span class="math inline">\(H_0^T:\mu = 150\)</span> || <span class="math inline">\(H_1:\mu &gt; 150\)</span> || Állítás a <span class="math inline">\(H_0\)</span>-ban található.</li>
+</ol>
+<p>A hipotézisvizsgákat vagy más néven <strong>statisztikai próbákat a <span class="math inline">\(H_1\)</span>-ben adott relációs jeleik alapján három csoportba kategórizálják</strong>:</p>
+<ul>
+<li>Ha <span class="math inline">\(H_1\)</span>-ben <span class="math inline">\(\neq\)</span> jel van, akkor <strong>kétoldali próba</strong></li>
+<li>Ha <span class="math inline">\(H_1\)</span>-ben <span class="math inline">\(&lt;\)</span> jel van, akkor <strong>baloldali próba</strong></li>
+<li>Ha <span class="math inline">\(H_1\)</span>-ben <span class="math inline">\(&gt;\)</span> jel van, akkor <strong>jobboldali próba</strong></li>
+</ul>
+<div id="a-p-érték-fogalma" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> A p-érték fogalma<a href="hipotézisvizsgálat-alapjai.html#a-p-érték-fogalma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha szépenfelírtuk a megfelelő <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> párokat, akkor meghatározzuk, hogy a megfigyelt mintánk alapjánk melyik tekinthető igaznak a kettő közül. Erre a célra egy <strong>p-érték nevű statisztikai mutatószámot használunk</strong>. A <strong>p-érték megadja mekkora a valószínűsége, hogy a <span class="math inline">\(H_0\)</span> elutasításával hibás döntést hozunk</strong><br>
+Szóval, ha azt kapom, hogy <strong>p-érték = 30%</strong>, akkor azt mondhatom, hogy <strong>30% valószínűséggel HIBÁZOM, ha azt mondom, hogy <span class="math inline">\(H_0\)</span> egy hamis állítás a mintánk alapján</strong>.</p>
+<p>Ez alapján a <strong>döntési szabály</strong> <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> között a következő. Amennyiben a <strong>p-érték túl magas, elfogadjuk</strong> <span class="math inline">\(H_0\)</span>-t, mivel elutasítása túl nagy hibavalószínűséggel járna. Ellenben ha a <strong>p-érték túl alacsony</strong>, akkor elutasítjuk <span class="math inline">\(H_0\)</span>-t és <strong>elfogadjuk</strong> <span class="math inline">\(H_1\)</span><strong>-et</strong>, mivel <span class="math inline">\(H_0\)</span> elutasítása nagyon alacsony hibavalószínűséggel jár.</p>
+<p>A kérdés az hogyan döntöm el, hogy egy p-érték túl magas/alacsony-e? Erre van nekünk az úgynevezett <strong>szignifikancia-szint, amit</strong> <span class="math inline">\(\alpha\)</span><strong>-val jelölünk</strong>. A szignifikancia-szint a <strong>maximális elfogadott hibavalószínűség <span class="math inline">\(H_0\)</span> elutasításához</strong>.</p>
+<p>Tehát, ha azt mondjuk, hogy <span class="math inline">\(\alpha=5\%\)</span>, akkor <span class="math inline">\(5\%\)</span> alatti p-érték esetén <strong>elutasítjuk <span class="math inline">\(H_0\)</span>-t, mivel elutasítása kisebb hibával jár, mint a megengedett maximum</strong>. Másrészről, ha a p-értékünk <span class="math inline">\(5\%\)</span> feletti, akkor meg <strong>elfogadjuk <span class="math inline">\(H_0\)</span>-t, mivel elutasítása nagyobb hibával jár, mint a megengedett maximum</strong>.</p>
+<p>Ezen a ponton tehát a <strong>következőt hinnénk</strong>:</p>
+<ul>
+<li><strong>p-érték</strong> <span class="math inline">\(&gt;\alpha \rightarrow H_0\)</span></li>
+<li><strong>p-érték</strong> <span class="math inline">\(\leq\alpha \rightarrow H_1\)</span></li>
+</ul>
+<p>De természetesen <strong>AZ ÉLET SOSEM ILYEN EGYSZERŰ!!</strong> a fő probléma itt abból jön, hogy <strong>simán lehetnek olyan mintaadataink, hogy a meghozott döntés marhára függ attól mit mondok pontosan <span class="math inline">\(\alpha\)</span>-nak!</strong> Pl. oké, maximum megenegedett hibavalószínűségem <span class="math inline">\(\alpha=5\%\)</span>. A p-értékre meg kapok egy <span class="math inline">\(4.8\%\)</span>-ot. Na akkor <span class="math inline">\(\alpha=5\%\)</span> esetén elutasítanánk <span class="math inline">\(H_0\)</span>-t, de egy <span class="math inline">\(\alpha=3\%\)</span>-nál már épp elutasítanánk <span class="math inline">\(H_0\)</span>-t.<br>
+Emiatt alkalmazzuk a <strong>szokásos szignifikancia-szintek tartományát, ami <span class="math inline">\(1\%-10\%\)</span> között mozog</strong>. Nem akarunk <span class="math inline">\(10\%\)</span>-nál nagyobb megenegedett <span class="math inline">\(\alpha\)</span> hibát, mert az már tényleg magas hibavalószínűség. Másrészről meg <span class="math inline">\(0\%\)</span> <strong>hibavalószínűségünk meg csak úgy lehet, ha megfigyeljük az egész sokaságot, és tudjuk mennyi a vizsgált statisztikai paraméter valós, sokasági értéke</strong>. Ekkor meg pont a mintavétel lényegét veszítjük el, hogy nem kell megfigyelni minden múltbeli és jövőbeli adatpontot ahhoz, hogy dönteni tudjunk a vizsgált mutatószámunk valós, sokasági értékéről. Ez utóbbi <span class="math inline">\(\alpha=0\%\)</span> eset hasonló ahhoz, amikor azt mondtuk, hogy a <span class="math inline">\(100\%\)</span> megbízhatóságú konfidencia-intervallumnak sincs semmi értéelme, mert akkor azt mondanánk, hogy a mintavételünk alapján a vizsgált statisztikai mutatószámunk (paraméterünk) bárho lehet <span class="math inline">\(\pm\infty\)</span> között… :)<br>
+Továbbá, majd <strong>szimulációkból látni fogjuk, hogy <span class="math inline">\(1\%\)</span> és <span class="math inline">\(10\%\)</span> közti p-értéket simán produkál a valóságban igaz és hamis <span class="math inline">\(H_0\)</span> állítás is</strong>!</p>
+<p>Szóval, az előbbi családregényünk alapján az tűnik egy normálisabb megoldásnak, ha <strong>azt mondjuk, hogy <span class="math inline">\(1\%\)</span> és <span class="math inline">\(10\%\)</span> közti p-érték esetén nem választunk <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> között, mert ekkor a döntésünk nagyon érzékeny lenne a konkrét <span class="math inline">\(\alpha\)</span> megválasztására</strong><br>
+Ha egy <span class="math inline">\(1\%\)</span> és <span class="math inline">\(10\%\)</span> közti p-értéket produkálnak a mintaadataink, akkor a legjobb, amit tehetünk, hogy <strong>addig növeljük a mintaméretet (<span class="math inline">\(n\)</span>-t) amíg a p-érték egyértelműen <span class="math inline">\(1\%\)</span> alá vagy <span class="math inline">\(10\%\)</span> fölé nem kerül</strong>. Ezt a módszert hívja a statisztika <a href="https://en.wikipedia.org/wiki/Sequential_analysis" target="_blank">szekvenciális analízisnek</a>, és a klinikai gyógyszerkísérletekben és az ipari minőségbiztosításban rendszeresen alkalmazzák. A módszer alapjait pedig egy <a href="https://hu.wikipedia.org/wiki/Wald_%C3%81brah%C3%A1m" target="_blank">Wald Ábrahám</a> nevű magar statisztikus dolgozta ki az Amerikai Légierőnek a II. világháború alatt (zsidó származása miatt itthon “nem kellett”). Szóval, mint minden fontos területet a világon, ezt is magyarok találták ki. :)</p>
+<p>Tehát, az egy fokkal <strong>korrektebb döntés szabályok hipotézisvizsgálat esetén</strong>:</p>
+<ul>
+<li><strong>p-érték</strong> <span class="math inline">\(&gt;10\% \rightarrow H_0\)</span></li>
+<li><span class="math inline">\(1\% &lt;\)</span> <strong>p-érték</strong> <span class="math inline">\(\leq 10\% \rightarrow\)</span> <strong>nincs döntés</strong></li>
+<li><strong>p-érték</strong> <span class="math inline">\(\leq1\% \rightarrow H_1\)</span></li>
+</ul>
+<p>További fejfájásokat okoz, hogy nagyon óvatosan kell bánni az <span class="math inline">\(1\%\)</span> és <span class="math inline">\(10\%\)</span> közti p-értékkel azért is, mert a <strong>p-érték és az <span class="math inline">\(\alpha\)</span> csak egy nézőpontból írják le a hipotézisvizsgálat során elkövethető döntési hibát</strong>! A <strong>p-érték és az <span class="math inline">\(\alpha\)</span> csak az úgyenevzett ELSŐFAJÚ hibáról ad információt: a valóságban igaz <span class="math inline">\(H_0\)</span> elutasításának valószínűségéről</strong>!<br>
+NODE, van nekünk <strong>MÁSODFAJÚ hibánk is</strong>, ami a <strong>valóságban hamis <span class="math inline">\(H_0\)</span> téves elfoggadását jelenti</strong>. Az a rossz hír, hogy ennek a <strong>másodfajú hibának a valószínűségét nem tudjuk kiszámolni a megfigyelt minta alapján!!</strong><br>
+Ez a hipotézoisvizsgálat nagy átka: ha <strong>elfogadunk egy <span class="math inline">\(H_0\)</span>-t, akkor igazából nem tudjuk, hogy mekkora valószínűséggel hibázunk, csak azt tudjuk, hogy mennyi a <span class="math inline">\(H_0\)</span> elutasításának hibavalószínűsége, mert ez pont a p-érték</strong>.<br>
+Ezért nagyon sokan fogalmaznak szándékosan ilyen furán a <span class="math inline">\(H_0\)</span>-ról, hogy nem elfogadjuk a <span class="math inline">\(H_0\)</span>-t, hanem <strong>nem tudjuk elutasítani a <span class="math inline">\(H_0\)</span>-t</strong>.</p>
+<p>A probléma alaposabb megértésében szerintem remek szolgálatot tesz az alábbi mém. :)</p>
+<center>
+<img src="Type2.png" style="width:40.0%" />
+</center>
+<p><br>Most pedig nézzük meg <strong>hogyan kell kiszámolni a p-értéket a megfigyelt minta alapjánabban az esetben, amikor a vizsgált statisztikai paraméter az átlag</strong>, azaz <span class="math inline">\(\mu\)</span>!</p>
+</div>
+</div>
+<div id="a-sokasági-átlagra-vonatkozó-t-próba" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> A sokasági átlagra vonatkozó <em>t-próba</em><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-t-próba" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A p-érték számításához <strong>mindig szükségünk van egy próbafüggvény nevű statisztikai mutatóra, amit csak a megfigyelt mintaadatokból ki tudunk mindig számolni</strong>. Eztán a <strong>p-értéket a próbafüggvényből egy nevezetes valószínűségi eloszlás (standard normális, t-eloszlás, khi-négyzet, stb.) alapján tudjuk kiszámolni</strong>.</p>
+<p>Jelöljük a <strong>sokasági átlag HIPOTETIKUS értékét</strong> <span class="math inline">\(\mu_0\)</span>-nak. Ez az érték, amit az állításban <strong>feltételezek</strong> a valós, sokasági átlagról. Az 1. fejezetben ez volt a <span class="math inline">\(150\)</span> perc. Ezzel a jelöléssel az alábbi módon néz ki az átlagra vonatkozó próbafüggvény: <span class="math display">\[\frac{\bar{y}-\mu_0}{\frac{s}{\sqrt{n}}}\]</span></p>
+<p>Tehát, a próbafüggvényünk most nem más, mint a <strong>minta és hipotetikus átlag különbsége osztva az átlag standard hibájával</strong>.</p>
+<p>Ha a <span class="math inline">\(H_0\)</span>-ban jól okoskodunk, és <strong>tényleg sikerült a valós <span class="math inline">\(\mu\)</span> sokasági átlagot venni a <span class="math inline">\(\mu_0\)</span> elvi</strong> (hipotetikus) <strong>átlagnak, akkor sok-sok mintavétel esetén a próbafüggvényünk <span class="math inline">\(n-1\)</span> szabadságfokú t-eloszlást követ</strong>: <span class="math display">\[\frac{\bar{y}-\mu}{\frac{s}{\sqrt{n}}} \sim t(n-1)\]</span></p>
+<p>A képlet mögött az az elv nyugszik, hogy <strong>a <span class="math inline">\(\mu = \mu_0\)</span> technikai nullhipotézist (<span class="math inline">\(H_0^T\)</span>) alkalmazzuk mind a 6 különböző típusú <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> párosnál, így meg tudjuk majd adni a próbafüggvény eloszlását sok-sok mintavétel esetén</strong>.</p>
+<p>Ezt az egészet gyorsan ellenőrizni tudjuk, ha <strong>kiveszünk <span class="math inline">\(10000\)</span> db <span class="math inline">\(n=100\)</span> elemű FAE mintát a Balaton átúszók sokaságából</strong>, ahogy a <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> is tettük.<br>
+Most csak <strong>visszatöltjük a <span class="math inline">\(10000\)</span> db FAE mintát tartalmazó Excel táblát egy data frame-be</strong>, amit a <a href="Gyak02.html" target="_blank">2. heti tananyagban</a> hoztunk létre. Ez az Excel fájl <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/MintaDataFrame.xlsx" target="_blank">innen</a> elérhető.</p>
+<div class="sourceCode" id="cb819"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb819-1"><a href="hipotézisvizsgálat-alapjai.html#cb819-1" tabindex="-1"></a>MintaVetelek100Elem <span class="op">=</span> pd.read_excel(<span class="st">&quot;MintaDataFrame.xlsx&quot;</span>)</span>
+<span id="cb819-2"><a href="hipotézisvizsgálat-alapjai.html#cb819-2" tabindex="-1"></a>MintaVetelek100Elem</span></code></pre></div>
+<pre><code>##            Elem1       Elem2       Elem3  ...      Elem98      Elem99     Elem100
+## 0     164.800000  129.066667  156.166667  ...  207.350000  159.666667  165.883333
+## 1     152.516667  212.483333  152.900000  ...  307.266667  119.783333  128.216667
+## 2     145.666667  185.266667  169.516667  ...  167.733333  228.366667  215.633333
+## 3     185.683333  120.333333  201.250000  ...  182.766667  177.666667  112.450000
+## 4     117.483333  142.350000  320.266667  ...  188.566667  189.166667   99.916667
+## ...          ...         ...         ...  ...         ...         ...         ...
+## 9995  162.333333   83.350000  146.750000  ...  164.250000  131.933333  128.183333
+## 9996  100.416667  161.433333  187.366667  ...  160.483333  168.416667  209.300000
+## 9997  146.450000  160.783333  165.483333  ...  158.816667  167.733333  183.400000
+## 9998  139.250000  140.466667  130.933333  ...  153.616667  112.366667  196.050000
+## 9999  147.316667  173.450000  106.100000  ...  185.616667  171.800000  135.166667
+## 
+## [10000 rows x 100 columns]</code></pre>
+<p>Oké, az eredményből látjuk is, hogy úgy néz ki a data frame, hogy <strong>1 sor tartalmaz 1 db 100 elemű mintát és a mintaelemeket</strong> (tehát a mintába besorsolt versenyző percben mért időeredményét) <strong>az oszlopkban tároljuk</strong>.</p>
+<p>Kiszámoljuk mindenegyes mintavételre a minta átlagos időeredményét és azok korrigált szórását. Csak figyeljünk, hogy az alkalmazott <code>numpy</code> függvényeket <code>axis = 1</code> paraméterrel használjuk, hogy ne oszlopok, hanem sorok szerint vegyék az átlagokat és a szórásokat. Plusz, figyeljünk, hogy a függvényeket minidg csak az első <span class="math inline">\(100\)</span> oszlopra engedjük rá, hiszen ott vannak a tényleges mintaelemek. Ezt ugyebár a data framek <code>iloc</code> metódusával tudjuk biztosítani, ahogy a <a href="Gyak03.html" target="_blank">3. heti tananyag 2. fejezetében</a> csináltuk.</p>
+<div class="sourceCode" id="cb821"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb821-1"><a href="hipotézisvizsgálat-alapjai.html#cb821-1" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;Atlagok&#39;</span>] <span class="op">=</span> np.mean(MintaVetelek100Elem.iloc[:,<span class="dv">0</span>:<span class="dv">100</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb821-2"><a href="hipotézisvizsgálat-alapjai.html#cb821-2" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;Szorasok&#39;</span>] <span class="op">=</span> np.std(MintaVetelek100Elem.iloc[:,<span class="dv">0</span>:<span class="dv">100</span>], axis<span class="op">=</span><span class="dv">1</span>, ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb821-3"><a href="hipotézisvizsgálat-alapjai.html#cb821-3" tabindex="-1"></a></span>
+<span id="cb821-4"><a href="hipotézisvizsgálat-alapjai.html#cb821-4" tabindex="-1"></a>MintaVetelek100Elem</span></code></pre></div>
+<pre><code>##            Elem1       Elem2       Elem3  ...     Elem100     Atlagok   Szorasok
+## 0     164.800000  129.066667  156.166667  ...  165.883333  171.261667  42.397078
+## 1     152.516667  212.483333  152.900000  ...  128.216667  158.026500  44.288357
+## 2     145.666667  185.266667  169.516667  ...  215.633333  172.278833  44.809282
+## 3     185.683333  120.333333  201.250000  ...  112.450000  163.434167  45.453383
+## 4     117.483333  142.350000  320.266667  ...   99.916667  166.552833  45.814202
+## ...          ...         ...         ...  ...         ...         ...        ...
+## 9995  162.333333   83.350000  146.750000  ...  128.183333  163.682333  41.282298
+## 9996  100.416667  161.433333  187.366667  ...  209.300000  164.332833  42.020990
+## 9997  146.450000  160.783333  165.483333  ...  183.400000  163.702333  37.947348
+## 9998  139.250000  140.466667  130.933333  ...  196.050000  166.423833  39.749948
+## 9999  147.316667  173.450000  106.100000  ...  135.166667  173.050333  48.227237
+## 
+## [10000 rows x 102 columns]</code></pre>
+<p>Ezek után pedig <strong>ki tudjuk számolni a próbafüggvényünket egy olyan <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> párosra, amiről tudjuk, hogy a sokaságban <span class="math inline">\(H_0\)</span> igaz, és egy olyanra, ahol tudjuk, hogy a sokaságban <span class="math inline">\(H_0\)</span> hamis</strong>:</p>
+<ul>
+<li><strong>IGAZ</strong> <span class="math inline">\(H_0\)</span> esete: <span class="math inline">\(H_0:\mu=167\)</span> és <span class="math inline">\(H_1: \mu &lt; 167\)</span></li>
+<li><strong>HAMIS</strong> <span class="math inline">\(H_0\)</span> esete: <span class="math inline">\(H_0^T:\mu=150\)</span> és <span class="math inline">\(H_1: \mu &gt; 150\)</span></li>
+</ul>
+<div class="sourceCode" id="cb823"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb823-1"><a href="hipotézisvizsgálat-alapjai.html#cb823-1" tabindex="-1"></a>mu_0_igaz <span class="op">=</span> np.mean(Balcsi.PERC) <span class="co"># ez ekkor a valós sokasági átlag</span></span>
+<span id="cb823-2"><a href="hipotézisvizsgálat-alapjai.html#cb823-2" tabindex="-1"></a>mu_0_hamis <span class="op">=</span> <span class="dv">150</span> <span class="co"># tetszőleges érték</span></span>
+<span id="cb823-3"><a href="hipotézisvizsgálat-alapjai.html#cb823-3" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span> <span class="co"># mintaméret</span></span>
+<span id="cb823-4"><a href="hipotézisvizsgálat-alapjai.html#cb823-4" tabindex="-1"></a></span>
+<span id="cb823-5"><a href="hipotézisvizsgálat-alapjai.html#cb823-5" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;ProbaFv_H0Igaz&#39;</span>] <span class="op">=</span> (MintaVetelek100Elem.Atlagok <span class="op">-</span> mu_0_igaz)<span class="op">/</span>(MintaVetelek100Elem.Szorasok<span class="op">/</span>np.sqrt(n))</span>
+<span id="cb823-6"><a href="hipotézisvizsgálat-alapjai.html#cb823-6" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;ProbaFv_H0Hamis&#39;</span>] <span class="op">=</span> (MintaVetelek100Elem.Atlagok <span class="op">-</span> mu_0_hamis)<span class="op">/</span>(MintaVetelek100Elem.Szorasok<span class="op">/</span>np.sqrt(n))</span>
+<span id="cb823-7"><a href="hipotézisvizsgálat-alapjai.html#cb823-7" tabindex="-1"></a></span>
+<span id="cb823-8"><a href="hipotézisvizsgálat-alapjai.html#cb823-8" tabindex="-1"></a>MintaVetelek100Elem</span></code></pre></div>
+<pre><code>##            Elem1       Elem2  ...  ProbaFv_H0Igaz  ProbaFv_H0Hamis
+## 0     164.800000  129.066667  ...        0.880373         5.014890
+## 1     152.516667  212.483333  ...       -2.145630         1.812327
+## 2     145.666667  185.266667  ...        1.059980         4.971924
+## 3     185.683333  120.333333  ...       -0.900917         2.955592
+## 4     117.483333  142.350000  ...       -0.213101         3.613035
+## ...          ...         ...  ...             ...              ...
+## 9995  162.333333   83.350000  ...       -0.931830         3.314334
+## 9996  100.416667  161.433333  ...       -0.760645         3.410875
+## 9997  146.450000  160.783333  ...       -1.008452         3.610880
+## 9998  139.250000  140.466667  ...       -0.278065         4.131787
+## 9999  147.316667  173.450000  ...        1.144829         4.779526
+## 
+## [10000 rows x 104 columns]</code></pre>
+<p>Okké! Akkor miután megvannak a kétféle esetben a próbafüggvényeink, <strong>nézzük meg a kétféle próbafüggvények hisztogramja a <span class="math inline">\(10000\)</span> db mintavétel alapján hogyan alakul a <span class="math inline">\(t(n-1)\)</span>, azaz <span class="math inline">\(t(100-1)\)</span> eloszlás sűrűségfüggvényéhez</strong> képest.<br>
+A sűrűségfüggvény hisztogramhoz való illeszkedését ábrázoló kód teljes mértékben az <a href="Gyak03.html" target="_blank">1. heti tananyag 2.3. és 3. fejezeteiben</a> lévő kódok logikáját követi.</p>
+<div class="sourceCode" id="cb825"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb825-1"><a href="hipotézisvizsgálat-alapjai.html#cb825-1" tabindex="-1"></a><span class="co"># Igaz és Hamis H0 esetén próbafüggvények kisztogramja</span></span>
+<span id="cb825-2"><a href="hipotézisvizsgálat-alapjai.html#cb825-2" tabindex="-1"></a><span class="co"># A &#39;label&#39; paraméter majd a színfeliratokat adja az ábrán</span></span>
+<span id="cb825-3"><a href="hipotézisvizsgálat-alapjai.html#cb825-3" tabindex="-1"></a>MintaVetelek100Elem.ProbaFv_H0Igaz.hist(density <span class="op">=</span> <span class="va">True</span>, label<span class="op">=</span><span class="st">&quot;ProbaFv_H0Igaz&quot;</span>)</span>
+<span id="cb825-4"><a href="hipotézisvizsgálat-alapjai.html#cb825-4" tabindex="-1"></a>MintaVetelek100Elem.ProbaFv_H0Hamis.hist(density <span class="op">=</span> <span class="va">True</span>, label<span class="op">=</span><span class="st">&quot;ProbaFv_H0Hamis&quot;</span>)</span>
+<span id="cb825-5"><a href="hipotézisvizsgálat-alapjai.html#cb825-5" tabindex="-1"></a><span class="co"># A sűrűségfüggvény x tengelye az Igaz H0 esetén vett próbafüggvények min-max tartományában lesz az &#39;x&#39; tengelyen</span></span>
+<span id="cb825-6"><a href="hipotézisvizsgálat-alapjai.html#cb825-6" tabindex="-1"></a>x_tengely <span class="op">=</span> np.arange(np.<span class="bu">min</span>(MintaVetelek100Elem.ProbaFv_H0Igaz), np.<span class="bu">max</span>(MintaVetelek100Elem.ProbaFv_H0Igaz), <span class="fl">0.01</span>)</span>
+<span id="cb825-7"><a href="hipotézisvizsgálat-alapjai.html#cb825-7" tabindex="-1"></a><span class="co"># A t-eloszlású sűrűségfüggvény (pdf) értékek az &#39;y&#39; tengelyen</span></span>
+<span id="cb825-8"><a href="hipotézisvizsgálat-alapjai.html#cb825-8" tabindex="-1"></a>y_tengely <span class="op">=</span> stats.t.pdf(x_tengely, df <span class="op">=</span> n<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb825-9"><a href="hipotézisvizsgálat-alapjai.html#cb825-9" tabindex="-1"></a><span class="co"># Sűrűségfüggvény felrakása a hisztogramra</span></span>
+<span id="cb825-10"><a href="hipotézisvizsgálat-alapjai.html#cb825-10" tabindex="-1"></a>plt.plot(x_tengely, y_tengely, label <span class="op">=</span> <span class="st">&quot;t-eloszlás&quot;</span>)</span>
+<span id="cb825-11"><a href="hipotézisvizsgálat-alapjai.html#cb825-11" tabindex="-1"></a><span class="co"># Színfeliratok megjelenítése a jobb felső sarokban</span></span>
+<span id="cb825-12"><a href="hipotézisvizsgálat-alapjai.html#cb825-12" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&quot;upper right&quot;</span>)</span>
+<span id="cb825-13"><a href="hipotézisvizsgálat-alapjai.html#cb825-13" tabindex="-1"></a><span class="co"># Ábra mutatása</span></span>
+<span id="cb825-14"><a href="hipotézisvizsgálat-alapjai.html#cb825-14" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-340-23.png" width="672" /></p>
+<p>Szuper! Tehát <strong>igaz <span class="math inline">\(H_0\)</span> esetén tényleg t-eloszlást követ a próbafüggvény a sok-sok mintavételünk esetén</strong>. Hamis <span class="math inline">\(H_0\)</span> esetén pedig valami más szimmetrikus eloszlás rajzolódik ki a hisztogramon, ami NEM a t-eloszlás. De hogy ez most konkrétan mi, nem annyira érdekel minket. :)</p>
+<p>Ebből, hogy a próbafüggvény t-eloszlást követ sok-sok mintavétel esetén, ha <span class="math inline">\(H_0\)</span> igaz, <strong>ki tudjuk számolni a p-értéket</strong>. gyakorlatilag területeket számolunk a <em>t-eloszlás</em> sűrűségfüggvénye alatt. A konkrét számoláshoz végig kell gondolnunk, hogy <strong>mi a legjobb eset <span class="math inline">\(H_0\)</span> szempontjából a próbafüggvényre nézve</strong>:</p>
+<ul>
+<li><strong>Kétoldali</strong> próbák (<span class="math inline">\(H_0: \mu=\mu_0\)</span> és <span class="math inline">\(H_1: \mu \neq \mu_0\)</span>) esetén: ha a <strong>próbafüggvény pontosan</strong> <span class="math inline">\(0 \rightarrow\)</span> ez az elvi eset arra utal, hogy a hipotetikus átlag és a valós, sokasági átlag ugyanaz, így a <span class="math inline">\(H_1\)</span> <span class="math inline">\(0\)</span> valószínűséggel következik be.</li>
+<li><strong>Baloldali</strong> próbák (<span class="math inline">\(H_0: \mu\geq\mu_0\)</span> és <span class="math inline">\(H_1: \mu &lt; \mu_0\)</span>) esetén: ha a <strong>próbafüggvény =</strong> <span class="math inline">\(+\infty \rightarrow\)</span> ez az elvi eset arra utal, hogy a sokasági átlag (<span class="math inline">\(\mu\)</span>) az pont <span class="math inline">\(+\infty\)</span>, aminél minden <span class="math inline">\(\mu_0\)</span> kisebb, így a <span class="math inline">\(H_1\)</span> <span class="math inline">\(0\)</span> valószínűséggel következik be.</li>
+<li><strong>Jobboldali</strong> próbák (<span class="math inline">\(H_0: \mu=\mu_0\)</span> és <span class="math inline">\(H_1: \mu &gt; \mu_0\)</span>) esetén: ha a <strong>próbafüggvény =</strong> <span class="math inline">\(-\infty \rightarrow\)</span> ez az elvi eset arra utal, hogy a sokasági átlag (<span class="math inline">\(\mu\)</span>) az pont <span class="math inline">\(-\infty\)</span>, aminél minden <span class="math inline">\(\mu_0\)</span> nagyobb, így a <span class="math inline">\(H_1\)</span> <span class="math inline">\(0\)</span> valószínűséggel következik be.</li>
+</ul>
+<p>Ez alapján,ha <strong>van egy ismert próbafüggvény értékem, amit <span class="math inline">\(t\)</span>-vel jelölök, akkor a p-érték a <span class="math inline">\(t(n-1)\)</span> eloszlásból az alábbi ábrán látható módon számítható ki</strong>:</p>
+<center>
+<img src="pval_fromt.jpg" style="width:80.0%" />
+</center>
+<p><br>Látható, hogy <strong>mindhárom esetben a p-érték úgy lesz kiszámolva, hogy ha a konkrét <span class="math inline">\(t\)</span> próbafüggvényünk messzebb kerül a <span class="math inline">\(H_0\)</span> számára legjobb esettől, akkor a p-érték csökken <span class="math inline">\(\rightarrow\)</span> hiszen egyre kisebb és kisebb hibát vétünk, ha elutasítjuk a <span class="math inline">\(H_0\)</span>-t!!</strong></p>
+<p>Mindezek alapján akkor <strong>számoljuk ki</strong> a <code>scipy</code> csomag <code>stats.t.cdf</code> függvénye segítségével a <strong>p-értéket mind a <span class="math inline">\(10000\)</span> db mintában a korábban vizsgált két <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> párunkra, ahol egyszer igaz, egyszer pedig hamis volt a</strong> <span class="math inline">\(H_0\)</span>:</p>
+<ul>
+<li><strong>IGAZ</strong> <span class="math inline">\(H_0\)</span> esete: <span class="math inline">\(H_0:\mu=167\)</span> és <span class="math inline">\(H_1: \mu &lt; 167\)</span></li>
+<li><strong>HAMIS</strong> <span class="math inline">\(H_0\)</span> esete: <span class="math inline">\(H_0:\mu=150\)</span> és <span class="math inline">\(H_1: \mu &gt; 150\)</span></li>
+</ul>
+<p>Figyeljünk arra, hogy az <span class="math inline">\(1-\)</span> rész a <code>stats.t.cdf</code> függvényen a hamis <span class="math inline">\(H_0\)</span> esetben a <strong>jobboldali próba</strong> miatt van:</p>
+<div class="sourceCode" id="cb826"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb826-1"><a href="hipotézisvizsgálat-alapjai.html#cb826-1" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span> <span class="co"># mintaméret</span></span>
+<span id="cb826-2"><a href="hipotézisvizsgálat-alapjai.html#cb826-2" tabindex="-1"></a></span>
+<span id="cb826-3"><a href="hipotézisvizsgálat-alapjai.html#cb826-3" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;p_ertek_H0Igaz&#39;</span>] <span class="op">=</span> stats.t.cdf(MintaVetelek100Elem.ProbaFv_H0Igaz, df <span class="op">=</span> n<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb826-4"><a href="hipotézisvizsgálat-alapjai.html#cb826-4" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;p_ertek_H0Hamis&#39;</span>] <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>stats.t.cdf(MintaVetelek100Elem.ProbaFv_H0Hamis, df <span class="op">=</span> n<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb826-5"><a href="hipotézisvizsgálat-alapjai.html#cb826-5" tabindex="-1"></a></span>
+<span id="cb826-6"><a href="hipotézisvizsgálat-alapjai.html#cb826-6" tabindex="-1"></a>MintaVetelek100Elem</span></code></pre></div>
+<pre><code>##            Elem1       Elem2  ...  p_ertek_H0Igaz  p_ertek_H0Hamis
+## 0     164.800000  129.066667  ...        0.809605         0.000001
+## 1     152.516667  212.483333  ...        0.017174         0.036483
+## 2     145.666667  185.266667  ...        0.854133         0.000001
+## 3     185.683333  120.333333  ...        0.184909         0.001950
+## 4     117.483333  142.350000  ...        0.415843         0.000239
+## ...          ...         ...  ...             ...              ...
+## 9995  162.333333   83.350000  ...        0.176846         0.000642
+## 9996  100.416667  161.433333  ...        0.224338         0.000469
+## 9997  146.450000  160.783333  ...        0.157848         0.000241
+## 9998  139.250000  140.466667  ...        0.390771         0.000038
+## 9999  147.316667  173.450000  ...        0.872480         0.000003
+## 
+## [10000 rows x 106 columns]</code></pre>
+<p>Remek! Az első és az utolsó <span class="math inline">\(5\)</span> db minta alapján az elvárt eredményeket kaptuk a p-értékekre: magas értékek igaz <span class="math inline">\(H_0\)</span>, alacsony értékek hamis <span class="math inline">\(H_0\)</span> esetén. Pontosabb értelmezéshez nézzük meg <strong>az <span class="math inline">\(5.\)</span>, azaz a data frame-ben <span class="math inline">\(4\)</span>-es sorindexszel rendelkező minta esetét</strong>:</p>
+<ul>
+<li><strong>Igaz <span class="math inline">\(H_0\)</span> esetén <span class="math inline">\(41.58\%\)</span>-os valószínűséggel hibázunk, ha elutasítjuk <span class="math inline">\(H_0\)</span>-t ezen minta alapján</strong>.</li>
+<li><strong>Hamis <span class="math inline">\(H_0\)</span> esetén <span class="math inline">\(0.02\%\)</span>-os valószínűséggel hibázunk, ha elutasítjuk <span class="math inline">\(H_0\)</span>-t ezen minta alapján</strong>.</li>
+</ul>
+<p>Ugyanakkor a <span class="math inline">\(2.\)</span> mintában látjuk, hogy a p-érték csak <span class="math inline">\(1.7\%\)</span> igaz <span class="math inline">\(H_0\)</span> és <span class="math inline">\(3.6\%\)</span> hamis <span class="math inline">\(H_0\)</span> esetén. Szóval, a <strong>“nem hozunk döntést, ha a p-érték <span class="math inline">\(1\% - 10\%\)</span> között mozog”, egy elég jogos szabálynak tűnik</strong>! :)</p>
+<p>Hasonlóan megerősíti az <span class="math inline">\(1\% - 10\%\)</span> közötti p-értékek esetén vett óvatosságot, ha az igaz és hamis <span class="math inline">\(H_0\)</span> esetén vizsgált p-értékeket doboz ábrán vizsgáljuk:</p>
+<div class="sourceCode" id="cb828"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb828-1"><a href="hipotézisvizsgálat-alapjai.html#cb828-1" tabindex="-1"></a>MintaVetelek100Elem.boxplot(column<span class="op">=</span>[<span class="st">&#39;p_ertek_H0Igaz&#39;</span>, <span class="st">&#39;p_ertek_H0Hamis&#39;</span>])</span>
+<span id="cb828-2"><a href="hipotézisvizsgálat-alapjai.html#cb828-2" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-342-25.png" width="672" /></p>
+<p>Ahogyan vártuk is, igaz <span class="math inline">\(H_0\)</span> esetén a p-értékek középső <span class="math inline">\(50\%\)</span>-a, azaz interkavrtilis trejedelme (<span class="math inline">\(IKT\)</span>) látványosan magasabban van, mint hamis <span class="math inline">\(H_0\)</span> esetében. Ugyanakkor, azt is nagyon fontos látni az ábrán, hogy <strong>a nagy p-értékek kilógó értéknek számítanak hamis <span class="math inline">\(H_0\)</span> esetén, de a kis p-értékek nem kilógó értékek igaz <span class="math inline">\(H_0\)</span> esetében!</strong> Tehát, néha megérheto szigorúbb <span class="math inline">\(\alpha\)</span>-t használni, mint <span class="math inline">\(1\%\)</span>. Sokan csak akkor utasítják el <span class="math inline">\(H_0\)</span>-t, ha a p-érték kisebb, mint <span class="math inline">\(0.1\%=0.001\)</span>, szóval <span class="math inline">\(\alpha=0.001\)</span> mellett dolgoznak.</p>
+<div id="a-t-próba-beépített-függvénnyel" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> A <em>t-próba</em> beépített függvénnyel<a href="hipotézisvizsgálat-alapjai.html#a-t-próba-beépített-függvénnyel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Azért van némi szerencsénk, mert az <strong>átlagra vonatkozó t-próba p-értékét szépen ki lehet számolni beépített <code>scipy</code> függvénnyel</strong> is!</p>
+<p>Vegyük például az 1. fejezet elején kivett <span class="math inline">\(n=100\)</span> elemű mintát, amit a <code>BalcsiMinta</code> című Python objektumban tároltunk le, ami egy <span class="math inline">\(100\times3\)</span>-as data frame:</p>
+<div class="sourceCode" id="cb829"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb829-1"><a href="hipotézisvizsgálat-alapjai.html#cb829-1" tabindex="-1"></a>BalcsiMinta.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## Index: 100 entries, 7991 to 5727
+## Data columns (total 3 columns):
+##  #   Column  Non-Null Count  Dtype  
+## ---  ------  --------------  -----  
+##  0   Nev     100 non-null    object 
+##  1   Nem     100 non-null    object 
+##  2   PERC    100 non-null    float64
+## dtypes: float64(1), object(2)
+## memory usage: 3.1+ KB</code></pre>
+<p>Vizsgáljuk meg ezen a mintán az alábbi <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> párost:</p>
+<ul>
+<li><span class="math inline">\(H_0^T:\mu=150\)</span></li>
+<li><span class="math inline">\(H_1 &gt; 150\)</span></li>
+</ul>
+<p>Mivel <span class="math inline">\(H_1\)</span>-ben <span class="math inline">\(&gt;\)</span> relációs jel lakik, így <strong>jobboldali</strong> lesz a hipotézisvizsgálat.<br>
+Tudjuk, hogy itt <strong>a <span class="math inline">\(H_1\)</span> lesz igaz, hiszen láttuk korábban, hogy a teljes sokaságban az átlagos átúszási idő <span class="math inline">\(167.5\)</span> perc</strong>. Tehát, valami <strong>jó alacsony p-értéket várunk</strong>!</p>
+<p>Ez szépen ki is jön manuálisan is! Először kiszámoljuk a <span class="math inline">\(\frac{\bar{y}-\mu_0}{\frac{s}{\sqrt{n}}}\)</span> <strong>próbafüggvényt</strong> <span class="math inline">\(\mu_0=150\)</span> mellett, hiszen a hipotézisekben azt nézzük, hogy a valós, sokasági átlag szignifikánsan nagyobb-e, mint ez a feltételezett (hipotetikus) <span class="math inline">\(150\)</span> perces átlag.</p>
+<div class="sourceCode" id="cb831"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb831-1"><a href="hipotézisvizsgálat-alapjai.html#cb831-1" tabindex="-1"></a>elviátlag <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb831-2"><a href="hipotézisvizsgálat-alapjai.html#cb831-2" tabindex="-1"></a>mintaátlag <span class="op">=</span> np.mean(BalcsiMinta.PERC)</span>
+<span id="cb831-3"><a href="hipotézisvizsgálat-alapjai.html#cb831-3" tabindex="-1"></a>s <span class="op">=</span> np.std(BalcsiMinta.PERC, ddof<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb831-4"><a href="hipotézisvizsgálat-alapjai.html#cb831-4" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(BalcsiMinta)</span>
+<span id="cb831-5"><a href="hipotézisvizsgálat-alapjai.html#cb831-5" tabindex="-1"></a></span>
+<span id="cb831-6"><a href="hipotézisvizsgálat-alapjai.html#cb831-6" tabindex="-1"></a>próbafv <span class="op">=</span> (mintaátlag <span class="op">-</span> elviátlag) <span class="op">/</span> (s<span class="op">/</span>np.sqrt(n))</span>
+<span id="cb831-7"><a href="hipotézisvizsgálat-alapjai.html#cb831-7" tabindex="-1"></a>próbafv</span></code></pre></div>
+<pre><code>## 3.719542604812644</code></pre>
+<p>Remek! Ebből gyorsan is meg is van a <span class="math inline">\(t(n-1)\)</span> eloszlásból (<code>stats.t.cdf</code> függvénnyel) a p-érték. Most ugye a <strong>próbafüggvény felé esés valószínűségét számoljuk, hiszen jobboldali a próba</strong>.</p>
+<div class="sourceCode" id="cb833"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb833-1"><a href="hipotézisvizsgálat-alapjai.html#cb833-1" tabindex="-1"></a>p_ertek_t_elo <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> stats.t.cdf(próbafv, df <span class="op">=</span> n<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb833-2"><a href="hipotézisvizsgálat-alapjai.html#cb833-2" tabindex="-1"></a>p_ertek_t_elo <span class="op">*</span> <span class="dv">100</span> <span class="co"># százalékban írom ki</span></span></code></pre></div>
+<pre><code>## 0.01655831079531156</code></pre>
+<p>A <strong>p-érték alapján elmonható, hogy a most vizsgált <span class="math inline">\(100\)</span> elemű minta alapján csak <span class="math inline">\(0.017\%\)</span> a valószínűsége a hibának, ha <span class="math inline">\(H_0\)</span>-t elutasítjuk</strong>. Ez <strong>kisebb még a legkisebb szokásos szignifikancia-szintnél, az <span class="math inline">\(\alpha=1\%\)</span>-nál is, így meghozzuk ezt a döntést és <span class="math inline">\(H_0\)</span>-t elutasítjuk</strong>.<br>
+Ez alapján pedig <span class="math inline">\(H_1\)</span> elfogadható, azaz a <strong>sokaságban az átlagos átúszási idő szignifikánsan</strong> (mintavételi hibát meghaladó mértékben) <strong>nagyobb, mint <span class="math inline">\(150\)</span> perc</strong>.<br>
+Most tudjuk, hogy <strong>helyesen döntöttünk</strong>, mivel láttuk, hogy a sokaságban az átlagos átúszási idő <span class="math inline">\(167.5\)</span> perc.</p>
+<p>Mindez szerencsére elintézhető a <code>scipy</code> csomag <code>stats.ttest_1samp</code> függvényével is. Ha a függvény</p>
+<ul>
+<li>első paraméterében megadjuk az aktuális mintánk elemeit tartalmazó oszlopot egy data frame-ből,</li>
+<li>második paraméterben az elvi átlagot, azaz <span class="math inline">\(\mu_0\)</span>-t,</li>
+<li>az <code>alternative</code> paraméterben pedig a próba oldalát <span class="math inline">\(H_1\)</span> relációs jele alapján
+<ul>
+<li>lehetséges értékek: <code>‘two-sided’, ‘less’, ‘greater’</code>, rendre a <span class="math inline">\(\neq\)</span>, <span class="math inline">\(&lt;\)</span>, <span class="math inline">\(&gt;\)</span> relációs jeleket jelölik <span class="math inline">\(H_1\)</span>-ben</li>
+</ul></li>
+</ul>
+<p>Akkor a <strong>függvény megadja a t-próba p-értékét és a próbafüggvényt is</strong>:</p>
+<div class="sourceCode" id="cb835"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb835-1"><a href="hipotézisvizsgálat-alapjai.html#cb835-1" tabindex="-1"></a>stats.ttest_1samp(BalcsiMinta.PERC, <span class="dv">150</span>, alternative<span class="op">=</span><span class="st">&#39;greater&#39;</span>)</span></code></pre></div>
+<pre><code>## TtestResult(statistic=3.7195426048126436, pvalue=0.00016558310795314698, df=99)</code></pre>
+<p>Szuper, ugyan úgy megvan a próbafüggvény (<span class="math inline">\(3.7195\)</span>) és a <span class="math inline">\(0.017\%\)</span>-os p-érték is! :)</p>
+</div>
+<div id="a-t-próba-előfeltételei" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> A <em>t-próba</em> előfeltételei<a href="hipotézisvizsgálat-alapjai.html#a-t-próba-előfeltételei" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Természetesen, ennek a t-próbás hipotézisvizsgálatnak is vannak előfeltételei, mint ahogy a különböző konfidencia-intervallum képleteknek is voltak. <strong>Ha ezek a feltételek nem teljesülnek, akkor bármi is jött ki p-értékre, azt nem használhatjuk döntésre <span class="math inline">\(H_0\)</span>-ról és <span class="math inline">\(H_1\)</span>-ről</strong>, hiszen az alkalmazott képletek mögötti követelmények az adatokal szemben NEM teljesülnek.</p>
+<p>A t-próbának alapvetően <strong>két feltétel</strong>ére kell odafigyelni:</p>
+<ol style="list-style-type: decimal">
+<li>Amennyiben <strong>kis mintánk</strong> (<span class="math inline">\(n\leq30\)</span>) van, akkor feltesszük, hogy <strong>az adatok, amikből a mintát vettük normális eloszlást követnek</strong></li>
+<li>Ha a <strong>minta elemszáma nagy</strong> (<span class="math inline">\(n&gt;30\)</span>), akkor <strong>nem kell semmi extra előfeltételre figyelni</strong>.</li>
+</ol>
+<p>Most az <span class="math inline">\(n=100\)</span> elemű mintánk a Balaton átúszók sokaságából nagy minta, hiszen <span class="math inline">\(100&gt;30\)</span>, de azért nézzünk rá az <strong>időeredmény adatok eloszlására a minta alapján</strong>:</p>
+<div class="sourceCode" id="cb837"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb837-1"><a href="hipotézisvizsgálat-alapjai.html#cb837-1" tabindex="-1"></a>BalcsiMinta.PERC.hist()</span>
+<span id="cb837-2"><a href="hipotézisvizsgálat-alapjai.html#cb837-2" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-347-27.png" width="672" /></p>
+<p>Hm, bár a nagy mintaelemszám miatt ez nem számít, de azért megnyugtató, hogy az átúszási idők eloszlása nem olyan durván tér el a normális eloszlás sűrűségfüggvényétől. Csak nagyon enyhén van egy kis jobbra elnyúló jellege, de semmi vészes. :)</p>
+</div>
+</div>
+<div id="a-sokasági-átlagra-vonatkozó-z-próba" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> A sokasági átlagra vonatkozó <em>z-próba</em><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-z-próba" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ugyebár az átlagra vonatkozó konfidencia-intervallumok esetén megfigyeltük, hogy <strong>nagy szabadságfok (<span class="math inline">\(df&gt;30\)</span>) esetén a t-eloszlás lényegében megegyezik a standard normális eloszlással</strong>.</p>
+<p>Azaz, kicsit matekosabban fogalmazva: <strong>ha <span class="math inline">\(n &gt;30\)</span>, akkor igaz nullhipotézis (<span class="math inline">\(H_0\)</span>) esetén</strong> (tehát, amikor <span class="math inline">\(\mu_0\)</span> helyére épp a valós, sokasági átlagot, azaz <span class="math inline">\(\mu\)</span>-t helyettesítjük), a <strong>próbafüggvényünk standard normális (<span class="math inline">\(N(0,1)\)</span>) eloszlást követ</strong>: <span class="math display">\[\frac{\bar{y}-\mu}{\frac{s}{\sqrt{n}}} \sim N(0,1)\]</span></p>
+<p>Ez alapján pontosan <strong>ugyan azon az elven számíthatunk a próbafüggvényből p-értéket, amit a 2. fejezetben a t-eloszlásnál is alkalmaztunk</strong>. Mivel a null-és alternatív hipotézis nem változott meg (<span class="math inline">\(H_0^T:\mu=150\)</span> és <span class="math inline">\(H_1 &gt; 150\)</span>), így marad a jobboldali próba, és mivel a mintaelemek sem változtak a 100 elemű mintánkban, így a <strong>próbafüggvény is megegyezik a 2.1. fejezetben használttal</strong>.<br>
+<strong>Mivel maradt a jobboldali próba</strong>, így a <strong>próbafüggvény fölé esés valószínűségét kell megadni a standard normális eloszlásban</strong> a <code>stats.norm.cdf</code> függvény <span class="math inline">\(1-\)</span> verziójával.</p>
+<div class="sourceCode" id="cb838"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb838-1"><a href="hipotézisvizsgálat-alapjai.html#cb838-1" tabindex="-1"></a>p_ertek_norm_elo <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> stats.norm.cdf(próbafv)</span>
+<span id="cb838-2"><a href="hipotézisvizsgálat-alapjai.html#cb838-2" tabindex="-1"></a>p_ertek_norm_elo <span class="op">*</span> <span class="dv">100</span> <span class="co"># százalékban írom ki</span></span></code></pre></div>
+<pre><code>## 0.009979194034781536</code></pre>
+<div class="sourceCode" id="cb840"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb840-1"><a href="hipotézisvizsgálat-alapjai.html#cb840-1" tabindex="-1"></a>p_ertek_t_elo <span class="op">*</span> <span class="dv">100</span> <span class="co"># p-érték a t-eloszlából százalékban</span></span></code></pre></div>
+<pre><code>## 0.01655831079531156</code></pre>
+<p>Mindkét p-érték nagyjából <span class="math inline">\(0.01\%\)</span> körüli, szóval a standard normális és t-eloszlás között tényleg nincs érdemi különbség a p-érték számolás tekintetében.</p>
+<p>Természetesen, mindez beépített függvénnyel is meg tudjuk oldani, csak ez most a <code>statsmodels</code> csomag <code>stats.weightstats</code> moduljában lakó <code>ztest</code> függvény lesz. A név (z test = z próba) onnan jön, hogy a standard ormális eloszlás jele a matekban <span class="math inline">\(z\)</span>, így ez a hipotézisvizsgálat <strong>z-próba</strong> néven fut, míg az előző <strong>t-próba</strong> néven, mivel ott a p-értéket t-eloszlásból számoltuk.<br>
+Paramétereiben a függvény ugyan úgy működik, mint a <code>scipy</code>-os <code>stats.ttest_1samp</code>:</p>
+<ul>
+<li>először megadjuk aktuális mintánk elemeit tartalmazó oszlopot egy data frame-ből</li>
+<li>utána jön a <code>value</code> paraméterben az elvi átlag (<span class="math inline">\(\mu_0\)</span>)</li>
+<li>végül pedig az alteranítv hipotézisben lévő relációs jelet adjuk meg szövegesen
+<ul>
+<li>lehetséges értékek: <code>‘two-sided’, ‘smaller’, ‘larger’</code>, rendre a <span class="math inline">\(\neq\)</span>, <span class="math inline">\(&lt;\)</span>, <span class="math inline">\(&gt;\)</span> relációs jeleket jelölik <span class="math inline">\(H_1\)</span>-ben</li>
+</ul></li>
+</ul>
+<p>Ezek alapján az alábbi módon néz ki a függvény használata Pythonban.</p>
+<div class="sourceCode" id="cb842"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb842-1"><a href="hipotézisvizsgálat-alapjai.html#cb842-1" tabindex="-1"></a><span class="co"># függvény importja</span></span>
+<span id="cb842-2"><a href="hipotézisvizsgálat-alapjai.html#cb842-2" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.weightstats <span class="im">import</span> ztest</span>
+<span id="cb842-3"><a href="hipotézisvizsgálat-alapjai.html#cb842-3" tabindex="-1"></a></span>
+<span id="cb842-4"><a href="hipotézisvizsgálat-alapjai.html#cb842-4" tabindex="-1"></a><span class="co"># függvény használata</span></span>
+<span id="cb842-5"><a href="hipotézisvizsgálat-alapjai.html#cb842-5" tabindex="-1"></a>ztest(BalcsiMinta.PERC, value <span class="op">=</span> <span class="dv">150</span>, alternative <span class="op">=</span> <span class="st">&#39;larger&#39;</span>)</span></code></pre></div>
+<pre><code>## (3.7195426048126436, 9.979194034785673e-05)</code></pre>
+<p>Meg is van a <span class="math inline">\(3.7\)</span>-es próbafüggvényünk és a <span class="math inline">\(0.0099\% \approx 0.01\%\)</span> körüli p-értékünk. Győzelem!</p>
+</div>
+<div id="a-sokasági-arányra-vonatkozó-z-próba" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> A sokasági arányra vonatkozó <em>z-próba</em><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-arányra-vonatkozó-z-próba" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Természetesen, nem csak sokasági átlagokra (<span class="math inline">\(\mu\)</span>), hanem sokasági arányokra (<span class="math inline">\(P\)</span>) is tudunk hipotéziseket tenni. Majd ehhez is tudunk p-értéket számolni és eldönteni, hogy az eredeti állításunkból felírt <span class="math inline">\(H_0\)</span> vagy <span class="math inline">\(H_1\)</span> tekinthető-e igaznak egy adott <span class="math inline">\(\alpha\)</span> szignifikancia-szinten.</p>
+<p>Nézzük meg, hogy <strong>vehető-e 1/3-nak a Balatont 3 óra felett átúszók aránya</strong>. Matematikailag az állításom azt mondja, hogy a 3 óra = 180 perc felett átúszók sokasági aránya egyenlő 1/3-dal: <span class="math inline">\(P = 1/3\)</span>. Mivel az <strong>állítás engedi az egyenlőséget, így az a <span class="math inline">\(H_0\)</span>-ba kerül</strong>. Ez alapján pedig <strong>a <span class="math inline">\(H_1\)</span>-ben az eredeti állítást tagadjuk, és a <span class="math inline">\(H_0\)</span>-nak szurkolunk</strong> a hipotézisvizsgálat során. Tehát, a <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> párunk az alábbi módra fog kinézni:</p>
+<ul>
+<li><span class="math inline">\(H_0:P=1/3\)</span></li>
+<li><span class="math inline">\(H_1:P\neq1/3\)</span></li>
+<li>Szurkolunk: <span class="math inline">\(H_0\)</span></li>
+</ul>
+<p>A <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> párunkból következik, hogy az <strong>elvi arány, azaz <span class="math inline">\(P_0\)</span>, amihez képest vizgsálódunk most az <span class="math inline">\(1/3\)</span> érték!!</strong></p>
+<p>Ezek után itt most azt mondanánk az <a href="Gyak05.html" target="_blank">5. heti tananyag 2. fejezete</a> alapján, hogy készítünk a megfigyelt mintánkba egy olyan <span class="math inline">\(0-1\)</span> értékekből álló oszlopot, ahol <span class="math inline">\(1\)</span> jelenti a 3 óránál hosszabb idő alatt átúszókat a mintában (arány szempontjából kedvező esetek a mintában), míg <span class="math inline">\(0\)</span> a többieket (arány szempontjából kevdezőtlen esetek a mintában), és ennek az oszlopnak az átlagára vonatkozó hipotézivizsgálatot végzünk (mivel <span class="math inline">\(n=100 &gt; 30\)</span> ez simán lehet z-próba).</p>
+<p>Ezzel a fenti elvvel viszont van egy kis gond! Ugyanis <strong>arányra vonatkozó hipotézivizsgálat esetén a próbafüggvényünk az alábbi módon néz ki</strong>: <span class="math display">\[\frac{p-P_0}{\sqrt{\frac{P_0(1-P_0)}{n}}} \sim N(0,1)\]</span></p>
+<p>A <strong>“kis gond”</strong> a képlet nevezőjével, azaz a <strong>standard hibával van</strong>. A képlet madártávlatból nézve azt mondja, hogy vegyük minta és hipotetikus arány különbségét (<span class="math inline">\(p-P_0\)</span>) osztva az arány standard hibájával. Ami tényleg az átlagra vonatkozó hipotézisvizsgálat próbafüggvényének működési elve, amit láttunk is a 2. fejezetben. DE! A <strong>standard hibában a képlet az elvi arányt (<span class="math inline">\(P_0\)</span>)</strong> használja a mintából számolt arány (<span class="math inline">\(p\)</span>) helyett. Viszont, ha egy <span class="math inline">\(0-1\)</span> értékekből álló oszlop átlagára vonatkozó hipotézisvizsgálatként számolnánk végig ezt a próbafüggvényt, akkor bizony a nevezőben <span class="math inline">\(\sqrt{\frac{p(1-p)}{n}}\)</span>-gyel számolnánk <span class="math inline">\(\sqrt{\frac{P_0(1-P_0)}{n}}\)</span> helyett. Szóval mindenképpen egy külön függvényt kell itt használni a próbafüggvény számítására. A p-érték számolása standard normális (<span class="math inline">\(N(0,1)\)</span>) eloszlásból történik már úgy, mint az átlag esetében láttuk a 2. és 3. fejezetekben. Ezért is <em>z-próba</em>ként emlegetjük ezt a hipotézisvizsgálatot is. De ezt a p-érték számítást is elintézi majd nekünk a <code>statsmodels</code> csomag <code>proportions_ztest</code> függvénye.</p>
+<p>A függvényhez először ki kell számolni a minta teljes elemszámát (<span class="math inline">\(n\)</span>) és az arány szempontjából kedvező esetek számát (<span class="math inline">\(k\)</span>), ami most esetünkbena <span class="math inline">\(180\)</span> percnél tovább úszók száma. Ezekből már akár a mintabeli arányt (<span class="math inline">\(p\)</span>) is kiszámíthatjuk.</p>
+<div class="sourceCode" id="cb844"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb844-1"><a href="hipotézisvizsgálat-alapjai.html#cb844-1" tabindex="-1"></a><span class="co"># mintaelemszám</span></span>
+<span id="cb844-2"><a href="hipotézisvizsgálat-alapjai.html#cb844-2" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(BalcsiMinta)</span>
+<span id="cb844-3"><a href="hipotézisvizsgálat-alapjai.html#cb844-3" tabindex="-1"></a></span>
+<span id="cb844-4"><a href="hipotézisvizsgálat-alapjai.html#cb844-4" tabindex="-1"></a><span class="co"># arány szempontjából kedvező esetek száma</span></span>
+<span id="cb844-5"><a href="hipotézisvizsgálat-alapjai.html#cb844-5" tabindex="-1"></a>kedvezo <span class="op">=</span> np.<span class="bu">sum</span>(BalcsiMinta.PERC <span class="op">&gt;</span> <span class="dv">180</span>)</span>
+<span id="cb844-6"><a href="hipotézisvizsgálat-alapjai.html#cb844-6" tabindex="-1"></a></span>
+<span id="cb844-7"><a href="hipotézisvizsgálat-alapjai.html#cb844-7" tabindex="-1"></a><span class="co"># mintaarány</span></span>
+<span id="cb844-8"><a href="hipotézisvizsgálat-alapjai.html#cb844-8" tabindex="-1"></a>kedvezo<span class="op">/</span>n</span></code></pre></div>
+<pre><code>## 0.3</code></pre>
+<p>Ezzel látjuk, hogy a mintában a <span class="math inline">\(180\)</span> percnél tovább úszók aránya kereken <span class="math inline">\(30\%\)</span>, ami nem egyenlő az <span class="math inline">\(1/3 \approx 0.333 = 33.3\%\)</span>-al, így <strong>a <span class="math inline">\(H_1\)</span> néz ki igaz állításnak</strong>. Viszont, <strong>ez simán lehet a mintavételi hiba műve is</strong>, hiszen csak egy <span class="math inline">\(n=100\)</span> elemű mintából dolgozom, <strong>nem látom az összes átúszó sokaságát</strong>. Épp <strong>ezért kell a p-érték</strong>, ami megadja, hogy mennyire valószínű, hogy az a tény, hogy a megfigyelt mintában <span class="math inline">\(0.3 \neq 0.333\)</span> szignifikáns eltérés mintaarány és elvi arány között.</p>
+<p>Importáljuk is a függvényt a <code>statsmodels</code> csomagból, és használjuk is az előbb kiszámolt kedvező esetszámmal és teljes elemszámmal. Amit még meg kell adni neki az a <code>value</code> paraméteren az elvi arány, és az <code>alternative</code> paraméterben a <span class="math inline">\(H_1\)</span> relaciós jelét ugyan azokkal a kulcszsavakkal, mint amiket a 3. fejezetben is használtuk a sima, átlagra vonatkozó <code>ztest</code> függvényben.</p>
+<div class="sourceCode" id="cb846"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb846-1"><a href="hipotézisvizsgálat-alapjai.html#cb846-1" tabindex="-1"></a><span class="co"># függvény importja</span></span>
+<span id="cb846-2"><a href="hipotézisvizsgálat-alapjai.html#cb846-2" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.proportion <span class="im">import</span> proportions_ztest</span>
+<span id="cb846-3"><a href="hipotézisvizsgálat-alapjai.html#cb846-3" tabindex="-1"></a></span>
+<span id="cb846-4"><a href="hipotézisvizsgálat-alapjai.html#cb846-4" tabindex="-1"></a><span class="co"># elvi arány megadása</span></span>
+<span id="cb846-5"><a href="hipotézisvizsgálat-alapjai.html#cb846-5" tabindex="-1"></a>P_0 <span class="op">=</span> <span class="fl">0.25</span></span>
+<span id="cb846-6"><a href="hipotézisvizsgálat-alapjai.html#cb846-6" tabindex="-1"></a></span>
+<span id="cb846-7"><a href="hipotézisvizsgálat-alapjai.html#cb846-7" tabindex="-1"></a><span class="co"># függvény használata</span></span>
+<span id="cb846-8"><a href="hipotézisvizsgálat-alapjai.html#cb846-8" tabindex="-1"></a>proportions_ztest(</span>
+<span id="cb846-9"><a href="hipotézisvizsgálat-alapjai.html#cb846-9" tabindex="-1"></a>  count <span class="op">=</span> kedvezo,</span>
+<span id="cb846-10"><a href="hipotézisvizsgálat-alapjai.html#cb846-10" tabindex="-1"></a>  nobs <span class="op">=</span> n,</span>
+<span id="cb846-11"><a href="hipotézisvizsgálat-alapjai.html#cb846-11" tabindex="-1"></a>  value <span class="op">=</span> P_0,</span>
+<span id="cb846-12"><a href="hipotézisvizsgálat-alapjai.html#cb846-12" tabindex="-1"></a>  alternative <span class="op">=</span> <span class="st">&#39;two-sided&#39;</span>)</span></code></pre></div>
+<pre><code>## (1.0910894511799616, 0.27523352407483437)</code></pre>
+<p>A p-értékünk magas, <span class="math inline">\(46.6\%\)</span>, szóval ennyi esélyünk van a hibára, ha a mintavétel alapjánelutasítanánk <span class="math inline">\(H_0\)</span>-t. Ez jó magas hibavalsózínűség, magasabb, mint a legmagasabb szokásos szignifikancia-szint (<span class="math inline">\(10\%\)</span>), így <strong>azt mondjuk, hogy a <span class="math inline">\(H_0\)</span>-t nem tudjuk elutasítani</strong>. <strong>Valós, sokasági aránya a <span class="math inline">\(180\)</span> percnél lassabban úszóknak simán vehető <span class="math inline">\(1/3\)</span>-nak a mintaarány és az <span class="math inline">\(1/3\)</span> közötti eltérés NEM szignifikáns</strong>.</p>
+<p>A hipotézisvizsgálatnak, mivel z-próba és standard normális eloszlásból számol p-értéket, előfeltétele, hogy nagy mintánk van. Ez most azt jelenti, hogy a <span class="math inline">\(n \times P_0\)</span> és <span class="math inline">\(n \times (1-P_0)\)</span> szorzat is legyen nagyobb mint <span class="math inline">\(10\)</span>. Tehát, <strong>az arány szempontjából kedvező és kedvezőtlen esetek száma is legyen legalább <span class="math inline">\(10\)</span> igaz nullhipotézis esetén</strong>.</p>
+<p>Lássuk, hogy teljesülnek-e akkor a feltételek:</p>
+<div class="sourceCode" id="cb848"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb848-1"><a href="hipotézisvizsgálat-alapjai.html#cb848-1" tabindex="-1"></a><span class="co"># mintaelemszám</span></span>
+<span id="cb848-2"><a href="hipotézisvizsgálat-alapjai.html#cb848-2" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(BalcsiMinta)</span>
+<span id="cb848-3"><a href="hipotézisvizsgálat-alapjai.html#cb848-3" tabindex="-1"></a><span class="co"># elvi arány megadása</span></span>
+<span id="cb848-4"><a href="hipotézisvizsgálat-alapjai.html#cb848-4" tabindex="-1"></a>P_0 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb848-5"><a href="hipotézisvizsgálat-alapjai.html#cb848-5" tabindex="-1"></a></span>
+<span id="cb848-6"><a href="hipotézisvizsgálat-alapjai.html#cb848-6" tabindex="-1"></a><span class="co"># feltétel ellenőrzése</span></span>
+<span id="cb848-7"><a href="hipotézisvizsgálat-alapjai.html#cb848-7" tabindex="-1"></a>n<span class="op">*</span>P_0</span></code></pre></div>
+<pre><code>## 33.33333333333333</code></pre>
+<div class="sourceCode" id="cb850"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb850-1"><a href="hipotézisvizsgálat-alapjai.html#cb850-1" tabindex="-1"></a>n<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>P_0)</span></code></pre></div>
+<pre><code>## 66.66666666666667</code></pre>
+<p>A <span class="math inline">\(33\)</span> és a <span class="math inline">\(66\)</span> is <span class="math inline">\(10\)</span>-nél nagyobb szám, szóval rendben vagyunk! :)</p>
+</div>
+<div id="a-hipotézisvizsgálat-menete-madártávlatból" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> A hipotézisvizsgálat menete madártávlatból<a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-menete-madártávlatból" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az eddigiek alapján akkor azt mondhatjuk el, hogy igazából <strong>bármilyen statisztikai mutatóra/paraméterre</strong> (átlag, arány, stb.) <strong>vonatkozik a hipotézisvizsgálatunk, annak mindig <span class="math inline">\(4\)</span> fő lépése van</strong>.</p>
+<ol style="list-style-type: decimal">
+<li>Az alapállításból <strong>null- és alternatív hipotézisek</strong> (<span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span>) felírása</li>
+<li>Megfigyelt <span class="math inline">\(n\)</span> elemű mintaadatokból <strong>próbafüggvény</strong> számítása</li>
+<li>A próbafüggvény és egy nevezetes eloszlás alapján <strong>p-érték</strong> számítása</li>
+<li>A p-érték alapján annak el<strong>döntés</strong>e, hogy <span class="math inline">\(H_0\)</span> vagy <span class="math inline">\(H_1\)</span> vehető-e igaz állításnak a teljes sokaságban</li>
+</ol>
+<p>Ez a <span class="math inline">\(4\)</span> lépés tényleg <strong>minden hipotézisvizsgálat során ugyan ez lesz</strong>, és <strong>az <span class="math inline">\(1.\)</span> és <span class="math inline">\(4.\)</span> pontoknak is mindig ugyan az az elve, amiket eddig láttunk</strong>, ezek nem változnak. Bármi is történik, a <span class="math inline">\(H_0\)</span> és <span class="math inline">\(H_1\)</span> felírás és közöttük a döntés <em>p-érték</em> alapján fix szabályok szerint működik. Ami az <strong>egyes esetekben eltérő lehet, az a <span class="math inline">\(2.\)</span> és <span class="math inline">\(3.\)</span> pont</strong>, ahol a próbafüggvényeket és a p-értékeket számoljuk. De <strong>ezekre a pontokra szinte mindig lesz beépített Python függvény, csak azoknak a paraméterezését és a használatok előfeltételét kell</strong> igazából <strong>jól tudni</strong>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="becslések-ev-és-r-mintából.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="egymintás-és-kétmintás-próbák.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-HipotezisAlapok.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

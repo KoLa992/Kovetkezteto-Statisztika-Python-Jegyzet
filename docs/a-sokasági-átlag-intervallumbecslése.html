@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 A sokasági átlag intervallumbecslése | Következtető Statisztika Python Jegyzet</title>
+  <meta name="description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 A sokasági átlag intervallumbecslése | Következtető Statisztika Python Jegyzet" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  <meta name="github-repo" content="KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 A sokasági átlag intervallumbecslése | Következtető Statisztika Python Jegyzet" />
+  
+  <meta name="twitter:description" content="<p>Lecture notes on BSc level Inferential Statistics in bookdown format.
+Mainly for Business Information Systems BSc students at Corvinus University of Budapest.</p>" />
+  
+
+<meta name="author" content="Kovács László" />
+
+
+<meta name="date" content="2025-06-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="a-becsléselmélet-alapjai.html"/>
+<link rel="next" href="további-fae-becslések-és-a-bootstrap-módszer.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Következtető Statisztika Python Jegyzet</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Előhang</a></li>
+<li class="chapter" data-level="2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html"><i class="fa fa-check"></i><b>2</b> Statisztikához szükséges Python nyelvi alapok</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#programozási-alapelvek"><i class="fa fa-check"></i><b>2.1</b> Programozási alapelvek</a></li>
+<li class="chapter" data-level="2.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pythonról-általában"><i class="fa fa-check"></i><b>2.2</b> A Pythonról általában</a></li>
+<li class="chapter" data-level="2.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-spyder-felülete"><i class="fa fa-check"></i><b>2.3</b> A Spyder felülete</a></li>
+<li class="chapter" data-level="2.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working Directory</a></li>
+<li class="chapter" data-level="2.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#alapvető-python-adattípusok-és-adatszerkezetek"><i class="fa fa-check"></i><b>2.5</b> Alapvető Python adattípusok és adatszerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-adattípusok"><i class="fa fa-check"></i><b>2.5.1</b> Egyszerű adattípusok</a></li>
+<li class="chapter" data-level="2.5.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#összetett-adatszerkezetek"><i class="fa fa-check"></i><b>2.5.2</b> Összetett adatszerkezetek</a></li>
+<li class="chapter" data-level="2.5.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-numpy-tömb"><i class="fa fa-check"></i><b>2.5.3</b> A <code>numpy</code> tömb</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#vezérlési-szerkezetek"><i class="fa fa-check"></i><b>2.6</b> Vezérlési szerkezetek</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#elágazás-if"><i class="fa fa-check"></i><b>2.6.1</b> Elágazás (<code>if</code>)</a></li>
+<li class="chapter" data-level="2.6.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#ciklusok-for"><i class="fa fa-check"></i><b>2.6.2</b> Ciklusok (<code>for</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-pandas-data-frame-objektum"><i class="fa fa-check"></i><b>2.7</b> A Pandas data frame objektum</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hivatkozási-lehetőségek-data-frame-ben"><i class="fa fa-check"></i><b>2.7.1</b> Hivatkozási lehetőségek data frame-ben</a></li>
+<li class="chapter" data-level="2.7.2" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-módosítása"><i class="fa fa-check"></i><b>2.7.2</b> Data frame-k módosítása</a></li>
+<li class="chapter" data-level="2.7.3" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#szűrés-data-frame-ben-logikai-indexszálás"><i class="fa fa-check"></i><b>2.7.3</b> Szűrés data frame-ben: logikai indexszálás</a></li>
+<li class="chapter" data-level="2.7.4" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#hiányzó-értékek-kezelése-data-frame-ben"><i class="fa fa-check"></i><b>2.7.4</b> Hiányzó értékek kezelése data frame-ben</a></li>
+<li class="chapter" data-level="2.7.5" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatvizualizáció-data-frame-en-keresztül"><i class="fa fa-check"></i><b>2.7.5</b> Adatvizualizáció data frame-en keresztül</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#aggregálás-data-frame-ben"><i class="fa fa-check"></i><b>2.8</b> Aggregálás data frame-ben</a></li>
+<li class="chapter" data-level="2.9" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#egyszerű-leíró-statisztika-data-frame-ben"><i class="fa fa-check"></i><b>2.9</b> Egyszerű leíró statisztika data frame-ben</a></li>
+<li class="chapter" data-level="2.10" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#adatminőségi-problémák-felismerése-és-kezelése-leíró-statisztika-segítségével"><i class="fa fa-check"></i><b>2.10</b> Adatminőségi problémák felismerése és kezelése leíró statisztika segítségével</a></li>
+<li class="chapter" data-level="2.11" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#data-frame-k-összekapcsolása"><i class="fa fa-check"></i><b>2.11</b> Data frame-k összekapcsolása</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#a-kapcsolási-kulcsnak-használt-oszlop-ellenőrzése-és-javítása"><i class="fa fa-check"></i><b>2.11.1</b> A kapcsolási kulcsnak használt oszlop ellenőrzése és javítása</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#kilógó-értékek-keresése-és-kezelése"><i class="fa fa-check"></i><b>2.12</b> Kilógó értékek keresése és kezelése</a></li>
+<li class="chapter" data-level="2.13" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#korrelációs-elemzések-data-frame-ben"><i class="fa fa-check"></i><b>2.13</b> Korrelációs elemzések data frame-ben</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok"><i class="fa fa-check"></i>Gyakorló feladatok</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#gyakorló-feladatok-megoldása"><i class="fa fa-check"></i>Gyakorló feladatok megoldása</a>
+<ul>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat"><i class="fa fa-check"></i>1. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-1"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-2"><i class="fa fa-check"></i>3. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-3"><i class="fa fa-check"></i>4. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-4"><i class="fa fa-check"></i>5. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-5"><i class="fa fa-check"></i>6. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-6"><i class="fa fa-check"></i>7. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-7"><i class="fa fa-check"></i>8. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-8"><i class="fa fa-check"></i>9. feladat</a></li>
+<li class="chapter" data-level="" data-path="statisztikához-szükséges-python-nyelvi-alapok.html"><a href="statisztikához-szükséges-python-nyelvi-alapok.html#feladat-9"><i class="fa fa-check"></i>10. feladat</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><i class="fa fa-check"></i><b>3</b> Leíró Statisztika ismétlés és Valószínűségszámítás alapok</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#leíró-statisztikai-mutatók"><i class="fa fa-check"></i><b>3.1</b> Leíró statisztikai mutatók</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#hisztogram-és-alakmutatók"><i class="fa fa-check"></i><b>3.1.1</b> Hisztogram és Alakmutatók</a></li>
+<li class="chapter" data-level="3.1.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-lekérése"><i class="fa fa-check"></i><b>3.1.2</b> Gyakorisági tábla lekérése</a></li>
+<li class="chapter" data-level="3.1.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#gyakorisági-tábla-bővítése"><i class="fa fa-check"></i><b>3.1.3</b> Gyakorisági tábla bővítése</a></li>
+<li class="chapter" data-level="3.1.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#súlyozott-átlag-és-szórás-pythonban"><i class="fa fa-check"></i><b>3.1.4</b> Súlyozott átlag és szórás Pythonban</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-normális-eloszlás-és-sűrűségfüggvénye"><i class="fa fa-check"></i><b>3.2</b> A normális eloszlás és sűrűségfüggvénye</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-használata"><i class="fa fa-check"></i><b>3.2.1</b> A sűrűségfüggvény használata</a></li>
+<li class="chapter" data-level="3.2.2" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-sűrűségfüggvény-integrálja"><i class="fa fa-check"></i><b>3.2.2</b> A sűrűségfüggvény integrálja</a></li>
+<li class="chapter" data-level="3.2.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#valószínűség-vs-relatív-gyakoriság"><i class="fa fa-check"></i><b>3.2.3</b> Valószínűség vs Relatív Gyakoriság</a></li>
+<li class="chapter" data-level="3.2.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#centrális-határeloszlás-tétel-cht"><i class="fa fa-check"></i><b>3.2.4</b> Centrális Határeloszlás Tétel (CHT)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#inverz-értékek"><i class="fa fa-check"></i><b>3.2.5</b> Inverz Értékek</a></li>
+<li class="chapter" data-level="3.2.6" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-standard-normális-eloszlás"><i class="fa fa-check"></i><b>3.2.6</b> A Standard Normális Eloszlás</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#az-exponenciális-eloszlás"><i class="fa fa-check"></i><b>3.3</b> Az Exponenciális eloszlás</a></li>
+<li class="chapter" data-level="3.4" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#a-varianciahányados-pythonban---kokain-a-balatonban"><i class="fa fa-check"></i><b>3.4</b> A Varianciahányados Pythonban - Kokain a Balatonban</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html"><a href="leíró-statisztika-ismétlés-és-valószínűségszámítás-alapok.html#további-minőségi-ismérvek-és-a-kokainmennyiség"><i class="fa fa-check"></i><b>3.4.1</b> További minőségi ismérvek és a kokainmennyiség</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html"><i class="fa fa-check"></i><b>4</b> Eloszlások és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#véletlenszám-generálás-és-mintavételezés"><i class="fa fa-check"></i><b>4.1</b> Véletlenszám generálás és Mintavételezés</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintagenerálás-általános-elve"><i class="fa fa-check"></i><b>4.1.1</b> A mintagenerálás általános elve</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#nem-egyenletes-eloszlású-minták-generálása"><i class="fa fa-check"></i><b>4.1.2</b> Nem egyenletes eloszlású minták generálása</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#elvi-eloszlás-vs-megfigyelt-minta"><i class="fa fa-check"></i><b>4.2</b> Elvi Eloszlás vs Megfigyelt Minta</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#az-elvi-eloszlás-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.1</b> Az elvi eloszlás alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.2" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-megfigyelt-minta-alapján-számolt-statisztikai-mutatók"><i class="fa fa-check"></i><b>4.2.2</b> A megfigyelt minta alapján számolt statisztikai mutatók</a></li>
+<li class="chapter" data-level="4.2.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#a-mintavételi-hiba-mvh-koncepciója"><i class="fa fa-check"></i><b>4.2.3</b> A mintavételi hiba (MVH) koncepciója</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#statisztikai-sokaságok-fae-mintavételezése"><i class="fa fa-check"></i><b>4.3</b> Statisztikai sokaságok FAE mintavételezése</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="eloszlások-és-mintavételezés.html"><a href="eloszlások-és-mintavételezés.html#ismételt-mintavételezés-resampling"><i class="fa fa-check"></i><b>4.3.1</b> Ismételt Mintavételezés (<em>Resampling</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html"><i class="fa fa-check"></i><b>5</b> A becsléselmélet alapjai</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#ismétlés-balaton-átúszás-eredmények-és-ezek-fae-mintái"><i class="fa fa-check"></i><b>5.1</b> Ismétlés: Balaton átúszás eredmények és ezek FAE mintái</a></li>
+<li class="chapter" data-level="5.2" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2</b> A torzítatlanság fogalma</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-aszimptotikus-torzítatlanság-fogalma"><i class="fa fa-check"></i><b>5.2.1</b> Az aszimptotikus torzítatlanság fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-korrigált-mintavariancia"><i class="fa fa-check"></i><b>5.3</b> A korrigált mintavariancia</a></li>
+<li class="chapter" data-level="5.4" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-medián-torzítatlansága"><i class="fa fa-check"></i><b>5.4</b> A medián torzítatlansága</a></li>
+<li class="chapter" data-level="5.5" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-standard-hiba-sh-fogalma"><i class="fa fa-check"></i><b>5.5</b> A Standard Hiba (<em>SH</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#a-konzisztens-becslés-fogalma"><i class="fa fa-check"></i><b>5.5.1</b> A konzisztens becslés fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#az-átlagos-négyzetes-hiba-mse-fogalma"><i class="fa fa-check"></i><b>5.6</b> Az átlagos négyzetes hiba (<em>MSE</em>) fogalma</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="a-becsléselmélet-alapjai.html"><a href="a-becsléselmélet-alapjai.html#különböző-becslőfüggvények-összehasonlítása"><i class="fa fa-check"></i><b>5.6.1</b> Különböző becslőfüggvények összehasonlítása</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html"><i class="fa fa-check"></i><b>6</b> A sokasági átlag intervallumbecslése</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#ismétlés-az-átlag-standard-hibája-a-balaton-átúszás-eredményeken"><i class="fa fa-check"></i><b>6.1</b> Ismétlés: Az átlag standard hibája a Balaton átúszás eredményeken</a></li>
+<li class="chapter" data-level="6.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-mintaátlagok-eloszlása"><i class="fa fa-check"></i><b>6.2</b> A mintaátlagok eloszlása</a></li>
+<li class="chapter" data-level="6.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-sokasági-átlag-konfidencia-intervalluma"><i class="fa fa-check"></i><b>6.3</b> A sokasági átlag konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#az-átlag-konfidencia-intervallumának-általános-alakja"><i class="fa fa-check"></i><b>6.3.1</b> Az átlag konfidencia-intervallumának általános alakja</a></li>
+<li class="chapter" data-level="6.3.2" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-megbízhatóságának-ellenőrzése"><i class="fa fa-check"></i><b>6.3.2</b> A konfidencia-intervallum megbízhatóságának ellenőrzése</a></li>
+<li class="chapter" data-level="6.3.3" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-két-fontos-tulajdonsága"><i class="fa fa-check"></i><b>6.3.3</b> 3.3. A konfidencia-intervallum két fontos tulajdonsága</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#intervallumbecslés-a-gyakorlatban"><i class="fa fa-check"></i><b>6.4</b> Intervallumbecslés a gyakorlatban</a>
+<ul>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-altatók-hatékonysága"><i class="fa fa-check"></i>1. feladat: Altatók hatékonysága</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#a-feladat-megoldás"><i class="fa fa-check"></i>1/a) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#b-feladat-megoldás"><i class="fa fa-check"></i>1/b) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#c-feladat-megoldás"><i class="fa fa-check"></i>1/c) feladat megoldás</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-10"><i class="fa fa-check"></i>2. feladat</a></li>
+<li class="chapter" data-level="" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#feladat-megoldás"><i class="fa fa-check"></i>2. feladat megoldás</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#összefoglalás-az-átlag-konfidencia-intervallumairól"><i class="fa fa-check"></i><b>6.5</b> Összefoglalás az átlag konfidencia-intervallumairól</a></li>
+<li class="chapter" data-level="6.6" data-path="a-sokasági-átlag-intervallumbecslése.html"><a href="a-sokasági-átlag-intervallumbecslése.html#esettanulmány"><i class="fa fa-check"></i><b>6.6</b> Esettanulmány</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html"><i class="fa fa-check"></i><b>7</b> További FAE becslések és a Bootstrap módszer</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-konfidencia-intervallumok-két-általános-tulajdonsága"><i class="fa fa-check"></i><b>7.1</b> A Konfidencia-intervallumok két általános tulajdonsága</a></li>
+<li class="chapter" data-level="7.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#arányok-konfidencia-intervalluma"><i class="fa fa-check"></i><b>7.2</b> Arányok konfidencia-intervalluma</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#mintaelemszám-meghatározása-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.1</b> Mintaelemszám meghatározása aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.2" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#szükséges-minimális-elemszám-aránybecsléshez"><i class="fa fa-check"></i><b>7.2.2</b> Szükséges minimális elemszám aránybecsléshez</a></li>
+<li class="chapter" data-level="7.2.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#aránybecslés-a-statsmodels-csomaggal"><i class="fa fa-check"></i><b>7.2.3</b> Aránybecslés a <code>statsmodels</code> csomaggal</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-bootstrap-becslések-általános-elve"><i class="fa fa-check"></i><b>7.3</b> A Bootstrap becslések általános elve</a></li>
+<li class="chapter" data-level="7.4" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-medián-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.4</b> A Medián Bootstrap intervallumbecslése</a></li>
+<li class="chapter" data-level="7.5" data-path="további-fae-becslések-és-a-bootstrap-módszer.html"><a href="további-fae-becslések-és-a-bootstrap-módszer.html#a-szórás-bootstrap-intervallumbecslése"><i class="fa fa-check"></i><b>7.5</b> A Szórás Bootstrap intervallumbecslése</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html"><i class="fa fa-check"></i><b>8</b> Becslések EV és R mintából</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#intervallumbecslés-visszatevés-nélküli-egyszerű-véletlen-ev-mintákból"><i class="fa fa-check"></i><b>8.1</b> Intervallumbecslés visszatevés nélküli egyszerű véletlen (EV) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.1</b> Átlag becslése EV mintákból</a></li>
+<li class="chapter" data-level="8.1.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#arány-becslése-ev-mintákból"><i class="fa fa-check"></i><b>8.1.2</b> Arány becslése EV mintákból</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#átlag-becslése-arányosan-rétegzett-ar-mintákból"><i class="fa fa-check"></i><b>8.2</b> Átlag becslése Arányosan Rétegzett (AR) mintákból</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="becslések-ev-és-r-mintából.html"><a href="becslések-ev-és-r-mintából.html#az-ar-mintavételek-hatékonysága"><i class="fa fa-check"></i><b>8.2.1</b> Az AR mintavételek hatékonysága</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html"><i class="fa fa-check"></i><b>9</b> Hipotézisvizsgálat alapjai</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-alapgondolata"><i class="fa fa-check"></i><b>9.1</b> A hipotézisvizsgálat alapgondolata</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-p-érték-fogalma"><i class="fa fa-check"></i><b>9.1.1</b> A p-érték fogalma</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-t-próba"><i class="fa fa-check"></i><b>9.2</b> A sokasági átlagra vonatkozó <em>t-próba</em></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-beépített-függvénnyel"><i class="fa fa-check"></i><b>9.2.1</b> A <em>t-próba</em> beépített függvénnyel</a></li>
+<li class="chapter" data-level="9.2.2" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-t-próba-előfeltételei"><i class="fa fa-check"></i><b>9.2.2</b> A <em>t-próba</em> előfeltételei</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-átlagra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.3</b> A sokasági átlagra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.4" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-sokasági-arányra-vonatkozó-z-próba"><i class="fa fa-check"></i><b>9.4</b> A sokasági arányra vonatkozó <em>z-próba</em></a></li>
+<li class="chapter" data-level="9.5" data-path="hipotézisvizsgálat-alapjai.html"><a href="hipotézisvizsgálat-alapjai.html#a-hipotézisvizsgálat-menete-madártávlatból"><i class="fa fa-check"></i><b>9.5</b> A hipotézisvizsgálat menete madártávlatból</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html"><i class="fa fa-check"></i><b>10</b> Egymintás és Kétmintás próbák</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-szórásra-vonatkozó-chi2-próba"><i class="fa fa-check"></i><b>10.1</b> A szórásra vonatkozó <span class="math inline">\(\chi^2\)</span>-próba</a></li>
+<li class="chapter" data-level="10.2" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#a-kétmintás-hipotézisvizsgálatok-elve"><i class="fa fa-check"></i><b>10.2</b> A kétmintás hipotézisvizsgálatok elve</a></li>
+<li class="chapter" data-level="10.3" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-átlagokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.3</b> Az átlagokra vonatkozó kétmintás <em>z-próba</em></a></li>
+<li class="chapter" data-level="10.4" data-path="egymintás-és-kétmintás-próbák.html"><a href="egymintás-és-kétmintás-próbák.html#az-arányokra-vonatkozó-kétmintás-z-próba"><i class="fa fa-check"></i><b>10.4</b> Az arányokra vonatkozó kétmintás <em>z-próba</em></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html"><i class="fa fa-check"></i><b>11</b> Nemparaméteres próbák</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#nemparaméteres-próbák-elve"><i class="fa fa-check"></i><b>11.1</b> Nemparaméteres próbák elve</a></li>
+<li class="chapter" data-level="11.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#illeszkedésvizsgálatok"><i class="fa fa-check"></i><b>11.2</b> Illeszkedésvizsgálatok</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#reprezentativitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.1</b> Reprezentativitás vizsgálat</a></li>
+<li class="chapter" data-level="11.2.2" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#normalitás-vizsgálat"><i class="fa fa-check"></i><b>11.2.2</b> Normalitás vizsgálat</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="nemparaméteres-próbák.html"><a href="nemparaméteres-próbák.html#függetlenségvizsgálatok-homogenitásvizsgálatok"><i class="fa fa-check"></i><b>11.3</b> Függetlenségvizsgálatok (homogenitásvizsgálatok)</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html"><i class="fa fa-check"></i><b>12</b> Kétváltozós lineáris regresszió</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#budapesti-lakások-vizsgálata"><i class="fa fa-check"></i><b>12.1</b> Budapesti lakások vizsgálata</a></li>
+<li class="chapter" data-level="12.2" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-kétváltozós-lineáris-regresszió-ols-elvű-becslése"><i class="fa fa-check"></i><b>12.2</b> A Kétváltozós Lineáris Regresszió OLS elvű becslése</a></li>
+<li class="chapter" data-level="12.3" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#az-ols-regresszió-magyarázóerejének-mérése"><i class="fa fa-check"></i><b>12.3</b> Az OLS Regresszió magyarázóerejének mérése</a></li>
+<li class="chapter" data-level="12.4" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-regresszió-magyarázóereje-nem-megfigyelt-adatok-körében"><i class="fa fa-check"></i><b>12.4</b> A Regresszió magyarázóereje nem megfigyelt adatok körében</a></li>
+<li class="chapter" data-level="12.5" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#a-modell-együtthatóinak-értelemzése"><i class="fa fa-check"></i><b>12.5</b> A modell együtthatóinak értelemzése</a></li>
+<li class="chapter" data-level="12.6" data-path="kétváltozós-lineáris-regresszió.html"><a href="kétváltozós-lineáris-regresszió.html#egy-gyakorló-példa-covid-adatokon"><i class="fa fa-check"></i><b>12.6</b> Egy gyakorló példa COVID adatokon</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html"><i class="fa fa-check"></i><b>13</b> Többváltozós OLS Regresszió alapjai</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#magyar-járások-covid-19-halálozási-arányai"><i class="fa fa-check"></i><b>13.1</b> Magyar járások COVID-19 halálozási arányai</a></li>
+<li class="chapter" data-level="13.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-többváltozós-lineáris-regresszió-ols-elvű-előállítása"><i class="fa fa-check"></i><b>13.2</b> A Többváltozós Lineáris Regresszió OLS elvű előállítása</a></li>
+<li class="chapter" data-level="13.3" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-magyarázóváltozók-marginális-hatása"><i class="fa fa-check"></i><b>13.3</b> A magyarázóváltozók marginális hatása</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#útelemzés"><i class="fa fa-check"></i><b>13.3.1</b> Útelemzés</a></li>
+<li class="chapter" data-level="13.3.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#parciális-t-próba"><i class="fa fa-check"></i><b>13.3.2</b> Parciális t-próba</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Következtető Statisztika Python Jegyzet</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-sokasági-átlag-intervallumbecslése" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> A sokasági átlag intervallumbecslése<a href="a-sokasági-átlag-intervallumbecslése.html#a-sokasági-átlag-intervallumbecslése" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ismétlés-az-átlag-standard-hibája-a-balaton-átúszás-eredményeken" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Ismétlés: Az átlag standard hibája a Balaton átúszás eredményeken<a href="a-sokasági-átlag-intervallumbecslése.html#ismétlés-az-átlag-standard-hibája-a-balaton-átúszás-eredményeken" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ugyebár a <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> a 2022-es Balaton átúszás résztvevőinek időeredményeit vizsgáltuk mintavételi és becsléselméleti szempontból elég alaposan. Töltsük is be egy <code>pandas</code> data frame-be ismét a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájl adatait. Ebben az Excelben megvan az összes résztvevő időeredménye a <code>PERC</code> oszlopban. Ez az adatsor lesz most nekünk tehát a <strong>sokaságunk</strong>.</p>
+<div class="sourceCode" id="cb627"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb627-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-1" tabindex="-1"></a><span class="co"># Elemzéshez és ábrázoláshoz szükséges csomagok betöltése</span></span>
+<span id="cb627-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb627-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb627-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-4" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb627-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-5" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb627-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-6" tabindex="-1"></a></span>
+<span id="cb627-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-7" tabindex="-1"></a><span class="co"># Adatbeolvasás data frame-be</span></span>
+<span id="cb627-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-8" tabindex="-1"></a>Balcsi <span class="op">=</span> pd.read_excel(<span class="st">&quot;LIDLBalaton2022.xlsx&quot;</span>)</span>
+<span id="cb627-9"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-9" tabindex="-1"></a></span>
+<span id="cb627-10"><a href="a-sokasági-átlag-intervallumbecslése.html#cb627-10" tabindex="-1"></a>Balcsi.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 9751 entries, 0 to 9750
+## Data columns (total 3 columns):
+##  #   Column  Non-Null Count  Dtype  
+## ---  ------  --------------  -----  
+##  0   Nev     9751 non-null   object 
+##  1   Nem     9751 non-null   object 
+##  2   PERC    9751 non-null   float64
+## dtypes: float64(1), object(2)
+## memory usage: 228.7+ KB</code></pre>
+<div class="sourceCode" id="cb629"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb629-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb629-1" tabindex="-1"></a>Balcsi.head()</span></code></pre></div>
+<pre><code>##                    Nev Nem        PERC
+## 0           Aba Attila   F  142.416667
+## 1        Abaffy Károly   F  197.883333
+## 2        Abaffy Kornél   F  197.983333
+## 3  Abelovszki Hajnalka   N  182.000000
+## 4   Abért Valentin ifj   F  222.516667</code></pre>
+<p>Meg is van akkor mind az <span class="math inline">\(N=9751\)</span> részvevőnk. Ebben a tananyagban <strong>most kizárólag az időeredmények átlagának becslésével</strong> fogunk foglalkozni.<br>
+Úgyhogy <strong>számoljuk is ki</strong>, hogy az összes átúszó, azaz a <strong>sokaság</strong>, tekintetében mi az <strong>időeredmények átlaga</strong> (<span class="math inline">\(\mu=\bar{Y}\)</span>). Ezen kívül majd jól jön még nekünk referenciaként az időeredméynek sokasági <strong>szórása</strong> (<span class="math inline">\(\sigma\)</span>) is.</p>
+<div class="sourceCode" id="cb631"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb631-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb631-1" tabindex="-1"></a>SokasagiAtlag <span class="op">=</span> np.mean(Balcsi.PERC)</span>
+<span id="cb631-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb631-2" tabindex="-1"></a>SokasagiSzoras <span class="op">=</span> np.std(Balcsi.PERC)</span>
+<span id="cb631-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb631-3" tabindex="-1"></a></span>
+<span id="cb631-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb631-4" tabindex="-1"></a>SokasagiAtlag</span></code></pre></div>
+<pre><code>## 167.52914060096398</code></pre>
+<div class="sourceCode" id="cb633"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb633-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb633-1" tabindex="-1"></a>SokasagiSzoras</span></code></pre></div>
+<pre><code>## 44.08833385551663</code></pre>
+<p>Ezeka alapján tudjuk tehát, hogy egy átlagos Balaton átúszó <span class="math inline">\(\mu=165.5\)</span> perc alatt teljesítette a távot, amitől egy konkrét versenyző saját időeredménye várhatóan <span class="math inline">\(\sigma=44.1\)</span> perccel tér el.</p>
+<p><strong>Az átlag becslése során</strong> az a feladatunk, hogy <strong>ezt a <span class="math inline">\(\mu=165.5\)</span> perces átlagot valahogy “megtippeljük”</strong> egy visszatevéses véletlen (azaz FAE) <strong>minta adatai alapján</strong>.</p>
+<p>Tehát, <strong>vegyünk is egy <span class="math inline">\(n=100\)</span> elemű mintát a Balatonátúszók sokaságából</strong> a kedvenc <span class="math inline">\(1992\)</span>-es véletlen magunk mellett, és nézzük meg, hogy <strong>mennyi a mintaátlag, azaz <span class="math inline">\(\bar{y}\)</span> értéke</strong>.</p>
+<div class="sourceCode" id="cb635"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb635-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb635-1" tabindex="-1"></a>BalcsiMinta <span class="op">=</span> Balcsi.sample(n <span class="op">=</span> <span class="dv">100</span>, replace <span class="op">=</span> <span class="va">True</span>, random_state <span class="op">=</span> <span class="dv">1992</span>)</span>
+<span id="cb635-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb635-2" tabindex="-1"></a></span>
+<span id="cb635-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb635-3" tabindex="-1"></a>MintaAtlag <span class="op">=</span> np.mean(BalcsiMinta.PERC)</span>
+<span id="cb635-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb635-4" tabindex="-1"></a></span>
+<span id="cb635-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb635-5" tabindex="-1"></a>MintaAtlag</span></code></pre></div>
+<pre><code>## 164.44033333333334</code></pre>
+<p>Tehát ebben az <span class="math inline">\(n=100\)</span> elemű <strong>mintában az átlagos átúszási idő <span class="math inline">\(164.4\)</span> perc</strong>. A <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> elvégzett okoskodásunk alapján a <strong>mintaátlag alapján úgy tudjuk lehatárolni a sokasági átlag (<span class="math inline">\(\mu\)</span>) értékét, hogy a mintaátlag értékre rámérem <span class="math inline">\(\pm\)</span> annak standard hibáját</strong>. Hiszen a standard hiba megmutatja, hogy egy véletlenszerűen kiválasztott mintavétel átlaga várhatóan mennyivel tér el a valós sokasági átlagtól (mivel a <span class="math inline">\(\bar{y}\)</span> mintaátlag alapból egy torzítatéan becslőfüggvénye a <span class="math inline">\(\mu\)</span> sokasági átlagnak).<br>
+A gondolatmenet alapján tehát azt mondhatjuk, hogy a <strong>sokasági átlag várhatóan mintaátlag <span class="math inline">\(\pm\)</span> standard hiba által lehatárolt intervallumban nyugszik</strong>.</p>
+<p>Jó hír, hogy ugyebár az <strong>átlag standard hibája sokasági szórás osztva gyök alatt mintaelemszám</strong>, azaz <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span> képlettel számolható, aminek az értékét egy mintavétel alapján is meg tudjuk közelíteni, ha a sokasági szórást, annak torzítatlan becslésével a <strong>korrigált mintaszórás</strong>sal helyettesítjük. Tehát, az <strong>egy szem <span class="math inline">\(n=100\)</span> mintából a standard hiba értéke az <span class="math inline">\(\frac{s}{\sqrt{n}}\)</span> képlettel megközelíthető</strong>.</p>
+<p>Ez alapján akkor az alábbi számolást tudjuk elkövetni a mintánkon.</p>
+<div class="sourceCode" id="cb637"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb637-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb637-1" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb637-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb637-2" tabindex="-1"></a>s <span class="op">=</span> np.std(BalcsiMinta.PERC, ddof <span class="op">=</span> <span class="dv">1</span>) <span class="co"># figyeljünk a korrekcióra!</span></span>
+<span id="cb637-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb637-3" tabindex="-1"></a>SH <span class="op">=</span> s<span class="op">/</span>np.sqrt(n)</span>
+<span id="cb637-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb637-4" tabindex="-1"></a></span>
+<span id="cb637-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb637-5" tabindex="-1"></a>[MintaAtlag <span class="op">-</span> SH, MintaAtlag <span class="op">+</span> SH]</span></code></pre></div>
+<pre><code>## [160.55804594814538, 168.3226207185213]</code></pre>
+<p>Az eredményünk alapján a valós, sokasági átlag (<span class="math inline">\(\mu\)</span>) várhatóan <span class="math inline">\(160.6\)</span> és <span class="math inline">\(168.3\)</span> perc között, azaz a <span class="math inline">\([160.6,168.3]\)</span> intervallumban helyezkedik el. Nos, <strong>az intervallumos becslésünk helyes is, hiszen a valós sokasági átlag uygebár <span class="math inline">\(\mu=167.5\)</span> perc, ami tényleg benne van a mintánk alapján lehatárolt intervallumban</strong>.</p>
+</div>
+<div id="a-mintaátlagok-eloszlása" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> A mintaátlagok eloszlása<a href="a-sokasági-átlag-intervallumbecslése.html#a-mintaátlagok-eloszlása" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Na jó-jó, egy mintavétel esetén szerencsénk is lehetett. <strong>Mennyire működik ez a standard hibás módszer jól sok-sok <span class="math inline">\(n=100\)</span> mintavétel esetében?</strong> Töltsük csak be egy data frame-be azt a táblát, ami <span class="math inline">\(10000\)</span> db <span class="math inline">\(n=100\)</span> FAE mintavétel adatait tartalmazza! Az átlalam generált Excel, ami tartalmazza a <span class="math inline">\(10000\)</span> minta adatait <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/MintaDataFrame.xlsx" target="_blank">innen</a> érhető el.</p>
+<div class="sourceCode" id="cb639"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb639-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb639-1" tabindex="-1"></a>MintaVetelek100Elem <span class="op">=</span> pd.read_excel(<span class="st">&quot;MintaDataFrame.xlsx&quot;</span>)</span>
+<span id="cb639-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb639-2" tabindex="-1"></a>MintaVetelek100Elem</span></code></pre></div>
+<pre><code>##            Elem1       Elem2       Elem3  ...      Elem98      Elem99     Elem100
+## 0     164.800000  129.066667  156.166667  ...  207.350000  159.666667  165.883333
+## 1     152.516667  212.483333  152.900000  ...  307.266667  119.783333  128.216667
+## 2     145.666667  185.266667  169.516667  ...  167.733333  228.366667  215.633333
+## 3     185.683333  120.333333  201.250000  ...  182.766667  177.666667  112.450000
+## 4     117.483333  142.350000  320.266667  ...  188.566667  189.166667   99.916667
+## ...          ...         ...         ...  ...         ...         ...         ...
+## 9995  162.333333   83.350000  146.750000  ...  164.250000  131.933333  128.183333
+## 9996  100.416667  161.433333  187.366667  ...  160.483333  168.416667  209.300000
+## 9997  146.450000  160.783333  165.483333  ...  158.816667  167.733333  183.400000
+## 9998  139.250000  140.466667  130.933333  ...  153.616667  112.366667  196.050000
+## 9999  147.316667  173.450000  106.100000  ...  185.616667  171.800000  135.166667
+## 
+## [10000 rows x 100 columns]</code></pre>
+<p>Oké, az eredményből látjuk is, hogy úgy néz ki a data frame, hogy <strong>1 sor tartalmaz 1 db 100 elemű mintát és a mintaelemeket</strong> (tehát a mintába besorsolt versenyző percben mért időeredményét) <strong>az oszlopkban tároljuk</strong>.</p>
+<p>Akkor most <strong>minden minta esetében számoljuk ki a <span class="math inline">\(\bar{y} \pm SH\)</span> intervallumot</strong>, és nézzük meg, hogy a valós <strong>sokasági átlag</strong> (<span class="math inline">\(\mu\)</span>) <strong>beleesik-e</strong> az intervallumba! Annyi <strong>előnyt is adjunk magunknak, hogy a standard hibát a sokasági szórás, azaz <span class="math inline">\(\sigma\)</span> ismeretében számoljuk ki</strong>. Tehát a <span class="math inline">\(SH = \frac{\sigma}{\sqrt{n}}\)</span> képletet alkalmazzuk. Ugye ez annyiban előny, hogy <span class="math inline">\(\sigma\)</span>-t egy db 100 elemű minta vizsgálata esetén NEM ismerjük!<br>
+A számolás során figyeljünk arra, hogy a <code>numpy</code> függvényeket <code>axis = 1</code> paraméterrel hazsnáljuk, hiszen egy db minta elemei a sorokban vannak. Illetve, a számolást mindig szorítsuk le a data frame első <span class="math inline">\(100\)</span> oszlopára, hiszen a data frame oszlopait folyamatosan bővíteni fogjuk!</p>
+<div class="sourceCode" id="cb641"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb641-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb641-1" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb641-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb641-2" tabindex="-1"></a>SH <span class="op">=</span> SokasagiSzoras <span class="op">/</span> np.sqrt(n)</span>
+<span id="cb641-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb641-3" tabindex="-1"></a></span>
+<span id="cb641-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb641-4" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;AtlagAlsoHatar&#39;</span>] <span class="op">=</span> np.mean(MintaVetelek100Elem.iloc[:,<span class="dv">0</span>:<span class="dv">100</span>], axis <span class="op">=</span> <span class="dv">1</span>) <span class="op">-</span> SH</span>
+<span id="cb641-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb641-5" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;AtlagFelsoHatar&#39;</span>] <span class="op">=</span> np.mean(MintaVetelek100Elem.iloc[:,<span class="dv">0</span>:<span class="dv">100</span>], axis <span class="op">=</span> <span class="dv">1</span>) <span class="op">+</span> SH</span>
+<span id="cb641-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb641-6" tabindex="-1"></a>MintaVetelek100Elem</span></code></pre></div>
+<pre><code>##            Elem1       Elem2  ...  AtlagAlsoHatar  AtlagFelsoHatar
+## 0     164.800000  129.066667  ...      166.852833       175.670500
+## 1     152.516667  212.483333  ...      153.617667       162.435333
+## 2     145.666667  185.266667  ...      167.870000       176.687667
+## 3     185.683333  120.333333  ...      159.025333       167.843000
+## 4     117.483333  142.350000  ...      162.144000       170.961667
+## ...          ...         ...  ...             ...              ...
+## 9995  162.333333   83.350000  ...      159.273500       168.091167
+## 9996  100.416667  161.433333  ...      159.924000       168.741667
+## 9997  146.450000  160.783333  ...      159.293500       168.111167
+## 9998  139.250000  140.466667  ...      162.015000       170.832667
+## 9999  147.316667  173.450000  ...      168.641500       177.459167
+## 
+## [10000 rows x 102 columns]</code></pre>
+<p>Oké, akkor <strong>meg is vannak</strong> az átlag intervallumos <strong>becslés</strong>ének <strong>alsó-felső határai</strong>. <strong>Számoljuk</strong> akkor <strong>ki a találati arányt</strong>!<br>
+A számoláshoz azt a trükköt alkalmazzuk, amit a <a href="Gyak02.html" target="_blank">2. heti tananyagban</a> sütüttünk el: a <code>AdatokEgyben['Normal'] &lt; 100</code> parancs egy <code>bool</code> tömböt ad vissza, amit összegezve megkapjuk a “<em>kedvező esetek</em>”, vagyis a <span class="math inline">\(\mu\)</span>-t helyesen eltaláló intervallumok darabszámát.</p>
+<div class="sourceCode" id="cb643"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb643-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb643-1" tabindex="-1"></a>MintaVetelekSzama <span class="op">=</span> <span class="bu">len</span>(MintaVetelek100Elem)</span>
+<span id="cb643-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb643-2" tabindex="-1"></a></span>
+<span id="cb643-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb643-3" tabindex="-1"></a>np.<span class="bu">sum</span>((MintaVetelek100Elem[<span class="st">&#39;AtlagAlsoHatar&#39;</span>] <span class="op">&lt;</span> SokasagiAtlag) <span class="op">&amp;</span> (MintaVetelek100Elem[<span class="st">&#39;AtlagFelsoHatar&#39;</span>] <span class="op">&gt;</span> SokasagiAtlag)) <span class="op">/</span> MintaVetelekSzama</span></code></pre></div>
+<pre><code>## 0.684</code></pre>
+<p>Nos, olybá tűnik, hogy a <span class="math inline">\(\bar{y} \pm SH\)</span> módszer csak a <strong>mintavételek kb. <span class="math inline">\(68\%\)</span>-ban találja el a valós, sokasági átalgot, azaz <span class="math inline">\(\mu\)</span>-t!</strong> Gáz Géza! Azért ennél nagyobb találati arányt szeretnénk! Mondjuk legalább valami <span class="math inline">\(90\%\)</span> környékét.</p>
+<p>Ahhoz, hogy megértsük miért alakul gyéren ennek a módszernek találati aránya, <strong>nézzünk csak rá az <span class="math inline">\(\bar{y}\)</span> mintaátlagok hisztogramjára!</strong> Most a hisztogramon nem optimalizálom az osztályközök számát, elfogadom a <code>numpy</code> alapbeállításait.</p>
+<div class="sourceCode" id="cb645"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb645-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb645-1" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;MintaAtlagok&#39;</span>] <span class="op">=</span> np.mean(MintaVetelek100Elem.iloc[:,<span class="dv">0</span>:<span class="dv">100</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb645-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb645-2" tabindex="-1"></a></span>
+<span id="cb645-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb645-3" tabindex="-1"></a>MintaVetelek100Elem.MintaAtlagok.hist()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-259-5.png" width="672" /></p>
+<p>Hoppácska! Dehát, <strong>ez itt a világ legszebb normális eloszlása!</strong></p>
+<p>Ami azért második elgondolásra <strong>teljesen logikus, mivel a Centrális Határeloszlás Tétel (CHT) dolgozik a háttérben</strong>. Ha nem ugrik be a CHT, akkor vissza az <a href="Gyak01.html" target="_blank">1. heti tananyag 2.4. fejezetéhez</a>! :)</p>
+<p>A <strong>CHT</strong> szerint ugyebár ha az <strong>adatsor elemi véletlen hatások összegződéseként állnak elő</strong>, akkor az <strong>adatsor normális eloszlás</strong>t követ. A <span class="math inline">\(\bar{y}\)</span> <strong>mintaátlagok adatsora pedig pont olyan adatsor, ami a CHT feltételnek megfelel!</strong> Hiszen a mintaátlag úgy jön ki, hogy a mintaelemeket összeadom és elosztom a minta elemszámával. <strong>Mivel a mintavétel módja FAE, így biztos lehetek benne, hogy egy mintaelem, az egy véletlen húzás, egy véletlen hatás eredménye. Aztán meg ezeket adom össze</strong>. Végén osztok <span class="math inline">\(n\)</span>-bel, de az mindig ugyan annyi, így nem változtat a lényegen.</p>
+<p>Ha pedig a <strong>sok-sok mintából számolt átlagok adatsora normális eloszlású, akkor azt is tudom, hogy milyen átlagú és milyen szórású normális eloszlást követ!</strong></p>
+<ul>
+<li>A <strong>torzítatlanság</strong> miatt tudom, hogy a mintaátlagok átlaga a sokasági átlag, azaz <span class="math inline">\(\mu\)</span>.</li>
+<li>Mintaátlagok szórása pedig ugye nem más, mint a <strong>standard hiba</strong>, tehát <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span></li>
+</ul>
+<p>Szumma szummárom, akkor a <strong>sok-sok mintából számolt mintaátlagok <span class="math inline">\(\bar{y}\)</span> adatsora az alábbi eloszlást követi</strong>: <span class="math display">\[\bar{y} \sim N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)\]</span></p>
+<p>Ezt az illeszkedést simán letesztelhetjük grafikusan is az <a href="Gyak01.html" target="_blank">1. heti tananyag 2.3. fejezetében</a> látott módon.<br>
+Figyeljük meg, hogy a <code>stats</code> csomag <code>norm.pdf</code> függvényében az átlagot a korábban kiszámolt <code>SokasagiAtlag</code>, a szórást pedig a szintén az előbb kiszámolt <code>SH</code> objektumok segítségével adom meg!</p>
+<div class="sourceCode" id="cb646"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb646-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb646-1" tabindex="-1"></a>MintaVetelek100Elem.MintaAtlagok.hist(density <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb646-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb646-2" tabindex="-1"></a>x_tengely <span class="op">=</span> np.arange(np.<span class="bu">min</span>(MintaVetelek100Elem.MintaAtlagok), np.<span class="bu">max</span>(MintaVetelek100Elem.MintaAtlagok), <span class="fl">0.01</span>)</span>
+<span id="cb646-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb646-3" tabindex="-1"></a>y_tengely <span class="op">=</span> stats.norm.pdf(x <span class="op">=</span> x_tengely, loc <span class="op">=</span> SokasagiAtlag, scale <span class="op">=</span> SH)</span>
+<span id="cb646-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb646-4" tabindex="-1"></a>plt.plot(x_tengely, y_tengely)</span>
+<span id="cb646-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb646-5" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-260-7.png" width="672" /></p>
+<p>Nagyon szép, az illeszkedés, olybá tűnik a <strong>CHT ismét működik</strong>! :)</p>
+</div>
+<div id="a-sokasági-átlag-konfidencia-intervalluma" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> A sokasági átlag konfidencia-intervalluma<a href="a-sokasági-átlag-intervallumbecslése.html#a-sokasági-átlag-konfidencia-intervalluma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nézzük akkor meg <strong>mi a valószínűsége, hogy egy véletlenszerűen kiválasztott érték egy <span class="math inline">\(N(\mu, SH)\)</span> eloszlásban a <span class="math inline">\(\mu \pm SH\)</span> intervallumba esik!</strong></p>
+<div class="sourceCode" id="cb647"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb647-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb647-1" tabindex="-1"></a>stats.norm.cdf(x <span class="op">=</span> SokasagiAtlag <span class="op">+</span> SH, loc <span class="op">=</span> SokasagiAtlag, scale <span class="op">=</span> SH) <span class="op">-</span> stats.norm.cdf(x <span class="op">=</span> SokasagiAtlag <span class="op">-</span> SH, loc <span class="op">=</span> SokasagiAtlag, scale <span class="op">=</span> SH)</span></code></pre></div>
+<pre><code>## 0.6826894921370872</code></pre>
+<p>Hoppáré! Ez is éppen kb. <span class="math inline">\(68\%\)</span>! Tehát, <strong>az, hogy egy <span class="math inline">\(\bar{y} \pm SH\)</span> becslés csak a mintavételek <span class="math inline">\(68\%\)</span>-ban pontos nagyjából egy valószínűségszámítási szükségszerűség</strong>.</p>
+<p>Kérdés, hogy <strong>mit tehetünk ez ellen? Mihez kezdhetünk, ha mondjuk nem <span class="math inline">\(68\%\)</span>-os, hanem valami jobb, mondjuk <span class="math inline">\(95\%\)</span>-os megbízhatóságú intervallumbecslést szeretnénk adni a sokasági átlagra (vagy más néven sokasági várható értékre)?</strong></p>
+<p>Az okoskodáshoz az <a href="Gyak01.html" target="_blank">1. heti tananyag 2.6. fejezetére</a> fogunk támaszkodni.</p>
+<p>Ugyanis azt tudjuk, hogy ha a <strong>mintaátlagok eloszlása</strong> az alábbi: <span class="math display">\[\bar{y} \sim N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)\]</span></p>
+<p>Akkor a <strong>standardizált/normalizált mintaátlagok eloszlása pedig standard normális eloszlású lesz</strong>: <span class="math display">\[\frac{\bar{y}-\mu}{\frac{\sigma}{\sqrt{n}}} = z \sim N(0,1)\]</span></p>
+<p><strong>Standard normális eloszlás esetén</strong> pedig <strong>mindig igaz</strong>, hogy <span class="math inline">\(P(-2&lt;z&lt;+2) \approx 95\%\)</span>. Emlékeztetőként itt az ábra az <span class="math inline">\(N(0,1)\)</span> standard normális eloszlás sűrűségfüggvényéről az 1. heti tananyag 2.6. fejezetéből.</p>
+<center>
+<img src="stnormal.png" style="width:50.0%" />
+</center>
+<p><br>Most az egyszerűség miatt vegyük a <span class="math inline">\(\approx\)</span>-ot <span class="math inline">\(=\)</span>-nek: <span class="math display">\[P(-2&lt;z&lt;+2) = 95\%\]</span></p>
+<p>Ebbe a <strong>fenti összefüggésbe beírjuk a képletet, amivel kiszámoltuk <span class="math inline">\(z\)</span>-t</strong>: <span class="math display">\[P\left(-2&lt; \frac{\bar{y}-\mu}{\frac{\sigma}{\sqrt{n}}} &lt;+2\right) = 95\%\]</span></p>
+<p>Most egyelőre azzal a feltevéssel élünk, hogy ismerjük <span class="math inline">\(\sigma\)</span>-t, azaz a sokasági szórást. Mondjuk pl. valami előzetes teljeskörű adatfelvételből. Célunk, hogy a valós, sokasági átlagot (<span class="math inline">\(\mu\)</span>-t) foglaljuk valamiféle határok közé egy darab mintaátlag (<span class="math inline">\(\bar{y}\)</span>) ismeretében (hiszen majd nem akarjuk mindig kivenni az összes lehetséges mintát). Tehát, az összefüggésből fejezzük a <span class="math inline">\(\mu\)</span> sokasági átlagot: <span class="math display">\[P\left(\bar{y}-2 \times \frac{\sigma}{\sqrt{n}}&lt; \mu &lt;+2 \times \frac{\sigma}{\sqrt{n}}\right) = 95\%\]</span></p>
+<p>Tehát, ez a fenti összefüggés azt jelenti, hogy a <strong>sokasági átlag az egy darab mintaátlag <span class="math inline">\(\pm 2SH\)</span> intervallumban van kb. <span class="math inline">\(95\%\)</span>-os valószínűséggel</strong>. Ezt hívjuk az <strong>átlag 95%-os konfidencia-intervallumának</strong>. A <span class="math inline">\(2\)</span> pedig a <span class="math inline">\(95\%\)</span>-os megbízhatósági szinthez tartozó <span class="math inline">\(k\)</span> <strong>megbízhatósági szorzó</strong>. Mindezeket pedig csupán egy darab <span class="math inline">\(n\)</span> elemű mintából ki is tudjuk számolni, ha <span class="math inline">\(\sigma\)</span>-t helyettesítjük <span class="math inline">\(s\)</span>-sel! Viszont <strong>fontos, hogy a mintánkat véletlenszerűen válasszuk ki, mert csak így kapunk a mintaátlagok eloszlására a látott normális eloszlást!</strong> Ugyebár a CHT-nak kellenek a véletlen kiválasztású mintaelemek a “<em>véletlen hatások összegződése</em>” részhez.</p>
+<div id="az-átlag-konfidencia-intervallumának-általános-alakja" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Az átlag konfidencia-intervallumának általános alakja<a href="a-sokasági-átlag-intervallumbecslése.html#az-átlag-konfidencia-intervallumának-általános-alakja" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ha <strong>átalánosságban akarjuk felírni ezt a konfidencia-intervallumot</strong>, akkor úgy szoktunk fogalmazni, hogy <span class="math inline">\(1-\alpha\)</span> <strong>megbízhatóságú intervallum</strong>ot írunk fel, ahol <span class="math inline">\(\alpha\)</span> a <strong>hibázásunk valószínűsége</strong>, tehát, annak a valószínűsége hogy a sokasági átlag <em>mégsem</em> a konfidencia-intervallumban van: <span class="math display">\[P\left(\bar{y}-z_{1-\frac{\alpha}{2}} \times \frac{\sigma}{\sqrt{n}}&lt; \mu &lt;+z_{1-\frac{\alpha}{2}} \times \frac{\sigma}{\sqrt{n}}\right) = 1- \alpha\]</span></p>
+<p>Itt a <span class="math inline">\(z\)</span> érték azt akarta jelenteni, hogy azt a <span class="math inline">\(z\)</span> <strong>értéket kell levadászni, ami esetén az “alá esés” valószínűsége a standard normális eloszlásban épp</strong> <span class="math inline">\(1-\frac{\alpha}{2}\)</span>.<br>
+Ennek okát szemlélteti az alábbi ábra.</p>
+<center>
+<img src="normal_ci.jpg" style="width:60.0%" />
+</center>
+<p><br>Ugyebár a cél az, hogy a <span class="math inline">\(z \sim N(0,1)\)</span> eloszlásban megtaláljuk azt a <span class="math inline">\(k\)</span> értéket, ahol <span class="math inline">\(P(-k &lt; z &lt; +k)=1-\alpha\)</span>. Ugyebár a <span class="math inline">\(95\%\)</span> esetén is innen kaptuk a <span class="math inline">\(2\)</span>-t. Ezt pedig akkor úgy kapjuk meg a <strong>fenti ábra alapján</strong>, hogy ha tudjuk, hogy a <span class="math inline">\(\pm k\)</span> közé esés valószínűsége <span class="math inline">\(1- \alpha\)</span>, akkor a tartományon <strong>kívülre esés valószínűsége</strong> <span class="math inline">\(\alpha\)</span>, a hibázásunk megengedett valószínűsége. Ami a normális eloszlás sűrűségfüggvényének <strong>szimmetriája miatt egyenlően oszlik el</strong> <span class="math inline">\(-k\)</span> alá és <span class="math inline">\(+k\)</span> felé. Tehát a <span class="math inline">\(+k\)</span> felé esési valószínűsége <span class="math inline">\(\alpha / 2\)</span>. De mivel a pitonban a <code>stats</code> csomag <code>norm.ppf</code> függvénye <strong>csak “alá esési” valószínűségekből dolgozik</strong>, így a <span class="math inline">\(+k\)</span> alá esés valószínűséget kell tudnunk, ami a felé esés komplementere, azaz <span class="math inline">\(1-\frac{\alpha}{2}\)</span>, ami az <strong>ábrán a narancssárga rész területe a sűrűségfüggvényben</strong>.</p>
+<p>Láthatjuk a logika szuperül működik a <span class="math inline">\(95\%\)</span>-os megíbzhatóság, azaz <span class="math inline">\(\alpha=5\%\)</span> esetére.</p>
+<div class="sourceCode" id="cb649"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb649-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb649-1" tabindex="-1"></a>alfa <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb649-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb649-2" tabindex="-1"></a></span>
+<span id="cb649-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb649-3" tabindex="-1"></a>stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>(alfa<span class="op">/</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## 1.959963984540054</code></pre>
+<p>Az eredmény nem pontosan <span class="math inline">\(2\)</span>, hanem kb. <span class="math inline">\(1.96\)</span>. Ugyebár a <strong>levezetésben kerekítettem</strong>, de a megbízhatósági szorzó számítás lényege szerintem átjött. :)</p>
+<p><strong>Szumma-szummárum</strong>. Az <strong>átlag tetszőleges megbízhatóságú intervallumbecslése / konfidencia-intervalluma általános alakban a következő módon számítható</strong>: <span class="math display">\[\bar{y} \pm k \times SH\]</span></p>
+<p>Tehát, a <strong>mintaátlagra (<span class="math inline">\(\bar{y}\)</span>) rámérjük <span class="math inline">\(\pm\)</span> a standard hiba <span class="math inline">\(k\)</span>-szorosát, ahol a <span class="math inline">\(k\)</span>, mint megbízhatósági szorzó állítja be a kívánt megbízhatósági szintet</strong>.<br>
+Ez az <strong>általános formula azért nagyon fontos, mert a későbbiekben az átlagra vonatkozó becslések során mindig csak annyit változtatunk rajta, hogy az <span class="math inline">\(SH\)</span> és a <span class="math inline">\(k\)</span> mögött álló konkrét képlet fog csak változni, de ez a fenit alaplogika végig megmarad!!</strong></p>
+</div>
+<div id="a-konfidencia-intervallum-megbízhatóságának-ellenőrzése" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> A konfidencia-intervallum megbízhatóságának ellenőrzése<a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-megbízhatóságának-ellenőrzése" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Utolsó lépésben ellenőrizzük le konfidencia-intervallumos formulánk működését, és <strong>nézzük meg, hogy a <span class="math inline">\(\sigma\)</span>-val számolt <span class="math inline">\(SH\)</span>-t használva</strong> tudunk-e <strong>egy <span class="math inline">\(98\%\)</span>-os megbízhatóságú intervallumbecslés</strong>t készíteni a Balatont átúszók időeredméyneinek átlagára a <span class="math inline">\(k=z_{1-\frac{\alpha}{2}}\)</span> megoldásunkkal.</p>
+<p>Tehát a <span class="math inline">\(10000\)</span> db mintánk <strong>mintaátlagára a mostani helyzetben</strong> a <span class="math display">\[\triangle = k \times SH = z_{1-\frac{\alpha}{2}} \times \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>távolságot kell <span class="math inline">\(\pm\)</span> felmérni. Ezt a <span class="math inline">\(\triangle\)</span> távolságot hívjuk a <strong>konfidencia-intervallum hosszának, vagy másképp a becslés teljes hibahatárának</strong>.</p>
+<p>Nézzük akkor meg, hogy egy <strong>ilyen becslés tényleg kb. <span class="math inline">\(98\%\)</span>-os találati arányt eredményez-e?</strong></p>
+<div class="sourceCode" id="cb651"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb651-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb651-1" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb651-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb651-2" tabindex="-1"></a>alfa <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> <span class="fl">0.98</span></span>
+<span id="cb651-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb651-3" tabindex="-1"></a>k <span class="op">=</span> stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb651-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb651-4" tabindex="-1"></a>SH <span class="op">=</span> SokasagiSzoras <span class="op">/</span> np.sqrt(n)</span>
+<span id="cb651-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb651-5" tabindex="-1"></a>delta <span class="op">=</span> SH <span class="op">*</span> k</span>
+<span id="cb651-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb651-6" tabindex="-1"></a></span>
+<span id="cb651-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb651-7" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;AtlagAlsoHatar&#39;</span>] <span class="op">=</span> MintaVetelek100Elem[<span class="st">&#39;MintaAtlagok&#39;</span>] <span class="op">-</span> delta</span>
+<span id="cb651-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb651-8" tabindex="-1"></a>MintaVetelek100Elem[<span class="st">&#39;AtlagFelsoHatar&#39;</span>] <span class="op">=</span> MintaVetelek100Elem[<span class="st">&#39;MintaAtlagok&#39;</span>] <span class="op">+</span> delta</span>
+<span id="cb651-9"><a href="a-sokasági-átlag-intervallumbecslése.html#cb651-9" tabindex="-1"></a>MintaVetelek100Elem.iloc[:,<span class="dv">99</span>:<span class="dv">103</span>]</span></code></pre></div>
+<pre><code>##          Elem100  AtlagAlsoHatar  AtlagFelsoHatar  MintaAtlagok
+## 0     165.883333      161.005186       181.518147    171.261667
+## 1     128.216667      147.770020       168.282980    158.026500
+## 2     215.633333      162.022353       182.535314    172.278833
+## 3     112.450000      153.177686       173.690647    163.434167
+## 4      99.916667      156.296353       176.809314    166.552833
+## ...          ...             ...              ...           ...
+## 9995  128.183333      153.425853       173.938814    163.682333
+## 9996  209.300000      154.076353       174.589314    164.332833
+## 9997  183.400000      153.445853       173.958814    163.702333
+## 9998  196.050000      156.167353       176.680314    166.423833
+## 9999  135.166667      162.793853       183.306814    173.050333
+## 
+## [10000 rows x 4 columns]</code></pre>
+<p>Oké, akkor <strong>megvannak az új intervallumbecsléseink</strong> mind a <span class="math inline">\(10000\)</span> mintára. Lássuk a pontosságukat!</p>
+<div class="sourceCode" id="cb653"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb653-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb653-1" tabindex="-1"></a>MintaVetelekSzama <span class="op">=</span> <span class="bu">len</span>(MintaVetelek100Elem)</span>
+<span id="cb653-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb653-2" tabindex="-1"></a></span>
+<span id="cb653-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb653-3" tabindex="-1"></a>np.<span class="bu">sum</span>((MintaVetelek100Elem[<span class="st">&#39;AtlagAlsoHatar&#39;</span>] <span class="op">&lt;</span> SokasagiAtlag) <span class="op">&amp;</span> (MintaVetelek100Elem[<span class="st">&#39;AtlagFelsoHatar&#39;</span>] <span class="op">&gt;</span> SokasagiAtlag)) <span class="op">/</span> MintaVetelekSzama</span></code></pre></div>
+<pre><code>## 0.9782</code></pre>
+<p>És <strong>tényleg kb. <span class="math inline">\(98\%\)</span> a találati arány</strong>, győzelem! :)</p>
+</div>
+<div id="a-konfidencia-intervallum-két-fontos-tulajdonsága" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> 3.3. A konfidencia-intervallum két fontos tulajdonsága<a href="a-sokasági-átlag-intervallumbecslése.html#a-konfidencia-intervallum-két-fontos-tulajdonsága" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A konfidencia-intervallum <strong>megbízhatósági szintjével csínján kell bánni</strong>. Ha megfigyeljük a korábbi számításainkat, akkor láthatjuk, hogy</p>
+<ul>
+<li><span class="math inline">\(95\%\)</span>-os megbízhatósághoz <span class="math inline">\(k=1.96\)</span></li>
+<li><span class="math inline">\(98\%\)</span>-os megbízhatósághoz viszont már <span class="math inline">\(k=2.3\)</span></li>
+</ul>
+<p>megbízhatósági szorzó tartozik.</p>
+<p>A <span class="math inline">\(\triangle = k \times SH\)</span> összefüggés miatt pedig könnyű látni, hogy <strong>megbízhatósági szint növelésével a becslési hibahatár nő, azaz a konfidencia-intervallum tágul</strong>. Teljesen logikus: ha <strong>nagyobb találati arányt akarok, akkor “növelni kell a hálót”, így nagyobb eséllyel akad fenn rajta a sokasági átlag</strong>.<br>
+<span class="math inline">\(100\%\)</span>-os megbízhatóság pedig egy esetben van, ha az intervallumbecslésünk a <span class="math inline">\(\pm \infty\)</span> tartomány, ami ugyebár nem túl hazsnos becslési intervallum… :)</p>
+<p>Érdemes kipróbálni a dolgot még az <em>1. fejezetben</em> kivett <span class="math inline">\(100\)</span> elemű mintán mondjuk <span class="math inline">\(\alpha=\{0.2,0.1,0.05,0.01,0.001\}\)</span> hibavalószínűségek mellett egy <code>for</code> ciklussal.<br>
+A számoláshoz felhasználom a korábban kiszámolt <code>MintaAtlag</code> és <code>SH</code> objektumokat.</p>
+<div class="sourceCode" id="cb655"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb655-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb655-1" tabindex="-1"></a>alfa_lista <span class="op">=</span> [<span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.01</span>, <span class="fl">0.001</span>]</span>
+<span id="cb655-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb655-2" tabindex="-1"></a></span>
+<span id="cb655-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb655-3" tabindex="-1"></a><span class="cf">for</span> aktualis_alfa <span class="kw">in</span> alfa_lista:</span>
+<span id="cb655-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb655-4" tabindex="-1"></a>  also_hatar <span class="op">=</span> MintaAtlag <span class="op">-</span> SH <span class="op">*</span> stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>aktualis_alfa<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb655-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb655-5" tabindex="-1"></a>  felso_hatar <span class="op">=</span> MintaAtlag <span class="op">+</span> SH <span class="op">*</span> stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>aktualis_alfa<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb655-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb655-6" tabindex="-1"></a>  <span class="bu">print</span>(</span>
+<span id="cb655-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb655-7" tabindex="-1"></a>    <span class="st">&quot;Megbízhatóság: &quot;</span><span class="op">+</span><span class="bu">str</span>((<span class="dv">1</span><span class="op">-</span>aktualis_alfa)<span class="op">*</span><span class="dv">100</span>)<span class="op">+</span><span class="st">&quot;% - Konf. Int.: [&quot;</span><span class="op">+</span></span>
+<span id="cb655-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb655-8" tabindex="-1"></a>    <span class="bu">str</span>(<span class="bu">round</span>(also_hatar,<span class="dv">2</span>))<span class="op">+</span><span class="st">&quot;, &quot;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">round</span>(felso_hatar,<span class="dv">2</span>))<span class="op">+</span><span class="st">&quot;]&quot;</span>)</span></code></pre></div>
+<pre><code>## Megbízhatóság: 80.0% - Konf. Int.: [158.79, 170.09]
+## Megbízhatóság: 90.0% - Konf. Int.: [157.19, 171.69]
+## Megbízhatóság: 95.0% - Konf. Int.: [155.8, 173.08]
+## Megbízhatóság: 99.0% - Konf. Int.: [153.08, 175.8]
+## Megbízhatóság: 99.9% - Konf. Int.: [149.93, 178.95]</code></pre>
+<p>Szépen megfigyelhető a leírt jelenség: <strong>a megbízhatóság növelésével a konfidencia-intervallum egyre csak tágul, azaz a becslési hibahatár folyamatosan nő</strong>.</p>
+<ul>
+<li><span class="math inline">\(90\%\)</span> megbízhatóság esetén az átlagos időeredményt még valahova <span class="math inline">\(157\)</span> és <span class="math inline">\(172\)</span> perc közé tippeljük,</li>
+<li><span class="math inline">\(99\%\)</span> megbízhatóságnál viszont már <span class="math inline">\(153\)</span> és <span class="math inline">\(176\)</span> perc közé!</li>
+</ul>
+<p>A jelenséget mérsékelni a <strong>mintaelemszám növelésével lehet</strong>! <strong>Nézzük meg az előző <code>for</code> ciklust egy <span class="math inline">\(n=20\)</span> elemű mintán az <span class="math inline">\(n=100\)</span> helyett!</strong> Számoljuk ki az első 20 oszlop alapján a <span class="math inline">\(\bar{y}\)</span> mintaátlagot. Mivel a kiválasztás FAE volt, így olyan lesz a dolog, mintha csak 20 elemet választottunk volna ki a mintavétel során, nem pedig 100-at. Az <span class="math inline">\(SH=\frac{\sigma}{\sqrt{n}}\)</span> is könnyen újraszámolható <span class="math inline">\(n=20\)</span> mellett.</p>
+<div class="sourceCode" id="cb657"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb657-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-1" tabindex="-1"></a>MintaAtlag20Elem <span class="op">=</span> np.mean(BalcsiMinta.PERC[<span class="dv">0</span>:<span class="dv">20</span>])</span>
+<span id="cb657-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-2" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb657-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-3" tabindex="-1"></a>SH20Elem <span class="op">=</span> SokasagiSzoras <span class="op">/</span> np.sqrt(n)</span>
+<span id="cb657-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-4" tabindex="-1"></a></span>
+<span id="cb657-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-5" tabindex="-1"></a>alfa_lista <span class="op">=</span> [<span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.01</span>, <span class="fl">0.001</span>]</span>
+<span id="cb657-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-6" tabindex="-1"></a></span>
+<span id="cb657-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-7" tabindex="-1"></a><span class="cf">for</span> aktualis_alfa <span class="kw">in</span> alfa_lista:</span>
+<span id="cb657-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-8" tabindex="-1"></a>  also_hatar <span class="op">=</span> MintaAtlag20Elem <span class="op">-</span> SH20Elem <span class="op">*</span> stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>aktualis_alfa<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb657-9"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-9" tabindex="-1"></a>  felso_hatar <span class="op">=</span> MintaAtlag20Elem <span class="op">+</span> SH20Elem <span class="op">*</span> stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>aktualis_alfa<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb657-10"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-10" tabindex="-1"></a>  <span class="bu">print</span>(</span>
+<span id="cb657-11"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-11" tabindex="-1"></a>    <span class="st">&quot;Megbízhatóság: &quot;</span><span class="op">+</span><span class="bu">str</span>((<span class="dv">1</span><span class="op">-</span>aktualis_alfa)<span class="op">*</span><span class="dv">100</span>)<span class="op">+</span><span class="st">&quot;% - Konf. Int.: [&quot;</span><span class="op">+</span></span>
+<span id="cb657-12"><a href="a-sokasági-átlag-intervallumbecslése.html#cb657-12" tabindex="-1"></a>    <span class="bu">str</span>(<span class="bu">round</span>(also_hatar,<span class="dv">2</span>))<span class="op">+</span><span class="st">&quot;, &quot;</span><span class="op">+</span><span class="bu">str</span>(<span class="bu">round</span>(felso_hatar,<span class="dv">2</span>))<span class="op">+</span><span class="st">&quot;]&quot;</span>)</span></code></pre></div>
+<pre><code>## Megbízhatóság: 80.0% - Konf. Int.: [153.24, 178.5]
+## Megbízhatóság: 90.0% - Konf. Int.: [149.66, 182.09]
+## Megbízhatóság: 95.0% - Konf. Int.: [146.55, 185.19]
+## Megbízhatóság: 99.0% - Konf. Int.: [140.48, 191.26]
+## Megbízhatóság: 99.9% - Konf. Int.: [133.43, 198.31]</code></pre>
+<p>Szépen láthatjuk, hogy az <strong>átlagos átúszási időket <span class="math inline">\(99\%\)</span>-os megbízhatósággal</strong></p>
+<ul>
+<li><span class="math inline">\(n=20\)</span> esetben <span class="math inline">\(140\)</span> és <span class="math inline">\(191\)</span> perc közé tesszük,</li>
+<li><span class="math inline">\(n=100\)</span> esetben pedig láttuk az előbb, hogy a becslés pontosabb (kisebb <span class="math inline">\(\triangle\)</span> hibahatárú): <span class="math inline">\(153\)</span> és <span class="math inline">\(176\)</span> perc közé teszi a sokasági átlagidőt.</li>
+</ul>
+<p>Nem meglepő az eredmény. Mivel a <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span> standard hiba <strong>képlet nevezőjében van az <span class="math inline">\(n\)</span> elemszám, így növelése csökkenti a standard hibát, ezen keresztül pedig a teljes <span class="math inline">\(\triangle\)</span> becslési hibahatárt</strong>. Ugyebár a <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> megállapítottuk, hogy az átlag <strong>konzisztens becslés</strong>: elemszám növekedésével a <span class="math inline">\(SH\)</span>-ja csökken, a <span class="math inline">\(0\)</span>-ba tart.</p>
+<p>Emiatt a <strong>választott <span class="math inline">\(1-\alpha\)</span> megbízhatósági szint a mintaelemszám függvénye</strong>:</p>
+<ul>
+<li>Nagyobb <span class="math inline">\(n\)</span> elemszám esetén egy <span class="math inline">\(99\%\)</span>-os megbízhatóság is elég pontos intervallumbecslést szolgáltathat,</li>
+<li>Kisebb mintaméret esetén valószínűleg meg kell elégedni valami moderáltabb (pl. <span class="math inline">\(90\%-95\%\)</span>) megbízhatósági szinttel is.</li>
+</ul>
+</div>
+</div>
+<div id="intervallumbecslés-a-gyakorlatban" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Intervallumbecslés a gyakorlatban<a href="a-sokasági-átlag-intervallumbecslése.html#intervallumbecslés-a-gyakorlatban" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ezen a ponton <strong>engedjük el a Balaton átúszókat</strong>, és <strong>próbáljuk ki az átlag konfidencia intervallum számítást olyan esetben, ahol nem ismerjük a teljes sokaságot, amiből mintát vettünk</strong>.</p>
+<div id="feladat-altatók-hatékonysága" class="section level3 unnumbered hasAnchor">
+<h3>1. feladat: Altatók hatékonysága<a href="a-sokasági-átlag-intervallumbecslése.html#feladat-altatók-hatékonysága" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A sztorink a következő.</p>
+<p>Egy gyógyszergyár egy új altató készítmény hatását vizsgálja <span class="math inline">\(10\)</span> véletlenszerűen kiválasztott inszomniában szenvedő páciensen. Mind a tíz páciens esetében feljegyezték, hogy hány órát növekedett az alvásidejük a készítmény használatát követően. Korábbi klinikai vizsgálatok alapján ismeretes, hogy az altató készítmények által kiváltott alvásidő-változás normális eloszlású, <span class="math inline">\(2\)</span> óra szórással.</p>
+<p><span class="math inline">\(Adatok = \{1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4\}\)</span></p>
+<p>Készítsünk <span class="math inline">\(95\%\)</span>-os megbízhatósággal intervallumbecslést a várható átlagos alvásidő-változásra:</p>
+<ol style="list-style-type: lower-alpha">
+<li>a megadott feltételek alapján;</li>
+<li>feltételezve, hogy az eloszlás normális, de a szórás ismeretlen!</li>
+<li>Mekkora mintára van szükség, ha ugyan ekkora megbízhatóság (95%) mellett a b) pontban kapott hibahatárt a felére kívánjuk csökkenteni?</li>
+</ol>
+</div>
+<div id="a-feladat-megoldás" class="section level3 unnumbered hasAnchor">
+<h3>1/a) feladat megoldás<a href="a-sokasági-átlag-intervallumbecslése.html#a-feladat-megoldás" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ebben az a) feladatban nagyon el vagyunk kényeztetve. Az altató hatékonyságához van egy <span class="math inline">\(n=10\)</span> elemű mintánk, aminek az adatait tételesen ismerjük. Első páciens alvásideje <span class="math inline">\(1.9\)</span> órával nőtt az altató használata után, másodiké <span class="math inline">\(0.8\)</span> órával, stb. Van egy páciens, akinek csökkent az alvásideje a gyóygszerhasználat után: az 5. delikvensé, <span class="math inline">\(0.1\)</span> órával.<br>
+Ha ezeket az adatokat elrakjuk egy <code>numpy</code> tömbbe, akkor simán kiszámolható a megfigyelt 10 páciens esetében az átlagos alvásidő növekedés, azaz <span class="math inline">\(\bar{y}\)</span></p>
+<div class="sourceCode" id="cb659"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb659-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb659-1" tabindex="-1"></a>MintaAdatok <span class="op">=</span> np.array([<span class="fl">1.9</span>, <span class="fl">0.8</span>, <span class="fl">1.1</span>, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="fl">4.4</span>, <span class="fl">5.5</span>, <span class="fl">1.6</span>, <span class="fl">4.6</span>, <span class="fl">3.4</span>])</span>
+<span id="cb659-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb659-2" tabindex="-1"></a>MintaAtlag <span class="op">=</span> np.mean(MintaAdatok)</span>
+<span id="cb659-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb659-3" tabindex="-1"></a>MintaAtlag</span></code></pre></div>
+<pre><code>## 2.3299999999999996</code></pre>
+<p>Tehát a megfigyelt páciensek esetében az átlagos alvásidő növekedés kb. <span class="math inline">\(\bar{y}=2.3\)</span> óra. Ami szép és jó, de mennyi lehet az <strong>átlagos alvásidő növekedés az inszomniás páciensek összességére, a teljes sokaságra nézve? Ehhez kell a konfidencia-intervallum! Hogy olyan betegekre is tudjunk mondani valamit, akiket a mintában NEM figyeltünk meg!</strong></p>
+<p>Itt az a) esetben minden <strong>feltételezést elfogadhatunk, amit a feladat tesz</strong>. Ebben van egy olyan rész, ami szerint “<em>korábbi kutatásokból</em>” ismerjük, hogy az alvásidő-változások szórása <span class="math inline">\(2\)</span>. Ha ezt így elhisszük, akkor azt mondhatjuk, hogy az alvásidő-változások teljes sokaságra vonatkozó szórását vehetjük <span class="math inline">\(2\)</span>-nek. Azaz, <span class="math inline">\(\sigma=2\)</span>-t “<em>hazudunk</em>” a számolások során.<br>
+<strong>FIGYELEM!</strong> Ha a feladat szövege azt akarja közölni velünk, hogy van egy sokasági szórás, egy <span class="math inline">\(\sigma\)</span>, amit ismerünk és használhatunk a számolásaink során, akkor azt mindig ilyen “<em>korábbi kutatásokból ismeretes…</em>” szövegrészbe fogja becsomagolni!</p>
+<p>Ha <strong>elfogadjuk a feltételezéseinket, akkor minden adott a konfidencia-intervallum 3. fejezetben megismert képletének alkalmazásához</strong>. Hiszen, ha <span class="math inline">\(95\%\)</span> a megbízhatóság, akkor <span class="math inline">\(\alpha=5\%\)</span>. Tegyük is ezt: alkalmazzuk a képleteket az adatainkra!</p>
+<div class="sourceCode" id="cb661"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb661-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-1" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb661-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-2" tabindex="-1"></a>alfa <span class="op">=</span> <span class="dv">1</span><span class="op">-</span><span class="fl">0.95</span></span>
+<span id="cb661-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-3" tabindex="-1"></a>szigma <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb661-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-4" tabindex="-1"></a></span>
+<span id="cb661-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-5" tabindex="-1"></a>k_szorzo <span class="op">=</span> stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb661-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-6" tabindex="-1"></a>SH <span class="op">=</span> szigma<span class="op">/</span>np.sqrt(n)</span>
+<span id="cb661-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-7" tabindex="-1"></a>delta <span class="op">=</span> k_szorzo<span class="op">*</span>SH</span>
+<span id="cb661-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-8" tabindex="-1"></a></span>
+<span id="cb661-9"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-9" tabindex="-1"></a>also <span class="op">=</span> MintaAtlag <span class="op">-</span> delta</span>
+<span id="cb661-10"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-10" tabindex="-1"></a>felso <span class="op">=</span> MintaAtlag <span class="op">+</span> delta</span>
+<span id="cb661-11"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-11" tabindex="-1"></a></span>
+<span id="cb661-12"><a href="a-sokasági-átlag-intervallumbecslése.html#cb661-12" tabindex="-1"></a>[also, felso]</span></code></pre></div>
+<pre><code>## [1.0904099353908765, 3.5695900646091228]</code></pre>
+<p>Az eredmény alapján ez az <strong>új alatató készítmény az inszomniás páciensek teljes sokaságában a 10 elemű mintánk alapján legalább <span class="math inline">\(1.09\)</span> óra és legfeljebb <span class="math inline">\(3.6\)</span> óra alvásidő növekedést okoz <span class="math inline">\(95\%\)</span>-os valószínűséggel!</strong></p>
+<p>Ennek a cég vezetése nagyon örül, mert lehet olyan reklámszlogeneket elsütni az eredményünk alapján, hogy “<em>vizsgálatok igazolják, hogy altatónk <span class="math inline">\(95\%\)</span>-os valószínűséggel legalább <span class="math inline">\(1\)</span> órával növeli a várható alvásidőt</em>”. Egy ilyen mondat pedig minden marketinges álma <em>úgymond</em>. :)</p>
+<p>De <strong>minden ilyen szép marad-e ha az alvásidők szórását nem a feltételezett</strong> <span class="math inline">\(\sigma=2\)</span>-vel, hanem a <strong>mintából számolt korrigált szórással (<span class="math inline">\(s\)</span>) számítjuk?</strong></p>
+</div>
+<div id="b-feladat-megoldás" class="section level3 unnumbered hasAnchor">
+<h3>1/b) feladat megoldás<a href="a-sokasági-átlag-intervallumbecslése.html#b-feladat-megoldás" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Itt a feladat azt mondja, hogy ne higyjünk mindenféle kétes “<em>korábbi kutatásnak</em>”, ne fogadjuk el az általuk megadott <span class="math inline">\(\sigma\)</span>-t, hanem <strong>számoljunk magunknak egy korrigált mintaszórást</strong>, azaz <span class="math inline">\(s\)</span>-t (a korrigált mintaszórás ad torzítatlan becsést a valós, sokasági <span class="math inline">\(\sigma\)</span>-ra), és számoljuk végig azzal a stanadard hibát <span class="math inline">\(SH=\frac{s}{\sqrt{n}}\)</span> módon.</p>
+<p>Viszont, ha <strong>feloldjuk azt a feltevésünk, hogy ismerjük a sokasági szórást az <span class="math inline">\(SH\)</span> számoláshoz</strong> , akkor a <strong>mintaátlagok normális helyett egy <span class="math inline">\(n-1\)</span> szabadságfokú t-eloszlást követnek</strong>.</p>
+<p>A <strong>t-eloszlás sűrűségfüggvénye az alábbi alakot ölti</strong>. Az szabadságfokokat az angol <em>degrees of freedom</em> kifejezésből <span class="math inline">\(df\)</span>-el jelöljük.</p>
+<center>
+<img src="studentdistr.png" style="width:60.0%" />
+</center>
+<p><br>Ahogy a fenti sűrűségfüggvényből is létszik Student-féle t-eloszlás valójában egy <strong>ellapított standard normális eloszlás</strong> (lásd fenti ábra). A lapítás azt akarja kifejezni, hogy az eloszlás szórása nagyobb. Hiszen nagyobb szórás esetén az eloszlás szélein lévő számértékek is nagyobb valószínűséggel következhetnek be (mivel a lapítás miatt a sűrűségfüggvény magasabban fut ezeken a helyeken), így változatosabbá, jobban szóródóvá teszik az adatsorunk.</p>
+<p>Viszont, ahogy növeljük az eloszlás szabadságfokát (<span class="math inline">\(df\)</span>), egyre jobban “<em>visszacsúcsosítjuk</em>” az eloszlást a standard normális eloszlásba. Logikus, hogy ilyenkor ezt az eloszlást használjuk, mivel a standard hiba értékébe (ami a mintaátlagok normális eloszlásának szórás paramétere) egy biztosan ismert sokasági szórás érték helyett, annak egy mintából számított becslését rakjuk, így <strong>nagyobb bizonytalanságot, nagyobb szórást viszünk az eloszlásba</strong>.</p>
+<p>Ebben a helyzetben a konfidencia-intervallum úgy módosul, hogy <span class="math inline">\(\sigma\)</span> helyére <span class="math inline">\(s\)</span> kerül a <span class="math inline">\(SH\)</span>-ban, és a <span class="math inline">\(k\)</span> megbízhatósági szorzót <span class="math inline">\(t\)</span>-eloszlásból számoljuk <span class="math inline">\(N(0,1)\)</span> eloszlás helyett: <span class="math display">\[P\left(\bar{y}-t_{1-\frac{\alpha}{2}}^{n-1} \times \frac{s}{\sqrt{n}}&lt; \mu &lt;+t_{1-\frac{\alpha}{2}}^{n-1} \times \frac{s}{\sqrt{n}}\right) = 1- \alpha\]</span></p>
+<p>Az <span class="math inline">\(n-1\)</span> szabadságfokú <span class="math inline">\(t\)</span> érték számításához a <code>scipy</code> csomag <code>t.ppf</code> függvényét vesszük elő. Teljesen hasonló logikával működik, mint a <code>norm.ppf</code> függvény (vagy mint a <code>scipy</code> bármelyik eloszlás inverz értékét számoló függvénye). A <span class="math inline">\(t\)</span>-eloszlás is szimmetrikus, tehát most is azt az értéket keressük az <span class="math inline">\(n-1\)</span> szabadságfokú <span class="math inline">\(t\)</span>-eloszlásunkban, ahol az “<em>alá esési</em>” valószínűség <span class="math inline">\(1-\frac{\alpha}{2}\)</span>. A <code>t.ppf</code> függvény <code>df</code> paraméterével állítható a szabadságfok.<br>
+Ezt a mi <span class="math inline">\(n=10\)</span> elemű mintánkra, <span class="math inline">\(95\%\)</span>-os megbízhatósági szint mellett az alábbi módon számoljuk</p>
+<div class="sourceCode" id="cb663"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb663-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb663-1" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb663-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb663-2" tabindex="-1"></a>alfa <span class="op">=</span> <span class="dv">1</span><span class="op">-</span><span class="fl">0.95</span></span>
+<span id="cb663-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb663-3" tabindex="-1"></a></span>
+<span id="cb663-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb663-4" tabindex="-1"></a>k_szorzo_z <span class="op">=</span> stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb663-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb663-5" tabindex="-1"></a>k_szorzo_t <span class="op">=</span> stats.t.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>, df <span class="op">=</span> (n<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb663-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb663-6" tabindex="-1"></a></span>
+<span id="cb663-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb663-7" tabindex="-1"></a>[k_szorzo_z, k_szorzo_t]</span></code></pre></div>
+<pre><code>## [1.959963984540054, 2.2621571628540993]</code></pre>
+<p>Láthatjuk, hogy <strong>a <span class="math inline">\(t\)</span>-eloszlású <span class="math inline">\(k\)</span> szorzó értéke érdemben nagyobb, mint a standard normális eloszlású <span class="math inline">\(k\)</span> szorzóé ugyan arra a megengedett hibavalószínűségre</strong>! Mivel a <span class="math inline">\(t\)</span>-eloszlás nagyobb valószínűséget tulajdonít az extrém magas+alacsony értékek bekövetkezésének, így ha ezt alkalmazzuk, akkor ugyan ahhoz a megbízhatósági szinthez egy magasabb <span class="math inline">\(k\)</span> megbízhatósági szorzót kapunk a <span class="math inline">\(SH\)</span>-hoz!</p>
+<p>Ezek után igazából csak annyi a feladatunk, hogy a teljes becslési hibahatárt kiszámítsuk <span class="math inline">\(\triangle = t_{1-\frac{\alpha}{2}}^{n-1} \times \frac{s}{\sqrt{n}}\)</span> módon, és ezt rámérjük <span class="math inline">\(\pm\)</span> a mintaátlagra, <span class="math inline">\(\bar{y}\)</span>-ra. Ez már mehet ugyan úgy, mint az a) feladatban.</p>
+<div class="sourceCode" id="cb665"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb665-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-1" tabindex="-1"></a>korr_szoras <span class="op">=</span> np.std(MintaAdatok, ddof <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb665-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-2" tabindex="-1"></a></span>
+<span id="cb665-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-3" tabindex="-1"></a>k_szorzo_t <span class="op">=</span> stats.t.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>, df <span class="op">=</span> (n<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb665-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-4" tabindex="-1"></a>SH <span class="op">=</span> korr_szoras<span class="op">/</span>np.sqrt(n)</span>
+<span id="cb665-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-5" tabindex="-1"></a>delta <span class="op">=</span> k_szorzo_t <span class="op">*</span> SH</span>
+<span id="cb665-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-6" tabindex="-1"></a></span>
+<span id="cb665-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-7" tabindex="-1"></a>also <span class="op">=</span> MintaAtlag <span class="op">-</span> delta</span>
+<span id="cb665-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-8" tabindex="-1"></a>felso <span class="op">=</span> MintaAtlag <span class="op">+</span> delta</span>
+<span id="cb665-9"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-9" tabindex="-1"></a></span>
+<span id="cb665-10"><a href="a-sokasági-átlag-intervallumbecslése.html#cb665-10" tabindex="-1"></a>[also, felso]</span></code></pre></div>
+<pre><code>## [0.8976775393413148, 3.7623224606586847]</code></pre>
+<p>Nem meglepő módon, a <strong>t-eloszlású megbízhatósági szorzó miatt a <span class="math inline">\(95\%\)</span>-os kinfidencia-intervallum kitágult</strong>. Annak ellenére is, hogy az <span class="math inline">\(SH\)</span>-ban gyakorlatilag nincs változás, mivel <span class="math inline">\(s=2.0022\)</span>. Az altató átlagos alvásidő növekedése a betegek teljes sokaságban, már <span class="math inline">\(0.9\)</span> és <span class="math inline">\(3.76\)</span> óra közé tehető <span class="math inline">\(95\%\)</span>-os valószínűséggel. Szóval, ebben a reálisabb helyzetben, amikor már a szórást magunknak számoljuk a mintaadatokból, és nem pedig “<em>elhisszük</em>” valakinek, akkor a bizonytalanság megnövekedése miatt alkalmazott t-eloszlásnak köszönhetően, a becslési hibahatár, a <span class="math inline">\(\triangle\)</span> kitágul. A marketingesek pedig már nem mondhatnak olyan szépeket, hogy “95%-os valószínűséggel legalább átlag <span class="math inline">\(1\)</span> órát növeli az alvásidőt az altató”. RIPSZ! :(</p>
+<p>Viszont, amíg a <strong>mintánk elemszámi kicsi</strong>, <span class="math inline">\(n \leq 30\)</span>, addig a <strong>t-eloszlású konfidencia intervallum számításának van egy előfeltétele: az adatsor, amiből a mintát vesszük normális eloszlású kell, hogy legyen!!</strong><br>
+Esetünkben ez annyit tesz, hogy az inszomniás páciensek sokaságában az <em>alvásidő normális eloszlású</em> hisztogramot mutat.</p>
+<p>Na, most itt ezt kemény <span class="math inline">\(n=10\)</span> esetben marha nehéz értelmesen megvizsgálni a minta alapján, de lessünk egy hisztogramot a megfigyelt <span class="math inline">\(10\)</span> db alvásidőre! A hisztogram osztályközeinek számát most nem optimalizáljuk, elfogadjuk az alapbeállításokat.</p>
+<div class="sourceCode" id="cb667"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb667-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb667-1" tabindex="-1"></a>plt.hist(MintaAdatok)</span>
+<span id="cb667-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb667-2" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-271-9.png" width="672" /></p>
+<p>Hát, a fene se tudja ennyiből eldönteni, de tényleg. Akár normális eloszlásúak lehetnek az alvásidők. :) Bízzunk a <em>CHT</em>-ben: az egyéni alvásidők valószínűleg véletlen hatások összegeként állnak elő, így azok adatsora a sokaságban, a nem megfigyelt <span class="math inline">\(10\)</span> elemű mintán <em>kívüli</em> világban, lehet normális eloszlású is akár. :)</p>
+<p>Maga a <em>t-eloszlás</em> egyébként egy <em>William Gosset</em> nevű angol statisztikus kreatúrája. Mr. Gosset a <em>Guiness</em> sörgyárak minőségbitosítási vezetője volt, és azt a feladatot kapta, hogy oldja meg, hogy az üveges sörök minőségbiztosítása kis mintákból is megoldható legyen. Mivel a minőségbiztosításhoz ki kell bontani az üveget és megmérni benne az összetevőket, aztán utána ezek átlagára néznek konfidencia-intervallumokat. A minőségbiztosításra kinyitott sör pedig már nem elfogyasztható. <em>Kellemetlen</em>.<br>
+Így érhető, hogy minél kevesebb üvegből akarják az egész minőségbiztit megúszni. Erre adta megoldásként Gosset a t-eloszlást. Mivel a sörökben a különböző alapanyagok értéke normális eloszlást követ.</p>
+<p>Azonban emberünk el akart büszkélkedni a saját kis elszlásával a nagy világban, ezért <em>Student álnéven</em> publikálta is az eredményeit…innen lett az eloszlás neve <em>Student-féle t-eloszlás</em>. :) Viszont nagyon nem volt előrelátó az úriemberünk, hiszen akkoriban nyilván csak a Guiness sörgyár tudott elég kevés üvegből ugyan olyan “jó” megbízhatósággal minőségbiztosítani, mintha több elemű mintát vizsgáltak volna, így <em>Mr. Gosset</em> gyorsan lebukott.</p>
+<p>Tehát, ahogy az alábbi ábra is mutatja, szegény emberünk csak a sörtermelést szerette volna hatékonyabbá tenni, de végül mindenki életét tönkretette, aki statisztikai becsléselméletet tanul. :)</p>
+<center>
+<img src="student.png" style="width:30.0%" />
+</center>
+</div>
+<div id="c-feladat-megoldás" class="section level3 unnumbered hasAnchor">
+<h3>1/c) feladat megoldás<a href="a-sokasági-átlag-intervallumbecslése.html#c-feladat-megoldás" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Node, térjünk vissza az altató készítményünk hatékonyságára. Ugyebár a t-eloszlással készített konfidencia-intervallum eléggé elkeserítő eredményt hozott: nem tudjuk azt mondani <span class="math inline">\(95\%\)</span>-os megbízhatósággal, hogy készítményünk legalább <span class="math inline">\(1\)</span> órával növeli az alvásidőt!</p>
+<p>Mi ennek az oka? Hát a <strong>magas becslési hiba, az átlagra épített konfidencia-intervallum hossza</strong>, tehát a <span class="math inline">\(\triangle\)</span>. Ez most ugye nekünk <span class="math inline">\(\pm 1.43\)</span> óra.</p>
+<div class="sourceCode" id="cb668"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb668-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb668-1" tabindex="-1"></a>delta</span></code></pre></div>
+<pre><code>## 1.4323224606586848</code></pre>
+<p>Mondjuk ezt a becslési <strong>hibahatárt szeretnénk levinni a felére</strong>, <span class="math inline">\(1.43/2\)</span>, azaz kb. <span class="math inline">\(\triangle&#39;= \pm 0.7\)</span> órára. Ezt kétféleképpen lehet elérni. Hiszen “<em>magasról nézve</em>”, a becslési hibahatár egy kéttényezős szorzat <span class="math display">\[\triangle=k \times SH\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Addig állítgatom a megbízhatósági-szintet, azaz valójában <span class="math inline">\(\alpha\)</span>-t, amíg a t-eloszlásból származó <span class="math inline">\(k\)</span> megbízhatósági szorzó olyan alacsony nem lesz, hogy az eddigi <span class="math inline">\(SH\)</span>-val szorozgatva ki nem adja a <span class="math inline">\(0.7\)</span>-es értéket <span class="math inline">\(\triangle\)</span>-re. Ez az <strong>illetlen megoldás</strong>! Hiszen lehet, hogy ehhez az <span class="math inline">\(\alpha\)</span>-t nagyon fel kell engedni, és a becslésnek nagyon alacsony lesz a megbízhatósága…az “<span class="math inline">\(55\%\)</span>-os megbízhatósággal állítható az, hogy…” nem hangzik olyan jól marketing szempontból sem.</p></li>
+<li><p>Az <strong>intelligens megoldás</strong> a mintaelemszám, azaz <span class="math inline">\(n\)</span> növelése. Az <span class="math inline">\(\alpha\)</span>-t adottnak vesszük, és így <span class="math inline">\(k\)</span>-t nem bántjuk. Persze a t-eloszlás szabadságfoka miatt az elemszám <span class="math inline">\(k\)</span>-ra is hat, de ahogy az eloszlás sűrűségfüggvényéből is látszik, kellően nagy <span class="math inline">\(n\)</span> esetén a t-eloszlás igazából a standard normálissal lesz ekvivalens, tovább tehát nem tudjuk csökkenteni <span class="math inline">\(k\)</span>-t adott <span class="math inline">\(\alpha\)</span> mellett. Tehát ekkor a <span class="math inline">\(k\)</span> lényegében fix. Ellenben <span class="math inline">\(n\)</span> növekedése miatt az <span class="math inline">\(SH\)</span> része a szorzatnak biztosan csökkeni fog, hiszen az átlagra konzisztens becslést adunk, tehát <span class="math inline">\(SH\)</span> a <span class="math inline">\(0\)</span>-ba tart <span class="math inline">\(n\)</span> növelése esetén. Ez ugye a <span class="math inline">\(SH=\frac{s}{\sqrt{n}}\)</span> összefüggésből adódik egyértelműen. Szóval az <span class="math inline">\(s\)</span>-t (vagy éppen <span class="math inline">\(\sigma\)</span>-t, ha azt ismerjük) adottnak vesszük, akkor kiszámolhatjuk, hogy mekkora <span class="math inline">\(n\)</span> szükséges a <span class="math inline">\(\triangle&#39;= \pm 0.7\)</span> óra eléréséhez hibahatár fronton.</p></li>
+</ol>
+<p>Szóval, a 2. megoldást, az elemszám növelését választva a következő összefüggésből ki kell fejezni <span class="math inline">\(n\)</span>-t: <span class="math display">\[\triangle=k \times SH = z_{1-\frac{\alpha}{2}} \times \frac{s}{\sqrt{n}}\]</span></p>
+<p>Hiszen <span class="math inline">\(\triangle\)</span> helyére beírhatjuk nemes egyszerűséggel az elérni kívánt <span class="math inline">\(\triangle\)</span>-t. A <span class="math inline">\(k\)</span> helyére azért írtam <span class="math inline">\(z_{1-\frac{\alpha}{2}}\)</span>-t és nem a t-eloszlású szprzót, mert a standard normális eloszlású megbízhatóságú szorzó értéke alá úgysem tudunk menni a t-eloszlással adott <span class="math inline">\(\alpha\)</span> mellett, hiszen a t-elsozlású sűrűségfüggvényt végtelen szabadságfok mellett is csak a standard normális eloszlásba lehet maximum “<em>visszacsúcsosítani</em>”, ahogy a b) feladat megoldásában szereplő ábrán láthattuk is.</p>
+<p>Ha pedig a fent formulából kifejeztük az elemszámot, akkor ehhez az összefüggéshez jutunk: <span class="math display">\[n=\frac{z_{1-\frac{\alpha}{2}}^2 \times s^2}{\triangle^2}\]</span></p>
+<p>Ebbe pedig gond nélkül be tudunk helyettesíteni mindent.</p>
+<div class="sourceCode" id="cb670"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb670-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb670-1" tabindex="-1"></a>delta_uj <span class="op">=</span> <span class="fl">0.7</span></span>
+<span id="cb670-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb670-2" tabindex="-1"></a></span>
+<span id="cb670-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb670-3" tabindex="-1"></a>n_uj <span class="op">=</span> k_szorzo_z<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> korr_szoras<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> delta_uj<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb670-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb670-4" tabindex="-1"></a>n_uj</span></code></pre></div>
+<pre><code>## 31.429404922781128</code></pre>
+<p>Tehát a becslési ha felezéséhez <span class="math inline">\(n=31.4\)</span> elemű minta kéne… mivel egyik betegből sem vágnánk ki <span class="math inline">\(0.4\)</span> részt a vizsgálatra, így logikus módon az eredményt kerekítsük fel <span class="math inline">\(n=32\)</span>-re. <strong>Azaz, <span class="math inline">\(32-10=22\)</span> páciensen kéne még extrában megvizsgálni az altató hatását ahhoz, hogy az átlagos alvásidő növekedést <span class="math inline">\(95\%\)</span>-os megbízhatósággal és <span class="math inline">\(\pm0.7\)</span> órás becslési hibával meg lehessen adni</strong>.<br>
+Persze, ha a mintaátlag vagy éppen a korrigált mintaszórás úgy módosul az új mintaelemek hatására, hogy a konfidencia-intervallum alsó határa továbbra sem éri el a vágyott <span class="math inline">\(1\)</span> órát, akkor tervünk dugába dőlt. Viszont, akkor ez inkább a gyógyszert fejlesztő vegyészek sara, mint a hatékonyságvizsgálatot végző statisztikusé, aki rávilágít a problémákra. :)</p>
+</div>
+<div id="feladat-10" class="section level3 unnumbered hasAnchor">
+<h3>2. feladat<a href="a-sokasági-átlag-intervallumbecslése.html#feladat-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/ESS2020.xlsx" target="_blank">ESS2020.xlsx</a> fájlban található adatbázis a 2020-ban végzett európai szociális felmérés (European Social Survey 2020 = ESS2020) 1849 magyar kitöltöjének válaszait tartalmazza 14 kérdésre (plusz van egy <em>id</em> oszlop).</p>
+<p>Ha valamelyik oszlopban üres értéket találunk, akkor az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők. Most feltesszük, hogy ez a véletlen minta visszatevéses, azaz <span class="math inline">\(FAE\)</span> is. A 6. heti tananyagban látni fogjuk, hogy ez nem is valóságtól elrugaszkodott feltevés.</p>
+<p>Az adatbázis nyers formában <a href="https://ess-search.nsd.no/en/study/172ac431-2a06-41df-9dab-c1fd8f3877e7" target="_blank">eről a linkről</a> elérhető egy ingyenes regisztráció után.</p>
+<p><strong>Feladatunk</strong> a mintavétel alapján megbecsülni, hogy hogy egy átlagos magyar polgár <span class="math inline">\(97\%\)</span>-os megbízhatósággal várhatóan legalább és legfeljebb hány percet internetezik naponta!</p>
+</div>
+<div id="feladat-megoldás" class="section level3 unnumbered hasAnchor">
+<h3>2. feladat megoldás<a href="a-sokasági-átlag-intervallumbecslése.html#feladat-megoldás" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Először is töltsök be az adatbázist <code>pandas</code> data frame-be és nézzük meg az elemszámot a feladat szempontjából releváns <code>NetUsePerDay_Minutes</code> oszlopban!</p>
+<div class="sourceCode" id="cb672"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb672-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb672-1" tabindex="-1"></a>ESS <span class="op">=</span> pd.read_excel(<span class="st">&quot;ESS2020.xlsx&quot;</span>)</span>
+<span id="cb672-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb672-2" tabindex="-1"></a>ESS.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 1849 entries, 0 to 1848
+## Data columns (total 15 columns):
+##  #   Column                          Non-Null Count  Dtype  
+## ---  ------                          --------------  -----  
+##  0   id                              1849 non-null   int64  
+##  1   PoliticalRadioTVPerDay_Minutes  1796 non-null   float64
+##  2   NetUsePerDay_Minutes            1099 non-null   float64
+##  3   TrustInParlament                1849 non-null   object 
+##  4   PoliticalPartyPref              1849 non-null   object 
+##  5   Education_Years                 1830 non-null   float64
+##  6   WeeklyWork_Hours                685 non-null    float64
+##  7   Region                          1849 non-null   object 
+##  8   County                          1849 non-null   object 
+##  9   SecretGroupInfluenceWorldPol    1849 non-null   object 
+##  10  ScientistsDecievePublic         1849 non-null   object 
+##  11  COVID19                         1849 non-null   object 
+##  12  ContactCOVID19                  1849 non-null   object 
+##  13  GetVaccince                     1849 non-null   object 
+##  14  SomeContactCOVID19              1849 non-null   object 
+## dtypes: float64(4), int64(1), object(10)
+## memory usage: 216.8+ KB</code></pre>
+<div class="sourceCode" id="cb674"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb674-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb674-1" tabindex="-1"></a>n <span class="op">=</span> ESS.NetUsePerDay_Minutes.count() <span class="co"># így nem számoljuk be az üres értékeket</span></span>
+<span id="cb674-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb674-2" tabindex="-1"></a>n</span></code></pre></div>
+<pre><code>## 1099</code></pre>
+<p>Szóval, az üres értékeket nem számolva, a releváns oszlop <code>count</code> metódusával megtudhattuk, hogy az internetezési idő esetében <span class="math inline">\(n=1099\)</span> elemű mintából főzhetünk. <strong>Ez bőven nagy minta</strong>, mivel ebből a tárgyból közmegegyezéssel <strong>az <span class="math inline">\(n &gt; 30\)</span> eseteket nagy mintának tekintjük</strong>, ahogy az 1/b) feladat megoldásában megadtuk. Emiatt <strong>nem kell az intrenetezési idők normális eloszlását sem vizsgálni az intervallumbecslés elvégzéséhez <span class="math inline">\(s\)</span>-t és t-eloszlást használva</strong>!</p>
+<p>Mehetünk simán előre a <span class="math inline">\(\triangle = t_{1-\frac{\alpha}{2}}^{n-1} \times \frac{s}{\sqrt{n}}\)</span> képletet használva.</p>
+<div class="sourceCode" id="cb676"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb676-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-1" tabindex="-1"></a>n <span class="op">=</span> ESS.NetUsePerDay_Minutes.count() <span class="co"># így nem számoljuk be az üres értékeket</span></span>
+<span id="cb676-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-2" tabindex="-1"></a></span>
+<span id="cb676-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-3" tabindex="-1"></a>minta_atlag <span class="op">=</span> np.mean(ESS.NetUsePerDay_Minutes)</span>
+<span id="cb676-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-4" tabindex="-1"></a>korr_szoras <span class="op">=</span> np.std(ESS.NetUsePerDay_Minutes, ddof <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb676-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-5" tabindex="-1"></a></span>
+<span id="cb676-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-6" tabindex="-1"></a>SH <span class="op">=</span> korr_szoras <span class="op">/</span> np.sqrt(n)</span>
+<span id="cb676-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-7" tabindex="-1"></a></span>
+<span id="cb676-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-8" tabindex="-1"></a>alfa <span class="op">=</span> <span class="dv">1</span><span class="op">-</span><span class="fl">0.97</span></span>
+<span id="cb676-9"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-9" tabindex="-1"></a>k_szorzo_t <span class="op">=</span> stats.t.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>, df <span class="op">=</span> (n<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb676-10"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-10" tabindex="-1"></a></span>
+<span id="cb676-11"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-11" tabindex="-1"></a>delta <span class="op">=</span> k_szorzo_t <span class="op">*</span> SH</span>
+<span id="cb676-12"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-12" tabindex="-1"></a></span>
+<span id="cb676-13"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-13" tabindex="-1"></a>also <span class="op">=</span> minta_atlag <span class="op">-</span> delta</span>
+<span id="cb676-14"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-14" tabindex="-1"></a>felso <span class="op">=</span> minta_atlag <span class="op">+</span> delta</span>
+<span id="cb676-15"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-15" tabindex="-1"></a></span>
+<span id="cb676-16"><a href="a-sokasági-átlag-intervallumbecslése.html#cb676-16" tabindex="-1"></a>[also, felso]</span></code></pre></div>
+<pre><code>## [171.77362310362497, 190.81418399373626]</code></pre>
+<p>Tehát, az <span class="math inline">\(n=1099\)</span> elemű mintánk alapján azt mondhatjuk, hogy az átlagos magyar <span class="math inline">\(97\%\)</span>-os megbízhatósággal legalább napi <span class="math inline">\(171.8\)</span> percet és legfeljebb napi <span class="math inline">\(190.8\)</span> percet tölt internetezéssel.</p>
+<p>Az eredményünk nem nagyon változik, ha a <span class="math inline">\(k\)</span> megbízhatósági szorzót standard normális eloszlásból számoljuk t-eloszlás helyett, hiszen az <span class="math inline">\(n\)</span> olyan nagy, hogy az <span class="math inline">\(n-1\)</span> szbadságfokú t-eloszlás sűrűségfüggvénye lényegében semmiben nem fog különbözni a standard normális eloszlás sűrűségfüggvényétől.</p>
+<div class="sourceCode" id="cb678"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb678-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb678-1" tabindex="-1"></a>alfa <span class="op">=</span> <span class="dv">1</span><span class="op">-</span><span class="fl">0.97</span></span>
+<span id="cb678-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb678-2" tabindex="-1"></a>k_szorzo_z <span class="op">=</span> stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb678-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb678-3" tabindex="-1"></a></span>
+<span id="cb678-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb678-4" tabindex="-1"></a>delta <span class="op">=</span> k_szorzo_z <span class="op">*</span> SH</span>
+<span id="cb678-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb678-5" tabindex="-1"></a></span>
+<span id="cb678-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb678-6" tabindex="-1"></a>also <span class="op">=</span> minta_atlag <span class="op">-</span> delta</span>
+<span id="cb678-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb678-7" tabindex="-1"></a>felso <span class="op">=</span> minta_atlag <span class="op">+</span> delta</span>
+<span id="cb678-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb678-8" tabindex="-1"></a></span>
+<span id="cb678-9"><a href="a-sokasági-átlag-intervallumbecslése.html#cb678-9" tabindex="-1"></a>[also, felso]</span></code></pre></div>
+<pre><code>## [171.785998274992, 190.80180882236922]</code></pre>
+<p>Láthatjuk, hogy csak a tizedesjegyekben vannak nagyon minimális eltérések. Szóval <strong>nagy mintaelemszám esetén a megbízhatósági szorzó nyugodtan számolható standard normális eloszlásból is a t-eloszlás helyett</strong>.</p>
+<p>Szerencsénkre, a <code>scipy</code> csomagban az átlag konfidencia-intervallumának számítására standard normális és t-eloszlású <span class="math inline">\(k\)</span> szorzók esetében is <strong>vannak beépített függvények</strong>.<br>
+Ezek értelemszerűen <code>stats.norm.interval</code> és <code>stats.t.interval</code> nevekre hallgatnak.</p>
+<ul>
+<li>A függvények <code>scipy</code> paraméterében adjuk meg a <strong>megbízhatósági szintet</strong>, tehát NEM a “rendes” statisztika által <span class="math inline">\(\alpha\)</span>-val jelölt megengedett hibavalószínűséget!!! Ezt sajnos <strong>meg kell szokni</strong>!!</li>
+<li>A <code>loc</code> paraméterben érkezik a <strong>mintaátlag</strong>.</li>
+<li>A <code>scale</code> paraméterbe a <strong>standard hibát rakjuk</strong>, ami az <strong>adatokból közvetlenül</strong> is számítható a <code>stats.sem</code> függvénnyel.</li>
+<li>Csak a <code>stats.t.interval</code> esetén kell használni a <code>df</code> paramétert, ami értelemszerűen a szabadságfok helye.</li>
+</ul>
+<p>Először nézzük meg, hogy tényleg használható a <code>stats.sem</code> függvény <span class="math inline">\(SH\)</span> szmításra. A <code>nan_policy = 'omit'</code> paraméterbeállítással szólunk neki, hogy a hiányzó értékeket ne vegye figyelembe a számítás során, ahogy mi is tettük.</p>
+<div class="sourceCode" id="cb680"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb680-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb680-1" tabindex="-1"></a>SH_Adatokbol <span class="op">=</span> stats.sem(ESS.NetUsePerDay_Minutes, nan_policy <span class="op">=</span> <span class="st">&#39;omit&#39;</span>)</span>
+<span id="cb680-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb680-2" tabindex="-1"></a></span>
+<span id="cb680-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb680-3" tabindex="-1"></a>[SH_Adatokbol, SH]</span></code></pre></div>
+<pre><code>## [4.381340690645104, 4.381340690645097]</code></pre>
+<p>Egyezük, szuper! :)</p>
+<p>Most pedig szépen használhatjuk a kétféle eloszlássa dolgozó konfidencia-intervallum számító függvényt is.</p>
+<div class="sourceCode" id="cb682"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb682-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb682-1" tabindex="-1"></a>stats.norm.interval(</span>
+<span id="cb682-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb682-2" tabindex="-1"></a>  confidence<span class="op">=</span><span class="fl">0.97</span>,</span>
+<span id="cb682-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb682-3" tabindex="-1"></a>  loc<span class="op">=</span>np.mean(ESS.NetUsePerDay_Minutes),</span>
+<span id="cb682-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb682-4" tabindex="-1"></a>  scale<span class="op">=</span>stats.sem(ESS.NetUsePerDay_Minutes, nan_policy <span class="op">=</span> <span class="st">&#39;omit&#39;</span>))</span></code></pre></div>
+<pre><code>## (171.78599827499198, 190.80180882236925)</code></pre>
+<div class="sourceCode" id="cb684"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb684-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb684-1" tabindex="-1"></a>  </span>
+<span id="cb684-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb684-2" tabindex="-1"></a>stats.t.interval(</span>
+<span id="cb684-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb684-3" tabindex="-1"></a>  confidence<span class="op">=</span><span class="fl">0.97</span>,</span>
+<span id="cb684-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb684-4" tabindex="-1"></a>  loc<span class="op">=</span>np.mean(ESS.NetUsePerDay_Minutes),</span>
+<span id="cb684-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb684-5" tabindex="-1"></a>  scale<span class="op">=</span>stats.sem(ESS.NetUsePerDay_Minutes, nan_policy <span class="op">=</span> <span class="st">&#39;omit&#39;</span>),</span>
+<span id="cb684-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb684-6" tabindex="-1"></a>  df <span class="op">=</span> (ESS.NetUsePerDay_Minutes.count() <span class="op">-</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## (171.77362310362494, 190.8141839937363)</code></pre>
+<p>Egyezünk a korábbi eredményeinkkel, szuperek vagyunk! :)</p>
+</div>
+</div>
+<div id="összefoglalás-az-átlag-konfidencia-intervallumairól" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Összefoglalás az átlag konfidencia-intervallumairól<a href="a-sokasági-átlag-intervallumbecslése.html#összefoglalás-az-átlag-konfidencia-intervallumairól" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ezen a ponton érdemes összefoglalni, hogy az átlag intervallumbecslése milyen feltételek mellett milyen konkrét formulák vannak.</p>
+<p>Az <strong>alapképlet a konfidencia-intervallum hosszára, azaz a becslési hibahatárra</strong>: <span class="math display">\[\triangle = k \times SH\]</span></p>
+<ol style="list-style-type: decimal">
+<li>A sokasági szórás, alias <span class="math inline">\(\sigma\)</span> ismert.</li>
+</ol>
+<ul>
+<li><span class="math inline">\(k=z_{1-\frac{\alpha}{2}}\)</span><br></li>
+<li><span class="math inline">\(SH=\frac{\sigma}{\sqrt{n}}\)</span></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Az adatsor, amiből a mintát vettük <em>normális eloszlás</em>ú</li>
+</ol>
+<ul>
+<li><span class="math inline">\(k=t_{1-\frac{\alpha}{2}}^{n-1}\)</span><br></li>
+<li><span class="math inline">\(SH=\frac{s}{\sqrt{n}}\)</span></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>A mintánk elemszáma nagy: <span class="math inline">\(n &gt; 30\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(k=t_{1-\frac{\alpha}{2}}^{n-1}\)</span> vagy <span class="math inline">\(k=z_{1-\frac{\alpha}{2}}\)</span><br></li>
+<li><span class="math inline">\(SH=\frac{s}{\sqrt{n}}\)</span></li>
+</ul>
+<p>És ennyi, igazából, ha végiggondoljuk a 4. fejezet feladatait, ezt a <span class="math inline">\(3\)</span> esetet tudjuk elkülöníteni a <span class="math inline">\(\triangle\)</span> számítása során.</p>
+</div>
+<div id="esettanulmány" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Esettanulmány<a href="a-sokasági-átlag-intervallumbecslése.html#esettanulmány" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vizsgáljuk meg <span class="math inline">\(99\%\)</span>-os megbízhatósággal hogyan alakul az átlagos internetezéssel töltött idő a teljes magyar népességben pártpreferencia szerint!</p>
+<p>Érdekes megnézni, hogy egy <span class="math inline">\(n=1099\)</span> elemű mintában mért átlagos különbségek az egyes pártok intenetezési idejében mennyire általánosíthatók ki a pártokat támogató népesség egészére, tehát azokra az emberekre, akiket a mintában még NEM figyeltünk meg, azaz a <strong>mintaelemeken kívüli világra</strong>.</p>
+<p>Ehhez az út ott kezdődik, hogy a nominális ismérvünk, azaz a pártpreferemcia egyedi értékei szerint vesszük az átlaggal vizsgált mennyiségi ismérv részátlagait, és ezen részátlagok <span class="math inline">\(SH\)</span>-it. Ezt a kiinduló data frame <code>groupby</code> metódusával gyorsan meg tudjuk oldani.</p>
+<div class="sourceCode" id="cb686"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb686-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb686-1" tabindex="-1"></a><span class="co"># Először megtisztítjuk a &#39;NetUsePerDay_Minutes&#39; oszlop üres értékeitől a data frame-t</span></span>
+<span id="cb686-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb686-2" tabindex="-1"></a>df_szurt <span class="op">=</span> ESS.loc[ESS.NetUsePerDay_Minutes.notna(),:]</span>
+<span id="cb686-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb686-3" tabindex="-1"></a></span>
+<span id="cb686-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb686-4" tabindex="-1"></a>PartPrefKimutatas <span class="op">=</span> df_szurt.groupby(<span class="st">&quot;PoliticalPartyPref&quot;</span>).agg(</span>
+<span id="cb686-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb686-5" tabindex="-1"></a>  Elemszam <span class="op">=</span> (<span class="st">&#39;NetUsePerDay_Minutes&#39;</span>, <span class="st">&#39;count&#39;</span>),</span>
+<span id="cb686-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb686-6" tabindex="-1"></a>  Atlag <span class="op">=</span> (<span class="st">&quot;NetUsePerDay_Minutes&quot;</span>, np.mean),</span>
+<span id="cb686-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb686-7" tabindex="-1"></a>  SH <span class="op">=</span> (<span class="st">&quot;NetUsePerDay_Minutes&quot;</span>, stats.sem)</span>
+<span id="cb686-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb686-8" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## &lt;string&gt;:2: FutureWarning: The provided callable &lt;function mean at 0x00000135D71513A0&gt; is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.</code></pre>
+<div class="sourceCode" id="cb688"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb688-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb688-1" tabindex="-1"></a>PartPrefKimutatas</span></code></pre></div>
+<pre><code>##                     Elemszam       Atlag         SH
+## PoliticalPartyPref                                 
+## Egyesült Ellenzék        182  228.791209  12.500299
+## Egyéb                     13  129.230769  20.489570
+## Fidesz-KDNP              215  158.711628   8.225458
+## Nem Ismert               689  176.776488   5.486396</code></pre>
+<p>Ha ezzel megvagyunk, akkor nekiállhatunk kiszámolni a <span class="math inline">\(99\%\)</span> megbízhatóságú konfidencia-intervallumokat. Az <em>Egyéb</em> pártokat preferálók kivételével szép, nagy mintánk van mindenhol, így nincs nagy jelentősége, hogy <em>t</em> vagy <em>standard normális</em> eloszlásból számoljuk a <span class="math inline">\(k\)</span> megbízhatósági szorzót. De mivel az <em>Egyéb</em> esetben csak <span class="math inline">\(n=13\)</span>, így ott biztonságosabb, ha a magasabb <span class="math inline">\(k\)</span>-t eredményező <span class="math inline">\(t(13-1)\)</span> eloszlás alapján dolgozunk a konfidencia-intervallum számolásakor. Mivel a többi párt esetében ennek nincs jelentősége, így egyszerűbb az elétünk, ha a többi esetben a <span class="math inline">\(k\)</span>-t a megfelelő <span class="math inline">\(n-1\)</span> szabadságfokú t-eloszlásból számoljuk ki. Ezt a számolási lépést egyszerűen a <code>groupby</code>-al létrehozott data frame oszlopok bővítésével tudjuk megtenni.</p>
+<div class="sourceCode" id="cb690"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb690-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb690-1" tabindex="-1"></a>alfa <span class="op">=</span> <span class="dv">1</span><span class="op">-</span><span class="fl">0.99</span></span>
+<span id="cb690-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb690-2" tabindex="-1"></a></span>
+<span id="cb690-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb690-3" tabindex="-1"></a>PartPrefKimutatas[<span class="st">&#39;ci_low_t&#39;</span>] <span class="op">=</span> PartPrefKimutatas[<span class="st">&#39;Atlag&#39;</span>] <span class="op">-</span> PartPrefKimutatas[<span class="st">&#39;SH&#39;</span>] <span class="op">*</span> stats.t.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>, df <span class="op">=</span> (PartPrefKimutatas[<span class="st">&#39;Elemszam&#39;</span>]<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb690-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb690-4" tabindex="-1"></a>PartPrefKimutatas[<span class="st">&#39;ci_upp_t&#39;</span>] <span class="op">=</span> PartPrefKimutatas[<span class="st">&#39;Atlag&#39;</span>] <span class="op">+</span> PartPrefKimutatas[<span class="st">&#39;SH&#39;</span>] <span class="op">*</span> stats.t.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>, df <span class="op">=</span> (PartPrefKimutatas[<span class="st">&#39;Elemszam&#39;</span>]<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb690-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb690-5" tabindex="-1"></a></span>
+<span id="cb690-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb690-6" tabindex="-1"></a>PartPrefKimutatas</span></code></pre></div>
+<pre><code>##                     Elemszam       Atlag         SH    ci_low_t    ci_upp_t
+## PoliticalPartyPref                                                         
+## Egyesült Ellenzék        182  228.791209  12.500299  196.249626  261.332792
+## Egyéb                     13  129.230769  20.489570   66.644566  191.816972
+## Fidesz-KDNP              215  158.711628   8.225458  137.333678  180.089577
+## Nem Ismert               689  176.776488   5.486396  162.605159  190.947816</code></pre>
+<p>Remek! :) Ezek alapján azt mondhatjuk, hogy az egyesült ellenzék esetén egy átlagos kérdőívkitöltő <span class="math inline">\(228.8\)</span> percet netezik naponta, míg egy átlag Fidesz kitöltő csak napi <span class="math inline">\(158.7\)</span> percet.<br>
+Azonban, a teljes ellenzéki népességben az átlag netezési idő <span class="math inline">\(196\)</span> és <span class="math inline">\(261\)</span> perc között van <span class="math inline">\(99\%\)</span>-os valószínűséggel. A teljes fideszes táborban pedig az átlagos neten töltött idő csak <span class="math inline">\(137\)</span> és <span class="math inline">\(180\)</span> perc között mozog, szintén <span class="math inline">\(99\%\)</span>-os valószínűséggel.<br>
+Tehát, <span class="math inline">\(99\%\)</span>-os valószínűséggel az átlag netezési idő az Ellenzék esetében magasabb, mint a Fidesz esetében a teljes népességben is, hiszen a “legrosszabb” ellenzéki átlagérték is már <span class="math inline">\(196\)</span> perc, míg a Fidesz esetén a “legjobb” átlagidő is csak <span class="math inline">\(180\)</span> perc.<br>
+Mindez persze a különböző felületeken (tv, rádió, internet) működő médiumok irányultságát figyelembe véve egyáltalán nem meglepő. :)</p>
+<p>Ezek után telepítsünk egy <code>statsmodels</code> néven futó csomagot!</p>
+<div class="sourceCode" id="cb692"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb692-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb692-1" tabindex="-1"></a>pip install statsmodels</span></code></pre></div>
+<p>A <code>statsmodels</code> csomag szépsége, hogy van egy <code>dot_plot</code> című függvénye, amivel csudiszép vizuális megjelenítés adható a csoportátlagoknak és a konfidencia-intervallumaiknak. Ezeket az ábrákat <strong>forest diagram</strong>oknak hívják.</p>
+<p>A <code>dot_plot</code> függvény <code>points</code> paraméterébe kerülnek a mintaátlagok, míg az <code>intervals</code> paraméterbe egy olyan <span class="math inline">\(2\)</span> oszlopos data frame kerül, ami tartalmazza a konfidencia-intervallum alsó és felső határának távolságát a mintaátlagoktól abszolút értékben, azaz lényegében a <span class="math inline">\(\triangle\)</span>-t. Igen, itt egy olyan data frame kell neki, ahol mindkét oszlopban ugyan az az érték szerepel, mert ezt méri rá majd a gépállat a <code>points</code> paraméterre, mint egy <em>sugár</em>t <span class="math inline">\(\pm\)</span>.<br>
+Ahhoz, hogy szépen megjelenjenek a pártpreferenciák is, a függvénynek a <code>lines</code> paraméteren meg kell kapnia az eredménytábla soreindexeit is, hiszen a pártpreferencia értékek ott kerültek eltárolásra.</p>
+<div class="sourceCode" id="cb693"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb693-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-1" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.dotplots <span class="im">import</span> dot_plot</span>
+<span id="cb693-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-2" tabindex="-1"></a></span>
+<span id="cb693-3"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-3" tabindex="-1"></a><span class="co"># konfidencia-intervallumok méretének megadása az ábrához</span></span>
+<span id="cb693-4"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-4" tabindex="-1"></a>intervallumok <span class="op">=</span> np.<span class="bu">abs</span>(PartPrefKimutatas[[<span class="st">&quot;ci_low_t&quot;</span>, <span class="st">&quot;ci_upp_t&quot;</span>]] <span class="op">-</span> PartPrefKimutatas[[<span class="st">&quot;Atlag&quot;</span>]].values)</span>
+<span id="cb693-5"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-5" tabindex="-1"></a></span>
+<span id="cb693-6"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-6" tabindex="-1"></a>dot_plot(</span>
+<span id="cb693-7"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-7" tabindex="-1"></a>  points<span class="op">=</span>PartPrefKimutatas[<span class="st">&quot;Atlag&quot;</span>],</span>
+<span id="cb693-8"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-8" tabindex="-1"></a>  intervals <span class="op">=</span> intervallumok,</span>
+<span id="cb693-9"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-9" tabindex="-1"></a>  lines<span class="op">=</span>PartPrefKimutatas.index)</span>
+<span id="cb693-10"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-10" tabindex="-1"></a></span>
+<span id="cb693-11"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-11" tabindex="-1"></a>plt.tight_layout() <span class="co"># ne csússzanak ki a tengelyfeliratok</span></span>
+<span id="cb693-12"><a href="a-sokasági-átlag-intervallumbecslése.html#cb693-12" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-282-11.png" width="672" /></p>
+<p>Mint láthatjuk, igazából az Ellenzék átlagos netezési ideje az, ami konfidencia-intervallumokkal együtt is magasabb, mint a többi párt szavazóinak átlagos netezési ideje a teljes népességben. Sőt, a <strong>többi párt esetében azt mondhatjuk, hogy egyáltalán nem biztos, hogy a teljes népességben ezek az átlag netezési idők különböznek</strong> <span class="math inline">\(99\%\)</span>-os megbízhatósággal, <strong>mivel a konfidencia-intervallumok metszik egymást</strong>. Szóval, hiába van a megfigyelt adatok körében a Fidesznek magasabb átlag netideje, mint az Egyéb pártoknak, de kevesebb, mint a Nem ismert eseteknek, a nem megfigyelt, mintán kívüli adatok körében, azaz a teljes népességben simán lehet (<span class="math inline">\(99\%\)</span>-os megbízhatósággal), hogy a Fideszes szavazók neteznek átlag a legkevesebbet egy napon. Ehhez csak annyi kell, hogy az a Fidesz valós, sokasági átlaga a konfidencia-intervallum alsó határa körül legyen a teljes népességben, míg a többi párt (nem ismert és egyéb) átlagideje pedig a konfidencia-intervallumuk tetejénél “kössön ki” a teljes népesség körében.</p>
+<p>Érdemes még megfigyelni, hogy az Egyéb pártoknak a legszélesebb a konfidencia-intervalluma. Ez ugye azért van, mert mint láttuk a fejezet elején ide csak <span class="math inline">\(n=13\)</span> kitöltő tartozik. Így az <span class="math inline">\(SH=\frac{s}{\sqrt{n}}\)</span> összefüggés miatt érthető, hogy nagyon bizonytalanok vagyunk ennél a csoportnál az átlagos netezési idő becslésében. Ráadásul ez nem is egy teljesen pontos becslés, amit itt a konfidencia-intervallum hosszára látunk! Hiszen a kis elemszám miatt a <span class="math inline">\(k\)</span> megbízhatósági szorzót itt <span class="math inline">\(13-1\)</span> szabadságfokú t-eloszlásból számoltuk ki, de ehhez kellene az, hogy maguk a netezési idők normális eloszlást kövessenek. Viszont, az a helyzet, ahogy az alábbi hisztogram is szemlélteti, a napi netezési idők nem normális, hanem jobbra elnyúló eloszlásúak.</p>
+<div class="sourceCode" id="cb694"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb694-1"><a href="a-sokasági-átlag-intervallumbecslése.html#cb694-1" tabindex="-1"></a>ESS.NetUsePerDay_Minutes.hist()</span>
+<span id="cb694-2"><a href="a-sokasági-átlag-intervallumbecslése.html#cb694-2" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-283-13.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="a-becsléselmélet-alapjai.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="további-fae-becslések-és-a-bootstrap-módszer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-KonfIntAtlag.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
