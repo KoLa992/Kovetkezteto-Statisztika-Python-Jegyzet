@@ -131,7 +131,7 @@
 
 \title{Következtető Statisztika Python Jegyzet}
 \author{Kovács László}
-\date{2025-06-27}
+\date{2025-06-30}
 
 \begin{document}
 \maketitle
@@ -148,47 +148,42 @@
 }
 \chapter{Előhang}\label{elux151hang}
 
-\textbf{!!!FRISSÍTENI szükséges a teljes jegyzethez!}
+Ez a jegyzet hivatalosan a Budapesti Corvinus Egyetem gazdaságinformatikus hallgatóinak készült abból a célból, hogy a Statisztika II. tárgy sikeres abszolválásához szükséges elméleti fogalmakat és Python programnyelvi eszközöket egy egységes online tananyagban mutassa be. A jegyzet legfrissebb, naprakész változata Githubon folyamatosan elérhető.
 
-Ez a jegyzet hivatalosan a Budapesti Corvinus Egyetem gazdaságinformatikus hallgatóinak készült abból a célból, hogy a Statisztika II. tárgy sikeres abszolválásához szükséges Python programnyelvi elemek felelevenítésre kerüljenek.
+Viszont, a jegyzet elkészítése során arra jutottam, hogy egy kicsit általánosabb célú anyagot szeretnék készíteni: egy olyan átfogó jegyzetet, amely a Következtető Statisztika fogalmait és modern eszközeit olyan szinten mutassa be, amelyek szükségesek ahhoz, hogy a komplex prediktív statisztikai modellek és a gépi tanulás fogalmait, illetve azok matematikai és technológiai hátterét az olvasó önállóan is képes legyen feldolgozni.
+A motiváció ehhez valahonnan onnan jött, hogy azt tapasztaltam a modern statisztikai tankönyvek és kurzusok világában rengeteg olyan található már, amely gépi tanulás, azon belül is a mélytanulás és nyelvi modellek területével foglalkozik, de ezek jellemzően nem igen foglalkoznak a téma statisztikai alapfogalmaival. Vagy ismertnek veszik őket, és nem igazán részletezik a szemléletes jelentésüket sem, vagy úgy próbálják meg a komplex prediktív modelleket bemutatni, hogy a statisztikai alapokat elfedik/kihagyják. Ez utóbbi eset általában oda torkollik, hogy a predikítv és gépi tanuló modellek kapcsán nem esik szó olyan témákról, amelyek hiányos ismerete a legtöbb gyakorlati alkalmazás kudarcához vezet:
 
-Viszont, a jegyzet előkészítése során arra jutottam, hogy egy kicsit általánosabb célú anyagot szeretnék készíteni: egy \textbf{olyan bevezető jegyzetet a Python nyelvhez}, ami kimondottan a \textbf{statisztikai és adatelemzési feladatok elvégzéséhez szükséges elemeit és kiegészítő csomagjait mutatja be} teljesen kezdő szinten, minden \textbf{programozási előismeret feltételezése nélkül}.
-
-Ebből adódóan szeretném kicsit tételesen összefoglalni, hogy mire számíthat az olvasó a jegyzetben. Nem szeretek zsákba macskát árulni, így szeretném már előre letisztázni, hogy ez az anyag mivel foglalkozik a Python nyelven belül, és ami talán még fontosabb, hogy mivel \emph{nem}.
-
-A jegyzet \textbf{bemutatja}:
-
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  A Python nyelv legalapvetőbb utasításait és elemeit.
+  \textbf{Minden predikciónak van hibája} (lásd a konfidencia-intervallum fogalmát a jegyzetben)
 \item
-  A Python nyelv statisztikai-adatelemzési feladatok megoldására könnyen használható adatszerkezeteit (\texttt{numpy} és \texttt{pandas} csomagok).
-\item
-  A Python nyelv legalapvetőbb adatvizualizációs képességeit a \texttt{matplotlib} csomagon keresztül.
-\item
-  Egy egyszerűbb, leíró statisztikai és \emph{nem} modellezési célú adatelemzési folyamatban felmerülő leggyakoribb adatminőségi problémák azonosítási és megoldási módjait Python nyelven
-\item
-  A \emph{Spyder} fejlesztőkörnyezet működését és lehetőségeit adatelemzési feladatok megoldása során.
-\end{itemize}
+  \textbf{Minden modell} (legyen az bármilyen kifinomult mélytanuló modell is) valamilyen szinten \textbf{feltételezéseket és megkötéseket tesz az adatok viselkedésére és/vagy struktúrájára}
+\end{enumerate}
 
-A jegyzetnek \textbf{nem célja}:
+A \textbf{fenti két pont megértéséhez} (és így a prediktív modellek sikeres gyakorlati alkalmazásához) \textbf{pedig elengedhetetlen a következtető statisztika fogalmainak alapos ismerete}. Szóval, a \textbf{jegyzet végső célja}, hogy
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Teljes körű áttekintést adni a Python nyelv elemeiről és adatszerkezeteiről. A Pythont végig csak \emph{szkriptnyelvként} használjuk, nem pedig általános célú programnyelvként.
+  A predikítv modellezéshez és gépi tanuláshoz szükséges \textbf{következtető statisztikai alapokat megadja csak a legszükségesebb matematikai formalizmus alkalmazásával}
 \item
-  A Python minden lehetséges fejlesztőkörnyeztetét (Jupyter Notebook, Visual Studio Code, replit.com, stb.) bemutatni.
+  Ahol lehetséges a \textbf{matematikai összefüggéseket nem formálisan bizonyítva, hanem azok jelentéstartalmát szimulációkkal szemléltetve}
 \item
-  A \texttt{numpy}, \texttt{pandas} és \texttt{matplotlib} csomagok teljeskörű működéséről. Csak az alapvető leíró statisztikai és adatkezelési funkciókat tekintjük át.
+  A \textbf{következtetős statisztika modern, szimulációs alapú megoldásait is ismertesse} (pl. Bootstrap becslések) a klasszikus eszközök mellett
 \item
-  Teljes körű bemutatót adni a Python képességeiről az adatminőségi kihívások azonosítsa és kezelése területén. Tényleg csak a legalapvetőbb és leggyakrabban előforduló problémákat tekintjük át, a legegyszerűbb kezelési módokkal.
+  Megmutassa, hogy a \textbf{következtetős statisztika eszközei hogyan alkalmazhatókegy egyszerű gépi tanuló modell, a többváltozós regresszió esetében}
 \item
-  A Python képességeinek áttekintése a következtető statisztika és a statisztikai modellezés vagy éppen gépi tanulás területén (\texttt{statmodels}, \texttt{sklearn}, \texttt{tensorflow}, stb. csomagok)
-\end{itemize}
+  Mindehhez \textbf{korszerű Python nyelvi ismereteket is adjon az adatelemzés területén}
+\end{enumerate}
 
-Ezen kívül a jegyzet \textbf{feltételez némi leíró statisztikai előismeretet}. Konkrétan a következő fogalmak ismeretét veszem adottnak:
+Ennek kapcsán \textbf{személyes megjegyzés, hogy a gépi tanulás és prediktív modellezés területén szerintem jobb tankönyv nincs a világon}, mint az elsősorban a Stanford egyetem oktatói által írt és a Springer gondozásában megjelent \textbf{Introduction to Statistical Learning (ISL)}. Viszont, ez a tankönyv abba a csoportba tartozik a korábban említettek közül, amely a Következtető Statisztika fogalmait ismertnek veszi, és azok bemutatásával érdemben nem foglalkozik. A jegyzet lényege tehát nagyjából abban foglalható össze, hogy \textbf{ennek a könyvnek az értelmezéséhez szükséges statisztikai alapfogalmakat és Python programnyelvi ismereteket foglalja össze a lehető legkevesebb előismereret feltételezve}.
+
+\textbf{Python oldalról konkrétan semmilyen programozási előismeret nem szükséges} a jegyzet olvasásárhoz, a \textbf{2. fejezet} a programozás és a Python nyelv alapjaival kezd, teljesen a nulláról. \textbf{Ha} egy lelkes \textbf{gazdaságinformatikus hallgató forgatja a jegyzetet}, aki a \emph{Programozás alapjai} tárgyban a Python nyelv és a \texttt{pandas} data frame-k alapjait már tökéletesen elsajátította, akkor a 2. fejezet neki számára mértékben kihagyható. \textbf{Nyugodtan kezdhető tehát a jegyzet a 3. fejezettől a Pythonban és azon belül \texttt{pandas}-ban járatos olvasóknak}. Esetleg a 2.8-2.13. fejezetek gyors árpörgetése ajánlott, hogy a statisztikai számítások elvégzéséhez és a statisztikai adattáblák kezeléséhez szükséges Python megoldásokat felelevenítse.
+Ugyanakkor fontos megjegyezenem, hogy a \textbf{Statisztika II. tárgy tanóráin a 2. fejezetben szereplő Python tudást ismertnek feltételezzük, és nem fogunk rá külön kitérni az oktatás során!!} Szóval, ha valaki \textbf{egy kicsit is bizonytalan a Python ismereteiben, azért olvassa át ezt a 2. fejezetet is, és ha bármi nem világos, KÉRDEZZEN!!}
+Viszont, statisztikai oldalról néhány előismeretet azért feltételeztem a jegyzet megírása során. Konkrétan a \textbf{következő leíró statisztikai fogalmak ismeretét veszem adottnak}:
 
 \begin{itemize}
 \tightlist
@@ -206,8 +201,53 @@ Ezen kívül a jegyzet \textbf{feltételez némi leíró statisztikai előismere
   korreláció és pontdiagram
 \end{itemize}
 
-\textbf{Ha} egy lelkes \textbf{gazdaságinformatikus hallgató forgatja a jegyzetet}, aki a \emph{Programozás alapjai} tárgyban a Python nyelv és a \texttt{pandas} data frame-k alapjait már tökéletesen elsajátította biztosan sok ``uncsi'' részt fog találni a jegyzetben. Számára \textbf{leginkább csak a 8-13. fejezetek gyors átprögetését ajánlom}, hogy a statisztikai számítások elvégzéséhez és a statisztikai adattáblák kezeléséhez szükséges Python megoldásokat felelevenítse.
-Ugyanakkor fontos megjegyezenem, hogy a \textbf{Statisztika II. tárgy tanóráin a jelen jegyzetben szereplő tudást ismertnek feltételezzük, és nem fogunk rá külön kitérni az oktatás során!!} Szóval, ha valaki \textbf{egy kicsit is bizonytalan a Python ismereteiben, azért olvassa át ezt az ismétlő jegyzetet, és ha bármi nem világos, KÉRDEZZEN!!}
+A jegyzet céljának és alapelveinek tisztázása után, szeretném tételesen is összefoglalni, hogy mire számíthat az olvasó a jegyzetben. Nem szeretek zsákba macskát árulni, így szeretném már előre letisztázni, hogy ez az anyag mivel foglalkozik a Python nyelven és a Következtető Statisztikán belül, és ami talán még fontosabb, hogy mivel \emph{nem}.
+
+A jegyzet \textbf{bemutatja}:
+
+\begin{itemize}
+\tightlist
+\item
+  A Python nyelv legalapvetőbb utasításait és elemeit.
+\item
+  A Python nyelv statisztikai-adatelemzési feladatok megoldására könnyen használható adatszerkezeteit (\texttt{numpy} és \texttt{pandas} csomagok).
+\item
+  A Python nyelv megoldásait a valószínűségszámítás és következtető statisztika területén (\texttt{scipy} csomag \texttt{stats} modul)
+\item
+  A többváltozós lineáris regressziós modellek egyszerű kezelését és használatát Python nyelven (\texttt{statsmodels} csomag)
+\item
+  A Python nyelv legalapvetőbb adatvizualizációs képességeit a \texttt{matplotlib} csomagon keresztül.
+\item
+  Egy \emph{egyszerűbb} adatelemzési folyamatban felmerülő leggyakoribb adatminőségi problémák azonosítási és megoldási módjait Python nyelven
+\item
+  A \emph{Spyder} fejlesztőkörnyezet működését és lehetőségeit adatelemzési feladatok megoldása során.
+\item
+  A becsléselmélet és hipotézisvizsgálat alapfogalmainak és a szükséges valószínűségszámítási háttérismeretek bemutatása. Levezetések nélkül, szimulációs példákkal szemléltetve a fogalmakat.
+\item
+  A konfidencia-intervallumok számításának klasszikus, nevezetes eloszlásokon alapuló módszereinek és modern, szimulációkon alapuló megoldásainak (Bootstrap) bemutatása valós adatakon, esettanulmányokon keresztül.
+\item
+  A gyakorlatban leginkább alkalmazott egy- és kétmintás paraméteres valamint nagymintás nemparaméteres statisztikai próbák bemutatása valós adatakon, esettanulmányokon keresztül.
+\item
+  A többváltozós lineáris regresszió alapjainak bemutatása és a következtető statisztika eszközeinek alkalmazása a regressziós elemzésekben valós adatakon, esettanulmányokon keresztül.
+\end{itemize}
+
+A jegyzetnek \textbf{nem célja}:
+
+\begin{itemize}
+\tightlist
+\item
+  Teljes körű áttekintést adni a Python nyelv elemeiről és adatszerkezeteiről. A Pythont végig csak \emph{szkriptnyelvként} használjuk, nem pedig általános célú programnyelvként.
+\item
+  A Python minden lehetséges fejlesztőkörnyeztetét (Jupyter Notebook, Visual Studio Code, replit.com, stb.) bemutatni.
+\item
+  A \texttt{numpy}, \texttt{pandas}, \texttt{scipy}, \texttt{statsmodels} és \texttt{matplotlib} csomagok teljeskörű működéséről. Csak az alapvető leíró statisztikai és adatkezelési funkciókat tekintjük át a következtető statisztikai funkciók részletes bemutatása mellett.
+\item
+  Teljes körű bemutatót adni a Python képességeiről az adatminőségi kihívások azonosítsa és kezelése területén. Tényleg csak a legalapvetőbb és leggyakrabban előforduló problémákat tekintjük át, a legegyszerűbb kezelési módokkal.
+\item
+  A Python képességeinek teljeskörű áttekintése a statisztikai modellezés vagy éppen gépi tanulás területén (pl. \texttt{sklearn}, \texttt{tensorflow}, stb. csomagok)
+\item
+  A többváltozós lineáris regressziót is csak az alapok szintjén mutatja be a jegyzet. Nem kerülnek tárgyalásra részletesen a standard (Gauss-Markov) modellfeltételek, és az Ökonometria területét érdemben nem érintjük.
+\end{itemize}
 
 \chapter{Statisztikához szükséges Python nyelvi alapok}\label{statisztikuxe1hoz-szuxfcksuxe9ges-python-nyelvi-alapok}
 
@@ -2582,9 +2622,9 @@ Na, akkor mostmár tényleg készítsünk el egy ország szintű kimutatást az 
 \end{Shaded}
 
 \begin{verbatim}
-## <string>:1: FutureWarning: The provided callable <function mean at 0x000001CA046C13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
-## <string>:1: FutureWarning: The provided callable <function median at 0x000001CA04888720> is currently using SeriesGroupBy.median. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "median" instead.
-## <string>:1: FutureWarning: The provided callable <function mean at 0x000001CA046C13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
+## <string>:1: FutureWarning: The provided callable <function mean at 0x000002140ED913A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
+## <string>:1: FutureWarning: The provided callable <function median at 0x0000021412168720> is currently using SeriesGroupBy.median. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "median" instead.
+## <string>:1: FutureWarning: The provided callable <function mean at 0x000002140ED913A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
 \end{verbatim}
 
 \begin{Shaded}
@@ -4767,8 +4807,8 @@ Ezt a segédtáblát Pythonban a data frame-k \texttt{groupby} és \texttt{agg} 
 \end{Shaded}
 
 \begin{verbatim}
-## <string>:1: FutureWarning: The provided callable <function mean at 0x000001CA046C13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
-## <string>:1: FutureWarning: The provided callable <function std at 0x000001CA046C14E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
+## <string>:1: FutureWarning: The provided callable <function mean at 0x000002140ED913A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
+## <string>:1: FutureWarning: The provided callable <function std at 0x000002140ED914E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
 \end{verbatim}
 
 \begin{Shaded}
@@ -4969,8 +5009,8 @@ Itt is kell ugyebár egy kiinduló segédtáblázat.
 \end{Shaded}
 
 \begin{verbatim}
-## <string>:1: FutureWarning: The provided callable <function mean at 0x000001CA046C13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
-## <string>:1: FutureWarning: The provided callable <function std at 0x000001CA046C14E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
+## <string>:1: FutureWarning: The provided callable <function mean at 0x000002140ED913A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
+## <string>:1: FutureWarning: The provided callable <function std at 0x000002140ED914E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
 \end{verbatim}
 
 \begin{Shaded}
@@ -5029,8 +5069,8 @@ Lássuk az \textbf{évszámok}at! Most is kezdjük a segédtáblával.
 \end{Shaded}
 
 \begin{verbatim}
-## <string>:1: FutureWarning: The provided callable <function mean at 0x000001CA046C13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
-## <string>:1: FutureWarning: The provided callable <function std at 0x000001CA046C14E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
+## <string>:1: FutureWarning: The provided callable <function mean at 0x000002140ED913A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
+## <string>:1: FutureWarning: The provided callable <function std at 0x000002140ED914E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
 \end{verbatim}
 
 \begin{Shaded}
@@ -5095,7 +5135,7 @@ A \(0-1\) közötti teljesen véletlen számok generálásához Pythonban egy \t
 \end{Shaded}
 
 \begin{verbatim}
-## 0.4739292112581075
+## 0.09082371360654995
 \end{verbatim}
 
 Fenti kódsort futtatva nyilván mindenkinek más eredménye lesz, hiszen \emph{random} számot generálunk. :) A lényeg, hogy a számunk \(0-1\) közötti!
@@ -5118,7 +5158,7 @@ Technikailag úgy kell eljárnunk, hogy létrhozunk egy üres listát Pythonban,
 \end{Shaded}
 
 \begin{verbatim}
-## [0.3036673091206754, 0.9554664893312815, 0.8901607222030957, 0.039783618666481724, 0.14790059603681915, 0.5212547134803249, 0.01789182344330198, 0.6799397634010272, 0.060987056344302126, 0.4772318958384323, 0.5713941464643092, 0.8227869855479997, 0.35852836313231573, 0.18903819986727088, 0.24586349635315952, 0.9947267327809628, 0.3386296706790499, 0.5036097799360871, 0.5075973687496721, 0.4907738205523604, 0.8528605144213413, 0.4939481604847631, 0.15960532446211584, 0.5862917657279939, 0.8970708832621047, 0.9927230298987798, 0.8049266814161122, 0.44131912586249367, 0.2638227949396871, 0.39435118739569064, 0.24022474663566984, 0.3126231584544116, 0.28333081964872964, 0.8806355988250284, 0.04407488259122494, 0.9299877357341024, 0.42591010091724013, 0.07093876751841077, 0.33482854246925353, 0.22585846900071882, 0.7752913830438778, 0.7802885846414015, 0.19054596129145118, 0.6000783161662636, 0.7050559608150839, 0.4807127993687077, 0.25866536928497985, 0.4554557295970433, 0.8311132401483492, 0.48823119861236874]
+## [0.545626169578343, 0.9167775390495727, 0.4249307778984388, 0.09563866723341008, 0.7194448901979715, 0.6890770053020678, 0.1278804081124062, 0.5476614539002785, 0.07041197139569655, 0.9391722462838477, 0.5145465210492516, 0.9210412203815838, 0.13482425638093087, 0.16419531236059237, 0.8697990713773187, 0.24153781794430995, 0.06514341184586536, 0.5840231387323521, 0.5110798713672784, 0.07034672103738149, 0.6462356940767301, 0.11838545940983758, 0.3327822199674847, 0.06799458672578873, 0.49185551101391345, 0.21102848940676278, 0.11546816461125042, 0.061772497789358116, 0.2237364317567374, 0.6868657186645548, 0.16439380156165828, 0.7535051791630014, 0.963731027527339, 0.6536064729899265, 0.19973511103849761, 0.32414741175951667, 0.37243081741324113, 0.966162698020282, 0.7910518891698484, 0.001912835750272679, 0.9043917474022413, 0.8355726669906901, 0.7718906078010722, 0.9564987918193278, 0.6458838135275506, 0.02647044803768117, 0.3533924279460452, 0.34083482034860857, 0.9655572552624448, 0.12015474626091571]
 \end{verbatim}
 
 Itt is van az \(50\) szép kicsi véletlen számom. Nyilván ezek megint mindenkinek más értékek. :)
@@ -5148,19 +5188,19 @@ Ahhoz, hogy ezt technikailag kivitelezni tudjuk a \texttt{s} listánkat előszö
 \end{Shaded}
 
 \begin{verbatim}
-## array([ 76.44007709, 154.65597872, 146.81928666,  44.77403424,
-##         57.74807152, 102.55056562,  42.14701881, 121.59277161,
-##         47.31844676,  97.2678275 , 108.56729758, 138.73443827,
-##         83.02340358,  62.68458398,  69.50361956, 159.36720793,
-##         80.63556048, 100.43317359, 100.91168425,  98.89285847,
-##        142.34326173,  99.27377926,  59.15263894, 110.35501189,
-##        147.64850599, 159.12676359, 136.59120177,  92.9582951 ,
-##         71.65873539,  87.32214249,  68.8269696 ,  77.51477901,
-##         73.99969836, 145.67627186,  45.28898591, 151.59852829,
-##         91.10921211,  48.5126521 ,  80.1794251 ,  67.10301628,
-##        133.03496597, 133.63463016,  62.86551535, 112.00939794,
-##        124.6067153 ,  97.68553592,  71.03984431,  94.65468755,
-##        139.73358882,  98.58774383])
+## array([105.47514035, 150.01330469,  90.99169335,  51.47664007,
+##        126.33338682, 122.68924064,  55.34564897, 105.71937447,
+##         48.44943657, 152.70066955, 101.74558253, 150.52494645,
+##         56.17891077,  59.70343748, 144.37588857,  68.98453815,
+##         47.81720942, 110.08277665, 101.32958456,  48.44160652,
+##        117.54828329,  54.20625513,  79.9338664 ,  48.15935041,
+##         99.02266132,  65.32341873,  53.85617975,  47.41269973,
+##         66.84837181, 122.42388624,  59.72725619, 130.4206215 ,
+##        155.6477233 , 118.43277676,  63.96821332,  78.89768941,
+##         84.69169809, 155.93952376, 134.9262267 ,  40.22954029,
+##        148.52700969, 140.26872004, 132.62687294, 154.77985502,
+##        117.50605762,  43.17645376,  82.40709135,  80.90017844,
+##        155.86687063,  54.41856955])
 \end{verbatim}
 
 Olybá tűnik a foglalkozásunk elérte célját: tényleg nincs itt \(40\)-nél kisebb és \(160\)-nál nagyobb szám! :)
@@ -5184,7 +5224,7 @@ Mit is kéne látni ezen a hisztogramon? Hát általánossában az \(U(a,b)\) el
 
 Esetünkben tehát \textbf{az \(U(40,160)\) eloszlás sűrűségfüggvénye} az \(f(x)=\frac{1}{160-40}=\frac{1}{120}=0.0083\) magasságban futó \textbf{vízszintes egyenes}. Vagyis \textbf{a hisztogramnak minden \(x\) értékre kb. ugyan akkora gyakoriságot kell mutatnia, ami azért szemmel láthatóan nem így van!}
 
-\textbf{Rajzoljuk csak ki a hisztogramot \texttt{density\ =\ True} beállítással és véssük fel rá az \(U(40,160)\) eloszlás sűrűségfüggvényét!} Ezt az ábrát hasonlóan lehet elkészíteni, mint ahogy a normális eloszlás sűrűségfüggvény illeszkedését vizsgáltuk garfikusan a Tesla árváltozások hisztogramjára az 1. heti tananyag 2.3. fejezet végén.
+\textbf{Rajzoljuk csak ki a hisztogramot \texttt{density\ =\ True} beállítással és véssük fel rá az \(U(40,160)\) eloszlás sűrűségfüggvényét!} Ezt az ábrát hasonlóan lehet elkészíteni, mint ahogy a normális eloszlás sűrűségfüggvény illeszkedését vizsgáltuk garfikusan a Tesla árváltozások hisztogramjára az 3.2.3. fejezet végén.
 Sőt, természetesen a \texttt{scipy} csomag \texttt{stats} névterének \texttt{uniform.pdf} függvényével is ki tudjuk számolni az \(U(40,160)\) eloszlás konstans \(f(x)=0.0083\)-as sűrűségfüggvényét, ahogy az 1. heti anyagban kiszámoltuk a normális eloszlás sűrűségfüggvény \(f(x)\) értékeit a \texttt{norm.pdf} függvénnyel. Arra kell figyelni az \texttt{uniform.pdf} függvénynél, hogy a \texttt{loc} nevű paraméterben kell megadni az \(U(a,b)\) eloszlás alsó határát, azaz \(a\)-t, míg a \texttt{scale} paraméterben a \textbf{terjedelemét}, azaz az \(a-b=160-40=120\)-at!
 
 \begin{Shaded}
@@ -5233,7 +5273,7 @@ Ugye ekkor az \(P(Y_i < x) = \frac{x-a}{b-a}\) összefüggésből kéne kifejezn
 Tehát, \textbf{általánosságban azt az eredményt kapjuk, hogy ha egy \(U(0,1)\) eloszlású véletlen számra \(P(Y_i < x)\) valószínűségként tekintek, és berakom azt egy tetszőleges eloszlás inverz függvényébe, és megkeresem a hozzá tartozó \(x\) értéket, akkor amit kapok eredményül az olyan eloszlású véletlen szám lesz, mint amilyen eloszlás inverz függvényébe beírtam az \(U(0,1)\) eloszlású véletlen számot!!}
 Ugyebár simán tekinthetek egy \(0-1\) közötti véletlenszámra \(P(Y_i < x)\) valószínűségként, hiszen minden valószínűség egy \(0-1\) közötti szám. :)
 
-\textbf{Nézzük is meg az elvet a gyakorlatban!} Ugye a \texttt{scipy} csomagban minden eloszlás inverz függvényét a \texttt{ppf} rövidítésű függvénnyel számoltuk ki (lásd 1. heti tananyag 2.5. fejezetben).
+\textbf{Nézzük is meg az elvet a gyakorlatban!} Ugye a \texttt{scipy} csomagban minden eloszlás inverz függvényét a \texttt{ppf} rövidítésű függvénnyel számoltuk ki (lásd 3.2.5. fejezetben).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5363,7 +5403,7 @@ Ami az \texttt{rvs} függvények további nagy előnye, hogy ha kihasználjuk a 
 Pazar! :) A \texttt{random\_state} paraméterben megadott \(1992\) értéket szokás a véletlenszám generálás \textbf{véletlen magjának} nevezni. In English \emph{random seed}.
 
 Generáljunk még az \(U(40, 160)\) eloszlás \(50\) elemű mintája mellé egy \(50\) elemű \(N(80,20)\) és egy \(50\) elemű \(Exp(0.0125)\) eloszlású mintát is, szintén \(1992\)-es véletlen maggal. Majd fűzzük össze az eredményeket egy \texttt{pandas} data frame-be úgy, hogy a különböző eloszlású adatok adják a tábla oszlopait (sorok száma akkor így 50 lesz ugyebár).
-Az Exponenciális eloszlás \(\lambda\) paramétert a \texttt{scipy} függvények \texttt{scale} paraméterében lehet megadni a reciprokával. Hiszen az Exponenciális eloszlás szórása \(\frac{1}{\lambda}\). Emlékezetetőnek lásd 1. heti tananyag 3. fejezet!
+Az Exponenciális eloszlás \(\lambda\) paramétert a \texttt{scipy} függvények \texttt{scale} paraméterében lehet megadni a reciprokával. Hiszen az Exponenciális eloszlás szórása \(\frac{1}{\lambda}\). Emlékezetetőnek lásd 3.3. fejezet!
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6241,7 +6281,7 @@ Oké, meg is vagyunk! A sokságnak \(N=9751\) eleme van, tehát ennyi versenyző
   A 3 óra (180 perc) felett teljesítők \textbf{arányát} Jele: \(P\)
 \end{itemize}
 
-Ahogy a 2. heti tananyagban ezt tisztáztuk, egy \textbf{teljes statisztikai} adatsor, azaz \textbf{sokaság statisztikai mutatóit/paramétereit együttesen \(\theta\)-val jelöljük}.
+Ahogy a 4.3. fejezetben ezt tisztáztuk, egy \textbf{teljes statisztikai} adatsor, azaz \textbf{sokaság statisztikai mutatóit/paramétereit együttesen \(\theta\)-val jelöljük}.
 
 Akkor hát \textbf{számoljuk is ki ezeket} a \(\theta\)-kat! Még kiszámoljuk az időeredmények varianciáját (szórásnégyzetét) is, mert erre is szükségünk lesz a későbbiekben.
 
@@ -6349,12 +6389,12 @@ Ezek szerint összefoglalva statisztikai \textbf{paramétereink mintából becs�
   \(p = 0.3=30\%\)
 \end{itemize}
 
-Szintén a 2. heti tananyagban szerepelt, hogy a \textbf{statisztikai paraméterek mintából becsült értékeit együttesen \(\hat{\theta}\)-val jelöljük}. A \(\hat{\theta}\)-ok \textbf{speciális elnevezése: becslőfüggvény} a \emph{valódi, sokasági} \(\theta\)-hoz. Szóval, a mintaátlag (\(\bar{y}\)) a sokasági átlag \(\bar{Y}=\mu\) \emph{becslőfüggvénye}, a mintából számolt szórás (\(s^*\)) a valós, sokasági szórás (\(\sigma\)) \emph{becslőfüggvénye} és a mintából számított 3 órán túli úszók aránya (\(p\)), a sokasági arány (\(P\)) \emph{becslőfüggvénye}.
+Szintén a 4.3. fejezetben szerepelt, hogy a \textbf{statisztikai paraméterek mintából becsült értékeit együttesen \(\hat{\theta}\)-val jelöljük}. A \(\hat{\theta}\)-ok \textbf{speciális elnevezése: becslőfüggvény} a \emph{valódi, sokasági} \(\theta\)-hoz. Szóval, a mintaátlag (\(\bar{y}\)) a sokasági átlag \(\bar{Y}=\mu\) \emph{becslőfüggvénye}, a mintából számolt szórás (\(s^*\)) a valós, sokasági szórás (\(\sigma\)) \emph{becslőfüggvénye} és a mintából számított 3 órán túli úszók aránya (\(p\)), a sokasági arány (\(P\)) \emph{becslőfüggvénye}.
 
-A feladatunk pedig az lenne, hogy rájöjjünk: \textbf{Hogyan tudunk egyetlen egy db \(n\) elemű minta \(\hat{\theta}\) becslőfüggvény értékeiből következtetni a teljes \(N\) elemű sokaság valós \(\theta\) paraméter értékeire?} Ez a \textbf{statisztikai becsléselmélet alapfeladata}. Azt is körbejártuk a 2. heti tananyagban, hogy ha a mintavételünk tényleg rendes FAE mintavétel, akkor ami \(\hat{\theta}\) és a valós \(\theta\) között áll az nem más, mint a \textbf{mintavételi hiba (MVH)}. A feladatunk tehát konkrétabban nézve az \textbf{MVH kiszámítása vagy legalábbis valamilyen közelítése}.
+A feladatunk pedig az lenne, hogy rájöjjünk: \textbf{Hogyan tudunk egyetlen egy db \(n\) elemű minta \(\hat{\theta}\) becslőfüggvény értékeiből következtetni a teljes \(N\) elemű sokaság valós \(\theta\) paraméter értékeire?} Ez a \textbf{statisztikai becsléselmélet alapfeladata}. Azt is körbejártuk a 4.3. fejezetben, hogy ha a mintavételünk tényleg rendes FAE mintavétel, akkor ami \(\hat{\theta}\) és a valós \(\theta\) között áll az nem más, mint a \textbf{mintavételi hiba (MVH)}. A feladatunk tehát konkrétabban nézve az \textbf{MVH kiszámítása vagy legalábbis valamilyen közelítése}.
 
 Ahhoz, hogy \textbf{elinduljunk az MVH számítás rögös útján egy olyan trükkel élünk, ami kihasználja, hogy most éppen ismerjük a teljes Balatont átúszó sokaságot}. Nyilván a gyakorlatban azért kell becsléselmélettel meg MVH számítással foglalkozni, mert a sokaságot nem tudjuk megismerni. :) De most mivel megvannak a sokasági adatok, így \textbf{kivehetünk a sokasági időeredményekből nagyon-nagyon sok, mondjuk \(10000\) db \(n=100\) elemű mintát}.
-Ezt meg is tettük a 2. heti tananyag legvégén. Most csak \textbf{visszatöltjük az eredményt tartalmazó Excel táblát egy data frame-be}. Az Excel fájl, amit ebben a jegyzetben használok innen elérhető.
+Ezt meg is tettük a 4.3. fejezet legvégén. Most csak \textbf{visszatöltjük az eredményt tartalmazó Excel táblát egy data frame-be}. Az Excel fájl, amit ebben a jegyzetben használok innen elérhető.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7155,7 +7195,7 @@ Ha \textbf{két torzítatlan becslőfüggvény közül kell választanunk, akkor
 
 \section{Ismétlés: Az átlag standard hibája a Balaton átúszás eredményeken}\label{ismuxe9tluxe9s-az-uxe1tlag-standard-hibuxe1ja-a-balaton-uxe1tuxfaszuxe1s-eredmuxe9nyeken}
 
-Ugyebár a 3. heti tananyagban a 2022-es Balaton átúszás résztvevőinek időeredményeit vizsgáltuk mintavételi és becsléselméleti szempontból elég alaposan. Töltsük is be egy \texttt{pandas} data frame-be ismét a LIDLBalaton2022.xlsx fájl adatait. Ebben az Excelben megvan az összes résztvevő időeredménye a \texttt{PERC} oszlopban. Ez az adatsor lesz most nekünk tehát a \textbf{sokaságunk}.
+Ugyebár az 5. fejezetben a 2022-es Balaton átúszás résztvevőinek időeredményeit vizsgáltuk mintavételi és becsléselméleti szempontból elég alaposan. Töltsük is be egy \texttt{pandas} data frame-be ismét a LIDLBalaton2022.xlsx fájl adatait. Ebben az Excelben megvan az összes résztvevő időeredménye a \texttt{PERC} oszlopban. Ez az adatsor lesz most nekünk tehát a \textbf{sokaságunk}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7246,7 +7286,7 @@ Tehát, \textbf{vegyünk is egy \(n=100\) elemű mintát a Balatonátúszók sok
 ## 164.44033333333334
 \end{verbatim}
 
-Tehát ebben az \(n=100\) elemű \textbf{mintában az átlagos átúszási idő \(164.4\) perc}. A 3. heti tananyagban elvégzett okoskodásunk alapján a \textbf{mintaátlag alapján úgy tudjuk lehatárolni a sokasági átlag (\(\mu\)) értékét, hogy a mintaátlag értékre rámérem \(\pm\) annak standard hibáját}. Hiszen a standard hiba megmutatja, hogy egy véletlenszerűen kiválasztott mintavétel átlaga várhatóan mennyivel tér el a valós sokasági átlagtól (mivel a \(\bar{y}\) mintaátlag alapból egy torzítatéan becslőfüggvénye a \(\mu\) sokasági átlagnak).
+Tehát ebben az \(n=100\) elemű \textbf{mintában az átlagos átúszási idő \(164.4\) perc}. Az 5. fejezetben elvégzett okoskodásunk alapján a \textbf{mintaátlag alapján úgy tudjuk lehatárolni a sokasági átlag (\(\mu\)) értékét, hogy a mintaátlag értékre rámérem \(\pm\) annak standard hibáját}. Hiszen a standard hiba megmutatja, hogy egy véletlenszerűen kiválasztott mintavétel átlaga várhatóan mennyivel tér el a valós sokasági átlagtól (mivel a \(\bar{y}\) mintaátlag alapból egy torzítatéan becslőfüggvénye a \(\mu\) sokasági átlagnak).
 A gondolatmenet alapján tehát azt mondhatjuk, hogy a \textbf{sokasági átlag várhatóan mintaátlag \(\pm\) standard hiba által lehatárolt intervallumban nyugszik}.
 
 Jó hír, hogy ugyebár az \textbf{átlag standard hibája sokasági szórás osztva gyök alatt mintaelemszám}, azaz \(\frac{\sigma}{\sqrt{n}}\) képlettel számolható, aminek az értékét egy mintavétel alapján is meg tudjuk közelíteni, ha a sokasági szórást, annak torzítatlan becslésével a \textbf{korrigált mintaszórás}sal helyettesítjük. Tehát, az \textbf{egy szem \(n=100\) mintából a standard hiba értéke az \(\frac{s}{\sqrt{n}}\) képlettel megközelíthető}.
@@ -7331,7 +7371,7 @@ A számolás során figyeljünk arra, hogy a \texttt{numpy} függvényeket \text
 \end{verbatim}
 
 Oké, akkor \textbf{meg is vannak} az átlag intervallumos \textbf{becslés}ének \textbf{alsó-felső határai}. \textbf{Számoljuk} akkor \textbf{ki a találati arányt}!
-A számoláshoz azt a trükköt alkalmazzuk, amit a 2. heti tananyagban sütüttünk el: a \texttt{AdatokEgyben{[}\textquotesingle{}Normal\textquotesingle{}{]}\ \textless{}\ 100} parancs egy \texttt{bool} tömböt ad vissza, amit összegezve megkapjuk a ``\emph{kedvező esetek}'', vagyis a \(\mu\)-t helyesen eltaláló intervallumok darabszámát.
+A számoláshoz azt a trükköt alkalmazzuk, amit a 4. fejezetben sütüttünk el: a \texttt{AdatokEgyben{[}\textquotesingle{}Normal\textquotesingle{}{]}\ \textless{}\ 100} parancs egy \texttt{bool} tömböt ad vissza, amit összegezve megkapjuk a ``\emph{kedvező esetek}'', vagyis a \(\mu\)-t helyesen eltaláló intervallumok darabszámát.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7361,7 +7401,7 @@ Ahhoz, hogy megértsük miért alakul gyéren ennek a módszernek találati ará
 
 Hoppácska! Dehát, \textbf{ez itt a világ legszebb normális eloszlása!}
 
-Ami azért második elgondolásra \textbf{teljesen logikus, mivel a Centrális Határeloszlás Tétel (CHT) dolgozik a háttérben}. Ha nem ugrik be a CHT, akkor vissza az 1. heti tananyag 2.4. fejezetéhez! :)
+Ami azért második elgondolásra \textbf{teljesen logikus, mivel a Centrális Határeloszlás Tétel (CHT) dolgozik a háttérben}. Ha nem ugrik be a CHT, akkor vissza a 3.2.4. fejezethez! :)
 
 A \textbf{CHT} szerint ugyebár ha az \textbf{adatsor elemi véletlen hatások összegződéseként állnak elő}, akkor az \textbf{adatsor normális eloszlás}t követ. A \(\bar{y}\) \textbf{mintaátlagok adatsora pedig pont olyan adatsor, ami a CHT feltételnek megfelel!} Hiszen a mintaátlag úgy jön ki, hogy a mintaelemeket összeadom és elosztom a minta elemszámával. \textbf{Mivel a mintavétel módja FAE, így biztos lehetek benne, hogy egy mintaelem, az egy véletlen húzás, egy véletlen hatás eredménye. Aztán meg ezeket adom össze}. Végén osztok \(n\)-bel, de az mindig ugyan annyi, így nem változtat a lényegen.
 
@@ -7377,7 +7417,7 @@ Ha pedig a \textbf{sok-sok mintából számolt átlagok adatsora normális elosz
 
 Szumma szummárom, akkor a \textbf{sok-sok mintából számolt mintaátlagok \(\bar{y}\) adatsora az alábbi eloszlást követi}: \[\bar{y} \sim N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)\]
 
-Ezt az illeszkedést simán letesztelhetjük grafikusan is az 1. heti tananyag 2.3. fejezetében látott módon.
+Ezt az illeszkedést simán letesztelhetjük grafikusan is az 3.2.3. fejezetében látott módon.
 Figyeljük meg, hogy a \texttt{stats} csomag \texttt{norm.pdf} függvényében az átlagot a korábban kiszámolt \texttt{SokasagiAtlag}, a szórást pedig a szintén az előbb kiszámolt \texttt{SH} objektumok segítségével adom meg!
 
 \begin{Shaded}
@@ -7412,7 +7452,7 @@ Hoppáré! Ez is éppen kb. \(68\%\)! Tehát, \textbf{az, hogy egy \(\bar{y} \pm
 
 Kérdés, hogy \textbf{mit tehetünk ez ellen? Mihez kezdhetünk, ha mondjuk nem \(68\%\)-os, hanem valami jobb, mondjuk \(95\%\)-os megbízhatóságú intervallumbecslést szeretnénk adni a sokasági átlagra (vagy más néven sokasági várható értékre)?}
 
-Az okoskodáshoz az 1. heti tananyag 2.6. fejezetére fogunk támaszkodni.
+Az okoskodáshoz a 3.2.6. fejezetre fogunk támaszkodni.
 
 Ugyanis azt tudjuk, hogy ha a \textbf{mintaátlagok eloszlása} az alábbi: \[\bar{y} \sim N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)\]
 
@@ -7607,7 +7647,7 @@ Szépen láthatjuk, hogy az \textbf{átlagos átúszási időket \(99\%\)-os meg
   \(n=100\) esetben pedig láttuk az előbb, hogy a becslés pontosabb (kisebb \(\triangle\) hibahatárú): \(153\) és \(176\) perc közé teszi a sokasági átlagidőt.
 \end{itemize}
 
-Nem meglepő az eredmény. Mivel a \(\frac{\sigma}{\sqrt{n}}\) standard hiba \textbf{képlet nevezőjében van az \(n\) elemszám, így növelése csökkenti a standard hibát, ezen keresztül pedig a teljes \(\triangle\) becslési hibahatárt}. Ugyebár a 3. heti tananyagban megállapítottuk, hogy az átlag \textbf{konzisztens becslés}: elemszám növekedésével a \(SH\)-ja csökken, a \(0\)-ba tart.
+Nem meglepő az eredmény. Mivel a \(\frac{\sigma}{\sqrt{n}}\) standard hiba \textbf{képlet nevezőjében van az \(n\) elemszám, így növelése csökkenti a standard hibát, ezen keresztül pedig a teljes \(\triangle\) becslési hibahatárt}. Ugyebár az 5. fejezetben megállapítottuk, hogy az átlag \textbf{konzisztens becslés}: elemszám növekedésével a \(SH\)-ja csökken, a \(0\)-ba tart.
 
 Emiatt a \textbf{választott \(1-\alpha\) megbízhatósági szint a mintaelemszám függvénye}:
 
@@ -8086,7 +8126,7 @@ Ehhez az út ott kezdődik, hogy a nominális ismérvünk, azaz a pártpreferemc
 \end{Shaded}
 
 \begin{verbatim}
-## <string>:2: FutureWarning: The provided callable <function mean at 0x000001CA046C13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
+## <string>:2: FutureWarning: The provided callable <function mean at 0x000002140ED913A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
 \end{verbatim}
 
 \begin{Shaded}
@@ -8197,7 +8237,7 @@ A következő két fejezetben figyeljük meg, hogy \textbf{minden újabb statisz
 
 Vegyük elő újra a ESS2020.xlsx fájlban található adatbázist! Emlékeztetőül álljon itt, hogy ez az adatbázis a 2020-ban végzett európai szociális felmérés (European Social Survey 2020 = ESS2020) 1849 magyar kitöltöjének válaszait tartalmazza 14 kérdésre (plusz van egy \emph{id} oszlop).
 
-Ugyebár az előző tananyag 4. fejezet 2. feladatában azt mondtuk, hogy ha az adatbázis valamelyik oszlopában üres értéket találunk, akkor az azt jelenti, hogy az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők. Most feltesszük, hogy ez a véletlen minta visszatevéses, azaz \(FAE\) is. A következő tananyagban látni fogjuk, hogy ez nem is valóságtól elrugaszkodott feltevés.
+Ugyebár a 6.4. fejezet 2. feladatában azt mondtuk, hogy ha az adatbázis valamelyik oszlopában üres értéket találunk, akkor az azt jelenti, hogy az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők. Most feltesszük, hogy ez a véletlen minta visszatevéses, azaz \(FAE\) is. A következő tananyagban látni fogjuk, hogy ez nem is valóságtól elrugaszkodott feltevés.
 
 Először is töltsök be az adatbázist ismét az Excelből egy \texttt{pandas} data frame-be és nézzük meg az \texttt{info} metódussal milyen oszlopaink (azaz ismérveink) vannak!
 
@@ -8327,7 +8367,7 @@ Mielőtt a \texttt{combine\_effects} függvényt használnánk, csináljuk meg a
 \end{Shaded}
 
 \begin{verbatim}
-## <string>:1: FutureWarning: The provided callable <function mean at 0x000001CA046C13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
+## <string>:1: FutureWarning: The provided callable <function mean at 0x000002140ED913A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
 \end{verbatim}
 
 \begin{Shaded}
@@ -8354,7 +8394,7 @@ Mielőtt a \texttt{combine\_effects} függvényt használnánk, csináljuk meg a
 
 Látható, hogy a mintán belül a Fidesz támogatottsága az Dél-Dunántúlon csak 15.4\%, míg Nyugat-Dunántúlon 16.7\%. Kérdés, hogy ezek a különbségek a mintavételi hiba, azaz a 99\%-os megbízhatóságú konfidencia-intervallum figyelembe vételével is megmaradnak-e!
 
-Ami fontos még az előbb elkészített kimutatásból, hogy \textbf{minden régióban megvan a nagy elemszám} (\(n>30\)), így nyugodtan használható a \(k\) megbízhatósági szorzót standard normális eloszlásból számító \texttt{combine\_effects} függvény. A függvény paraméterezési szabályait lásd a 4. heti tananyag 6. fejezetében.
+Ami fontos még az előbb elkészített kimutatásból, hogy \textbf{minden régióban megvan a nagy elemszám} (\(n>30\)), így nyugodtan használható a \(k\) megbízhatósági szorzót standard normális eloszlásból számító \texttt{combine\_effects} függvény. A függvény paraméterezési szabályait lásd a 6.6. fejezetben.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8386,7 +8426,7 @@ Ami fontos még az előbb elkészített kimutatásból, hogy \textbf{minden rég
 
 Az eredményül kapott táblából ismételten látható, hogy a \textbf{mintán belül a Fidesz támogatottsága az Dél-Alföldön csak 12.6\%, míg Dél-Dunántúlon már 15.4\%}. Azonban, ha a konfidencia-intervallum segítségével a \textbf{teljes népességet vizsgáljuk, akkor ez 99\%-os valószínűséggel egy NEM szignifikáns} (jelentős) \textbf{eltérés, mivel a két konfidencia-intervallum metszi egymást!} Tehát a teljes népességben elképzelhető legjobb esetben egy 17.6\%-os támogatottság is a Dél-Alföldön, míg a legrosszabb esetben belefér a Dél-Dunántúlon 9.5\%-os támogatottság is. Tehát, az, hogy a Dél-Dunántúlon magasabb a Fidesz támogatottsági arány a mintában, az lehet csak a mintavételi hiba műve 99\%-os megbízhatósággal! Ellenben az \textbf{Észak-Magyarországi Fidesz támogatottság 99\% valószínűséggel a sokaságban is magasabb, mint a Dél-Alföldi}, hiszen a Dél-Alföldön a támogatottság legjobb esetben is csak 17.6\%, míg Észak-Magyarországon legrosszabb esetben is már 20.4\%. Tehát a \textbf{két konfidencia-intervallum NEM metszi egymást, a mintában mért eltérések 99\% valószínűséggel megmaradnak a sokaságban is!}
 
-Az eredményekről ugyan úgy készíthetünk \textbf{forest diagram}ot, mint a pártpreferenciák szerint bontott átlagos netezési időkről a 4. heti tananyag 6. fejezetében. Itt ugyebár a \texttt{statsmodels} csomag \texttt{dot\_plot} függvényét vetjük be. Ennek a használatáról is bővebb információk a 4. heti tananyag 6. fejezetében találhatók.
+Az eredményekről ugyan úgy készíthetünk \textbf{forest diagram}ot, mint a pártpreferenciák szerint bontott átlagos netezési időkről a 6.6. fejezetben. Itt ugyebár a \texttt{statsmodels} csomag \texttt{dot\_plot} függvényét vetjük be. Ennek a használatáról is bővebb információk a 6.6. fejezetben találhatók.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8443,9 +8483,9 @@ Nézzük meg az eredményt a \texttt{numpy} csomag \texttt{std} függvényével 
 ## 0.3980397745115843
 \end{verbatim}
 
-A kétféleképp számolt érték némi kerekítési hibát leszámítva egyezik! :) De hát ez nem meglepő, hogy így alakult, hiszen a 3. heti tananyag 5. fejezetében éppen azt mondtuk, hogy a mintaarányok (a \(p\)-k) standard mintavételi hibája a \(SH(p) \approx \sqrt{\frac{p(1-p)}{n}}\) képlettel megadható. :)
+A kétféleképp számolt érték némi kerekítési hibát leszámítva egyezik! :) De hát ez nem meglepő, hogy így alakult, hiszen az 5.5. fejezetben éppen azt mondtuk, hogy a mintaarányok (a \(p\)-k) standard mintavételi hibája a \(SH(p) \approx \sqrt{\frac{p(1-p)}{n}}\) képlettel megadható. :)
 
-Ez azt jelenti, hogy \textbf{az arány konfidencia-intervallumának hossza} a \(\triangle = SH \times k\) képlet alapján \(\sqrt{\frac{p(1-p)}{n}} \times k\) módon számítható, hiszen az átlag standard hibája \(\frac{s}{\sqrt{n}}\) volt, és most felhasználtuk, hogy csak 0-1-et tartalmazó változókra \(s=\sqrt{p(1-p)}\). A \(k\) megbízhatósági szorzó pedig ugyan úgy \(N(0,1)\) eloszlással számolható \emph{nagy méretű minták esetén}, mint az átlag konfidencia-intervallumánál. Hiszen magas \(n\) esetén a \(t(n-1)\) eloszlás sűrűségfüggvénye már lényegében egybeesik az \(N(0,1)\) eloszlás sűrűségfüggvényével, ahogy a 4. heti tananyag 4. fejezetének 2. feladatában is láttuk.
+Ez azt jelenti, hogy \textbf{az arány konfidencia-intervallumának hossza} a \(\triangle = SH \times k\) képlet alapján \(\sqrt{\frac{p(1-p)}{n}} \times k\) módon számítható, hiszen az átlag standard hibája \(\frac{s}{\sqrt{n}}\) volt, és most felhasználtuk, hogy csak 0-1-et tartalmazó változókra \(s=\sqrt{p(1-p)}\). A \(k\) megbízhatósági szorzó pedig ugyan úgy \(N(0,1)\) eloszlással számolható \emph{nagy méretű minták esetén}, mint az átlag konfidencia-intervallumánál. Hiszen magas \(n\) esetén a \(t(n-1)\) eloszlás sűrűségfüggvénye már lényegében egybeesik az \(N(0,1)\) eloszlás sűrűségfüggvényével, ahogy a 6.4. fejezet 2. feladatában is láttuk.
 
 \textbf{Ennyi információ alapján pedig képesek vagyunk arra, hogy még mintavétel ELŐTT meghatározzuk, hogy az arány egy adott pontosságú és megbízhatóságú becsléséhez mekkora elemszámú mintára van szükségünk}.
 
@@ -8666,7 +8706,7 @@ Szuper, a mintaátlag várható eltérése a valós, sokasági átlagos netezés
 
 \textbf{Hogyan jön ki ez az eredmény Bootstrap módon?}
 
-A \textbf{Bootstrap becslés alapötlete a standard hiba alap definíciójából jön}, amit a 3. heti tananyag 5. fejezetében néztünk. \textbf{Vegyünk ki a sokaságból nagyon-nagyon sok} (pl. 1000 vagy 10000 db) \textbf{visszatevéses} (azaz FAE) \textbf{mintát, minden mintából számoljuk mi a mintaátlagot és a mintaátlagok szórása a standard hiba} az átlagbecslés \emph{torzítatlanság}a miatt.
+A \textbf{Bootstrap becslés alapötlete a standard hiba alap definíciójából jön}, amit az 5.5. fejezetben néztünk. \textbf{Vegyünk ki a sokaságból nagyon-nagyon sok} (pl. 1000 vagy 10000 db) \textbf{visszatevéses} (azaz FAE) \textbf{mintát, minden mintából számoljuk mi a mintaátlagot és a mintaátlagok szórása a standard hiba} az átlagbecslés \emph{torzítatlanság}a miatt.
 Ugyebár ezzel a megközelítéssel az a \textbf{baj, hogy a gyakorlatban csak egyetlen egy darab mintánk van, és nem ismerjük a sokaságot, így nem tudunk belőle nagyon-nagyon sok FAE mintát kivenni}.
 Nos, a \textbf{Bootstrap módszer azt mondja, hogy ezt az alap szórás-elvű \(SH\) számolást tudjuk SZIMULÁLNI akár egyetlen egy darab mintavételből is!}
 
@@ -8676,7 +8716,7 @@ Ezek után más dolgounk nincs, mint \textbf{kiszámolni minden almintából a m
 Lássuk akkor ezt a dolgot a gyakorlatban! \textbf{Számoljuk ki az átlag standard hibáját Bootstrap elven!}
 
 Először is \textbf{vegyünk a \texttt{NetUsePerDay\_Minutes} oszlopból mondjuk \(1000\) db FAE mintát, és tároljuk le ezeket az almintákat egy olyan data frame-ben, aminek \(1000\) sorában lesznek a különböző mintavételek, míg \(n\) db oszlopában az \(n\) db mintaelem minden egyes mintavételezési körben}.
-Itt gyakorlatilag ugyanazokat a megoldásokat követjük Pythonban, mint a 2. heti tananyag 3.1. fejezetében.
+Itt gyakorlatilag ugyanazokat a megoldásokat követjük Pythonban, mint a 4.3.1. fejezetben.
 
 \textbf{Készítsük el először az almintákat tároló üres data frame-t!} Mivel \(1099\) db nem hiányzó értéke van a \texttt{NetUsePerDay\_Minutes} oszlopnak, így \(n=1099\) oszlopa lesz az új data frame-nek!
 
@@ -8838,7 +8878,7 @@ Nyilván, ha \textbf{több almintát veszünk, akkor pontosabb lesz a közelít�
 
 NODE, \textbf{mire volt jó, hogy ezt a fránya \(SH\)-t ilyen körülményesen számoltuk ki a képlet helyett?} Nos, \textbf{átlag esetében a világon SEMMIRE!}
 Viszont, ezzel a \textbf{Bootstrap elvvel ki tudjuk számolni pl. a napi netezési időnk mediánjának standard hibáját, amire amúgy NINCS olyan egyszerű képlet, mint az átlag standard hibájára!}
-Ugyebár ezt megtehetjük, mert megnéztük a 3. heti tananyag 4. fejezetében, hogy a medián is egy \emph{torzítatlanul} becsülhető statisztikai paraméter, mint az átlag.
+Ugyebár ezt megtehetjük, mert megnéztük az 5.4. fejezetben, hogy a medián is egy \emph{torzítatlanul} becsülhető statisztikai paraméter, mint az átlag.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9049,7 +9089,7 @@ Ez mind szép és jó, de \textbf{ez a \(\chi^2\)-eloszlásos konfidencia-interv
 \textbf{Jobbra elnyúló} ez az időeloszlás, mint a fene. Ebből aztán semmilyen sokaságban \textbf{NEM} lesz \textbf{szép szimmetrikus normális eloszlás}!
 
 Tehát, a \textbf{szórás konfidencia-intervallum képlete nem reális eredményeket mutat a valós, sokasági szórásra, mert a képlet mögötti feltételezés NEM teljesül!}
-Mit lehet tenni? \textbf{Hát alkalmazzuk a Bootstrap becslést, mivel annak semmilyen csúnya előfeltétele nincs}. Csak az kell itt is, hogy az eredeti sokaságból FAE mintavételünk legyen, de megbeszéltük a 4. heti tananyag 4. fejezetének 2. feladatában, hogy az ESS2020 mintavétel esetén ez a FAE mintavétel feltételezhető.
+Mit lehet tenni? \textbf{Hát alkalmazzuk a Bootstrap becslést, mivel annak semmilyen csúnya előfeltétele nincs}. Csak az kell itt is, hogy az eredeti sokaságból FAE mintavételünk legyen, de megbeszéltük a 6.4. fejezet 2. feladatában, hogy az ESS2020 mintavétel esetén ez a FAE mintavétel feltételezhető.
 
 Szóval, akkor csináljuk meg a Bootstrap becslést a napi netezési idők szórására is, \(97\%\)-os megbízhatósági szinten! A beépített \texttt{scipy} csomagos függvénnyel most is simán tudunk dolgozni, mint a medián esetében is tettük:
 
@@ -9204,7 +9244,7 @@ A várható éves jövedelem így is kb. \(4.5\) és \(4.7\) millió Ft között
 
 \subsection{Arány becslése EV mintákból}\label{aruxe1ny-becsluxe9se-ev-mintuxe1kbuxf3l}
 
-Ugyan ez a logika teljesen jól működik az arányok becslése esetén is. Ez nem véletlen, hiszen letisztáztuk az 5. heti tananyagban, hogy az arány, mint statisztikai mutató valójában egy olyan adatsor átlaga, hogy az arányban vizsgált tuljadonsággal bíró megfigyelések \(1\)-gyel vannak kódolva, a többiek pedig \(0\)-val.
+Ugyan ez a logika teljesen jól működik az arányok becslése esetén is. Ez nem véletlen, hiszen letisztáztuk a 7. fejezetben, hogy az arány, mint statisztikai mutató valójában egy olyan adatsor átlaga, hogy az arányban vizsgált tuljadonsággal bíró megfigyelések \(1\)-gyel vannak kódolva, a többiek pedig \(0\)-val.
 
 Csináljuk is meg egy új oszlopban azt a \(0-1\) adatsort, amivel mondjuk a budapesti háztartások aránya becsülhető lesz.
 
@@ -9250,7 +9290,7 @@ Magyarul, az \[SH_{EV} = \frac{s}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}\]
 
 Képlet \textbf{helyett elég a standard hibában csak a belső korrigált mintaszórással}, \(s_b\)-vel számolnom: \[SH_{AR} = \frac{s_b}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}\]
 
-Mivel Stat. I-ből és az 1. heti tananyag 4. fejezetéből tudjuk, hogy egy \textbf{számértékű ismérv teljes varianciája, a külső és belső variancia összege}, így ha a külső variancával nem kel számolni a standard hibában, csak a belsővel, akkor \textbf{kijelenthető, hogy az arányosan rétegzett mintavétel becslési hibája az átlagra kisebb, mint az EV} (vagy a FAE) \textbf{mintavételek esetén}: \(SH_{AR} \leq SH_{EV}\)
+Mivel Stat. I-ből és az 3.4. fejezetből tudjuk, hogy egy \textbf{számértékű ismérv teljes varianciája, a külső és belső variancia összege}, így ha a külső variancával nem kel számolni a standard hibában, csak a belsővel, akkor \textbf{kijelenthető, hogy az arányosan rétegzett mintavétel becslési hibája az átlagra kisebb, mint az EV} (vagy a FAE) \textbf{mintavételek esetén}: \(SH_{AR} \leq SH_{EV}\)
 
 Nézzük is meg akkor a dolgot élesben! Ugyebár tudjuk, hogy a háztartások átlagos éves jövedeleme a teljes magyar népességben \(99\%\)-os valószínűséggek \(4.5\) és \(4.7\) millió Ft körül mozog, ha a HKF adatokat EV mintavételként kezeljük. Most a SH-t rendesen a \(SH_{EV}=\frac{s}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}\) képlettel számoljuk ki, és nem vetjük be a \texttt{stats.sem} függvényt.
 
@@ -9287,7 +9327,7 @@ Viszont, azt mondja az AR minta, hogy a standard hiba \(\frac{s}{\sqrt{n}}\) ré
   \textbf{sokasági elemszámokról} (\(N_j\))
 \end{itemize}
 
-Láthatjuk, hogy a településtípusokat, azaz a rétegzett mintavétel \textbf{rétegeit \(j\) indexszel jelöljük}. Ezt az aggregált táblát a data frame-k \texttt{groupby} és \texttt{agg} metódusaival könnyen összehozhatjuk, ahogy az 1. heti tananyag 4. fejezetében is láthattuk pl.
+Láthatjuk, hogy a településtípusokat, azaz a rétegzett mintavétel \textbf{rétegeit \(j\) indexszel jelöljük}. Ezt az aggregált táblát a data frame-k \texttt{groupby} és \texttt{agg} metódusaival könnyen összehozhatjuk, ahogy a 3.4. fejezetben is láthattuk pl.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9300,8 +9340,8 @@ Láthatjuk, hogy a településtípusokat, azaz a rétegzett mintavétel \textbf{
 \end{Shaded}
 
 \begin{verbatim}
-## <string>:1: FutureWarning: The provided callable <function mean at 0x000001CA046C13A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
-## <string>:1: FutureWarning: The provided callable <function std at 0x000001CA046C14E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
+## <string>:1: FutureWarning: The provided callable <function mean at 0x000002140ED913A0> is currently using SeriesGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "mean" instead.
+## <string>:1: FutureWarning: The provided callable <function std at 0x000002140ED914E0> is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
 \end{verbatim}
 
 \begin{Shaded}
@@ -9361,7 +9401,7 @@ Ebből gyorsan ki tudjuk számolni minden réteg sokasági elemszámát, hiszen 
 ## [4 rows x 5 columns]
 \end{verbatim}
 
-Ezzel is megvagyunk. Akkor minden adott, hogy kiszámoljuk a belső szórást a következő képlettel, ami szintén ismerős az 1. heti tananyag 4. fejezetéből. \[s_b=\sqrt{\frac{\sum_j{n_j \times s_j^2}}{n}}\]
+Ezzel is megvagyunk. Akkor minden adott, hogy kiszámoljuk a belső szórást a következő képlettel, ami szintén ismerős az 3.4. fejezetből. \[s_b=\sqrt{\frac{\sum_j{n_j \times s_j^2}}{n}}\]
 
 Ezt gyorsan ki is tudjuk számolni Pythonban \texttt{numpy} függvények segítségével.
 
@@ -9378,7 +9418,7 @@ Ezt gyorsan ki is tudjuk számolni Pythonban \texttt{numpy} függvények segíts
 
 Tehát, egy konkrét \textbf{háztartás éves jövdeleme a megfigyelt mintában várhatóan kb. \(s_b=\pm 2.849\) milió Ft-tal }(2849 ezer Ft-tal)** tér el saját településtípusának átlagos jövedelmétől**.
 
-Ha a 3. heti tananyag 3. fejezetében bemutatott számolási módját veszem figyelembe a korrigált mintaszórásnak, ami szerint \(s^2=\sqrt{\sum_{i=1}^{n}{(y_i-\bar{y})^2}/(n-1)}\), akkor úgy lenne korrekt, hogy ha a belső szórást számoló formulában is mindenhol az \(n\)-t és \(n_j\)-ket \(n-1\)-nek és \(n_j-1\)-eknek venni, mint a ``sima'' \(s^2\) nevezőjében. Tehát, a korrigált szórás sajátosságait figyelembe vevő belső szórás képlet a következő: \[s_b=\sqrt{\frac{\sum_j{(n_j-1) \times s_j^2}}{n-1}}\]
+Ha az 5.3. fejezetben bemutatott számolási módját veszem figyelembe a korrigált mintaszórásnak, ami szerint \(s^2=\sqrt{\sum_{i=1}^{n}{(y_i-\bar{y})^2}/(n-1)}\), akkor úgy lenne korrekt, hogy ha a belső szórást számoló formulában is mindenhol az \(n\)-t és \(n_j\)-ket \(n-1\)-nek és \(n_j-1\)-eknek venni, mint a ``sima'' \(s^2\) nevezőjében. Tehát, a korrigált szórás sajátosságait figyelembe vevő belső szórás képlet a következő: \[s_b=\sqrt{\frac{\sum_j{(n_j-1) \times s_j^2}}{n-1}}\]
 
 Ezt is gyorsan ki is tudjuk számolni Pythonban \texttt{numpy} függvények segítségével.
 
@@ -9545,7 +9585,7 @@ Istenigazából a \textbf{hipotézisvizsgálat} csak egy \textbf{alternatív mó
 Hipotézisvizsgálat során megfogalmazunk egy \textbf{állítást vagy szebb szóval hipotézist egy statisztikai mutatószám} (átlag, arány, medián, szórás, stb.) \textbf{valós, sokasági értékéről, és utána megpróbáljuk állítani, hogy ezt a felvetést/hipotézist a megfigyelt mintaadatok alátámasztják-e vagy sem}. Most így alapesetben a paraméteres statisztikai hipotézisvizsgálatokat vagy rövidebben az úgynevezett \textbf{paraméteres (statisztikai) próbákat vizsgáljuk}, mert a \textbf{megfogalmazott hipotézisünk mindig egy statisztikai paraméter} (azaz statisztikai mutatószám) valós, \textbf{sokasági értékéről szól} majd egyelőre.
 
 Nézzünk meg \textbf{ismét egy \(n=100\) elemű FAE mintát a 2022-es Balaton átúszást teljesítők sokaságából} a LIDLBalaton2022.xlsx fájl alapján.
-Ahogy a 3. heti tananyagban is néztük, ebben a fájlban a Balaton átúszás résztvevőinek \emph{neve, neme és percben mért időeredménye} található. Ez az adatsor lesz most is a \textbf{sokaságunk}.
+Ahogy az 5. fejezetben is néztük, ebben a fájlban a Balaton átúszás résztvevőinek \emph{neve, neme és percben mért időeredménye} található. Ez az adatsor lesz most is a \textbf{sokaságunk}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9768,8 +9808,8 @@ Ha a \(H_0\)-ban jól okoskodunk, és \textbf{tényleg sikerült a valós \(\mu\
 
 A képlet mögött az az elv nyugszik, hogy \textbf{a \(\mu = \mu_0\) technikai nullhipotézist (\(H_0^T\)) alkalmazzuk mind a 6 különböző típusú \(H_0\) és \(H_1\) párosnál, így meg tudjuk majd adni a próbafüggvény eloszlását sok-sok mintavétel esetén}.
 
-Ezt az egészet gyorsan ellenőrizni tudjuk, ha \textbf{kiveszünk \(10000\) db \(n=100\) elemű FAE mintát a Balaton átúszók sokaságából}, ahogy a 3. heti tananyagban is tettük.
-Most csak \textbf{visszatöltjük a \(10000\) db FAE mintát tartalmazó Excel táblát egy data frame-be}, amit a 2. heti tananyagban hoztunk létre. Ez az Excel fájl innen elérhető.
+Ezt az egészet gyorsan ellenőrizni tudjuk, ha \textbf{kiveszünk \(10000\) db \(n=100\) elemű FAE mintát a Balaton átúszók sokaságából}, ahogy az 5. fjezetben is tettük.
+Most csak \textbf{visszatöltjük a \(10000\) db FAE mintát tartalmazó Excel táblát egy data frame-be}, amit a 4.3.1. fejezetben hoztunk létre. Ez az Excel fájl innen elérhető.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9797,7 +9837,7 @@ Most csak \textbf{visszatöltjük a \(10000\) db FAE mintát tartalmazó Excel t
 
 Oké, az eredményből látjuk is, hogy úgy néz ki a data frame, hogy \textbf{1 sor tartalmaz 1 db 100 elemű mintát és a mintaelemeket} (tehát a mintába besorsolt versenyző percben mért időeredményét) \textbf{az oszlopkban tároljuk}.
 
-Kiszámoljuk mindenegyes mintavételre a minta átlagos időeredményét és azok korrigált szórását. Csak figyeljünk, hogy az alkalmazott \texttt{numpy} függvényeket \texttt{axis\ =\ 1} paraméterrel használjuk, hogy ne oszlopok, hanem sorok szerint vegyék az átlagokat és a szórásokat. Plusz, figyeljünk, hogy a függvényeket minidg csak az első \(100\) oszlopra engedjük rá, hiszen ott vannak a tényleges mintaelemek. Ezt ugyebár a data framek \texttt{iloc} metódusával tudjuk biztosítani, ahogy a 3. heti tananyag 2. fejezetében csináltuk.
+Kiszámoljuk mindenegyes mintavételre a minta átlagos időeredményét és azok korrigált szórását. Csak figyeljünk, hogy az alkalmazott \texttt{numpy} függvényeket \texttt{axis\ =\ 1} paraméterrel használjuk, hogy ne oszlopok, hanem sorok szerint vegyék az átlagokat és a szórásokat. Plusz, figyeljünk, hogy a függvényeket minidg csak az első \(100\) oszlopra engedjük rá, hiszen ott vannak a tényleges mintaelemek. Ezt ugyebár a data framek \texttt{iloc} metódusával tudjuk biztosítani, ahogy az 5.2. fejezetben csináltuk.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9866,7 +9906,7 @@ Ezek után pedig \textbf{ki tudjuk számolni a próbafüggvényünket egy olyan 
 \end{verbatim}
 
 Okké! Akkor miután megvannak a kétféle esetben a próbafüggvényeink, \textbf{nézzük meg a kétféle próbafüggvények hisztogramja a \(10000\) db mintavétel alapján hogyan alakul a \(t(n-1)\), azaz \(t(100-1)\) eloszlás sűrűségfüggvényéhez} képest.
-A sűrűségfüggvény hisztogramhoz való illeszkedését ábrázoló kód teljes mértékben az 1. heti tananyag 2.3. és 3. fejezeteiben lévő kódok logikáját követi.
+A sűrűségfüggvény hisztogramhoz való illeszkedését ábrázoló kód teljes mértékben az 3.2.3. és 3.3. fejezetekben lévő kódok logikáját követi.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10194,7 +10234,7 @@ Nézzük meg, hogy \textbf{vehető-e 1/3-nak a Balatont 3 óra felett átúszók
 
 A \(H_0\) és \(H_1\) párunkból következik, hogy az \textbf{elvi arány, azaz \(P_0\), amihez képest vizgsálódunk most az \(1/3\) érték!!}
 
-Ezek után itt most azt mondanánk az 5. heti tananyag 2. fejezete alapján, hogy készítünk a megfigyelt mintánkba egy olyan \(0-1\) értékekből álló oszlopot, ahol \(1\) jelenti a 3 óránál hosszabb idő alatt átúszókat a mintában (arány szempontjából kedvező esetek a mintában), míg \(0\) a többieket (arány szempontjából kevdezőtlen esetek a mintában), és ennek az oszlopnak az átlagára vonatkozó hipotézivizsgálatot végzünk (mivel \(n=100 > 30\) ez simán lehet z-próba).
+Ezek után itt most azt mondanánk a 7.2. fejezet alapján, hogy készítünk a megfigyelt mintánkba egy olyan \(0-1\) értékekből álló oszlopot, ahol \(1\) jelenti a 3 óránál hosszabb idő alatt átúszókat a mintában (arány szempontjából kedvező esetek a mintában), míg \(0\) a többieket (arány szempontjából kevdezőtlen esetek a mintában), és ennek az oszlopnak az átlagára vonatkozó hipotézivizsgálatot végzünk (mivel \(n=100 > 30\) ez simán lehet z-próba).
 
 Ezzel a fenti elvvel viszont van egy kis gond! Ugyanis \textbf{arányra vonatkozó hipotézivizsgálat esetén a próbafüggvényünk az alábbi módon néz ki}: \[\frac{p-P_0}{\sqrt{\frac{P_0(1-P_0)}{n}}} \sim N(0,1)\]
 
@@ -10303,7 +10343,7 @@ Ez a \(4\) lépés tényleg \textbf{minden hipotézisvizsgálat során ugyan ez 
 
 Vegyük elő újra a ESS2020.xlsx fájlban található adatbázist! Emlékeztetőül álljon itt, hogy ez az adatbázis a 2020-ban végzett európai szociális felmérés (European Social Survey 2020 = ESS2020) 1849 magyar kitöltöjének válaszait tartalmazza 14 kérdésre (plusz van egy \emph{id} oszlop).
 
-Ugyebár az előző tananyag 4. fejezet 2. feladatában azt mondtuk, hogy ha az adatbázis valamelyik oszlopában üres értéket találunk, akkor az azt jelenti, hogy az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők.
+Ugyebár a 6.4. fejezet 2. feladatában azt mondtuk, hogy ha az adatbázis valamelyik oszlopában üres értéket találunk, akkor az azt jelenti, hogy az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők.
 
 Először is töltsök be az adatbázist ismét az Excelből egy \texttt{pandas} data frame-be és nézzük meg az \texttt{info} metódussal milyen oszlopaink (azaz ismérveink) vannak!
 
@@ -10400,7 +10440,7 @@ Szóval, számoljuk csak ki ezt a próbafüggvényt! :)
 ## 718.6702741281487
 \end{verbatim}
 
-Szép és jó ez az érték, de önmagában nem sokat mond. :) Ugorjunk is a 3. pontra, a p-érték számítására. Ugye azt megállapítottuk már az előbb, hogy a p-értéket most \(n-1\) szabadságfokú \(\chi^2\) eloszlásból számoljuk. Plusz, \textbf{mivel a \(H_1\)-ben \(<\) jel van, így a számítás balodali módon történik}, azaz \textbf{a \(\chi^2(n-1)\) eloszlásban a próbafüggvény alá esés valószínűsége érdekel}. Az \textbf{elv itt ugyan az, amit láttunk a 7. heti tananyag 2. fejezetében.}
+Szép és jó ez az érték, de önmagában nem sokat mond. :) Ugorjunk is a 3. pontra, a p-érték számítására. Ugye azt megállapítottuk már az előbb, hogy a p-értéket most \(n-1\) szabadságfokú \(\chi^2\) eloszlásból számoljuk. Plusz, \textbf{mivel a \(H_1\)-ben \(<\) jel van, így a számítás balodali módon történik}, azaz \textbf{a \(\chi^2(n-1)\) eloszlásban a próbafüggvény alá esés valószínűsége érdekel}. Az \textbf{elv itt ugyan az, amit láttunk a 9.2. fejezetben.}
 
 Ezek alapján meg is van a p-értékünk a \texttt{stats.chi2.cdf} függvénnyel.
 
@@ -10416,7 +10456,7 @@ Ezek alapján meg is van a p-értékünk a \texttt{stats.chi2.cdf} függvénnyel
 
 A p-érték = \(82.6\%\) lett, ami szerint a megfigyelt minta alapján a \(H_0\)-t elutasítani \(82.6\%\) hibavalószínűséggel jár. Ez jó magas hibavalószínűség így ``szabad szemmel'' is, de technikailag ha nézem, akkor \textbf{ez a p-érték magasabb még a legmagasabb szokásos szignifikancia-szintnél}, a \(10\%\)-nál \textbf{is}, így \textbf{a \(H_0\)-t nem utasítjuk el}, mert ez a döntés túl nagy hibával járna. Ez alapján pedig azt mondhatjuk, hogy \textbf{a heti munkaidők szórása a teljes népességben (sokaságban) is legalább 15 órának kinéz}.
 
-Sajnos ennek a \(\chi^2\) próbának ugyan az a baja, mint a \(\chi^2\) eloszlásos intervallumbecslésnek volt az 5. heti tananyag 5. fejezetében: A próba elvégézésének \textbf{előfeltétele, hogy az adataink normális eloszlásúak legyenek}. tehát, a számított p-értékünk, a \(82.6\%\), az akkor valid, ha az adatsor, aminek a szórását vizsgáljuk normális eloszlást követ.
+Sajnos ennek a \(\chi^2\) próbának ugyan az a baja, mint a \(\chi^2\) eloszlásos intervallumbecslésnek volt a 7.5. fejezetben: A próba elvégézésének \textbf{előfeltétele, hogy az adataink normális eloszlásúak legyenek}. tehát, a számított p-értékünk, a \(82.6\%\), az akkor valid, ha az adatsor, aminek a szórását vizsgáljuk normális eloszlást követ.
 Ezt egy hisztogrammal gyorsan ellenőrizni is tudjuk.
 
 \begin{Shaded}
@@ -10925,7 +10965,7 @@ A képletben szereplő betűk jelentése:
   \(f^*_j\): reprezentativitás esetén fennálló elvi gyakoriságok a mintában
 \end{itemize}
 
-A \textbf{p-érték}et a \(\chi^2(k-1)\) eloszlásból \textbf{mindig jobboldali} módon számítjuk. Részletek a jobboldali p-érték számításról a 7. heti tananyag 2. fejezetében.
+A \textbf{p-érték}et a \(\chi^2(k-1)\) eloszlásból \textbf{mindig jobboldali} módon számítjuk. Részletek a jobboldali p-érték számításról a 9.2. fejezetben.
 
 Számítsuk ki a szükséges \(f_j\) gyakoriságokat.
 
@@ -11110,7 +11150,7 @@ Tehát, pl. \(31\) főnyi munkájával nagyon elégedett Windows felhasználó v
 
 Sajnos, a kereszttáblában van olyan elem (azaz van olyan \(i\) sor és \(j\) oszlop), ahol a gyakoriság kisebb, mint \(5\), azaz \(\exists f_{ij}<5\). Láasd pl. A semleges érzelmű Linuxosok esetét. Ekkor \textbf{valószínűleg NEM fog teljesülni a nagy minta előfeltétel}, mert nem lesz minden kereszttábla gyakoirság legalább \(5\).
 
-Emiatt a problémát úgy hidaljuk át, hogy a \emph{Very satisfied} és \emph{Slightly satisfied} kategóriákból készítünk egy \emph{Satisfied} kategóriát, a többiekből pedig egy \emph{Not satisdfied kategóriát}. Ezt a \texttt{numpy} csomag \texttt{where} függvényével tudjuk intézni, mint az 5. heti tananyag 2. fejezetében az arányok konfidencia-intervallum számolásához a \(0-1\) értékű új oszlop létrehozását.
+Emiatt a problémát úgy hidaljuk át, hogy a \emph{Very satisfied} és \emph{Slightly satisfied} kategóriákból készítünk egy \emph{Satisfied} kategóriát, a többiekből pedig egy \emph{Not satisdfied kategóriát}. Ezt a \texttt{numpy} csomag \texttt{where} függvényével tudjuk intézni, mint az 7.2. fejezetben az arányok konfidencia-intervallum számolásához a \(0-1\) értékű új oszlop létrehozását.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11956,7 +11996,7 @@ Első körben nézzük meg egy \(R^2\) segítségével milyen szoros a két vál
 
 Alapvetően az \(R^2\) szép, korrekt dolgokat mutat. Az ápolók száma kb. 18 \%-ban megmagyarázza a COVID halálozás alakulását a vizsgált járások körében (\(R^2=17.6\%\)), ami egy közepes magyarázóerőnek minősíthető, hiszen \(10\% < R^2 < 50\%\).
 
-Nézzük meg, hogy néz ki a regressziós egyenes egyenlete! Használjuk nyugodtan a 11. heti tananyag 6. fejezetében megismert \texttt{polyfit} függvényét a \texttt{numpy} csomagnak:
+Nézzük meg, hogy néz ki a regressziós egyenes egyenlete! Használjuk nyugodtan a 12.6. fejezetben megismert \texttt{polyfit} függvényét a \texttt{numpy} csomagnak:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -12077,8 +12117,8 @@ A többváltozós regressziós modell legfontosabb statisztikai mutatóit egy na
 ## Dep. Variable:             COVIDHalal   R-squared:                       0.341
 ## Model:                            OLS   Adj. R-squared:                  0.321
 ## Method:                 Least Squares   F-statistic:                     16.89
-## Date:                 P, 27 jún. 2025   Prob (F-statistic):           6.42e-09
-## Time:                        12:43:27   Log-Likelihood:                -152.39
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           6.42e-09
+## Time:                        15:25:07   Log-Likelihood:                -152.39
 ## No. Observations:                 102   AIC:                             312.8
 ## Df Residuals:                      98   BIC:                             323.3
 ## Df Model:                           3                                         
@@ -12309,8 +12349,8 @@ A próbafüggvényhez ad nekünk a Python egy \textbf{standard mintavételi hib�
 ## Dep. Variable:             COVIDHalal   R-squared:                       0.341
 ## Model:                            OLS   Adj. R-squared:                  0.321
 ## Method:                 Least Squares   F-statistic:                     16.89
-## Date:                 P, 27 jún. 2025   Prob (F-statistic):           6.42e-09
-## Time:                        12:43:29   Log-Likelihood:                -152.39
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           6.42e-09
+## Time:                        15:25:09   Log-Likelihood:                -152.39
 ## No. Observations:                 102   AIC:                             312.8
 ## Df Residuals:                      98   BIC:                             323.3
 ## Df Model:                           3                                         
@@ -12343,13 +12383,637 @@ Itt \(H_0\) szempontjából a legjobb eset, ha \(\beta_j=0\) a mintában is, his
 
 \includegraphics[width=0.5\textwidth,height=\textheight]{pt.jpg}
 
-Így R-ben a p-érték: \texttt{2*stats.t.cdf(-abs(0.0445/0.096),\ df\ =\ 102-4)}\(= 0.644\). Ezt adja meg a \texttt{summary} metódus eredménytáblája a \texttt{P\textgreater{}\textbar{}t\textbar{}} oszlopban.
+Így Pythonban a p-érték: \texttt{2*stats.t.cdf(-abs(0.0445/0.096),\ df\ =\ 102-4)}\(= 0.644\). Ezt adja meg a \texttt{summary} metódus eredménytáblája a \texttt{P\textgreater{}\textbar{}t\textbar{}} oszlopban.
 
 A \texttt{P\textgreater{}\textbar{}t\textbar{}} oszlopot nézegetve arra a kijelentésre juthatunk, hogy a COVID halálozásra a munkanélküliség és a 65 év feletti női népesség aránya is szignifikáns hatással van a \emph{megfigyelt lakásokon kívüli világban is}, hiszen a parciális t-próba p-értéke az \(\alpha=1\%\)-os szignifikancia-szintnél is kisebb. Azaz a \(H_0\) elvetésével mindkét magyarázóváltozó esetén elég alacsony valószínűséggel hibáznék. Ez a \textbf{Nok65Felett} változó esetében azt jelenti, hogy az a közepes-gyenge közvetlen hatása az árakra, amit a parciális korreláció (+0.29) kimutatott megmarad új járások vizsgálata esetén is. Ugyanakkor, azt is látni, hogy az \textbf{Apolok} változóhoz rendelt p-érték jóval nagyobb, mint a \textbf{Munkanelkuliseg} és \textbf{Nok65Felett} változóké. Konkrétan \(64.4\%\) a p-érték, ami olyan magas, hogy a legmagasabb szokásos \(\alpha\)-nál, a \(10\%\)-nál is nagyobb, így stabilan elfogadhatom a próba \(H_0\)-ját! Tehát a parciális t-próba is azt mondja, hogy az \textbf{Apolok} változók hatása a COVID halálozásra a mintén kívüli filágban \textbf{nem szignifikáns}.
 
 Végkonklúzióként, tehát azt vonhatjuk le a modellünk alapján, hogy az \textbf{ápolók számának COVID halálozásra gyakorolt pozitív hatása a kétváltozós regresszióban látszólagos volt csupán, és a munkanélküliség valamint 65 feletti női népesség arányának COVID halálozást növelő hatásait közvetítette csak, és semmi önálló szignifikáns marginális hatása nem volt}!
 
 Ezek a változónkénti t-próba p-értékek azért nagyon jók, mert ezek alapján nagyon könnyű egy fontossági sorrendet felállítani a regressziónk magyarázóváltozói között. Az eddigiek alapján röviden-tömören: minél kisebb a parciális t-próba p-értéke, annál fontosabb az adott magyraázóváltozó az eredményváltozó előrejelezésében (annál kevésbé vehető marginális hatása \(0\)-nak a sokaságban)
+
+\section{Magyarázóváltozók fontossági sorrendjének megállapítása t-próba alapján}\label{magyaruxe1zuxf3vuxe1ltozuxf3k-fontossuxe1gi-sorrendjuxe9nek-meguxe1llapuxedtuxe1sa-t-pruxf3ba-alapjuxe1n}
+
+Vegyük elő újra a BP\_Lakas.csv fájlt, és töltsük be újra egy \texttt{pandas} data frame-be, ahogy a 12. fejezet elején is tettük!
+
+Előtte egy kis emlékeztető az adattábla tartalmáról, változóiról. A tábla 1406 budapesti lakásról 10 ismérv/változó (oszlop) adatát tárolja:
+
+\begin{itemize}
+\tightlist
+\item
+  KinArMFt: lakás ára millió Ft-ban (MFt)
+\item
+  Terulet: lakás területe négyzetméterben
+\item
+  Terasz: teraszok száma a lakásban
+\item
+  Szoba: szobák száma a lakásban
+\item
+  Felszoba: félszobák száma a lakásban
+\item
+  Furdoszoba: fürdőszobák száma a lakásban
+\item
+  Emelet: emeletek száma a lakásban
+\item
+  DeliTaj: lakás déli fekvésű-e? (1 = igen; 0 = nem)
+\item
+  Buda: lakás déli fekvésű-e? (1 = igen; 0 = nem)
+\item
+  Kerulet: lakás kerülete (1 - 22)
+\end{itemize}
+
+Majd a konkrét beolvasás:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BP\_Lakas }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"BP\_Lakas.csv"}\NormalTok{)}
+\NormalTok{BP\_Lakas.info()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <class 'pandas.core.frame.DataFrame'>
+## RangeIndex: 1406 entries, 0 to 1405
+## Data columns (total 10 columns):
+##  #   Column      Non-Null Count  Dtype  
+## ---  ------      --------------  -----  
+##  0   KinArMFt    1406 non-null   float64
+##  1   Terulet     1406 non-null   float64
+##  2   Terasz      1406 non-null   float64
+##  3   Szoba       1406 non-null   int64  
+##  4   Felszoba    1406 non-null   int64  
+##  5   Furdoszoba  1406 non-null   int64  
+##  6   Emelet      1406 non-null   int64  
+##  7   DeliTaj     1406 non-null   int64  
+##  8   Buda        1406 non-null   int64  
+##  9   Kerulet     1406 non-null   int64  
+## dtypes: float64(3), int64(7)
+## memory usage: 110.0 KB
+\end{verbatim}
+
+Most nem szenvedünk az adattípusokkal, mindent hagyunk numerikusan.
+
+Nézzünk most meg egy olyan modellt a lakásárak becslésére, amiben a \textbf{BP\_Lakas} \texttt{data\ frame} minden változója szerepel magyarázóváltozóként a \textbf{Kerulet} kivételével:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# eredményváltozó megadása}
+\NormalTok{Y }\OperatorTok{=}\NormalTok{ BP\_Lakas.KinArMFt}
+
+\CommentTok{\# magyarázóváltozók megadása a konstanshoz szükséges csupa 1 oszlop hozzáadásával}
+\NormalTok{X }\OperatorTok{=}\NormalTok{ BP\_Lakas.iloc[:,}\DecValTok{1}\NormalTok{:}\DecValTok{9}\NormalTok{]}
+\NormalTok{X }\OperatorTok{=}\NormalTok{ sm.add\_constant(X)}
+
+\CommentTok{\# létrehozzuk az új regressziót}
+\NormalTok{nagymodell }\OperatorTok{=}\NormalTok{ sm.OLS(Y, X).fit()}
+
+\CommentTok{\# lássuk az eredménytáblát}
+\BuiltInTok{print}\NormalTok{(nagymodell.summary())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:               KinArMFt   R-squared:                       0.818
+## Model:                            OLS   Adj. R-squared:                  0.817
+## Method:                 Least Squares   F-statistic:                     783.3
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):               0.00
+## Time:                        15:25:09   Log-Likelihood:                -4984.1
+## No. Observations:                1406   AIC:                             9986.
+## Df Residuals:                    1397   BIC:                         1.003e+04
+## Df Model:                           8                                         
+## Covariance Type:            nonrobust                                         
+## ==============================================================================
+##                  coef    std err          t      P>|t|      [0.025      0.975]
+## ------------------------------------------------------------------------------
+## const         -9.0189      0.779    -11.580      0.000     -10.547      -7.491
+## Terulet        0.2975      0.010     29.153      0.000       0.277       0.318
+## Terasz         0.3105      0.021     15.022      0.000       0.270       0.351
+## Szoba          0.6898      0.349      1.977      0.048       0.005       1.374
+## Felszoba      -0.3851      0.406     -0.949      0.343      -1.181       0.411
+## Furdoszoba     5.1301      0.682      7.526      0.000       3.793       6.467
+## Emelet         0.0545      0.132      0.412      0.680      -0.205       0.314
+## DeliTaj        1.1916      0.458      2.604      0.009       0.294       2.089
+## Buda           6.2197      0.475     13.091      0.000       5.288       7.152
+## ==============================================================================
+## Omnibus:                      421.833   Durbin-Watson:                   1.271
+## Prob(Omnibus):                  0.000   Jarque-Bera (JB):             2922.930
+## Skew:                           1.211   Prob(JB):                         0.00
+## Kurtosis:                       9.635   Cond. No.                         363.
+## ==============================================================================
+## 
+## Notes:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+\end{verbatim}
+
+Látjuk, hogy a modell magyarázóereje a mintában 81.76\%, azaz a modellben lévő magyarázóváltozók együttesen kb. 82\%-ban magyarázzák a lakásárak alakulását a megfigyelt 1406 lakás esetében. Ha a többi egyéb változó hatását is kiszűrjük, akkor a szobaszám közvetlen hatása \(\alpha = 5\%\)-on még éppen szignifikáns, de \(\alpha = 1\%\)-on már nem! A félszobák száma és az emeletek száma pedig egyik szokásos \(\alpha\)-n sem szignifikáns magyarázóváltozó már a megfigyelt lakásokon túli világban.
+
+A magyarázóváltozók fontossági sorrendjét a változók p-értéke alapján növekvő sorba rendezéssel tudom megadni, mert minél kisebb a p-érték annál kisebb az esélye, hogy az adott \(X_j\)-t nem szignifikáns magyarázóváltozónak venni hibás döntés.
+
+Ennek a folyamata egy kicsit macerás Pythonban. Először elmentjük a \texttt{summary} függvény eredményét egy külön Python változóba, és ennek a \texttt{tables} tulajdonságának a második (azaz 1. indexű) elemét olvasom ki egy következő külön változóba **html kódként, azaz
+
+tagekkel!!**
+Ezt utána arra tudom használni, hogy a \texttt{pandas} csomag \texttt{read\_html} függvényével be tudom olvasni a regresszió nagy együtthatótábláját a p-értékekkel együtt egy \texttt{data\ frame}-be. Arra kell még figyelni, hogy a \emph{html} tábla 0. indexű sora legyen a \texttt{read\_html}-el beolvasott \texttt{data\ frame} sorindexe (\texttt{index\_col} paraméter) és ugyan ezen tábla 0. indexű oszlopa pedig legyen ugyanitt az oszlopfejléc (\texttt{header} paraméter).
+Annyi technikai dologra kell még odafigyelni, hogy a \texttt{read\_html} függvény egy egyelemű listaként adja vissza az eredményt, így ahhoz, hogy közvetlenül a \texttt{data\ frame}-t kapjuk vissza, ennek az eredménylistának a 0. indexű elemét külön ki kell venni \texttt{{[}0{]}} kódrészlettel a végén.
+Lássuk is hát a konkrét Python kódokat és az eredményül kapott \texttt{data\ frame}-et!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BetaTablaHTML }\OperatorTok{=}\NormalTok{ nagymodell.summary().tables[}\DecValTok{1}\NormalTok{].as\_html()}
+\NormalTok{BetaTabla\_df }\OperatorTok{=}\NormalTok{ pd.read\_html(BetaTablaHTML, header}\OperatorTok{=}\DecValTok{0}\NormalTok{, index\_col}\OperatorTok{=}\DecValTok{0}\NormalTok{)[}\DecValTok{0}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <string>:1: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BetaTabla\_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               coef  std err       t  P>|t|  [0.025  0.975]
+## const      -9.0189    0.779 -11.580  0.000 -10.547  -7.491
+## Terulet     0.2975    0.010  29.153  0.000   0.277   0.318
+## Terasz      0.3105    0.021  15.022  0.000   0.270   0.351
+## Szoba       0.6898    0.349   1.977  0.048   0.005   1.374
+## Felszoba   -0.3851    0.406  -0.949  0.343  -1.181   0.411
+## Furdoszoba  5.1301    0.682   7.526  0.000   3.793   6.467
+## Emelet      0.0545    0.132   0.412  0.680  -0.205   0.314
+## DeliTaj     1.1916    0.458   2.604  0.009   0.294   2.089
+## Buda        6.2197    0.475  13.091  0.000   5.288   7.152
+\end{verbatim}
+
+Ha megvan a \texttt{data\ frame}, akkor pedig rendezzük növekvő sorrendbe a 4. (3. indexű) oszlop, azaz a \(\beta_j\) együtthatók \textbf{p-értékei} szerint. Előtte a tengelymetszet (\(\beta_0\)) sorát, a \texttt{const}-t kihagyjuk a \texttt{data\ frame}-ből, mert ugyebár az nem egy magyarázóváltozó együtthatója a regressziós egyenletben.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BetaTabla\_df.iloc[}\DecValTok{1}\NormalTok{:}\DecValTok{9}\NormalTok{,:].sort\_values(by}\OperatorTok{=}\NormalTok{BetaTabla\_df.columns[}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               coef  std err       t  P>|t|  [0.025  0.975]
+## Terulet     0.2975    0.010  29.153  0.000   0.277   0.318
+## Terasz      0.3105    0.021  15.022  0.000   0.270   0.351
+## Furdoszoba  5.1301    0.682   7.526  0.000   3.793   6.467
+## Buda        6.2197    0.475  13.091  0.000   5.288   7.152
+## DeliTaj     1.1916    0.458   2.604  0.009   0.294   2.089
+## Szoba       0.6898    0.349   1.977  0.048   0.005   1.374
+## Felszoba   -0.3851    0.406  -0.949  0.343  -1.181   0.411
+## Emelet      0.0545    0.132   0.412  0.680  -0.205   0.314
+\end{verbatim}
+
+Láthatjuk, hogy a Terület a legfontosabb magyarázóváltozó, míg a pl. szobák száma a \emph{3. legkevésbé fontos} magyarázóváltozó.
+
+\section{5. Konfidencia-intervallumok és a t-próba kapcsolata}\label{konfidencia-intervallumok-uxe9s-a-t-pruxf3ba-kapcsolata}
+
+A többváltozós regressziós modell együtthatóira (béták) is lehet egy adott megbízhatósági szintű konfidencia-intervallumot is készíteni Pythonban a regressziós modellek \texttt{confint} metódusának segítségével.
+Pl. \textbf{egy 97\% megbízhatóságú konfidencia-intervallum \(\beta_j\)-re azt adja meg, hogy 97\%-os valószínűséggel milyen értékhatárok között mozoghat \(\beta_j\) együttható a megfyigelt lakásokon túli világban}.
+
+Nézzük is meg a Python számítást:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nagymodell.conf\_int() }\CommentTok{\# alapból 95\%{-}os megbízhatóságú}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     0         1
+## const      -10.546693 -7.491181
+## Terulet      0.277475  0.317511
+## Terasz       0.269945  0.351035
+## Szoba        0.005311  1.374306
+## Felszoba    -1.180769  0.410579
+## Furdoszoba   3.792974  6.467229
+## Emelet      -0.204826  0.313728
+## DeliTaj      0.293935  2.089167
+## Buda         5.287680  7.151671
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nagymodell.conf\_int(alpha }\OperatorTok{=} \FloatTok{0.03}\NormalTok{) }\CommentTok{\# de lehet pl. 97\%{-}os is (alfa = 1{-}0.97)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     0         1
+## const      -10.710745 -7.327129
+## Terulet      0.275325  0.319660
+## Terasz       0.265591  0.355389
+## Szoba       -0.068191  1.447808
+## Felszoba    -1.266210  0.496020
+## Furdoszoba   3.649391  6.610811
+## Emelet      -0.232668  0.341570
+## DeliTaj      0.197548  2.185555
+## Buda         5.187601  7.251750
+\end{verbatim}
+
+Pl. az első eredménytábla alapján a \textbf{Terulet} változó \(\beta\)-ja 95\%-os valószínűséggel 0.277 és 0.317 között kötne ki valahol, ha nem 1406 budapesti lakást vizsgálnánk, hanem az össeset (azaz a lakások sokaságát).
+
+Az eredményből megjelenik egy olyan összefüggés is, miszerint, \textbf{ha egy \(X_j\) nem szignifikáns \(\alpha\) szignifikancia-szinten, akkor az \(1-\alpha\) megbízhatóságú konfidencia-intervallumának határai előjelet váltanak}.
+legjobb példa a \textbf{Szoba} változó esete: azt mondtuk rá, hogy hatása az árakra 5\%-on még épp szignifikáns -\textgreater{} a 95\%-os megbízhatóságú intervalluma még épp nem vált előjelet. Viszont a változó 3\%-on már nem szignifikáns, így az intervalluma előjelet vált.
+
+Ezzel egy érdekes nézőponthoz jutottunk: \emph{ha egy \(X_j\) változó nem szignifikáns \(\alpha\)-n az azt jelenti, hogy \(1-\alpha\) megbízhatósági szinten azt sem tudom eldönteni, hogy minden más változatlansága mellett +1 egység \(X_j\) növeli vagy csökkenti-e az eredmányváltozót a mintán kívüli világban}.
+
+A háttérben amúgy annyi történik, hogy a Python kiszámolja a parciális t-próba esetén is alkalmazott \(n-p=n-k-1\) szabadságfokú t-eloszlás inverz értékét \(1-\alpha/2\) valószínűség mellett, és az ezzel beszorzott standard hibát adja hozzá és vonja le \(\forall \beta_j\)-ből:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BetaTabla\_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               coef  std err       t  P>|t|  [0.025  0.975]
+## const      -9.0189    0.779 -11.580  0.000 -10.547  -7.491
+## Terulet     0.2975    0.010  29.153  0.000   0.277   0.318
+## Terasz      0.3105    0.021  15.022  0.000   0.270   0.351
+## Szoba       0.6898    0.349   1.977  0.048   0.005   1.374
+## Felszoba   -0.3851    0.406  -0.949  0.343  -1.181   0.411
+## Furdoszoba  5.1301    0.682   7.526  0.000   3.793   6.467
+## Emelet      0.0545    0.132   0.412  0.680  -0.205   0.314
+## DeliTaj     1.1916    0.458   2.604  0.009   0.294   2.089
+## Buda        6.2197    0.475  13.091  0.000   5.288   7.152
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alfa }\OperatorTok{=} \FloatTok{0.02}
+\NormalTok{p }\OperatorTok{=} \BuiltInTok{len}\NormalTok{(BetaTabla\_df) }\CommentTok{\# így a tengelymetszetet is beszámítjuk p{-}be}
+\NormalTok{n }\OperatorTok{=} \BuiltInTok{len}\NormalTok{(BP\_Lakas) }\CommentTok{\# mintaelemszám}
+\NormalTok{szorzo }\OperatorTok{=}\NormalTok{ stats.t.ppf(}\DecValTok{1}\OperatorTok{{-}}\NormalTok{alfa}\OperatorTok{/}\DecValTok{2}\NormalTok{, df }\OperatorTok{=}\NormalTok{ n}\OperatorTok{{-}}\NormalTok{p)}
+
+\NormalTok{Terulet\_AH }\OperatorTok{=}\NormalTok{ BetaTabla\_df.iloc[}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{] }\OperatorTok{{-}}\NormalTok{ szorzo }\OperatorTok{*}\NormalTok{ BetaTabla\_df.iloc[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{] }\CommentTok{\# Terulet 98\% alsó határ}
+\NormalTok{Terulet\_FH }\OperatorTok{=}\NormalTok{ BetaTabla\_df.iloc[}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{] }\OperatorTok{+}\NormalTok{ szorzo }\OperatorTok{*}\NormalTok{ BetaTabla\_df.iloc[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{] }\CommentTok{\# Terulet 98\% felső határ}
+\BuiltInTok{print}\NormalTok{([Terulet\_AH, Terulet\_FH])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [0.2742097984822436, 0.3207902015177564]
+\end{verbatim}
+
+Formális képlettel leírva a műveletet:
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{BetaCI.jpg}
+
+\section{Nominális magyarázóváltozók - Használtautó adatok}\label{nominuxe1lis-magyaruxe1zuxf3vuxe1ltozuxf3k---hasznuxe1ltautuxf3-adatok}
+
+Most egy új, auto.xlsx fájlból fogunk dolgozni, ami 100 db használtautóról tartalmaz 8 változót:
+
+\begin{itemize}
+\tightlist
+\item
+  Vetelar: Vételár Ft-ban
+\item
+  Kor: Az autó kora években
+\item
+  Kilometerora: A kilóméteróra állása
+\item
+  Teljes\_tomeg: Az autó tömege kg-ban
+\item
+  Hengerurtartalom: Hengerűrtartalom \emph{ccm}-ben (köbcenti)
+\item
+  Teljesitmeny: A motor teljesítménye Kw/h-ban
+\item
+  Allapot: Az autó állapota szöveges minősítéssel
+\item
+  Uzemanyag: Üzemanyag típusa (benzin/dízel)
+\end{itemize}
+
+Láthatjuk, hogy ez nem \emph{csv}, hanem Excel, azaz \emph{xlsx} fájl. Úgyhogy olvassuk is be egy pandas \texttt{data\ frame}-be!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{autok }\OperatorTok{=}\NormalTok{ pd.read\_excel(}\StringTok{"auto.xlsx"}\NormalTok{)}
+\NormalTok{autok.info()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <class 'pandas.core.frame.DataFrame'>
+## RangeIndex: 100 entries, 0 to 99
+## Data columns (total 8 columns):
+##  #   Column            Non-Null Count  Dtype 
+## ---  ------            --------------  ----- 
+##  0   Vetelar           100 non-null    int64 
+##  1   Kor               100 non-null    int64 
+##  2   Kilometerora      100 non-null    int64 
+##  3   Teljes_tomeg      100 non-null    int64 
+##  4   Hengerurtartalom  100 non-null    int64 
+##  5   Teljesitmeny      100 non-null    int64 
+##  6   Allapot           100 non-null    object
+##  7   Uzemanyag         100 non-null    object
+## dtypes: int64(6), object(2)
+## memory usage: 6.4+ KB
+\end{verbatim}
+
+Minden szupinak néz ki! Megvan mind a 100 megfigyelési egység és a 8 db változó.
+
+Vessünk még egy pillantást arra, hogy az \textbf{Allapot} változónak milyen lehetséges értékei vannak:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{autok.Allapot.unique()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## array(['Normal', 'Kituno', 'Megkimelt', 'Serulesmentes', 'Ujszeru'],
+##       dtype=object)
+\end{verbatim}
+
+\section{Dummy változók és működésük Pythonban}\label{dummy-vuxe1ltozuxf3k-uxe9s-mux171kuxf6duxe9suxfck-pythonban}
+
+No, ha egy sima OLS regresszióba magyarázóváltozóként nominális változót akarunk bevenni, mint amilyen jelen példánkban az \textbf{Allapot} vagy az \textbf{Uzemanyag}, akkor az R az úgynevezett \textbf{dummy-kódolást} veti be. A nominális változó lehetséges értékeiből kiválaszt egyet, mint \textbf{referencia kategória}, azt ``\emph{elteszi}'', és a maradéknak pedig csinál külön-külön egy \emph{bináris = dummy} változót, aminek értéke 1, ha a megfigyelés a vizsgált szöveges változóban épp a dummy változónak megfelelő értéket vesz fel, egyébként 0:
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{Dummy.jpg}
+
+A fenti táblázatban az \(R_A\) és \(R_B\) lennének a regresszióban használt dummy változók, és a referencia kategória a \(C\) érték. Ezt a \(C\) kategóriát azért nem szabad a modellben szerepeltetni, mert egyértelmű, hogy ha \(D_A=0\) és \(D_B=0\), akkor \(D_C=1\). Ezzel egy teljesen redundáns magyarázóváltozót raknánk a modellbe, amitől az egész rendszer megdöglik, mert a \(\beta\)-k becslése során alkalmazott \(\beta=(X^TX)^{-1}X^Ty\) képletben az \((X^TX)^{-1}\) inverzet nem lehet elvégezni, ha \(X\) mátrix oszlopai olyanok, hogy az egyiket hibátlanul elő lehet állítani a többiből. Ez a jelenség az \textbf{egzakt multikollinearitás} nevet kapta a keresztségben.
+
+Ezekkel a megfontolásokkal lássunk is neki a dummy változóink legyártásához a két nominális változónk (\textbf{Uzemanyag} és \textbf{Allapot}) esetében!
+Először a \texttt{pandas} csomag \texttt{get\_dummies} függvényével létrehozzuk a két szöveges változó minden kategóriájához a megfelelő 0/1, azaz dummy változókat. A függvény első paramétere az érintett változókat tartalmazó \texttt{data\ frame}, a második (\texttt{columns}) azon oszlopnevek listája, amelyekből dummy változókat akarunk csinálni, még az utolsó, \texttt{dtype} paraméterben a dummy változók adattípusát lehet megadni. Ez utolsó paraméter azért szükséges, mert egy dummy változó logikusan lehet akár \texttt{bool} adattípusú, de ad abszurdum \texttt{int} is. Most mi ez utóbbi opcióval megyünk, mert a \texttt{statsmodels} csomag nem tud \texttt{bool} típusú váltizókkal dolgozni.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{autok\_dummy }\OperatorTok{=}\NormalTok{ pd.get\_dummies(autok, columns}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}Uzemanyag\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Allapot\textquotesingle{}}\NormalTok{], dtype}\OperatorTok{=}\BuiltInTok{int}\NormalTok{)}
+\NormalTok{autok\_dummy.info()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <class 'pandas.core.frame.DataFrame'>
+## RangeIndex: 100 entries, 0 to 99
+## Data columns (total 13 columns):
+##  #   Column                 Non-Null Count  Dtype
+## ---  ------                 --------------  -----
+##  0   Vetelar                100 non-null    int64
+##  1   Kor                    100 non-null    int64
+##  2   Kilometerora           100 non-null    int64
+##  3   Teljes_tomeg           100 non-null    int64
+##  4   Hengerurtartalom       100 non-null    int64
+##  5   Teljesitmeny           100 non-null    int64
+##  6   Uzemanyag_Benzin       100 non-null    int32
+##  7   Uzemanyag_Dizel        100 non-null    int32
+##  8   Allapot_Kituno         100 non-null    int32
+##  9   Allapot_Megkimelt      100 non-null    int32
+##  10  Allapot_Normal         100 non-null    int32
+##  11  Allapot_Serulesmentes  100 non-null    int32
+##  12  Allapot_Ujszeru        100 non-null    int32
+## dtypes: int32(7), int64(6)
+## memory usage: 7.6 KB
+\end{verbatim}
+
+Szuper, megvan minden szükséges új változó, és a megfelelő, azaz \texttt{int} adattípuson is vannak!
+
+Ezek után lássunk hozzá a regressziós modell legyártásához, amely az autók vételárát magyarázza az összes többi változóval a táblában. Arra kell figyelni, hogy a magyarázóváltozók (\(X\) mátrix) kijelölésénél ne válasszuk ki a két nominális változó refrencia kategóriáinak oszlopait. Legyen most az \textbf{Uzemanyag} változó esetén a kihagyott refrencia kategória a \emph{Benzin} (6. oszlopindex), míg \textbf{Allapot} esetén a \emph{Kituno} (8. oszlopindex).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Y }\OperatorTok{=}\NormalTok{ autok\_dummy.Vetelar}
+\NormalTok{X }\OperatorTok{=}\NormalTok{ autok\_dummy.iloc[:,[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{]] }\CommentTok{\# megfelelő oszlopindexek kiválasztása}
+\NormalTok{X }\OperatorTok{=}\NormalTok{ sm.add\_constant(X)}
+
+\CommentTok{\# létrehozzuk az új regressziót}
+\NormalTok{autos\_modell }\OperatorTok{=}\NormalTok{ sm.OLS(Y, X).fit()}
+
+\CommentTok{\# lássuk az eredménytáblát}
+\BuiltInTok{print}\NormalTok{(autos\_modell.summary())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                Vetelar   R-squared:                       0.728
+## Model:                            OLS   Adj. R-squared:                  0.697
+## Method:                 Least Squares   F-statistic:                     23.81
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           4.10e-21
+## Time:                        15:25:10   Log-Likelihood:                -1345.2
+## No. Observations:                 100   AIC:                             2712.
+## Df Residuals:                      89   BIC:                             2741.
+## Df Model:                          10                                         
+## Covariance Type:            nonrobust                                         
+## =========================================================================================
+##                             coef    std err          t      P>|t|      [0.025      0.975]
+## -----------------------------------------------------------------------------------------
+## const                  2.323e+06   6.15e+05      3.777      0.000     1.1e+06    3.55e+06
+## Kor                   -7.273e+04   9353.425     -7.776      0.000   -9.13e+04   -5.41e+04
+## Kilometerora             -2.4542      0.362     -6.784      0.000      -3.173      -1.735
+## Teljes_tomeg           -164.4405    371.805     -0.442      0.659    -903.210     574.329
+## Hengerurtartalom         42.0239    160.600      0.262      0.794    -277.084     361.132
+## Teljesitmeny           4647.0879   1600.722      2.903      0.005    1466.488    7827.688
+## Uzemanyag_Dizel       -3.763e+04   4.67e+04     -0.806      0.422    -1.3e+05    5.51e+04
+## Allapot_Megkimelt      4.186e+04   5.08e+04      0.824      0.412   -5.91e+04    1.43e+05
+## Allapot_Normal        -1.192e+05   4.95e+04     -2.411      0.018   -2.18e+05    -2.1e+04
+## Allapot_Serulesmentes -9418.8363   1.13e+05     -0.084      0.934   -2.33e+05    2.15e+05
+## Allapot_Ujszeru        2.266e+05   1.14e+05      1.980      0.051    -742.588    4.54e+05
+## ==============================================================================
+## Omnibus:                        8.736   Durbin-Watson:                   1.598
+## Prob(Omnibus):                  0.013   Jarque-Bera (JB):                8.434
+## Skew:                          -0.646   Prob(JB):                       0.0147
+## Kurtosis:                       3.597   Cond. No.                     6.58e+06
+## ==============================================================================
+## 
+## Notes:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+## [2] The condition number is large, 6.58e+06. This might indicate that there are
+## strong multicollinearity or other numerical problems.
+\end{verbatim}
+
+Úgy néz ki rendben vagyunk, a magyarázóváltozók együttesen \(72.8\%\)-ban magyraázzák az autók vételárának alakulását.
+
+Nézzük meg a nominális magyarázóváltozókhoz köthető dummy változók \(\beta_j\) együtthatóinak értelmezését! Az eddigi okoskodásaink alapján alapján az egyes együtthatók értelmezése mindig a \textbf{referencia kategóriához} képest értednő:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\beta_{Dizel}=-37630\): Minden más magyarázóváltozó változatlansága mellett egy dízelautó várhatóan 37630 Ft-al lesz olcsóbb, mint egy \emph{benzines}.
+\item
+  \(\beta_{Normal}=-119200\): Minden más magyarázóváltozó változatlansága mellett egy normál állapotú autó várhatóan kb. 119 200 Ft-tal lesz olcsóbb, mint egy \emph{kitűnő} állapotban lévő.
+\end{itemize}
+
+\subsection{Referencia kategória megváltoztatása}\label{referencia-kateguxf3ria-megvuxe1ltoztatuxe1sa}
+
+Az előző modellben nem feltétlenül a legszerencsésebb az, ha a \emph{Kituno} a referencia kategória az \textbf{Allapot} változóban. Logikusabb lenne a \emph{Normal} állapotot referenciának venni. A módosítást simán meg tudjuk tenni. Egyszerűen az \(X\) mátixból a 10. oszlopindexet hagyom ki a 8. helyett, és így újrafuttatom a modellt.
+
+Alapvetően a \texttt{levels} függvény eredményéből látható, hogy a referencia kategória az \textbf{Allapot} változóban azért a volt a \emph{Kituno}, mert az van betűrend szerint a legelöl az \textbf{Allapot} változó lehetséges értékei közül:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OperatorTok{=}\NormalTok{ autok\_dummy.iloc[:,[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{]] }\CommentTok{\# megfelelő oszlopindexek kiválasztása}
+\NormalTok{X }\OperatorTok{=}\NormalTok{ sm.add\_constant(X)}
+
+\CommentTok{\# újra lefuttatjuk a regressziót}
+\NormalTok{autos\_modell }\OperatorTok{=}\NormalTok{ sm.OLS(Y, X).fit()}
+
+\CommentTok{\# lássuk az eredménytáblát}
+\BuiltInTok{print}\NormalTok{(autos\_modell.summary())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                Vetelar   R-squared:                       0.728
+## Model:                            OLS   Adj. R-squared:                  0.697
+## Method:                 Least Squares   F-statistic:                     23.81
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           4.10e-21
+## Time:                        15:25:10   Log-Likelihood:                -1345.2
+## No. Observations:                 100   AIC:                             2712.
+## Df Residuals:                      89   BIC:                             2741.
+## Df Model:                          10                                         
+## Covariance Type:            nonrobust                                         
+## =========================================================================================
+##                             coef    std err          t      P>|t|      [0.025      0.975]
+## -----------------------------------------------------------------------------------------
+## const                  2.204e+06   6.08e+05      3.626      0.000    9.96e+05    3.41e+06
+## Kor                   -7.273e+04   9353.425     -7.776      0.000   -9.13e+04   -5.41e+04
+## Kilometerora             -2.4542      0.362     -6.784      0.000      -3.173      -1.735
+## Teljes_tomeg           -164.4405    371.805     -0.442      0.659    -903.210     574.329
+## Hengerurtartalom         42.0239    160.600      0.262      0.794    -277.084     361.132
+## Teljesitmeny           4647.0879   1600.722      2.903      0.005    1466.488    7827.688
+## Uzemanyag_Dizel       -3.763e+04   4.67e+04     -0.806      0.422    -1.3e+05    5.51e+04
+## Allapot_Kituno         1.192e+05   4.95e+04      2.411      0.018     2.1e+04    2.18e+05
+## Allapot_Megkimelt      1.611e+05   4.35e+04      3.704      0.000    7.47e+04    2.48e+05
+## Allapot_Serulesmentes  1.098e+05   1.09e+05      1.007      0.317   -1.07e+05    3.27e+05
+## Allapot_Ujszeru        3.458e+05   1.15e+05      3.015      0.003    1.18e+05    5.74e+05
+## ==============================================================================
+## Omnibus:                        8.736   Durbin-Watson:                   1.598
+## Prob(Omnibus):                  0.013   Jarque-Bera (JB):                8.434
+## Skew:                          -0.646   Prob(JB):                       0.0147
+## Kurtosis:                       3.597   Cond. No.                     6.50e+06
+## ==============================================================================
+## 
+## Notes:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+## [2] The condition number is large, 6.5e+06. This might indicate that there are
+## strong multicollinearity or other numerical problems.
+\end{verbatim}
+
+Így már azt mondhatom, hogy egy kitűnő állapotban lévő autó várhatóan \(\beta_{Kituno}=+119200\) Ft-tal kerül többe egy normál állapotú autónál minden egyéb változó változatlansága mellett. Teljesen logikus módon abszolút értékben ugyan akkora a hatás az árakra, mint az előző modellben, ahol a \emph{Kituno} vot a referencia kategória és \(\beta_{Normal}=-119200\)-t viszgáltuk, csak ellentétes előjelű.
+
+\section{A korrigált R-négyzet mutató}\label{a-korriguxe1lt-r-nuxe9gyzet-mutatuxf3}
+
+Az előző fejezet végi modell eredménytáblázatát elnézegetve azt láthatjuk, hogy a modell két legkevésbé fontos, azaz legmagasabb p-értékű magyarázóváltozója a \textbf{Hengerurtartalom} és a \textbf{Teljes\_tomeg}. Ha ezeknek a változóknak tényleg nincs közük az autók vételárához, akkor egy logikus gondolat, hogy potyogtassuk is ki őket a modellünkből! Ha emlékszünk még az \texttt{autok\_dummy} táblára, akkor tudhatjuk, hogy ez a két változó rendre a 4. és 3. oszlopindexen futott, szóval csak ezeket az oszlopokat kell kiszedni az \(X\) mátrixból, és már meg is szabadultunk ezektől a azvaró tényezőktől.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X\_szuk }\OperatorTok{=}\NormalTok{ autok\_dummy.iloc[:,[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{12}\NormalTok{]] }\CommentTok{\# megfelelő oszlopindexek kiválasztása}
+\NormalTok{X\_szuk }\OperatorTok{=}\NormalTok{ sm.add\_constant(X\_szuk)}
+
+\CommentTok{\# újra lefuttatjuk a regressziót}
+\NormalTok{autos\_modell\_szuk }\OperatorTok{=}\NormalTok{ sm.OLS(Y, X\_szuk).fit()}
+
+\CommentTok{\# lássuk az eredménytáblát}
+\BuiltInTok{print}\NormalTok{(autos\_modell\_szuk.summary())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                Vetelar   R-squared:                       0.727
+## Model:                            OLS   Adj. R-squared:                  0.703
+## Method:                 Least Squares   F-statistic:                     30.33
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           1.50e-22
+## Time:                        15:25:11   Log-Likelihood:                -1345.4
+## No. Observations:                 100   AIC:                             2709.
+## Df Residuals:                      91   BIC:                             2732.
+## Df Model:                           8                                         
+## Covariance Type:            nonrobust                                         
+## =========================================================================================
+##                             coef    std err          t      P>|t|      [0.025      0.975]
+## -----------------------------------------------------------------------------------------
+## const                  1.968e+06   1.79e+05     10.982      0.000    1.61e+06    2.32e+06
+## Kor                   -7.279e+04   9027.563     -8.063      0.000   -9.07e+04   -5.49e+04
+## Kilometerora             -2.4477      0.353     -6.942      0.000      -3.148      -1.747
+## Teljesitmeny           4754.5406   1086.245      4.377      0.000    2596.848    6912.234
+## Uzemanyag_Dizel       -3.822e+04   4.02e+04     -0.952      0.344   -1.18e+05    4.15e+04
+## Allapot_Kituno         1.164e+05   4.83e+04      2.408      0.018    2.04e+04    2.12e+05
+## Allapot_Megkimelt      1.619e+05    4.3e+04      3.762      0.000    7.64e+04    2.47e+05
+## Allapot_Serulesmentes  1.031e+05   1.07e+05      0.964      0.338   -1.09e+05    3.16e+05
+## Allapot_Ujszeru         3.45e+05   1.13e+05      3.055      0.003    1.21e+05    5.69e+05
+## ==============================================================================
+## Omnibus:                        8.420   Durbin-Watson:                   1.624
+## Prob(Omnibus):                  0.015   Jarque-Bera (JB):                8.060
+## Skew:                          -0.639   Prob(JB):                       0.0178
+## Kurtosis:                       3.550   Cond. No.                     1.98e+06
+## ==============================================================================
+## 
+## Notes:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+## [2] The condition number is large, 1.98e+06. This might indicate that there are
+## strong multicollinearity or other numerical problems.
+\end{verbatim}
+
+Első ránézésre minden rendben, de nézzük csak össze ennek a szűkített modellnek az \(R^2\) értékét az eredeti modell \(R^2\) értékével, ami még tartalmazta a hengerűrtartalmat és a teljes tömeget! Ezt legkönnyebben úgy tudjuk megkérdezni, hogy mindkét modellnek lekérdezzük az \texttt{rsquared} tulajdonságát.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[autos\_modell.rsquared, autos\_modell\_szuk.rsquared]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [0.7279480731232686, 0.7272297252691152]
+\end{verbatim}
+
+Ajjaj! A modellünk magyarázóereje leromlott \(72.72\%\)-ra az eredeti \(72.79\%\)-ról! De hát azért eléggé nem szignifikánsnak kinéző változókat szedtünk ki! A legalacsonyabb t-próba p-érték \(65.9\%\) volt a kihagyott magyarázóváltozók között (\textbf{Teljes\_tomeg})! Miért csökken az \(R^2\)?
+
+Sajnos a jó öreg \(R^2\) nem fog soha javulni akkor, ha a modellből elhagyunk egy magyarázóváltozót. Legyen az bármennyire is haszontalan.
+
+Miért is? Ugye \(R^2=1-\frac{SSE}{SST}\) és hát \(SSE\) minimalizálásával szüljük meg a \(\beta_j\) együtthatókat. Konkrétan úgy választjük meg az értéküket, hogy a MEGFIGYELT \(y\) értékekre a lehető legjobban illeszkedjen a regresszióból nyert \(\hat{y}\) becslés!
+
+Ezt az illeszkedést pedig egy újabb magyarázóváltozó bevonása biztosan NEM RONTJA el, legyen bármennyire irreleváns \(y\) szempontjából. Hiszen eggyel több \(\beta_j\) van arra, hogy minimalizáljuk a modellhibát (\(SSE\)). De ha kilépünk a megfigyeléseinken túli világba (sokaságba), akkor már az \(\hat{y}\) becslések jóságát elrontják ezek az irreleváns magyarázóváltozók a modellben. Ez a jelenség a \textbf{túltanítás} jelensége!
+
+Nézzük ezt meg az alábbi képen:
+
+\includegraphics[width=1\textwidth,height=\textheight]{Tultan1.jpg}
+
+A pontokra illesztett görbék mögött a következő egyenletek vannak:
+
+\begin{itemize}
+\tightlist
+\item
+  Lineáris = \(5.13x-0.46\)
+\item
+  Harmadfokú = \(2.48x^3+3.17x^2−1.06x +1.08\)
+\item
+  Hetedfokú = \(−7426x^7+28047x^6−42886x^5+33991x^4−14814x^3+3457x^2−380x+14\)
+\end{itemize}
+
+Az ábráról láthatjuk, hogy a pontokra a legreálisabb illeszkedést a 3 db magyarázóváltozót (\(x^3, x^2, x\)) használó \emph{Harmadfokú} görbe adja. De az \(R^2\) mégis a legtöbb magyarázóváltozót használó Hetedfokú opciót részesíti előnyben a \emph{túltanulás} miatt!
+
+Ennek kiküszöbölésére bevezetjük a korrigált \(R^2\) mutatót:
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{AdjR2.jpg}
+
+A korrekciós képlet lényege, hogy ez a mutató csökkenhet is, ha irreleváns (erősen nem szignifikáns) magyarázóváltozókat vonunk be a modellbe. Ezért van a képletben a megfigyelések száma (\(n\)) mellett a magyarázóváltozók száma, \(k\) is.
+
+Láthatjuk, hogy a korábbi példánkban \(\bar{R}^2\) már a harmadfokú modellt preferálja, nagyon helyesen!
+
+\includegraphics[width=1\textwidth,height=\textheight]{Tultan2.jpg}
+
+A \(\bar{R}^2\) mutató értékét megtaláljuk a sima \texttt{summary} függvény eredménytáblájában is, de praktikusabb lekérdezni, mint a regressziós modellek \texttt{rsquared\_adj} tulajdonsága.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[autos\_modell.rsquared\_adj, autos\_modell\_szuk.rsquared\_adj]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [0.697380440889928, 0.7032499208971693]
+\end{verbatim}
+
+Hurrá! Láthatjuk, hogy a korrigált R-négyzet már heylesen azt mutatja, hogy a nem szignifikáns változók kihagyásával kapott szűkített modell magyarázóereje nagyobb (\(70.3\%\)), mint az eredeti modellé (\(69.7\%\)), amiben ez a két haszontalan változó is benne volt.
 
   \bibliography{book.bib,packages.bib}
 

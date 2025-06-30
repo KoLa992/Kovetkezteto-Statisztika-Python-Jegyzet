@@ -26,7 +26,7 @@ Mainly for Business Information Systems BSc students at Corvinus University of B
 <meta name="author" content="Kovács László" />
 
 
-<meta name="date" content="2025-06-27" />
+<meta name="date" content="2025-06-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -350,6 +350,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#útelemzés"><i class="fa fa-check"></i><b>13.3.1</b> Útelemzés</a></li>
 <li class="chapter" data-level="13.3.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#parciális-t-próba"><i class="fa fa-check"></i><b>13.3.2</b> Parciális t-próba</a></li>
 </ul></li>
+<li class="chapter" data-level="13.4" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#magyarázóváltozók-fontossági-sorrendjének-megállapítása-t-próba-alapján"><i class="fa fa-check"></i><b>13.4</b> Magyarázóváltozók fontossági sorrendjének megállapítása t-próba alapján</a></li>
+<li class="chapter" data-level="13.5" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#konfidencia-intervallumok-és-a-t-próba-kapcsolata"><i class="fa fa-check"></i><b>13.5</b> 5. Konfidencia-intervallumok és a t-próba kapcsolata</a></li>
+<li class="chapter" data-level="13.6" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#nominális-magyarázóváltozók---használtautó-adatok"><i class="fa fa-check"></i><b>13.6</b> Nominális magyarázóváltozók - Használtautó adatok</a></li>
+<li class="chapter" data-level="13.7" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#dummy-változók-és-működésük-pythonban"><i class="fa fa-check"></i><b>13.7</b> Dummy változók és működésük Pythonban</a>
+<ul>
+<li class="chapter" data-level="13.7.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#referencia-kategória-megváltoztatása"><i class="fa fa-check"></i><b>13.7.1</b> Referencia kategória megváltoztatása</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-korrigált-r-négyzet-mutató"><i class="fa fa-check"></i><b>13.8</b> A korrigált R-négyzet mutató</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
@@ -375,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">12</span> Kétváltozós lineáris regresszió<a href="kétváltozós-lineáris-regresszió.html#kétváltozós-lineáris-regresszió" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="budapesti-lakások-vizsgálata" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Budapesti lakások vizsgálata<a href="kétváltozós-lineáris-regresszió.html#budapesti-lakások-vizsgálata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <a href="https://raw.githubusercontent.com/KoLa992/Statisztika-II-Python-Jegyzet/main/BP_Lakas.csv" target="_blank">BP_Lakas.csv</a> fájl egy olyan adattábla, ami 1406 budapesti lakásról 10 változó (oszlop) adatát tárolja:</p>
+<p>A <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/BP_Lakas.csv" target="_blank">BP_Lakas.csv</a> fájl egy olyan adattábla, ami 1406 budapesti lakásról 10 változó (oszlop) adatát tárolja:</p>
 <ul>
 <li>KinArMFt: lakás ára millió Ft-ban (MFt)</li>
 <li>Terulet: lakás területe négyzetméterben</li>
@@ -669,7 +677,7 @@ A meredekség alapján pedig azt mondhatjuk, hogy +1 négyzetméter terület a l
 </div>
 <div id="egy-gyakorló-példa-covid-adatokon" class="section level2 hasAnchor" number="12.6">
 <h2><span class="header-section-number">12.6</span> Egy gyakorló példa COVID adatokon<a href="kétváltozós-lineáris-regresszió.html#egy-gyakorló-példa-covid-adatokon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Töltsük be a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/raw/main/COVID_0326.xlsx" target="_blank">COVID_0326.xlsx</a> c. Excel fájlt egy <strong>covid</strong> nevű pandas <code>data frame</code>-be!</p>
+<p>Töltsük be a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/COVID_0326.xlsx" target="_blank">COVID_0326.xlsx</a> c. Excel fájlt egy <strong>covid</strong> nevű pandas <code>data frame</code>-be!</p>
 <div class="sourceCode" id="cb940"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb940-1"><a href="kétváltozós-lineáris-regresszió.html#cb940-1" tabindex="-1"></a>covid <span class="op">=</span> pd.read_excel(<span class="st">&quot;COVID_0326.xlsx&quot;</span>)</span>
 <span id="cb940-2"><a href="kétváltozós-lineáris-regresszió.html#cb940-2" tabindex="-1"></a>covid.info()</span></code></pre></div>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;

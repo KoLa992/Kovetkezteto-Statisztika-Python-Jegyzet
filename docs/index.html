@@ -26,7 +26,7 @@ Mainly for Business Information Systems BSc students at Corvinus University of B
 <meta name="author" content="Kovács László" />
 
 
-<meta name="date" content="2025-06-27" />
+<meta name="date" content="2025-06-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -350,6 +350,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#útelemzés"><i class="fa fa-check"></i><b>13.3.1</b> Útelemzés</a></li>
 <li class="chapter" data-level="13.3.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#parciális-t-próba"><i class="fa fa-check"></i><b>13.3.2</b> Parciális t-próba</a></li>
 </ul></li>
+<li class="chapter" data-level="13.4" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#magyarázóváltozók-fontossági-sorrendjének-megállapítása-t-próba-alapján"><i class="fa fa-check"></i><b>13.4</b> Magyarázóváltozók fontossági sorrendjének megállapítása t-próba alapján</a></li>
+<li class="chapter" data-level="13.5" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#konfidencia-intervallumok-és-a-t-próba-kapcsolata"><i class="fa fa-check"></i><b>13.5</b> 5. Konfidencia-intervallumok és a t-próba kapcsolata</a></li>
+<li class="chapter" data-level="13.6" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#nominális-magyarázóváltozók---használtautó-adatok"><i class="fa fa-check"></i><b>13.6</b> Nominális magyarázóváltozók - Használtautó adatok</a></li>
+<li class="chapter" data-level="13.7" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#dummy-változók-és-működésük-pythonban"><i class="fa fa-check"></i><b>13.7</b> Dummy változók és működésük Pythonban</a>
+<ul>
+<li class="chapter" data-level="13.7.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#referencia-kategória-megváltoztatása"><i class="fa fa-check"></i><b>13.7.1</b> Referencia kategória megváltoztatása</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-korrigált-r-négyzet-mutató"><i class="fa fa-check"></i><b>13.8</b> A korrigált R-négyzet mutató</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
@@ -374,31 +382,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Következtető Statisztika Python Jegyzet</h1>
 <p class="author"><em>Kovács László</em></p>
-<p class="date"><em>2025-06-27</em></p>
+<p class="date"><em>2025-06-30</em></p>
 </div>
 <div id="előhang" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Előhang<a href="index.html#előhang" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><strong>!!!FRISSÍTENI szükséges a teljes jegyzethez!</strong></p>
-<p>Ez a jegyzet hivatalosan a Budapesti Corvinus Egyetem gazdaságinformatikus hallgatóinak készült abból a célból, hogy a Statisztika II. tárgy sikeres abszolválásához szükséges Python programnyelvi elemek felelevenítésre kerüljenek.</p>
-<p>Viszont, a jegyzet előkészítése során arra jutottam, hogy egy kicsit általánosabb célú anyagot szeretnék készíteni: egy <strong>olyan bevezető jegyzetet a Python nyelvhez</strong>, ami kimondottan a <strong>statisztikai és adatelemzési feladatok elvégzéséhez szükséges elemeit és kiegészítő csomagjait mutatja be</strong> teljesen kezdő szinten, minden <strong>programozási előismeret feltételezése nélkül</strong>.</p>
-<p>Ebből adódóan szeretném kicsit tételesen összefoglalni, hogy mire számíthat az olvasó a jegyzetben. Nem szeretek zsákba macskát árulni, így szeretném már előre letisztázni, hogy ez az anyag mivel foglalkozik a Python nyelven belül, és ami talán még fontosabb, hogy mivel <em>nem</em>.</p>
-<p>A jegyzet <strong>bemutatja</strong>:</p>
-<ul>
-<li>A Python nyelv legalapvetőbb utasításait és elemeit.</li>
-<li>A Python nyelv statisztikai-adatelemzési feladatok megoldására könnyen használható adatszerkezeteit (<code>numpy</code> és <code>pandas</code> csomagok).</li>
-<li>A Python nyelv legalapvetőbb adatvizualizációs képességeit a <code>matplotlib</code> csomagon keresztül.</li>
-<li>Egy egyszerűbb, leíró statisztikai és <em>nem</em> modellezési célú adatelemzési folyamatban felmerülő leggyakoribb adatminőségi problémák azonosítási és megoldási módjait Python nyelven</li>
-<li>A <em>Spyder</em> fejlesztőkörnyezet működését és lehetőségeit adatelemzési feladatok megoldása során.</li>
-</ul>
-<p>A jegyzetnek <strong>nem célja</strong>:</p>
-<ul>
-<li>Teljes körű áttekintést adni a Python nyelv elemeiről és adatszerkezeteiről. A Pythont végig csak <em>szkriptnyelvként</em> használjuk, nem pedig általános célú programnyelvként.</li>
-<li>A Python minden lehetséges fejlesztőkörnyeztetét (Jupyter Notebook, Visual Studio Code, replit.com, stb.) bemutatni.</li>
-<li>A <code>numpy</code>, <code>pandas</code> és <code>matplotlib</code> csomagok teljeskörű működéséről. Csak az alapvető leíró statisztikai és adatkezelési funkciókat tekintjük át.</li>
-<li>Teljes körű bemutatót adni a Python képességeiről az adatminőségi kihívások azonosítsa és kezelése területén. Tényleg csak a legalapvetőbb és leggyakrabban előforduló problémákat tekintjük át, a legegyszerűbb kezelési módokkal.</li>
-<li>A Python képességeinek áttekintése a következtető statisztika és a statisztikai modellezés vagy éppen gépi tanulás területén (<code>statmodels</code>, <code>sklearn</code>, <code>tensorflow</code>, stb. csomagok)</li>
-</ul>
-<p>Ezen kívül a jegyzet <strong>feltételez némi leíró statisztikai előismeretet</strong>. Konkrétan a következő fogalmak ismeretét veszem adottnak:</p>
+<p>Ez a jegyzet hivatalosan a Budapesti Corvinus Egyetem gazdaságinformatikus hallgatóinak készült abból a célból, hogy a Statisztika II. tárgy sikeres abszolválásához szükséges elméleti fogalmakat és Python programnyelvi eszközöket egy egységes online tananyagban mutassa be. A jegyzet legfrissebb, naprakész változata <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/" target="_blank">Githubon</a> folyamatosan elérhető.</p>
+<p>Viszont, a jegyzet elkészítése során arra jutottam, hogy egy kicsit általánosabb célú anyagot szeretnék készíteni: egy olyan átfogó jegyzetet, amely a Következtető Statisztika fogalmait és modern eszközeit olyan szinten mutassa be, amelyek szükségesek ahhoz, hogy a komplex prediktív statisztikai modellek és a gépi tanulás fogalmait, illetve azok matematikai és technológiai hátterét az olvasó önállóan is képes legyen feldolgozni.<br>
+A motiváció ehhez valahonnan onnan jött, hogy azt tapasztaltam a modern statisztikai tankönyvek és kurzusok világában rengeteg olyan található már, amely gépi tanulás, azon belül is a mélytanulás és nyelvi modellek területével foglalkozik, de ezek jellemzően nem igen foglalkoznak a téma statisztikai alapfogalmaival. Vagy ismertnek veszik őket, és nem igazán részletezik a szemléletes jelentésüket sem, vagy úgy próbálják meg a komplex prediktív modelleket bemutatni, hogy a statisztikai alapokat elfedik/kihagyják. Ez utóbbi eset általában oda torkollik, hogy a predikítv és gépi tanuló modellek kapcsán nem esik szó olyan témákról, amelyek hiányos ismerete a legtöbb gyakorlati alkalmazás kudarcához vezet:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Minden predikciónak van hibája</strong> (lásd a konfidencia-intervallum fogalmát a jegyzetben)</li>
+<li><strong>Minden modell</strong> (legyen az bármilyen kifinomult mélytanuló modell is) valamilyen szinten <strong>feltételezéseket és megkötéseket tesz az adatok viselkedésére és/vagy struktúrájára</strong></li>
+</ol>
+<p>A <strong>fenti két pont megértéséhez</strong> (és így a prediktív modellek sikeres gyakorlati alkalmazásához) <strong>pedig elengedhetetlen a következtető statisztika fogalmainak alapos ismerete</strong>. Szóval, a <strong>jegyzet végső célja</strong>, hogy</p>
+<ol style="list-style-type: decimal">
+<li>A predikítv modellezéshez és gépi tanuláshoz szükséges <strong>következtető statisztikai alapokat megadja csak a legszükségesebb matematikai formalizmus alkalmazásával</strong></li>
+<li>Ahol lehetséges a <strong>matematikai összefüggéseket nem formálisan bizonyítva, hanem azok jelentéstartalmát szimulációkkal szemléltetve</strong></li>
+<li>A <strong>következtetős statisztika modern, szimulációs alapú megoldásait is ismertesse</strong> (pl. Bootstrap becslések) a klasszikus eszközök mellett</li>
+<li>Megmutassa, hogy a <strong>következtetős statisztika eszközei hogyan alkalmazhatókegy egyszerű gépi tanuló modell, a többváltozós regresszió esetében</strong></li>
+<li>Mindehhez <strong>korszerű Python nyelvi ismereteket is adjon az adatelemzés területén</strong></li>
+</ol>
+<p>Ennek kapcsán <strong>személyes megjegyzés, hogy a gépi tanulás és prediktív modellezés területén szerintem jobb tankönyv nincs a világon</strong>, mint az elsősorban a Stanford egyetem oktatói által írt és a Springer gondozásában megjelent <strong><a href="https://www.statlearning.com/" target="_blank">Introduction to Statistical Learning (ISL)</a></strong>. Viszont, ez a tankönyv abba a csoportba tartozik a korábban említettek közül, amely a Következtető Statisztika fogalmait ismertnek veszi, és azok bemutatásával érdemben nem foglalkozik. A jegyzet lényege tehát nagyjából abban foglalható össze, hogy <strong>ennek a könyvnek az értelmezéséhez szükséges statisztikai alapfogalmakat és Python programnyelvi ismereteket foglalja össze a lehető legkevesebb előismereret feltételezve</strong>.</p>
+<p><strong>Python oldalról konkrétan semmilyen programozási előismeret nem szükséges</strong> a jegyzet olvasásárhoz, a <strong>2. fejezet</strong> a programozás és a Python nyelv alapjaival kezd, teljesen a nulláról. <strong>Ha</strong> egy lelkes <strong>gazdaságinformatikus hallgató forgatja a jegyzetet</strong>, aki a <em>Programozás alapjai</em> tárgyban a Python nyelv és a <code>pandas</code> data frame-k alapjait már tökéletesen elsajátította, akkor a 2. fejezet neki számára mértékben kihagyható. <strong>Nyugodtan kezdhető tehát a jegyzet a 3. fejezettől a Pythonban és azon belül <code>pandas</code>-ban járatos olvasóknak</strong>. Esetleg a 2.8-2.13. fejezetek gyors árpörgetése ajánlott, hogy a statisztikai számítások elvégzéséhez és a statisztikai adattáblák kezeléséhez szükséges Python megoldásokat felelevenítse.<br>
+Ugyanakkor fontos megjegyezenem, hogy a <strong>Statisztika II. tárgy tanóráin a 2. fejezetben szereplő Python tudást ismertnek feltételezzük, és nem fogunk rá külön kitérni az oktatás során!!</strong> Szóval, ha valaki <strong>egy kicsit is bizonytalan a Python ismereteiben, azért olvassa át ezt a 2. fejezetet is, és ha bármi nem világos, KÉRDEZZEN!!</strong><br>
+Viszont, statisztikai oldalról néhány előismeretet azért feltételeztem a jegyzet megírása során. Konkrétan a <strong>következő leíró statisztikai fogalmak ismeretét veszem adottnak</strong>:</p>
 <ul>
 <li>ismérv és azok mérési skálái</li>
 <li>átlag, szórás</li>
@@ -407,8 +413,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>eloszlások alakja</li>
 <li>korreláció és pontdiagram</li>
 </ul>
-<p><strong>Ha</strong> egy lelkes <strong>gazdaságinformatikus hallgató forgatja a jegyzetet</strong>, aki a <em>Programozás alapjai</em> tárgyban a Python nyelv és a <code>pandas</code> data frame-k alapjait már tökéletesen elsajátította biztosan sok “uncsi” részt fog találni a jegyzetben. Számára <strong>leginkább csak a 8-13. fejezetek gyors átprögetését ajánlom</strong>, hogy a statisztikai számítások elvégzéséhez és a statisztikai adattáblák kezeléséhez szükséges Python megoldásokat felelevenítse.<br>
-Ugyanakkor fontos megjegyezenem, hogy a <strong>Statisztika II. tárgy tanóráin a jelen jegyzetben szereplő tudást ismertnek feltételezzük, és nem fogunk rá külön kitérni az oktatás során!!</strong> Szóval, ha valaki <strong>egy kicsit is bizonytalan a Python ismereteiben, azért olvassa át ezt az ismétlő jegyzetet, és ha bármi nem világos, KÉRDEZZEN!!</strong></p>
+<p>A jegyzet céljának és alapelveinek tisztázása után, szeretném tételesen is összefoglalni, hogy mire számíthat az olvasó a jegyzetben. Nem szeretek zsákba macskát árulni, így szeretném már előre letisztázni, hogy ez az anyag mivel foglalkozik a Python nyelven és a Következtető Statisztikán belül, és ami talán még fontosabb, hogy mivel <em>nem</em>.</p>
+<p>A jegyzet <strong>bemutatja</strong>:</p>
+<ul>
+<li>A Python nyelv legalapvetőbb utasításait és elemeit.</li>
+<li>A Python nyelv statisztikai-adatelemzési feladatok megoldására könnyen használható adatszerkezeteit (<code>numpy</code> és <code>pandas</code> csomagok).</li>
+<li>A Python nyelv megoldásait a valószínűségszámítás és következtető statisztika területén (<code>scipy</code> csomag <code>stats</code> modul)</li>
+<li>A többváltozós lineáris regressziós modellek egyszerű kezelését és használatát Python nyelven (<code>statsmodels</code> csomag)</li>
+<li>A Python nyelv legalapvetőbb adatvizualizációs képességeit a <code>matplotlib</code> csomagon keresztül.</li>
+<li>Egy <em>egyszerűbb</em> adatelemzési folyamatban felmerülő leggyakoribb adatminőségi problémák azonosítási és megoldási módjait Python nyelven</li>
+<li>A <em>Spyder</em> fejlesztőkörnyezet működését és lehetőségeit adatelemzési feladatok megoldása során.</li>
+<li>A becsléselmélet és hipotézisvizsgálat alapfogalmainak és a szükséges valószínűségszámítási háttérismeretek bemutatása. Levezetések nélkül, szimulációs példákkal szemléltetve a fogalmakat.</li>
+<li>A konfidencia-intervallumok számításának klasszikus, nevezetes eloszlásokon alapuló módszereinek és modern, szimulációkon alapuló megoldásainak (Bootstrap) bemutatása valós adatakon, esettanulmányokon keresztül.</li>
+<li>A gyakorlatban leginkább alkalmazott egy- és kétmintás paraméteres valamint nagymintás nemparaméteres statisztikai próbák bemutatása valós adatakon, esettanulmányokon keresztül.</li>
+<li>A többváltozós lineáris regresszió alapjainak bemutatása és a következtető statisztika eszközeinek alkalmazása a regressziós elemzésekben valós adatakon, esettanulmányokon keresztül.</li>
+</ul>
+<p>A jegyzetnek <strong>nem célja</strong>:</p>
+<ul>
+<li>Teljes körű áttekintést adni a Python nyelv elemeiről és adatszerkezeteiről. A Pythont végig csak <em>szkriptnyelvként</em> használjuk, nem pedig általános célú programnyelvként.</li>
+<li>A Python minden lehetséges fejlesztőkörnyeztetét (Jupyter Notebook, Visual Studio Code, replit.com, stb.) bemutatni.</li>
+<li>A <code>numpy</code>, <code>pandas</code>, <code>scipy</code>, <code>statsmodels</code> és <code>matplotlib</code> csomagok teljeskörű működéséről. Csak az alapvető leíró statisztikai és adatkezelési funkciókat tekintjük át a következtető statisztikai funkciók részletes bemutatása mellett.</li>
+<li>Teljes körű bemutatót adni a Python képességeiről az adatminőségi kihívások azonosítsa és kezelése területén. Tényleg csak a legalapvetőbb és leggyakrabban előforduló problémákat tekintjük át, a legegyszerűbb kezelési módokkal.</li>
+<li>A Python képességeinek teljeskörű áttekintése a statisztikai modellezés vagy éppen gépi tanulás területén (pl. <code>sklearn</code>, <code>tensorflow</code>, stb. csomagok)</li>
+<li>A többváltozós lineáris regressziót is csak az alapok szintjén mutatja be a jegyzet. Nem kerülnek tárgyalásra részletesen a standard (Gauss-Markov) modellfeltételek, és az Ökonometria területét érdemben nem érintjük.</li>
+</ul>
 
 </div>
             </section>

@@ -67,7 +67,7 @@ Mit is kéne látni ezen a hisztogramon? Hát általánossában az $U(a,b)$ elos
 
 Esetünkben tehát **az $U(40,160)$ eloszlás sűrűségfüggvénye** az $f(x)=\frac{1}{160-40}=\frac{1}{120}=0.0083$ magasságban futó **vízszintes egyenes**. Vagyis **a hisztogramnak minden $x$ értékre kb. ugyan akkora gyakoriságot kell mutatnia, ami azért szemmel láthatóan nem így van!**
 
-**Rajzoljuk csak ki a hisztogramot `density = True` beállítással és véssük fel rá az $U(40,160)$ eloszlás sűrűségfüggvényét!** Ezt az ábrát hasonlóan lehet elkészíteni, mint ahogy a normális eloszlás sűrűségfüggvény illeszkedését vizsgáltuk garfikusan a Tesla árváltozások hisztogramjára az <a href="https://kola992.github.io/Statisztika-II-Python-Jegyzet/Gyak01.html#23_Val%C3%B3sz%C3%ADn%C5%B1s%C3%A9g_vs_Relat%C3%ADv_Gyakoris%C3%A1g" target="_blank">1. heti tananyag 2.3. fejezet</a> végén.<br>
+**Rajzoljuk csak ki a hisztogramot `density = True` beállítással és véssük fel rá az $U(40,160)$ eloszlás sűrűségfüggvényét!** Ezt az ábrát hasonlóan lehet elkészíteni, mint ahogy a normális eloszlás sűrűségfüggvény illeszkedését vizsgáltuk garfikusan a Tesla árváltozások hisztogramjára az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#val%C3%B3sz%C3%ADn%C5%B1s%C3%A9g-vs-relat%C3%ADv-gyakoris%C3%A1g" target="_blank">3.2.3. fejezet</a> végén.<br>
 Sőt, természetesen a `scipy` csomag `stats` névterének `uniform.pdf` függvényével is ki tudjuk számolni az $U(40,160)$ eloszlás konstans $f(x)=0.0083$-as sűrűségfüggvényét, ahogy az 1. heti anyagban kiszámoltuk a normális eloszlás sűrűségfüggvény $f(x)$ értékeit a `norm.pdf` függvénnyel. Arra kell figyelni az `uniform.pdf` függvénynél, hogy a `loc` nevű paraméterben kell megadni az $U(a,b)$ eloszlás alsó határát, azaz $a$-t, míg a `scale` paraméterben a **terjedelemét**, azaz az $a-b=160-40=120$-at!
 
 ```{python}
@@ -114,7 +114,7 @@ Ugye ekkor az $P(Y_i < x) = \frac{x-a}{b-a}$ összefüggésből kéne kifejeznem
 Tehát, **általánosságban azt az eredményt kapjuk, hogy ha egy $U(0,1)$ eloszlású véletlen számra $P(Y_i < x)$ valószínűségként tekintek, és berakom azt egy tetszőleges eloszlás inverz függvényébe, és megkeresem a hozzá tartozó $x$ értéket, akkor amit kapok eredményül az olyan eloszlású véletlen szám lesz, mint amilyen eloszlás inverz függvényébe beírtam az $U(0,1)$ eloszlású véletlen számot!!**<br>
 Ugyebár simán tekinthetek egy $0-1$ közötti véletlenszámra $P(Y_i < x)$ valószínűségként, hiszen minden valószínűség egy $0-1$ közötti szám. :)
 
-**Nézzük is meg az elvet a gyakorlatban!** Ugye a `scipy` csomagban minden eloszlás inverz függvényét a `ppf` rövidítésű függvénnyel számoltuk ki (lásd <a href="https://kola992.github.io/Statisztika-II-Python-Jegyzet/Gyak01.html#25_Inverz_%C3%89rt%C3%A9kek" target="_blank">1. heti tananyag 2.5. fejezetben</a>).
+**Nézzük is meg az elvet a gyakorlatban!** Ugye a `scipy` csomagban minden eloszlás inverz függvényét a `ppf` rövidítésű függvénnyel számoltuk ki (lásd <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#inverz-%C3%A9rt%C3%A9kek">3.2.5. fejezetben</a>).
 
 ```{python}
 eloszlás_alsó_határ = 40
@@ -228,7 +228,7 @@ plt.show()
 Pazar! :) A `random_state` paraméterben megadott $1992$ értéket szokás a véletlenszám generálás **véletlen magjának** nevezni. In English *random seed*.
 
 Generáljunk még az $U(40, 160)$ eloszlás $50$ elemű mintája mellé egy $50$ elemű $N(80,20)$ és egy $50$ elemű $Exp(0.0125)$ eloszlású mintát is, szintén $1992$-es véletlen maggal. Majd fűzzük össze az eredményeket egy `pandas` data frame-be úgy, hogy a különböző eloszlású adatok adják a tábla oszlopait (sorok száma akkor így 50 lesz ugyebár).<br>
-Az Exponenciális eloszlás $\lambda$ paramétert a `scipy` függvények `scale` paraméterében lehet megadni a reciprokával. Hiszen az Exponenciális eloszlás szórása $\frac{1}{\lambda}$. Emlékezetetőnek lásd <a href="https://kola992.github.io/Statisztika-II-Python-Jegyzet/Gyak01.html" target="_blank">1. heti tananyag 3. fejezet</a>!
+Az Exponenciális eloszlás $\lambda$ paramétert a `scipy` függvények `scale` paraméterében lehet megadni a reciprokával. Hiszen az Exponenciális eloszlás szórása $\frac{1}{\lambda}$. Emlékezetetőnek lásd <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#az-exponenci%C3%A1lis-eloszl%C3%A1s" target="_blank">3.3. fejezet</a>!
 
 ```{python}
 # N(80,20) minta generálása
@@ -530,7 +530,7 @@ Persze a gyakorlatban **nem mindig tudunk ilyen szép FAE mintavételt végezni*
 1. **Nem tudunk visszatenni** elemeket. Ez a **kisebbik gond**. Hiszen, ha a **minta mérete a sokaság méretéhez képest nagyon kicsi** (pl. 100 főt választunk kis a 4,5 millióból és nem 2 milliót :)), akkor a **visszatevéses és visszatevés nélküli mintavétel nagyjából ugyan az**, mert nagyon kicsi lesz az esélye annak, hogy a visszatevéses esetben valakit tényleg kétszer beválasztunk a mintába.
 2. **Nem tudunk ténylegesen véletlenszerűen kiválasztani elemeket**. Ez a **nagyobb baj**. És sajnos gyakori is. Pl. *nem kapunk címjegyzéket, amiből sorsolni lehet a mintánkba emberkéket*. Mert ekkor a mintavételi hiba mellé bejön az úgynevezett **nem mintavételi hiba**. Ezek olyan tényezők, amik "*emberi gyarlóság*" miatt kerülnek a rendszerbe. Pl. nagyon tetszenek a vörös hajú lányok, így aránytalanul sokat kérdezek meg belőlük ahhoz képest ahányan a sokaságban vannak. Vagy, lusta vagyok lemenni 500 fő alatti településre, így az alacsonyabb keresetű társadalmi rétegből is kevesebb embert kérdezek meg, mint ahányat kéne a sokasági elemszámuk alapján. Tehát, szakszóval azt mondom, hogy a **minta nem lesz reprezentatív hajszínre és település méretre**. Ezekkel a **nem mintavételi hibákkal most nem foglalkozunk, feltesszük, hogy nincsenek**. Mert **kiszámolásuk és korrigálásuk elég bonyolult**, <a href="https://tatk.elte.hu/mesterszakok/survey" target="_blank">komplett mesterszakok</a> foglalkoznak a kérdéssel.
 
-Szóval, első körben nézzük meg **hogyan tudunk Pythonban egy ismert sokaságból FAE mintát venni**. A <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájlban a 2022-es LIDL Balaton átúszás résztvevőinek *neve, neme és percben mért időeredménye* található. Olvassuk be a táblát `pandas` data frame-be!
+Szóval, első körben nézzük meg **hogyan tudunk Pythonban egy ismert sokaságból FAE mintát venni**. A <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájlban a 2022-es LIDL Balaton átúszás résztvevőinek *neve, neme és percben mért időeredménye* található. Olvassuk be a táblát `pandas` data frame-be!
 
 ```{python}
 Balcsi = pd.read_excel("LIDLBalaton2022.xlsx")

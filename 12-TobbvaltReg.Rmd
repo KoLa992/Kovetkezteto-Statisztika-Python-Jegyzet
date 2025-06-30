@@ -2,7 +2,7 @@
 
 ## Magyar járások COVID-19 halálozási arányai
 
-A <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/raw/main/COVID_JarasData.xlsx" target="_blank">COVID_JarasData.xlsx</a> fájl egy olyan adattábla, ami 102 magyar járásról (azokról, ahol a kórházak 2019-ben átlagos vagy átlag alatti leterheltségűek voltak a [NEAK adatai](http://www.neak.gov.hu/data/cms1026624/Korhazi_agyszamkimutatas_2019.pdf) alapján) 5 változó (oszlop) adatát tárolja:
+A <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/COVID_JarasData.xlsx" target="_blank">COVID_JarasData.xlsx</a> fájl egy olyan adattábla, ami 102 magyar járásról (azokról, ahol a kórházak 2019-ben átlagos vagy átlag alatti leterheltségűek voltak a [NEAK adatai](http://www.neak.gov.hu/data/cms1026624/Korhazi_agyszamkimutatas_2019.pdf) alapján) 5 változó (oszlop) adatát tárolja:
 
 - **Jaras**: A járás neve
 - **COVIDHalal**: COVID-19 halálozási arány: elhunytak / fertőzöttek hányadosa (%) 2021.03.04-én. Forrás: [atlatszo.hu](https://bit.ly/COVID-adatok)
@@ -38,7 +38,7 @@ Első körben nézzük meg egy $R^2$ segítségével milyen szoros a két válto
 
 Alapvetően az $R^2$ szép, korrekt dolgokat mutat. Az ápolók száma kb. 18 %-ban megmagyarázza a COVID halálozás alakulását a vizsgált járások körében ($R^2=17.6\%$), ami egy közepes magyarázóerőnek minősíthető, hiszen $10\% < R^2 < 50\%$.
 
-Nézzük meg, hogy néz ki a regressziós egyenes egyenlete! Használjuk nyugodtan a <a href="Gyak11.html" target="_blank">11. heti tananyag 6. fejezetében</a> megismert `polyfit` függvényét a `numpy` csomagnak:
+Nézzük meg, hogy néz ki a regressziós egyenes egyenlete! Használjuk nyugodtan a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/k%C3%A9tv%C3%A1ltoz%C3%B3s-line%C3%A1ris-regresszi%C3%B3.html#egy-gyakorl%C3%B3-p%C3%A9lda-covid-adatokon" target="_blank">12.6. fejezetben</a> megismert `polyfit` függvényét a `numpy` csomagnak:
 
 ```{python}
 Beta1, Beta0 = np.polyfit(covid.Apolok, covid.COVIDHalal, deg = 1)
@@ -244,10 +244,270 @@ Itt $H_0$ szempontjából a legjobb eset, ha $\beta_j=0$ a mintában is, hiszen 
 ![](pt.jpg){width=50%}
 </center>
 
-<br>Így R-ben a p-érték: `2*stats.t.cdf(-abs(0.0445/0.096), df = 102-4)`$= 0.644$. Ezt adja meg a `summary` metódus eredménytáblája a `P>|t|` oszlopban.
+<br>Így Pythonban a p-érték: `2*stats.t.cdf(-abs(0.0445/0.096), df = 102-4)`$= 0.644$. Ezt adja meg a `summary` metódus eredménytáblája a `P>|t|` oszlopban.
 
 A `P>|t|` oszlopot nézegetve arra a kijelentésre juthatunk, hogy a COVID halálozásra a munkanélküliség és a 65 év feletti női népesség aránya is szignifikáns hatással van a *megfigyelt lakásokon kívüli világban is*, hiszen a parciális t-próba p-értéke az $\alpha=1\%$-os szignifikancia-szintnél is kisebb. Azaz a $H_0$ elvetésével mindkét magyarázóváltozó esetén elég alacsony valószínűséggel hibáznék. Ez a **Nok65Felett** változó esetében azt jelenti, hogy az a közepes-gyenge közvetlen hatása az árakra, amit a parciális korreláció (+0.29) kimutatott megmarad új járások vizsgálata esetén is. Ugyanakkor, azt is látni, hogy az **Apolok** változóhoz rendelt p-érték jóval nagyobb, mint a **Munkanelkuliseg** és **Nok65Felett** változóké. Konkrétan $64.4\%$ a p-érték, ami olyan magas, hogy a legmagasabb szokásos $\alpha$-nál, a $10\%$-nál is nagyobb, így stabilan elfogadhatom a próba $H_0$-ját! Tehát a parciális t-próba is azt mondja, hogy az **Apolok** változók hatása a COVID halálozásra a mintén kívüli filágban **nem szignifikáns**.
 
 Végkonklúzióként, tehát azt vonhatjuk le a modellünk alapján, hogy az **ápolók számának COVID halálozásra gyakorolt pozitív hatása a kétváltozós regresszióban látszólagos volt csupán, és a munkanélküliség valamint 65 feletti női népesség arányának COVID halálozást növelő hatásait közvetítette csak, és semmi önálló szignifikáns marginális hatása nem volt**!
 
 Ezek a változónkénti t-próba p-értékek azért nagyon jók, mert ezek alapján nagyon könnyű egy fontossági sorrendet felállítani a regressziónk magyarázóváltozói között. Az eddigiek alapján röviden-tömören: minél kisebb a parciális t-próba p-értéke, annál fontosabb az adott magyraázóváltozó az eredményváltozó előrejelezésében (annál kevésbé vehető marginális hatása $0$-nak a sokaságban)
+
+## Magyarázóváltozók fontossági sorrendjének megállapítása t-próba alapján
+
+Vegyük elő újra a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/BP_Lakas.csv" target="_blank">BP_Lakas.csv</a> fájlt, és töltsük be újra egy `pandas` data frame-be, ahogy a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/k%C3%A9tv%C3%A1ltoz%C3%B3s-line%C3%A1ris-regresszi%C3%B3.html" target="_blank">12. fejezet</a> elején is tettük!
+
+Előtte egy kis emlékeztető az adattábla tartalmáról, változóiról. A tábla 1406 budapesti lakásról 10 ismérv/változó (oszlop) adatát tárolja:
+
+- KinArMFt: lakás ára millió Ft-ban (MFt)
+- Terulet: lakás területe négyzetméterben
+- Terasz: teraszok száma a lakásban
+- Szoba: szobák száma a lakásban
+- Felszoba: félszobák száma a lakásban
+- Furdoszoba: fürdőszobák száma a lakásban
+- Emelet: emeletek száma a lakásban
+- DeliTaj: lakás déli fekvésű-e? (1 = igen; 0 = nem)
+- Buda: lakás déli fekvésű-e? (1 = igen; 0 = nem)
+- Kerulet: lakás kerülete (1 - 22)
+
+Majd a konkrét beolvasás:
+
+```{python}
+BP_Lakas = pd.read_csv("BP_Lakas.csv")
+BP_Lakas.info()
+```
+
+Most nem szenvedünk az adattípusokkal, mindent hagyunk numerikusan.
+
+Nézzünk most meg egy olyan modellt a lakásárak becslésére, amiben  a **BP_Lakas** `data frame` minden változója szerepel magyarázóváltozóként a **Kerulet** kivételével:
+
+```{python}
+# eredményváltozó megadása
+Y = BP_Lakas.KinArMFt
+
+# magyarázóváltozók megadása a konstanshoz szükséges csupa 1 oszlop hozzáadásával
+X = BP_Lakas.iloc[:,1:9]
+X = sm.add_constant(X)
+
+# létrehozzuk az új regressziót
+nagymodell = sm.OLS(Y, X).fit()
+
+# lássuk az eredménytáblát
+print(nagymodell.summary())
+```
+
+Látjuk, hogy a modell magyarázóereje a mintában 81.76%, azaz a modellben lévő magyarázóváltozók együttesen kb. 82%-ban magyarázzák a lakásárak alakulását a megfigyelt 1406 lakás esetében. Ha a többi egyéb változó hatását is kiszűrjük, akkor a szobaszám közvetlen hatása $\alpha = 5\%$-on még éppen szignifikáns, de $\alpha = 1\%$-on már nem! A félszobák száma és az emeletek száma pedig egyik szokásos $\alpha$-n sem szignifikáns magyarázóváltozó már a megfigyelt lakásokon túli világban.
+
+A magyarázóváltozók fontossági sorrendjét a változók p-értéke alapján növekvő sorba rendezéssel tudom megadni, mert minél kisebb a p-érték annál kisebb az esélye, hogy az adott $X_j$-t nem szignifikáns magyarázóváltozónak venni hibás döntés.
+
+Ennek a folyamata egy kicsit macerás Pythonban. Először elmentjük a `summary` függvény eredményét egy külön Python változóba, és ennek a `tables` tulajdonságának a második (azaz 1. indexű) elemét olvasom ki egy következő külön változóba **html kódként, azaz <table> tagekkel!!**<br>
+Ezt utána arra tudom használni, hogy a `pandas` csomag `read_html` függvényével be tudom olvasni a regresszió nagy együtthatótábláját a p-értékekkel együtt egy `data frame`-be. Arra kell még figyelni, hogy a *html* tábla 0. indexű sora legyen a `read_html`-el beolvasott `data frame` sorindexe (`index_col` paraméter) és ugyan ezen tábla 0. indexű oszlopa pedig legyen ugyanitt az oszlopfejléc (`header` paraméter).<br>
+Annyi technikai dologra kell még odafigyelni, hogy a `read_html` függvény egy egyelemű listaként adja vissza az eredményt, így ahhoz, hogy közvetlenül a `data frame`-t kapjuk vissza, ennek az eredménylistának a 0. indexű elemét külön ki kell venni `[0]` kódrészlettel a végén.<br>
+Lássuk is hát a konkrét Python kódokat és az eredményül kapott `data frame`-et!
+
+```{python warnings=FALSE}
+BetaTablaHTML = nagymodell.summary().tables[1].as_html()
+BetaTabla_df = pd.read_html(BetaTablaHTML, header=0, index_col=0)[0]
+BetaTabla_df
+```
+
+Ha megvan a `data frame`, akkor pedig rendezzük növekvő sorrendbe a 4. (3. indexű) oszlop, azaz a $\beta_j$ együtthatók **p-értékei** szerint. Előtte a tengelymetszet ($\beta_0$) sorát, a `const`-t kihagyjuk a `data frame`-ből, mert ugyebár az nem egy magyarázóváltozó együtthatója a regressziós egyenletben.
+
+```{python}
+BetaTabla_df.iloc[1:9,:].sort_values(by=BetaTabla_df.columns[3])
+```
+
+Láthatjuk, hogy a Terület a legfontosabb magyarázóváltozó, míg a pl. szobák száma a *3. legkevésbé fontos* magyarázóváltozó.
+
+## 5. Konfidencia-intervallumok és a t-próba kapcsolata
+
+A többváltozós regressziós modell együtthatóira (béták) is lehet egy adott megbízhatósági szintű konfidencia-intervallumot is készíteni Pythonban a regressziós modellek `confint` metódusának segítségével.<br>
+Pl. **egy 97% megbízhatóságú konfidencia-intervallum $\beta_j$-re azt adja meg, hogy 97%-os valószínűséggel milyen értékhatárok között mozoghat $\beta_j$ együttható a megfyigelt lakásokon túli világban**.
+
+Nézzük is meg a Python számítást:
+
+```{python}
+nagymodell.conf_int() # alapból 95%-os megbízhatóságú
+
+nagymodell.conf_int(alpha = 0.03) # de lehet pl. 97%-os is (alfa = 1-0.97)
+```
+
+Pl. az első eredménytábla alapján a **Terulet** változó $\beta$-ja 95%-os valószínűséggel 0.277 és 0.317 között kötne ki valahol, ha nem 1406 budapesti lakást vizsgálnánk, hanem az össeset (azaz a lakások sokaságát).
+
+Az eredményből megjelenik egy olyan összefüggés is, miszerint, **ha egy $X_j$ nem szignifikáns $\alpha$ szignifikancia-szinten, akkor az $1-\alpha$ megbízhatóságú konfidencia-intervallumának határai előjelet váltanak**.<br>
+legjobb példa a **Szoba** változó esete: azt mondtuk rá, hogy hatása az árakra 5%-on még épp szignifikáns -> a 95%-os megbízhatóságú intervalluma még épp nem vált előjelet. Viszont a változó 3%-on már nem szignifikáns, így az intervalluma előjelet vált.
+
+Ezzel egy érdekes nézőponthoz jutottunk: *ha egy $X_j$ változó nem szignifikáns $\alpha$-n az azt jelenti, hogy $1-\alpha$ megbízhatósági szinten azt sem tudom eldönteni, hogy minden más változatlansága mellett +1 egység $X_j$ növeli vagy csökkenti-e az eredmányváltozót a mintán kívüli világban*.
+
+A háttérben amúgy annyi történik, hogy a Python kiszámolja a parciális t-próba esetén is alkalmazott $n-p=n-k-1$ szabadságfokú t-eloszlás inverz értékét $1-\alpha/2$ valószínűség mellett, és az ezzel beszorzott standard hibát adja hozzá és vonja le $\forall \beta_j$-ből:
+
+```{python}
+BetaTabla_df
+
+alfa = 0.02
+p = len(BetaTabla_df) # így a tengelymetszetet is beszámítjuk p-be
+n = len(BP_Lakas) # mintaelemszám
+szorzo = stats.t.ppf(1-alfa/2, df = n-p)
+
+Terulet_AH = BetaTabla_df.iloc[1,0] - szorzo * BetaTabla_df.iloc[1,1] # Terulet 98% alsó határ
+Terulet_FH = BetaTabla_df.iloc[1,0] + szorzo * BetaTabla_df.iloc[1,1] # Terulet 98% felső határ
+print([Terulet_AH, Terulet_FH])
+```
+
+Formális képlettel leírva a műveletet:
+
+<center>
+![](BetaCI.jpg){width=50%}
+</center>
+
+## Nominális magyarázóváltozók - Használtautó adatok
+
+Most egy új, <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/auto.xlsx" target="_blank">auto.xlsx</a> fájlból fogunk dolgozni, ami 100 db használtautóról tartalmaz 8 változót:
+
+- Vetelar: Vételár Ft-ban
+- Kor: Az autó kora években
+- Kilometerora: A kilóméteróra állása
+- Teljes_tomeg: Az autó tömege kg-ban
+- Hengerurtartalom: Hengerűrtartalom *ccm*-ben (köbcenti)
+- Teljesitmeny: A motor teljesítménye Kw/h-ban
+- Allapot: Az autó állapota szöveges minősítéssel
+- Uzemanyag: Üzemanyag típusa (benzin/dízel)
+
+Láthatjuk, hogy ez nem *csv*, hanem Excel, azaz *xlsx* fájl. Úgyhogy olvassuk is be egy pandas `data frame`-be!
+
+```{python}
+autok = pd.read_excel("auto.xlsx")
+autok.info()
+```
+
+Minden szupinak néz ki! Megvan mind a 100 megfigyelési egység és a 8 db változó.
+
+Vessünk még egy pillantást arra, hogy az **Allapot** változónak milyen lehetséges értékei vannak:
+
+```{python}
+autok.Allapot.unique()
+```
+
+## Dummy változók és működésük Pythonban
+
+No, ha egy sima OLS regresszióba magyarázóváltozóként nominális változót akarunk bevenni, mint amilyen jelen példánkban az **Allapot** vagy az **Uzemanyag**, akkor az R az úgynevezett **dummy-kódolást** veti be. A nominális változó lehetséges értékeiből kiválaszt egyet, mint **referencia kategória**, azt "*elteszi*", és a maradéknak pedig csinál külön-külön egy *bináris = dummy* változót, aminek értéke 1, ha a megfigyelés a vizsgált szöveges változóban épp a dummy változónak megfelelő értéket vesz fel, egyébként 0:
+
+<center>
+![](Dummy.jpg){width=50%}
+</center>
+
+A fenti táblázatban az $R_A$ és $R_B$ lennének a regresszióban használt dummy változók, és a referencia kategória a $C$ érték. Ezt a $C$ kategóriát azért nem szabad a modellben szerepeltetni, mert egyértelmű, hogy ha $D_A=0$ és $D_B=0$, akkor $D_C=1$. Ezzel egy teljesen redundáns magyarázóváltozót raknánk a modellbe, amitől az egész rendszer megdöglik, mert a $\beta$-k becslése során alkalmazott $\beta=(X^TX)^{-1}X^Ty$ képletben az $(X^TX)^{-1}$ inverzet nem lehet elvégezni, ha $X$ mátrix oszlopai olyanok, hogy az egyiket hibátlanul elő lehet állítani a többiből. Ez a jelenség az **egzakt multikollinearitás** nevet kapta a keresztségben.
+
+Ezekkel a megfontolásokkal lássunk is neki a dummy változóink legyártásához a két nominális változónk (**Uzemanyag** és **Allapot**) esetében!<br>
+Először a `pandas` csomag `get_dummies` függvényével létrehozzuk a két szöveges változó minden kategóriájához a megfelelő 0/1, azaz dummy változókat. A függvény első paramétere az érintett változókat tartalmazó `data frame`, a második (`columns`) azon oszlopnevek listája, amelyekből dummy változókat akarunk csinálni, még az utolsó, `dtype` paraméterben a dummy változók adattípusát lehet megadni. Ez utolsó paraméter azért szükséges, mert egy dummy változó logikusan lehet akár `bool` adattípusú, de ad abszurdum `int` is. Most mi ez utóbbi opcióval megyünk, mert a `statsmodels` csomag nem tud `bool` típusú váltizókkal dolgozni.
+
+```{python}
+autok_dummy = pd.get_dummies(autok, columns=['Uzemanyag', 'Allapot'], dtype=int)
+autok_dummy.info()
+```
+
+Szuper, megvan minden szükséges új változó, és a megfelelő, azaz `int` adattípuson is vannak!
+
+Ezek után lássunk hozzá a regressziós modell legyártásához, amely az autók vételárát magyarázza az összes többi változóval a táblában. Arra kell figyelni, hogy a magyarázóváltozók ($X$ mátrix) kijelölésénél ne válasszuk ki a két nominális változó refrencia kategóriáinak oszlopait. Legyen most az **Uzemanyag** változó esetén a kihagyott refrencia kategória a *Benzin* (6. oszlopindex), míg **Allapot** esetén a *Kituno* (8. oszlopindex).
+
+```{python}
+Y = autok_dummy.Vetelar
+X = autok_dummy.iloc[:,[1,2,3,4,5,7,9,10,11,12]] # megfelelő oszlopindexek kiválasztása
+X = sm.add_constant(X)
+
+# létrehozzuk az új regressziót
+autos_modell = sm.OLS(Y, X).fit()
+
+# lássuk az eredménytáblát
+print(autos_modell.summary())
+```
+
+Úgy néz ki rendben vagyunk, a magyarázóváltozók együttesen $72.8\%$-ban magyraázzák az autók vételárának alakulását.
+
+Nézzük meg a nominális magyarázóváltozókhoz köthető dummy változók $\beta_j$ együtthatóinak értelmezését! Az eddigi okoskodásaink alapján alapján az egyes együtthatók értelmezése mindig a **referencia kategóriához** képest értednő:
+
+- $\beta_{Dizel}=-37630$: Minden más magyarázóváltozó változatlansága mellett egy dízelautó várhatóan 37630 Ft-al lesz olcsóbb, mint egy *benzines*.
+- $\beta_{Normal}=-119200$: Minden más magyarázóváltozó változatlansága mellett egy normál állapotú autó várhatóan kb. 119 200 Ft-tal lesz olcsóbb, mint egy *kitűnő* állapotban lévő.
+
+### Referencia kategória megváltoztatása
+
+Az előző modellben nem feltétlenül a legszerencsésebb az, ha a *Kituno* a referencia kategória az **Allapot** változóban. Logikusabb lenne a *Normal* állapotot referenciának venni. A módosítást simán meg tudjuk tenni. Egyszerűen az $X$ mátixból a 10. oszlopindexet hagyom ki a 8. helyett, és így újrafuttatom a modellt.
+
+Alapvetően a `levels` függvény eredményéből látható, hogy a referencia kategória az **Allapot** változóban azért a volt a *Kituno*, mert az van betűrend szerint a legelöl az **Allapot** változó lehetséges értékei közül:
+
+```{python}
+X = autok_dummy.iloc[:,[1,2,3,4,5,7,8,9,11,12]] # megfelelő oszlopindexek kiválasztása
+X = sm.add_constant(X)
+
+# újra lefuttatjuk a regressziót
+autos_modell = sm.OLS(Y, X).fit()
+
+# lássuk az eredménytáblát
+print(autos_modell.summary())
+```
+
+Így már azt mondhatom, hogy egy kitűnő állapotban lévő autó várhatóan $\beta_{Kituno}=+119200$ Ft-tal kerül többe egy normál állapotú autónál minden egyéb változó változatlansága mellett. Teljesen logikus módon abszolút értékben ugyan akkora a hatás az árakra, mint az előző modellben, ahol a *Kituno* vot a referencia kategória és $\beta_{Normal}=-119200$-t viszgáltuk, csak ellentétes előjelű.
+
+## A korrigált R-négyzet mutató
+
+Az előző fejezet végi modell eredménytáblázatát elnézegetve azt láthatjuk, hogy a modell két legkevésbé fontos, azaz legmagasabb p-értékű magyarázóváltozója a **Hengerurtartalom** és a **Teljes_tomeg**. Ha ezeknek a változóknak tényleg nincs közük az autók vételárához, akkor egy logikus gondolat, hogy potyogtassuk is ki őket a modellünkből! Ha emlékszünk még az `autok_dummy` táblára, akkor tudhatjuk, hogy ez a két változó rendre a 4. és 3. oszlopindexen futott, szóval csak ezeket az oszlopokat kell kiszedni az $X$ mátrixból, és már meg is szabadultunk ezektől a azvaró tényezőktől.
+
+```{python}
+X_szuk = autok_dummy.iloc[:,[1,2,5,7,8,9,11,12]] # megfelelő oszlopindexek kiválasztása
+X_szuk = sm.add_constant(X_szuk)
+
+# újra lefuttatjuk a regressziót
+autos_modell_szuk = sm.OLS(Y, X_szuk).fit()
+
+# lássuk az eredménytáblát
+print(autos_modell_szuk.summary())
+```
+
+Első ránézésre minden rendben, de nézzük csak össze ennek a szűkített modellnek az $R^2$ értékét az eredeti modell $R^2$ értékével, ami még tartalmazta a hengerűrtartalmat és a teljes tömeget! Ezt legkönnyebben úgy tudjuk megkérdezni, hogy mindkét modellnek lekérdezzük az `rsquared` tulajdonságát.
+
+```{python}
+[autos_modell.rsquared, autos_modell_szuk.rsquared]
+```
+
+Ajjaj! A modellünk magyarázóereje leromlott $72.72\%$-ra az eredeti $72.79\%$-ról! De hát azért eléggé nem szignifikánsnak kinéző változókat szedtünk ki! A legalacsonyabb t-próba p-érték $65.9\%$ volt a kihagyott magyarázóváltozók között (**Teljes_tomeg**)! Miért csökken az $R^2$?
+
+Sajnos a jó öreg $R^2$ nem fog soha javulni akkor, ha a modellből elhagyunk egy magyarázóváltozót. Legyen az bármennyire is haszontalan.
+
+Miért is? Ugye $R^2=1-\frac{SSE}{SST}$ és hát $SSE$ minimalizálásával szüljük meg a $\beta_j$ együtthatókat. Konkrétan úgy választjük meg az értéküket, hogy a MEGFIGYELT $y$ értékekre a lehető legjobban illeszkedjen a regresszióból nyert $\hat{y}$ becslés!
+
+Ezt az illeszkedést pedig egy újabb magyarázóváltozó bevonása biztosan NEM RONTJA el, legyen bármennyire irreleváns $y$ szempontjából. Hiszen eggyel több $\beta_j$ van arra, hogy minimalizáljuk a modellhibát ($SSE$). De ha kilépünk a megfigyeléseinken túli világba (sokaságba), akkor már az $\hat{y}$ becslések jóságát elrontják ezek az irreleváns magyarázóváltozók a modellben. Ez a jelenség a **túltanítás** jelensége!
+
+Nézzük ezt meg az alábbi képen:
+
+<center>
+![](Tultan1.jpg){width=100%}
+</center>
+
+A pontokra illesztett görbék mögött a következő egyenletek vannak:
+
+- Lineáris = $5.13x-0.46$
+- Harmadfokú = $2.48x^3+3.17x^2−1.06x +1.08$
+- Hetedfokú = $−7426x^7+28047x^6−42886x^5+33991x^4−14814x^3+3457x^2−380x+14$
+
+Az ábráról láthatjuk, hogy a pontokra a legreálisabb illeszkedést a 3 db magyarázóváltozót ($x^3, x^2, x$) használó *Harmadfokú* görbe adja. De az $R^2$ mégis a legtöbb magyarázóváltozót használó Hetedfokú opciót részesíti előnyben a *túltanulás* miatt!
+
+Ennek kiküszöbölésére bevezetjük a korrigált $R^2$ mutatót:
+
+<center>
+![](AdjR2.jpg){width=50%}
+</center>
+
+A korrekciós képlet lényege, hogy ez a mutató csökkenhet is, ha irreleváns (erősen nem szignifikáns) magyarázóváltozókat vonunk be a modellbe. Ezért van a képletben a megfigyelések száma ($n$) mellett a magyarázóváltozók száma, $k$ is.
+
+Láthatjuk, hogy a korábbi példánkban $\bar{R}^2$ már a harmadfokú modellt preferálja, nagyon helyesen!
+
+<center>
+![](Tultan2.jpg){width=100%}
+</center>
+
+A $\bar{R}^2$ mutató értékét megtaláljuk a sima `summary` függvény eredménytáblájában is, de praktikusabb lekérdezni, mint a regressziós modellek `rsquared_adj` tulajdonsága.
+
+```{python}
+[autos_modell.rsquared_adj, autos_modell_szuk.rsquared_adj]
+```
+
+Hurrá! Láthatjuk, hogy a korrigált R-négyzet már heylesen azt mutatja, hogy a nem szignifikáns változók kihagyásával kapott szűkített modell magyarázóereje nagyobb ($70.3\%$), mint az eredeti modellé ($69.7\%$), amiben ez a két haszontalan változó is benne volt.

@@ -2,7 +2,7 @@
 
 ## Budapesti lakások vizsgálata
 
-A <a href="https://raw.githubusercontent.com/KoLa992/Statisztika-II-Python-Jegyzet/main/BP_Lakas.csv" target="_blank">BP_Lakas.csv</a> fájl egy olyan adattábla, ami 1406 budapesti lakásról 10 változó (oszlop) adatát tárolja:
+A <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/BP_Lakas.csv" target="_blank">BP_Lakas.csv</a> fájl egy olyan adattábla, ami 1406 budapesti lakásról 10 változó (oszlop) adatát tárolja:
 
 - KinArMFt: lakás ára millió Ft-ban (MFt)
 - Terulet: lakás területe négyzetméterben
@@ -338,7 +338,7 @@ Kimondottan a $\beta_1$ értelmezésénél nagyon-nagyon figyeljünk oda, hogy *
 
 ## Egy gyakorló példa COVID adatokon
 
-Töltsük be a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/raw/main/COVID_0326.xlsx" target="_blank">COVID_0326.xlsx</a> c. Excel fájlt egy **covid** nevű pandas `data frame`-be!
+Töltsük be a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/COVID_0326.xlsx" target="_blank">COVID_0326.xlsx</a> c. Excel fájlt egy **covid** nevű pandas `data frame`-be!
 
 ```{python}
 covid = pd.read_excel("COVID_0326.xlsx")

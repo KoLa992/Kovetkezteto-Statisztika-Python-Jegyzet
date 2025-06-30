@@ -6,8 +6,8 @@ Istenigazából a **hipotézisvizsgálat** csak egy **alternatív mód a konfide
 
 Hipotézisvizsgálat során megfogalmazunk egy **állítást vagy szebb szóval hipotézist egy statisztikai mutatószám** (átlag, arány, medián, szórás, stb.) **valós, sokasági értékéről, és utána megpróbáljuk állítani, hogy ezt a felvetést/hipotézist a megfigyelt mintaadatok alátámasztják-e vagy sem**. Most így alapesetben a paraméteres statisztikai hipotézisvizsgálatokat vagy rövidebben az úgynevezett **paraméteres (statisztikai) próbákat vizsgáljuk**, mert a **megfogalmazott hipotézisünk mindig egy statisztikai paraméter** (azaz statisztikai mutatószám) valós, **sokasági értékéről szól** majd egyelőre.
 
-Nézzünk meg **ismét egy $n=100$ elemű FAE mintát a 2022-es Balaton átúszást teljesítők sokaságából** a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájl alapján.<br>
-Ahogy a <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> is néztük, ebben a fájlban a Balaton átúszás résztvevőinek *neve, neme és percben mért időeredménye* található. Ez az adatsor lesz most is a **sokaságunk**.
+Nézzünk meg **ismét egy $n=100$ elemű FAE mintát a 2022-es Balaton átúszást teljesítők sokaságából** a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájl alapján.<br>
+Ahogy az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html" target="_blank">5. fejezetben</a> is néztük, ebben a fájlban a Balaton átúszás résztvevőinek *neve, neme és percben mért időeredménye* található. Ez az adatsor lesz most is a **sokaságunk**.
 
 ```{python}
 # Elemzéshez és ábrázoláshoz szükséges csomagok betöltése
@@ -142,8 +142,8 @@ Ha a $H_0$-ban jól okoskodunk, és **tényleg sikerült a valós $\mu$ sokaság
 
 A képlet mögött az az elv nyugszik, hogy **a $\mu = \mu_0$ technikai nullhipotézist ($H_0^T$) alkalmazzuk mind a 6 különböző típusú $H_0$ és $H_1$ párosnál, így meg tudjuk majd adni a próbafüggvény eloszlását sok-sok mintavétel esetén**.
 
-Ezt az egészet gyorsan ellenőrizni tudjuk, ha **kiveszünk $10000$ db $n=100$ elemű FAE mintát a Balaton átúszók sokaságából**, ahogy a <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> is tettük.<br>
-Most csak **visszatöltjük a $10000$ db FAE mintát tartalmazó Excel táblát egy data frame-be**, amit a <a href="Gyak02.html" target="_blank">2. heti tananyagban</a> hoztunk létre. Ez az Excel fájl <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/MintaDataFrame.xlsx" target="_blank">innen</a> elérhető.
+Ezt az egészet gyorsan ellenőrizni tudjuk, ha **kiveszünk $10000$ db $n=100$ elemű FAE mintát a Balaton átúszók sokaságából**, ahogy az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html" target="_blank">5. fjezetben</a> is tettük.<br>
+Most csak **visszatöltjük a $10000$ db FAE mintát tartalmazó Excel táblát egy data frame-be**, amit a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/eloszl%C3%A1sok-%C3%A9s-mintav%C3%A9telez%C3%A9s.html#ism%C3%A9telt-mintav%C3%A9telez%C3%A9s-resampling" target="_blank">4.3.1. fejezetben</a> hoztunk létre. Ez az Excel fájl <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/MintaDataFrame.xlsx" target="_blank">innen</a> elérhető.
 
 ```{python}
 MintaVetelek100Elem = pd.read_excel("MintaDataFrame.xlsx")
@@ -152,7 +152,7 @@ MintaVetelek100Elem
 
 Oké, az eredményből látjuk is, hogy úgy néz ki a data frame, hogy **1 sor tartalmaz 1 db 100 elemű mintát és a mintaelemeket** (tehát a mintába besorsolt versenyző percben mért időeredményét) **az oszlopkban tároljuk**.
 
-Kiszámoljuk mindenegyes mintavételre a minta átlagos időeredményét és azok korrigált szórását. Csak figyeljünk, hogy az alkalmazott `numpy` függvényeket `axis = 1` paraméterrel használjuk, hogy ne oszlopok, hanem sorok szerint vegyék az átlagokat és a szórásokat. Plusz, figyeljünk, hogy a függvényeket minidg csak az első $100$ oszlopra engedjük rá, hiszen ott vannak a tényleges mintaelemek. Ezt ugyebár a data framek `iloc` metódusával tudjuk biztosítani, ahogy a <a href="Gyak03.html" target="_blank">3. heti tananyag 2. fejezetében</a> csináltuk.
+Kiszámoljuk mindenegyes mintavételre a minta átlagos időeredményét és azok korrigált szórását. Csak figyeljünk, hogy az alkalmazott `numpy` függvényeket `axis = 1` paraméterrel használjuk, hogy ne oszlopok, hanem sorok szerint vegyék az átlagokat és a szórásokat. Plusz, figyeljünk, hogy a függvényeket minidg csak az első $100$ oszlopra engedjük rá, hiszen ott vannak a tényleges mintaelemek. Ezt ugyebár a data framek `iloc` metódusával tudjuk biztosítani, ahogy az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html#a-torz%C3%ADtatlans%C3%A1g-fogalma" target="_blank">5.2. fejezetben</a> csináltuk.
 
 ```{python}
 MintaVetelek100Elem['Atlagok'] = np.mean(MintaVetelek100Elem.iloc[:,0:100], axis=1)
@@ -178,7 +178,7 @@ MintaVetelek100Elem
 ```
 
 Okké! Akkor miután megvannak a kétféle esetben a próbafüggvényeink, **nézzük meg a kétféle próbafüggvények hisztogramja a $10000$ db mintavétel alapján hogyan alakul a $t(n-1)$, azaz $t(100-1)$ eloszlás sűrűségfüggvényéhez** képest.<br>
-A sűrűségfüggvény hisztogramhoz való illeszkedését ábrázoló kód teljes mértékben az <a href="Gyak03.html" target="_blank">1. heti tananyag 2.3. és 3. fejezeteiben</a> lévő kódok logikáját követi.
+A sűrűségfüggvény hisztogramhoz való illeszkedését ábrázoló kód teljes mértékben az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#val%C3%B3sz%C3%ADn%C5%B1s%C3%A9g-vs-relat%C3%ADv-gyakoris%C3%A1g" target="_blank">3.2.3. és 3.3. fejezetekben</a> lévő kódok logikáját követi.
 
 ```{python}
 # Igaz és Hamis H0 esetén próbafüggvények kisztogramja
@@ -369,7 +369,7 @@ Nézzük meg, hogy **vehető-e 1/3-nak a Balatont 3 óra felett átúszók arán
 
 A $H_0$ és $H_1$ párunkból következik, hogy az **elvi arány, azaz $P_0$, amihez képest vizgsálódunk most az $1/3$ érték!!**
 
-Ezek után itt most azt mondanánk az <a href="Gyak05.html" target="_blank">5. heti tananyag 2. fejezete</a> alapján, hogy készítünk a megfigyelt mintánkba egy olyan $0-1$ értékekből álló oszlopot, ahol $1$ jelenti a 3 óránál hosszabb idő alatt átúszókat a mintában (arány szempontjából kedvező esetek a mintában), míg $0$ a többieket (arány szempontjából kevdezőtlen esetek a mintában), és ennek az oszlopnak az átlagára vonatkozó hipotézivizsgálatot végzünk (mivel $n=100 > 30$ ez simán lehet z-próba).
+Ezek után itt most azt mondanánk a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/tov%C3%A1bbi-fae-becsl%C3%A9sek-%C3%A9s-a-bootstrap-m%C3%B3dszer.html" target="_blank">7.2. fejezet</a> alapján, hogy készítünk a megfigyelt mintánkba egy olyan $0-1$ értékekből álló oszlopot, ahol $1$ jelenti a 3 óránál hosszabb idő alatt átúszókat a mintában (arány szempontjából kedvező esetek a mintában), míg $0$ a többieket (arány szempontjából kevdezőtlen esetek a mintában), és ennek az oszlopnak az átlagára vonatkozó hipotézivizsgálatot végzünk (mivel $n=100 > 30$ ez simán lehet z-próba).
 
 Ezzel a fenti elvvel viszont van egy kis gond! Ugyanis **arányra vonatkozó hipotézivizsgálat esetén a próbafüggvényünk az alábbi módon néz ki**:  $$\frac{p-P_0}{\sqrt{\frac{P_0(1-P_0)}{n}}} \sim N(0,1)$$
 

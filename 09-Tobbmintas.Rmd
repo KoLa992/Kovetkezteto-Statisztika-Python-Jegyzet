@@ -2,9 +2,9 @@
 
 ## A szórásra vonatkozó $\chi^2$-próba
 
-Vegyük elő újra a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/ESS2020.xlsx" target="_blank">ESS2020.xlsx</a> fájlban található adatbázist! Emlékeztetőül álljon itt, hogy ez az adatbázis a 2020-ban végzett európai szociális felmérés (European Social Survey 2020 = ESS2020) 1849 magyar kitöltöjének válaszait tartalmazza 14 kérdésre (plusz van egy *id* oszlop).
+Vegyük elő újra a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/ESS2020.xlsx" target="_blank">ESS2020.xlsx</a> fájlban található adatbázist! Emlékeztetőül álljon itt, hogy ez az adatbázis a 2020-ban végzett európai szociális felmérés (European Social Survey 2020 = ESS2020) 1849 magyar kitöltöjének válaszait tartalmazza 14 kérdésre (plusz van egy *id* oszlop).
 
-Ugyebár az <a href="Gyak04.html" target="_blank">előző tananyag 4. fejezet 2. feladatában</a> azt mondtuk, hogy ha az adatbázis valamelyik oszlopában üres értéket találunk, akkor az azt jelenti, hogy az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők.
+Ugyebár a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-sokas%C3%A1gi-%C3%A1tlag-intervallumbecsl%C3%A9se.html#feladat-10" target="_blank">6.4. fejezet 2. feladatában</a> azt mondtuk, hogy ha az adatbázis valamelyik oszlopában üres értéket találunk, akkor az azt jelenti, hogy az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők.
 
 Először is töltsök be az adatbázist ismét az Excelből egy `pandas` data frame-be és nézzük meg az `info` metódussal milyen oszlopaink (azaz ismérveink) vannak!
 
@@ -56,7 +56,7 @@ próbafv = (n-1)*s**2/elvi_szórás**2
 próbafv
 ```
 
-Szép és jó ez az érték, de önmagában nem sokat mond. :) Ugorjunk is a 3. pontra, a p-érték számítására. Ugye azt megállapítottuk már az előbb, hogy a p-értéket most $n-1$ szabadságfokú $\chi^2$ eloszlásból számoljuk. Plusz, **mivel a $H_1$-ben $<$ jel van, így a számítás balodali módon történik**, azaz **a $\chi^2(n-1)$ eloszlásban a próbafüggvény alá esés valószínűsége érdekel**. Az **elv itt ugyan az, amit láttunk a <a href="Gyak07.html" target="_blank">7. heti tananyag 2. fejezetében</a>.**
+Szép és jó ez az érték, de önmagában nem sokat mond. :) Ugorjunk is a 3. pontra, a p-érték számítására. Ugye azt megállapítottuk már az előbb, hogy a p-értéket most $n-1$ szabadságfokú $\chi^2$ eloszlásból számoljuk. Plusz, **mivel a $H_1$-ben $<$ jel van, így a számítás balodali módon történik**, azaz **a $\chi^2(n-1)$ eloszlásban a próbafüggvény alá esés valószínűsége érdekel**. Az **elv itt ugyan az, amit láttunk a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/hipot%C3%A9zisvizsg%C3%A1lat-alapjai.html#a-sokas%C3%A1gi-%C3%A1tlagra-vonatkoz%C3%B3-t-pr%C3%B3ba" target="_blank">9.2. fejezetben</a>.**
 
 Ezek alapján meg is van a p-értékünk a `stats.chi2.cdf` függvénnyel.
 
@@ -66,7 +66,7 @@ stats.chi2.cdf(próbafv, df=n-1)
 
 A p-érték = $82.6\%$ lett, ami szerint a megfigyelt minta alapján a $H_0$-t elutasítani $82.6\%$ hibavalószínűséggel jár. Ez jó magas hibavalószínűség így "szabad szemmel" is, de technikailag ha nézem, akkor **ez a p-érték magasabb még a legmagasabb szokásos szignifikancia-szintnél**, a $10\%$-nál **is**, így **a $H_0$-t nem utasítjuk el**, mert ez a döntés túl nagy hibával járna. Ez alapján pedig azt mondhatjuk, hogy **a heti munkaidők szórása a teljes népességben (sokaságban) is legalább 15 órának kinéz**.
 
-Sajnos ennek a $\chi^2$ próbának ugyan az a baja, mint a $\chi^2$ eloszlásos intervallumbecslésnek volt az <a href="Gyak05.html" target="_blank">5. heti tananyag 5. fejezetében</a>: A próba elvégézésének **előfeltétele, hogy az adataink normális eloszlásúak legyenek**. tehát, a számított p-értékünk, a $82.6\%$, az akkor valid, ha az adatsor, aminek a szórását vizsgáljuk normális eloszlást követ.<br>
+Sajnos ennek a $\chi^2$ próbának ugyan az a baja, mint a $\chi^2$ eloszlásos intervallumbecslésnek volt a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/tov%C3%A1bbi-fae-becsl%C3%A9sek-%C3%A9s-a-bootstrap-m%C3%B3dszer.html#a-sz%C3%B3r%C3%A1s-bootstrap-intervallumbecsl%C3%A9se" target="_blank">7.5. fejezetben</a>: A próba elvégézésének **előfeltétele, hogy az adataink normális eloszlásúak legyenek**. tehát, a számított p-értékünk, a $82.6\%$, az akkor valid, ha az adatsor, aminek a szórását vizsgáljuk normális eloszlást követ.<br>
 Ezt egy hisztogrammal gyorsan ellenőrizni is tudjuk.
 
 ```{python}

@@ -2,7 +2,7 @@
 
 ## Ismétlés: Az átlag standard hibája a Balaton átúszás eredményeken
 
-Ugyebár a <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> a 2022-es Balaton átúszás résztvevőinek időeredményeit vizsgáltuk mintavételi és becsléselméleti szempontból elég alaposan. Töltsük is be egy `pandas` data frame-be ismét a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájl adatait. Ebben az Excelben megvan az összes résztvevő időeredménye a `PERC` oszlopban. Ez az adatsor lesz most nekünk tehát a **sokaságunk**.
+Ugyebár az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html" target="_blank">5. fejezetben</a> a 2022-es Balaton átúszás résztvevőinek időeredményeit vizsgáltuk mintavételi és becsléselméleti szempontból elég alaposan. Töltsük is be egy `pandas` data frame-be ismét a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájl adatait. Ebben az Excelben megvan az összes résztvevő időeredménye a `PERC` oszlopban. Ez az adatsor lesz most nekünk tehát a **sokaságunk**.
 
 ```{python}
 # Elemzéshez és ábrázoláshoz szükséges csomagok betöltése
@@ -43,7 +43,7 @@ MintaAtlag = np.mean(BalcsiMinta.PERC)
 MintaAtlag
 ```
 
-Tehát ebben az $n=100$ elemű **mintában az átlagos átúszási idő $164.4$ perc**. A <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> elvégzett okoskodásunk alapján a **mintaátlag alapján úgy tudjuk lehatárolni a sokasági átlag ($\mu$) értékét, hogy a mintaátlag értékre rámérem $\pm$ annak standard hibáját**. Hiszen a standard hiba megmutatja, hogy egy véletlenszerűen kiválasztott mintavétel átlaga várhatóan mennyivel tér el a valós sokasági átlagtól (mivel a $\bar{y}$ mintaátlag alapból egy torzítatéan becslőfüggvénye a $\mu$ sokasági átlagnak).<br>
+Tehát ebben az $n=100$ elemű **mintában az átlagos átúszási idő $164.4$ perc**. Az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html" target="_blank">5. fejezetben</a> elvégzett okoskodásunk alapján a **mintaátlag alapján úgy tudjuk lehatárolni a sokasági átlag ($\mu$) értékét, hogy a mintaátlag értékre rámérem $\pm$ annak standard hibáját**. Hiszen a standard hiba megmutatja, hogy egy véletlenszerűen kiválasztott mintavétel átlaga várhatóan mennyivel tér el a valós sokasági átlagtól (mivel a $\bar{y}$ mintaátlag alapból egy torzítatéan becslőfüggvénye a $\mu$ sokasági átlagnak).<br>
 A gondolatmenet alapján tehát azt mondhatjuk, hogy a **sokasági átlag várhatóan mintaátlag $\pm$ standard hiba által lehatárolt intervallumban nyugszik**.
 
 Jó hír, hogy ugyebár az **átlag standard hibája sokasági szórás osztva gyök alatt mintaelemszám**, azaz $\frac{\sigma}{\sqrt{n}}$ képlettel számolható, aminek az értékét egy mintavétel alapján is meg tudjuk közelíteni, ha a sokasági szórást, annak torzítatlan becslésével a **korrigált mintaszórás**sal helyettesítjük. Tehát, az **egy szem $n=100$ mintából a standard hiba értéke az $\frac{s}{\sqrt{n}}$ képlettel megközelíthető**.
@@ -62,7 +62,7 @@ Az eredményünk alapján a valós, sokasági átlag ($\mu$) várhatóan $160.6$
 
 ## A mintaátlagok eloszlása
 
-Na jó-jó, egy mintavétel esetén szerencsénk is lehetett. **Mennyire működik ez a standard hibás módszer jól sok-sok $n=100$ mintavétel esetében?** Töltsük csak be egy data frame-be azt a táblát, ami $10000$ db $n=100$ FAE mintavétel adatait tartalmazza! Az átlalam generált Excel, ami tartalmazza a $10000$ minta adatait <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/MintaDataFrame.xlsx" target="_blank">innen</a> érhető el. 
+Na jó-jó, egy mintavétel esetén szerencsénk is lehetett. **Mennyire működik ez a standard hibás módszer jól sok-sok $n=100$ mintavétel esetében?** Töltsük csak be egy data frame-be azt a táblát, ami $10000$ db $n=100$ FAE mintavétel adatait tartalmazza! Az átlalam generált Excel, ami tartalmazza a $10000$ minta adatait <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/MintaDataFrame.xlsx" target="_blank">innen</a> érhető el. 
 
 ```{python}
 MintaVetelek100Elem = pd.read_excel("MintaDataFrame.xlsx")
@@ -84,7 +84,7 @@ MintaVetelek100Elem
 ```
 
 Oké, akkor **meg is vannak** az átlag intervallumos **becslés**ének **alsó-felső határai**. **Számoljuk** akkor **ki a találati arányt**!<br>
-A számoláshoz azt a trükköt alkalmazzuk, amit a <a href="Gyak02.html" target="_blank">2. heti tananyagban</a> sütüttünk el: a `AdatokEgyben['Normal'] < 100` parancs egy `bool` tömböt ad vissza, amit összegezve megkapjuk a "*kedvező esetek*", vagyis a $\mu$-t helyesen eltaláló intervallumok darabszámát.
+A számoláshoz azt a trükköt alkalmazzuk, amit a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/eloszl%C3%A1sok-%C3%A9s-mintav%C3%A9telez%C3%A9s.html" target="_blank">4. fejezetben</a> sütüttünk el: a `AdatokEgyben['Normal'] < 100` parancs egy `bool` tömböt ad vissza, amit összegezve megkapjuk a "*kedvező esetek*", vagyis a $\mu$-t helyesen eltaláló intervallumok darabszámát.
 
 ```{python}
 MintaVetelekSzama = len(MintaVetelek100Elem)
@@ -104,7 +104,7 @@ MintaVetelek100Elem.MintaAtlagok.hist()
 
 Hoppácska! Dehát, **ez itt a világ legszebb normális eloszlása!**
 
-Ami azért második elgondolásra **teljesen logikus, mivel a Centrális Határeloszlás Tétel (CHT) dolgozik a háttérben**. Ha nem ugrik be a CHT, akkor vissza az <a href="Gyak01.html" target="_blank">1. heti tananyag 2.4. fejezetéhez</a>! :)
+Ami azért második elgondolásra **teljesen logikus, mivel a Centrális Határeloszlás Tétel (CHT) dolgozik a háttérben**. Ha nem ugrik be a CHT, akkor vissza a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#centr%C3%A1lis-hat%C3%A1reloszl%C3%A1s-t%C3%A9tel-cht" target="_blank">3.2.4. fejezethez</a>! :)
 
 A **CHT** szerint ugyebár ha az **adatsor elemi véletlen hatások összegződéseként állnak elő**, akkor az **adatsor normális eloszlás**t követ. A $\bar{y}$ **mintaátlagok adatsora pedig pont olyan adatsor, ami a CHT feltételnek megfelel!** Hiszen a mintaátlag úgy jön ki, hogy a mintaelemeket összeadom és elosztom a minta elemszámával. **Mivel a mintavétel módja FAE, így biztos lehetek benne, hogy egy mintaelem, az egy véletlen húzás, egy véletlen hatás eredménye. Aztán meg ezeket adom össze**. Végén osztok $n$-bel, de az mindig ugyan annyi, így nem változtat a lényegen.
 
@@ -115,7 +115,7 @@ Ha pedig a **sok-sok mintából számolt átlagok adatsora normális eloszlású
 
 Szumma szummárom, akkor a **sok-sok mintából számolt mintaátlagok $\bar{y}$ adatsora az alábbi eloszlást követi**: $$\bar{y} \sim N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)$$
 
-Ezt az illeszkedést simán letesztelhetjük grafikusan is az <a href="Gyak01.html" target="_blank">1. heti tananyag 2.3. fejezetében</a> látott módon.<br>
+Ezt az illeszkedést simán letesztelhetjük grafikusan is az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#val%C3%B3sz%C3%ADn%C5%B1s%C3%A9g-vs-relat%C3%ADv-gyakoris%C3%A1g" target="_blank">3.2.3. fejezetében</a> látott módon.<br>
 Figyeljük meg, hogy a `stats` csomag `norm.pdf` függvényében az átlagot a korábban kiszámolt `SokasagiAtlag`, a szórást pedig a szintén az előbb kiszámolt `SH` objektumok segítségével adom meg!
 
 ```{python}
@@ -140,7 +140,7 @@ Hoppáré! Ez is éppen kb. $68\%$! Tehát, **az, hogy egy $\bar{y} \pm SH$ becs
 
 Kérdés, hogy **mit tehetünk ez ellen? Mihez kezdhetünk, ha mondjuk nem $68\%$-os, hanem valami jobb, mondjuk $95\%$-os megbízhatóságú intervallumbecslést szeretnénk adni a sokasági átlagra (vagy más néven sokasági várható értékre)?**
 
-Az okoskodáshoz az <a href="Gyak01.html" target="_blank">1. heti tananyag 2.6. fejezetére</a> fogunk támaszkodni.
+Az okoskodáshoz a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#a-standard-norm%C3%A1lis-eloszl%C3%A1s" target="_blank">3.2.6. fejezetre</a> fogunk támaszkodni.
 
 Ugyanis azt tudjuk, hogy ha a **mintaátlagok eloszlása** az alábbi: $$\bar{y} \sim N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)$$
 
@@ -277,7 +277,7 @@ Szépen láthatjuk, hogy az **átlagos átúszási időket $99\%$-os megbízhat�
 - $n=20$ esetben $140$ és $191$ perc közé tesszük,
 - $n=100$ esetben pedig láttuk az előbb, hogy a becslés pontosabb (kisebb $\triangle$ hibahatárú): $153$ és $176$ perc közé teszi a sokasági átlagidőt.
 
-Nem meglepő az eredmény. Mivel a $\frac{\sigma}{\sqrt{n}}$ standard hiba **képlet nevezőjében van az $n$ elemszám, így növelése csökkenti a standard hibát, ezen keresztül pedig a teljes $\triangle$ becslési hibahatárt**. Ugyebár a <a href="Gyak03.html" target="_blank">3. heti tananyagban</a> megállapítottuk, hogy az átlag **konzisztens becslés**: elemszám növekedésével a $SH$-ja csökken, a $0$-ba tart.
+Nem meglepő az eredmény. Mivel a $\frac{\sigma}{\sqrt{n}}$ standard hiba **képlet nevezőjében van az $n$ elemszám, így növelése csökkenti a standard hibát, ezen keresztül pedig a teljes $\triangle$ becslési hibahatárt**. Ugyebár az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html" target="_blank">5. fejezetben</a> megállapítottuk, hogy az átlag **konzisztens becslés**: elemszám növekedésével a $SH$-ja csökken, a $0$-ba tart.
 
 Emiatt a **választott $1-\alpha$ megbízhatósági szint a mintaelemszám függvénye**:
 
@@ -449,7 +449,7 @@ Persze, ha a mintaátlag vagy éppen a korrigált mintaszórás úgy módosul az
 
 ### 2. feladat {-}
 
-Az <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/ESS2020.xlsx" target="_blank">ESS2020.xlsx</a> fájlban található adatbázis a 2020-ban végzett európai szociális felmérés (European Social Survey 2020 = ESS2020) 1849 magyar kitöltöjének válaszait tartalmazza 14 kérdésre (plusz van egy *id* oszlop).
+Az <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/ESS2020.xlsx" target="_blank">ESS2020.xlsx</a> fájlban található adatbázis a 2020-ban végzett európai szociális felmérés (European Social Survey 2020 = ESS2020) 1849 magyar kitöltöjének válaszait tartalmazza 14 kérdésre (plusz van egy *id* oszlop).
 
 Ha valamelyik oszlopban üres értéket találunk, akkor az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők. Most feltesszük, hogy ez a véletlen minta visszatevéses, azaz $FAE$ is. A 6. heti tananyagban látni fogjuk, hogy ez nem is valóságtól elrugaszkodott feltevés.
 

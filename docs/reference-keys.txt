@@ -120,3 +120,9 @@ a-többváltozós-lineáris-regresszió-ols-elvű-előállítása
 a-magyarázóváltozók-marginális-hatása
 útelemzés
 parciális-t-próba
+magyarázóváltozók-fontossági-sorrendjének-megállapítása-t-próba-alapján
+konfidencia-intervallumok-és-a-t-próba-kapcsolata
+nominális-magyarázóváltozók---használtautó-adatok
+dummy-változók-és-működésük-pythonban
+referencia-kategória-megváltoztatása
+a-korrigált-r-négyzet-mutató

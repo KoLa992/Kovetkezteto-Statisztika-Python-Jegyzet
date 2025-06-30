@@ -11,9 +11,9 @@ A következő két fejezetben figyeljük meg, hogy **minden újabb statisztikai 
 
 ## Arányok konfidencia-intervalluma
 
-Vegyük elő újra a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/ESS2020.xlsx" target="_blank">ESS2020.xlsx</a> fájlban található adatbázist! Emlékeztetőül álljon itt, hogy ez az adatbázis a 2020-ban végzett európai szociális felmérés (European Social Survey 2020 = ESS2020) 1849 magyar kitöltöjének válaszait tartalmazza 14 kérdésre (plusz van egy *id* oszlop).
+Vegyük elő újra a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/ESS2020.xlsx" target="_blank">ESS2020.xlsx</a> fájlban található adatbázist! Emlékeztetőül álljon itt, hogy ez az adatbázis a 2020-ban végzett európai szociális felmérés (European Social Survey 2020 = ESS2020) 1849 magyar kitöltöjének válaszait tartalmazza 14 kérdésre (plusz van egy *id* oszlop).
 
-Ugyebár az <a href="Gyak04.html" target="_blank">előző tananyag 4. fejezet 2. feladatában</a> azt mondtuk, hogy ha az adatbázis valamelyik oszlopában üres értéket találunk, akkor az azt jelenti, hogy az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők. Most feltesszük, hogy ez a véletlen minta visszatevéses, azaz $FAE$ is. A következő tananyagban látni fogjuk, hogy ez nem is valóságtól elrugaszkodott feltevés.
+Ugyebár a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-sokas%C3%A1gi-%C3%A1tlag-intervallumbecsl%C3%A9se.html#intervallumbecsl%C3%A9s-a-gyakorlatban" target="_blank">6.4. fejezet 2. feladatában</a> azt mondtuk, hogy ha az adatbázis valamelyik oszlopában üres értéket találunk, akkor az azt jelenti, hogy az adott sorban lévő kitöltő nem válaszolt a kérdésre. Az adatbázisban szereplő kitöltők a teljes 18 év feletti magyar népességből vett véletlen mintaként kezelhetők. Most feltesszük, hogy ez a véletlen minta visszatevéses, azaz $FAE$ is. A következő tananyagban látni fogjuk, hogy ez nem is valóságtól elrugaszkodott feltevés.
 
 Először is töltsök be az adatbázist ismét az Excelből egy `pandas` data frame-be és nézzük meg az `info` metódussal milyen oszlopaink (azaz ismérveink) vannak!
 
@@ -90,7 +90,7 @@ RegionKimutatas
 
 Látható, hogy a mintán belül a Fidesz támogatottsága az Dél-Dunántúlon csak 15.4%, míg Nyugat-Dunántúlon 16.7%. Kérdés, hogy ezek a különbségek a mintavételi hiba, azaz a 99%-os megbízhatóságú konfidencia-intervallum figyelembe vételével is megmaradnak-e!
 
-Ami fontos még az előbb elkészített kimutatásból, hogy **minden régióban megvan a nagy elemszám** ($n>30$), így nyugodtan használható a $k$ megbízhatósági szorzót standard normális eloszlásból számító `combine_effects` függvény. A függvény paraméterezési szabályait lásd a <a href="Gyak04.html" target="_blank">4. heti tananyag 6. fejezetében</a>.
+Ami fontos még az előbb elkészített kimutatásból, hogy **minden régióban megvan a nagy elemszám** ($n>30$), így nyugodtan használható a $k$ megbízhatósági szorzót standard normális eloszlásból számító `combine_effects` függvény. A függvény paraméterezési szabályait lásd a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-sokas%C3%A1gi-%C3%A1tlag-intervallumbecsl%C3%A9se.html#esettanulm%C3%A1ny" target="_blank">6.6. fejezetben</a>.
 
 ```{python}
 eredmeny = combine_effects(
@@ -108,7 +108,7 @@ eredmeny_tabla
 
 Az eredményül kapott táblából ismételten látható, hogy a **mintán belül a Fidesz támogatottsága az Dél-Alföldön csak 12.6%, míg Dél-Dunántúlon már 15.4%**. Azonban, ha a konfidencia-intervallum segítségével a **teljes népességet vizsgáljuk, akkor ez 99%-os valószínűséggel egy NEM szignifikáns** (jelentős) **eltérés, mivel a két konfidencia-intervallum metszi egymást!** Tehát a teljes népességben elképzelhető legjobb esetben egy 17.6%-os támogatottság is a Dél-Alföldön, míg a legrosszabb esetben belefér a Dél-Dunántúlon 9.5%-os támogatottság is. Tehát, az, hogy a Dél-Dunántúlon magasabb a Fidesz támogatottsági arány a mintában, az lehet csak a mintavételi hiba műve 99%-os megbízhatósággal! Ellenben az **Észak-Magyarországi Fidesz támogatottság 99% valószínűséggel a sokaságban is magasabb, mint a Dél-Alföldi**, hiszen a Dél-Alföldön a támogatottság legjobb esetben is csak 17.6%, míg Észak-Magyarországon legrosszabb esetben is már 20.4%. Tehát a **két konfidencia-intervallum NEM metszi egymást, a mintában mért eltérések 99% valószínűséggel megmaradnak a sokaságban is!**
 
-Az eredményekről ugyan úgy készíthetünk **forest diagram**ot, mint a pártpreferenciák szerint bontott átlagos netezési időkről a <a href="Gyak04.html" target="_blank">4. heti tananyag 6. fejezetében</a>. Itt ugyebár a `statsmodels` csomag `dot_plot` függvényét vetjük be. Ennek a használatáról is bővebb információk a <a href="Gyak04.html" target="_blank">4. heti tananyag 6. fejezetében</a> találhatók.
+Az eredményekről ugyan úgy készíthetünk **forest diagram**ot, mint a pártpreferenciák szerint bontott átlagos netezési időkről a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-sokas%C3%A1gi-%C3%A1tlag-intervallumbecsl%C3%A9se.html#esettanulm%C3%A1ny" target="_blank">6.6. fejezetben</a>. Itt ugyebár a `statsmodels` csomag `dot_plot` függvényét vetjük be. Ennek a használatáról is bővebb információk a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-sokas%C3%A1gi-%C3%A1tlag-intervallumbecsl%C3%A9se.html#esettanulm%C3%A1ny" target="_blank">6.6. fejezetben</a> találhatók.
 
 ```{python}
 # konfidencia-intervallumok méretének megadása az ábrához
@@ -139,9 +139,9 @@ Nézzük meg az eredményt a `numpy` csomag `std` függvényével is:
 np.std(ESS.Fidesz)
 ```
 
-A kétféleképp számolt érték némi kerekítési hibát leszámítva egyezik! :) De hát ez nem meglepő, hogy így alakult, hiszen a <a href="Gyak03.html" target="_blank">3. heti tananyag 5. fejezetében</a> éppen azt mondtuk, hogy a mintaarányok (a $p$-k) standard mintavételi hibája a $SH(p) \approx \sqrt{\frac{p(1-p)}{n}}$ képlettel megadható. :)
+A kétféleképp számolt érték némi kerekítési hibát leszámítva egyezik! :) De hát ez nem meglepő, hogy így alakult, hiszen az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html#a-standard-hiba-sh-fogalma" target="_blank">5.5. fejezetben</a> éppen azt mondtuk, hogy a mintaarányok (a $p$-k) standard mintavételi hibája a $SH(p) \approx \sqrt{\frac{p(1-p)}{n}}$ képlettel megadható. :)
 
-Ez azt jelenti, hogy **az arány konfidencia-intervallumának hossza** a $\triangle = SH \times k$ képlet alapján $\sqrt{\frac{p(1-p)}{n}} \times k$ módon számítható, hiszen az átlag standard hibája $\frac{s}{\sqrt{n}}$ volt, és most felhasználtuk, hogy csak 0-1-et tartalmazó változókra $s=\sqrt{p(1-p)}$. A $k$ megbízhatósági szorzó pedig ugyan úgy $N(0,1)$ eloszlással számolható *nagy méretű minták esetén*, mint az átlag konfidencia-intervallumánál. Hiszen magas $n$ esetén a $t(n-1)$ eloszlás sűrűségfüggvénye már lényegében egybeesik az $N(0,1)$ eloszlás sűrűségfüggvényével, ahogy a <a href="Gyak04.html" target="_blank">4. heti tananyag 4. fejezetének 2. feladatában</a> is láttuk.
+Ez azt jelenti, hogy **az arány konfidencia-intervallumának hossza** a $\triangle = SH \times k$ képlet alapján $\sqrt{\frac{p(1-p)}{n}} \times k$ módon számítható, hiszen az átlag standard hibája $\frac{s}{\sqrt{n}}$ volt, és most felhasználtuk, hogy csak 0-1-et tartalmazó változókra $s=\sqrt{p(1-p)}$. A $k$ megbízhatósági szorzó pedig ugyan úgy $N(0,1)$ eloszlással számolható *nagy méretű minták esetén*, mint az átlag konfidencia-intervallumánál. Hiszen magas $n$ esetén a $t(n-1)$ eloszlás sűrűségfüggvénye már lényegében egybeesik az $N(0,1)$ eloszlás sűrűségfüggvényével, ahogy a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-sokas%C3%A1gi-%C3%A1tlag-intervallumbecsl%C3%A9se.html#feladat-10" target="_blank">6.4. fejezet 2. feladatában</a> is láttuk.
 
 **Ennyi információ alapján pedig képesek vagyunk arra, hogy még mintavétel ELŐTT meghatározzuk, hogy az arány egy adott pontosságú és megbízhatóságú becsléséhez mekkora elemszámú mintára van szükségünk**.
 
@@ -293,7 +293,7 @@ Szuper, a mintaátlag várható eltérése a valós, sokasági átlagos netezés
 
 **Hogyan jön ki ez az eredmény Bootstrap módon?**
 
-A **Bootstrap becslés alapötlete a standard hiba alap definíciójából jön**, amit a <a href="Gyak03.html" target="_blank">3. heti tananyag 5. fejezetében néztünk</a>. **Vegyünk ki a sokaságból nagyon-nagyon sok** (pl. 1000 vagy 10000 db) **visszatevéses** (azaz FAE) **mintát, minden mintából számoljuk mi a mintaátlagot és a mintaátlagok szórása a standard hiba** az átlagbecslés *torzítatlanság*a miatt.<br>
+A **Bootstrap becslés alapötlete a standard hiba alap definíciójából jön**, amit az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html#a-standard-hiba-sh-fogalma" target="_blank">5.5. fejezetben néztünk</a>. **Vegyünk ki a sokaságból nagyon-nagyon sok** (pl. 1000 vagy 10000 db) **visszatevéses** (azaz FAE) **mintát, minden mintából számoljuk mi a mintaátlagot és a mintaátlagok szórása a standard hiba** az átlagbecslés *torzítatlanság*a miatt.<br>
 Ugyebár ezzel a megközelítéssel az a **baj, hogy a gyakorlatban csak egyetlen egy darab mintánk van, és nem ismerjük a sokaságot, így nem tudunk belőle nagyon-nagyon sok FAE mintát kivenni**.<br>
 Nos, a **Bootstrap módszer azt mondja, hogy ezt az alap szórás-elvű $SH$ számolást tudjuk SZIMULÁLNI akár egyetlen egy darab mintavételből is!**
 
@@ -303,7 +303,7 @@ Ezek után más dolgounk nincs, mint **kiszámolni minden almintából a mintaá
 Lássuk akkor ezt a dolgot a gyakorlatban! **Számoljuk ki az átlag standard hibáját Bootstrap elven!**
 
 Először is **vegyünk a `NetUsePerDay_Minutes` oszlopból mondjuk $1000$ db FAE mintát, és tároljuk le ezeket az almintákat egy olyan data frame-ben, aminek $1000$ sorában lesznek a különböző mintavételek, míg $n$ db oszlopában az $n$ db mintaelem minden egyes mintavételezési körben**.<br>
-Itt gyakorlatilag ugyanazokat a megoldásokat követjük Pythonban, mint a <a href="Gyak02.html" target="_blank">2. heti tananyag 3.1. fejezetében</a>.
+Itt gyakorlatilag ugyanazokat a megoldásokat követjük Pythonban, mint a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/eloszl%C3%A1sok-%C3%A9s-mintav%C3%A9telez%C3%A9s.html#ism%C3%A9telt-mintav%C3%A9telez%C3%A9s-resampling" target="_blank">4.3.1. fejezetben</a>.
 
 **Készítsük el először az almintákat tároló üres data frame-t!** Mivel $1099$ db nem hiányzó értéke van a `NetUsePerDay_Minutes` oszlopnak, így $n=1099$ oszlopa lesz az új data frame-nek!
 
@@ -372,7 +372,7 @@ Nyilván, ha **több almintát veszünk, akkor pontosabb lesz a közelítés**. 
 
 NODE, **mire volt jó, hogy ezt a fránya $SH$-t ilyen körülményesen számoltuk ki a képlet helyett?** Nos, **átlag esetében a világon SEMMIRE!**<br>
 Viszont, ezzel a **Bootstrap elvvel ki tudjuk számolni pl. a napi netezési időnk mediánjának standard hibáját, amire amúgy NINCS olyan egyszerű képlet, mint az átlag standard hibájára!**<br>
-Ugyebár ezt megtehetjük, mert megnéztük a <a href="Gyak03.html" target="_blank">3. heti tananyag 4. fejezetében</a>, hogy a medián is egy *torzítatlanul* becsülhető statisztikai paraméter, mint az átlag.
+Ugyebár ezt megtehetjük, mert megnéztük az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html#a-medi%C3%A1n-torz%C3%ADtatlans%C3%A1ga" target="_blank">5.4. fejezetben</a>, hogy a medián is egy *torzítatlanul* becsülhető statisztikai paraméter, mint az átlag.
 
 ```{python}
 MintaMedian = np.median(ESS_Szurt.NetUsePerDay_Minutes)
@@ -502,7 +502,7 @@ plt.show()
 **Jobbra elnyúló** ez az időeloszlás, mint a fene. Ebből aztán semmilyen sokaságban **NEM** lesz **szép szimmetrikus normális eloszlás**!
 
 Tehát, a **szórás konfidencia-intervallum képlete nem reális eredményeket mutat a valós, sokasági szórásra, mert a képlet mögötti feltételezés NEM teljesül!**<br>
-Mit lehet tenni? **Hát alkalmazzuk a Bootstrap becslést, mivel annak semmilyen csúnya előfeltétele nincs**. Csak az kell itt is, hogy az eredeti sokaságból FAE mintavételünk legyen, de megbeszéltük a <a href="Gyak04.html" target="_blank">4. heti tananyag 4. fejezetének 2. feladatában</a>, hogy az ESS2020 mintavétel esetén ez a FAE mintavétel feltételezhető.
+Mit lehet tenni? **Hát alkalmazzuk a Bootstrap becslést, mivel annak semmilyen csúnya előfeltétele nincs**. Csak az kell itt is, hogy az eredeti sokaságból FAE mintavételünk legyen, de megbeszéltük a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-sokas%C3%A1gi-%C3%A1tlag-intervallumbecsl%C3%A9se.html#feladat-10" target="_blank">6.4. fejezet 2. feladatában</a>, hogy az ESS2020 mintavétel esetén ez a FAE mintavétel feltételezhető.
 
 Szóval, akkor csináljuk meg a Bootstrap becslést a napi netezési idők szórására is, $97\%$-os megbízhatósági szinten! A beépített `scipy` csomagos függvénnyel most is simán tudunk dolgozni, mint a medián esetében is tettük:
 

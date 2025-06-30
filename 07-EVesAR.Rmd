@@ -49,7 +49,7 @@ Nézzük meg ezt az egész rendszert a gyakorlatban az átlag intervallumbecslé
 
 ### Átlag becslése EV mintákból
 
-Töltsük be a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/HKF_Jovedelem.xlsx" target="_blank">HKF_Jovedelem.xlsx</a> című Excel fájl tartalmát egy `pandas` data frame-be!<br>
+Töltsük be a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/HKF_Jovedelem.xlsx" target="_blank">HKF_Jovedelem.xlsx</a> című Excel fájl tartalmát egy `pandas` data frame-be!<br>
 A táblában $n=8306$ db magyar háztartás két ismérvét (oszlopát) látjuk:
 
 1. Milyen típusú településen található a háztartás (Község, Többi város, Nagyváros, Budapest)
@@ -94,7 +94,7 @@ A várható éves jövedelem így is kb. $4.5$ és $4.7$ millió Ft között moz
 
 ### Arány becslése EV mintákból
 
-Ugyan ez a logika teljesen jól működik az arányok becslése esetén is. Ez nem véletlen, hiszen letisztáztuk az <a href="Gyak05.html" target="_blank">5. heti tananyagban</a>, hogy az arány, mint statisztikai mutató valójában egy olyan adatsor átlaga, hogy az arányban vizsgált tuljadonsággal bíró megfigyelések $1$-gyel vannak kódolva, a többiek pedig $0$-val.
+Ugyan ez a logika teljesen jól működik az arányok becslése esetén is. Ez nem véletlen, hiszen letisztáztuk a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/tov%C3%A1bbi-fae-becsl%C3%A9sek-%C3%A9s-a-bootstrap-m%C3%B3dszer.html" target="_blank">7. fejezetben</a>, hogy az arány, mint statisztikai mutató valójában egy olyan adatsor átlaga, hogy az arányban vizsgált tuljadonsággal bíró megfigyelések $1$-gyel vannak kódolva, a többiek pedig $0$-val.
 
 Csináljuk is meg egy új oszlopban azt a $0-1$ adatsort, amivel mondjuk a budapesti háztartások aránya becsülhető lesz.
 
@@ -128,7 +128,7 @@ Magyarul, az $$SH_{EV} = \frac{s}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}$$
 
 Képlet **helyett elég  a standard hibában csak a belső korrigált mintaszórással**, $s_b$-vel számolnom: $$SH_{AR} = \frac{s_b}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}$$
 
-Mivel Stat. I-ből és az <a href="Gyak01.html" target="_blank">1. heti tananyag 4. fejezetéből</a> tudjuk, hogy egy **számértékű ismérv teljes varianciája, a külső és belső variancia összege**, így ha a külső variancával nem kel számolni a standard hibában, csak a belsővel, akkor **kijelenthető, hogy az arányosan rétegzett mintavétel becslési hibája az átlagra kisebb, mint az EV** (vagy a FAE) **mintavételek esetén**: $SH_{AR} \leq SH_{EV}$
+Mivel Stat. I-ből és az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#a-varianciah%C3%A1nyados-pythonban---kokain-a-balatonban" target="_blank">3.4. fejezetből</a> tudjuk, hogy egy **számértékű ismérv teljes varianciája, a külső és belső variancia összege**, így ha a külső variancával nem kel számolni a standard hibában, csak a belsővel, akkor **kijelenthető, hogy az arányosan rétegzett mintavétel becslési hibája az átlagra kisebb, mint az EV** (vagy a FAE) **mintavételek esetén**: $SH_{AR} \leq SH_{EV}$
 
 Nézzük is meg akkor a dolgot élesben! Ugyebár tudjuk, hogy a háztartások átlagos éves jövedeleme a teljes magyar népességben $99\%$-os valószínűséggek $4.5$ és $4.7$ millió Ft körül mozog, ha a HKF adatokat EV mintavételként kezeljük. Most a SH-t rendesen a $SH_{EV}=\frac{s}{\sqrt{n}} \times \sqrt{1-\frac{n}{N}}$ képlettel számoljuk ki, és nem vetjük be a `stats.sem` függvényt.
 
@@ -152,7 +152,7 @@ Viszont, azt mondja az AR minta, hogy a standard hiba $\frac{s}{\sqrt{n}}$ rész
 - **korrigált mintaszórásokról** ($s_j$)
 - **sokasági elemszámokról** ($N_j$)
 
-Láthatjuk, hogy a településtípusokat, azaz a rétegzett mintavétel **rétegeit $j$ indexszel jelöljük**. Ezt az aggregált táblát a data frame-k `groupby` és `agg` metódusaival könnyen összehozhatjuk, ahogy az <a href="Gyak01.html" target="_blank">1. heti tananyag 4. fejezetében</a> is láthattuk pl.
+Láthatjuk, hogy a településtípusokat, azaz a rétegzett mintavétel **rétegeit $j$ indexszel jelöljük**. Ezt az aggregált táblát a data frame-k `groupby` és `agg` metódusaival könnyen összehozhatjuk, ahogy a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#a-varianciah%C3%A1nyados-pythonban---kokain-a-balatonban" target="_blank">3.4. fejezetben</a> is láthattuk pl.
 
 ```{python}
 Segéd = HKF.groupby('TelepulesTipus').agg(
@@ -182,7 +182,7 @@ Segéd['SokasagiElemszam'] = round(Segéd.Elemszam/np.sum(Segéd.Elemszam) * N, 
 Segéd
 ```
 
-Ezzel is megvagyunk. Akkor minden adott, hogy kiszámoljuk a belső szórást a következő képlettel, ami szintén ismerős az <a href="Gyak01.html" target="_blank">1. heti tananyag 4. fejezetéből</a>. $$s_b=\sqrt{\frac{\sum_j{n_j \times s_j^2}}{n}}$$
+Ezzel is megvagyunk. Akkor minden adott, hogy kiszámoljuk a belső szórást a következő képlettel, ami szintén ismerős az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/le%C3%ADr%C3%B3-statisztika-ism%C3%A9tl%C3%A9s-%C3%A9s-val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gsz%C3%A1m%C3%ADt%C3%A1s-alapok.html#a-varianciah%C3%A1nyados-pythonban---kokain-a-balatonban" target="_blank">3.4. fejezetből</a>. $$s_b=\sqrt{\frac{\sum_j{n_j \times s_j^2}}{n}}$$
 
 Ezt gyorsan ki is tudjuk számolni Pythonban `numpy` függvények segítségével.
 
@@ -193,7 +193,7 @@ belső_szórás
 
 Tehát, egy konkrét **háztartás éves jövdeleme a megfigyelt mintában várhatóan kb. $s_b=\pm 2.849$ milió Ft-tal **(2849 ezer Ft-tal)** tér el saját településtípusának átlagos jövedelmétől**.
 
-Ha a <a href="Gyak03.html" target="_blank">3. heti tananyag 3. fejezetében bemutatott</a> számolási módját veszem figyelembe a korrigált mintaszórásnak, ami szerint $s^2=\sqrt{\sum_{i=1}^{n}{(y_i-\bar{y})^2}/(n-1)}$, akkor úgy lenne korrekt, hogy ha a belső szórást számoló formulában is mindenhol az $n$-t és $n_j$-ket $n-1$-nek és $n_j-1$-eknek venni, mint a "sima" $s^2$ nevezőjében. Tehát, a korrigált szórás sajátosságait figyelembe vevő belső szórás képlet a következő: $$s_b=\sqrt{\frac{\sum_j{(n_j-1) \times s_j^2}}{n-1}}$$
+Ha az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/a-becsl%C3%A9selm%C3%A9let-alapjai.html#a-korrig%C3%A1lt-mintavariancia" target="_blank">5.3. fejezetben bemutatott</a> számolási módját veszem figyelembe a korrigált mintaszórásnak, ami szerint $s^2=\sqrt{\sum_{i=1}^{n}{(y_i-\bar{y})^2}/(n-1)}$, akkor úgy lenne korrekt, hogy ha a belső szórást számoló formulában is mindenhol az $n$-t és $n_j$-ket $n-1$-nek és $n_j-1$-eknek venni, mint a "sima" $s^2$ nevezőjében. Tehát, a korrigált szórás sajátosságait figyelembe vevő belső szórás képlet a következő: $$s_b=\sqrt{\frac{\sum_j{(n_j-1) \times s_j^2}}{n-1}}$$
 
 
 Ezt is gyorsan ki is tudjuk számolni Pythonban `numpy` függvények segítségével.

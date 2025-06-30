@@ -26,7 +26,7 @@ Mainly for Business Information Systems BSc students at Corvinus University of B
 <meta name="author" content="Kovács László" />
 
 
-<meta name="date" content="2025-06-27" />
+<meta name="date" content="2025-06-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -350,6 +350,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#útelemzés"><i class="fa fa-check"></i><b>13.3.1</b> Útelemzés</a></li>
 <li class="chapter" data-level="13.3.2" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#parciális-t-próba"><i class="fa fa-check"></i><b>13.3.2</b> Parciális t-próba</a></li>
 </ul></li>
+<li class="chapter" data-level="13.4" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#magyarázóváltozók-fontossági-sorrendjének-megállapítása-t-próba-alapján"><i class="fa fa-check"></i><b>13.4</b> Magyarázóváltozók fontossági sorrendjének megállapítása t-próba alapján</a></li>
+<li class="chapter" data-level="13.5" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#konfidencia-intervallumok-és-a-t-próba-kapcsolata"><i class="fa fa-check"></i><b>13.5</b> 5. Konfidencia-intervallumok és a t-próba kapcsolata</a></li>
+<li class="chapter" data-level="13.6" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#nominális-magyarázóváltozók---használtautó-adatok"><i class="fa fa-check"></i><b>13.6</b> Nominális magyarázóváltozók - Használtautó adatok</a></li>
+<li class="chapter" data-level="13.7" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#dummy-változók-és-működésük-pythonban"><i class="fa fa-check"></i><b>13.7</b> Dummy változók és működésük Pythonban</a>
+<ul>
+<li class="chapter" data-level="13.7.1" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#referencia-kategória-megváltoztatása"><i class="fa fa-check"></i><b>13.7.1</b> Referencia kategória megváltoztatása</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="többváltozós-ols-regresszió-alapjai.html"><a href="többváltozós-ols-regresszió-alapjai.html#a-korrigált-r-négyzet-mutató"><i class="fa fa-check"></i><b>13.8</b> A korrigált R-négyzet mutató</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Bookdownban szerkesztve</a></li>
@@ -375,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">13</span> Többváltozós OLS Regresszió alapjai<a href="többváltozós-ols-regresszió-alapjai.html#többváltozós-ols-regresszió-alapjai" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="magyar-járások-covid-19-halálozási-arányai" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Magyar járások COVID-19 halálozási arányai<a href="többváltozós-ols-regresszió-alapjai.html#magyar-járások-covid-19-halálozási-arányai" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/raw/main/COVID_JarasData.xlsx" target="_blank">COVID_JarasData.xlsx</a> fájl egy olyan adattábla, ami 102 magyar járásról (azokról, ahol a kórházak 2019-ben átlagos vagy átlag alatti leterheltségűek voltak a <a href="http://www.neak.gov.hu/data/cms1026624/Korhazi_agyszamkimutatas_2019.pdf">NEAK adatai</a> alapján) 5 változó (oszlop) adatát tárolja:</p>
+<p>A <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/COVID_JarasData.xlsx" target="_blank">COVID_JarasData.xlsx</a> fájl egy olyan adattábla, ami 102 magyar járásról (azokról, ahol a kórházak 2019-ben átlagos vagy átlag alatti leterheltségűek voltak a <a href="http://www.neak.gov.hu/data/cms1026624/Korhazi_agyszamkimutatas_2019.pdf">NEAK adatai</a> alapján) 5 változó (oszlop) adatát tárolja:</p>
 <ul>
 <li><strong>Jaras</strong>: A járás neve</li>
 <li><strong>COVIDHalal</strong>: COVID-19 halálozási arány: elhunytak / fertőzöttek hányadosa (%) 2021.03.04-én. Forrás: <a href="https://bit.ly/COVID-adatok">atlatszo.hu</a></li>
@@ -412,7 +420,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb952"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb952-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb952-1" tabindex="-1"></a>(stats.pearsonr(covid.Apolok, covid.COVIDHalal)[<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
 <pre><code>## 17.627405081896164</code></pre>
 <p>Alapvetően az <span class="math inline">\(R^2\)</span> szép, korrekt dolgokat mutat. Az ápolók száma kb. 18 %-ban megmagyarázza a COVID halálozás alakulását a vizsgált járások körében (<span class="math inline">\(R^2=17.6\%\)</span>), ami egy közepes magyarázóerőnek minősíthető, hiszen <span class="math inline">\(10\% &lt; R^2 &lt; 50\%\)</span>.</p>
-<p>Nézzük meg, hogy néz ki a regressziós egyenes egyenlete! Használjuk nyugodtan a <a href="Gyak11.html" target="_blank">11. heti tananyag 6. fejezetében</a> megismert <code>polyfit</code> függvényét a <code>numpy</code> csomagnak:</p>
+<p>Nézzük meg, hogy néz ki a regressziós egyenes egyenlete! Használjuk nyugodtan a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/k%C3%A9tv%C3%A1ltoz%C3%B3s-line%C3%A1ris-regresszi%C3%B3.html#egy-gyakorl%C3%B3-p%C3%A9lda-covid-adatokon" target="_blank">12.6. fejezetben</a> megismert <code>polyfit</code> függvényét a <code>numpy</code> csomagnak:</p>
 <div class="sourceCode" id="cb954"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb954-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb954-1" tabindex="-1"></a>Beta1, Beta0 <span class="op">=</span> np.polyfit(covid.Apolok, covid.COVIDHalal, deg <span class="op">=</span> <span class="dv">1</span>)</span>
 <span id="cb954-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb954-2" tabindex="-1"></a><span class="bu">print</span>([Beta1, Beta0])</span></code></pre></div>
 <pre><code>## [0.3629321944430193, 2.02043692521212]</code></pre>
@@ -472,8 +480,8 @@ Azaz, úgy választjuk meg a <span class="math inline">\(\beta_j\)</span>-ket, h
 ## Dep. Variable:             COVIDHalal   R-squared:                       0.341
 ## Model:                            OLS   Adj. R-squared:                  0.321
 ## Method:                 Least Squares   F-statistic:                     16.89
-## Date:                 P, 27 jún. 2025   Prob (F-statistic):           6.42e-09
-## Time:                        12:41:39   Log-Likelihood:                -152.39
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           6.42e-09
+## Time:                        15:22:28   Log-Likelihood:                -152.39
 ## No. Observations:                 102   AIC:                             312.8
 ## Df Residuals:                      98   BIC:                             323.3
 ## Df Model:                           3                                         
@@ -596,8 +604,8 @@ Ez esetünkben azt jelenti, hogy egy 0 ápolójú, 65 év feletti nők nélküli
 ## Dep. Variable:             COVIDHalal   R-squared:                       0.341
 ## Model:                            OLS   Adj. R-squared:                  0.321
 ## Method:                 Least Squares   F-statistic:                     16.89
-## Date:                 P, 27 jún. 2025   Prob (F-statistic):           6.42e-09
-## Time:                        12:41:40   Log-Likelihood:                -152.39
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           6.42e-09
+## Time:                        15:22:29   Log-Likelihood:                -152.39
 ## No. Observations:                 102   AIC:                             312.8
 ## Df Residuals:                      98   BIC:                             323.3
 ## Df Model:                           3                                         
@@ -626,12 +634,435 @@ Ez esetünkben azt jelenti, hogy egy 0 ápolójú, 65 év feletti nők nélküli
 <center>
 <img src="pt.jpg" style="width:50.0%" />
 </center>
-<p><br>Így R-ben a p-érték: <code>2*stats.t.cdf(-abs(0.0445/0.096), df = 102-4)</code><span class="math inline">\(= 0.644\)</span>. Ezt adja meg a <code>summary</code> metódus eredménytáblája a <code>P&gt;|t|</code> oszlopban.</p>
+<p><br>Így Pythonban a p-érték: <code>2*stats.t.cdf(-abs(0.0445/0.096), df = 102-4)</code><span class="math inline">\(= 0.644\)</span>. Ezt adja meg a <code>summary</code> metódus eredménytáblája a <code>P&gt;|t|</code> oszlopban.</p>
 <p>A <code>P&gt;|t|</code> oszlopot nézegetve arra a kijelentésre juthatunk, hogy a COVID halálozásra a munkanélküliség és a 65 év feletti női népesség aránya is szignifikáns hatással van a <em>megfigyelt lakásokon kívüli világban is</em>, hiszen a parciális t-próba p-értéke az <span class="math inline">\(\alpha=1\%\)</span>-os szignifikancia-szintnél is kisebb. Azaz a <span class="math inline">\(H_0\)</span> elvetésével mindkét magyarázóváltozó esetén elég alacsony valószínűséggel hibáznék. Ez a <strong>Nok65Felett</strong> változó esetében azt jelenti, hogy az a közepes-gyenge közvetlen hatása az árakra, amit a parciális korreláció (+0.29) kimutatott megmarad új járások vizsgálata esetén is. Ugyanakkor, azt is látni, hogy az <strong>Apolok</strong> változóhoz rendelt p-érték jóval nagyobb, mint a <strong>Munkanelkuliseg</strong> és <strong>Nok65Felett</strong> változóké. Konkrétan <span class="math inline">\(64.4\%\)</span> a p-érték, ami olyan magas, hogy a legmagasabb szokásos <span class="math inline">\(\alpha\)</span>-nál, a <span class="math inline">\(10\%\)</span>-nál is nagyobb, így stabilan elfogadhatom a próba <span class="math inline">\(H_0\)</span>-ját! Tehát a parciális t-próba is azt mondja, hogy az <strong>Apolok</strong> változók hatása a COVID halálozásra a mintén kívüli filágban <strong>nem szignifikáns</strong>.</p>
 <p>Végkonklúzióként, tehát azt vonhatjuk le a modellünk alapján, hogy az <strong>ápolók számának COVID halálozásra gyakorolt pozitív hatása a kétváltozós regresszióban látszólagos volt csupán, és a munkanélküliség valamint 65 feletti női népesség arányának COVID halálozást növelő hatásait közvetítette csak, és semmi önálló szignifikáns marginális hatása nem volt</strong>!</p>
 <p>Ezek a változónkénti t-próba p-értékek azért nagyon jók, mert ezek alapján nagyon könnyű egy fontossági sorrendet felállítani a regressziónk magyarázóváltozói között. Az eddigiek alapján röviden-tömören: minél kisebb a parciális t-próba p-értéke, annál fontosabb az adott magyraázóváltozó az eredményváltozó előrejelezésében (annál kevésbé vehető marginális hatása <span class="math inline">\(0\)</span>-nak a sokaságban)</p>
-
 </div>
+</div>
+<div id="magyarázóváltozók-fontossági-sorrendjének-megállapítása-t-próba-alapján" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Magyarázóváltozók fontossági sorrendjének megállapítása t-próba alapján<a href="többváltozós-ols-regresszió-alapjai.html#magyarázóváltozók-fontossági-sorrendjének-megállapítása-t-próba-alapján" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vegyük elő újra a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/BP_Lakas.csv" target="_blank">BP_Lakas.csv</a> fájlt, és töltsük be újra egy <code>pandas</code> data frame-be, ahogy a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/k%C3%A9tv%C3%A1ltoz%C3%B3s-line%C3%A1ris-regresszi%C3%B3.html" target="_blank">12. fejezet</a> elején is tettük!</p>
+<p>Előtte egy kis emlékeztető az adattábla tartalmáról, változóiról. A tábla 1406 budapesti lakásról 10 ismérv/változó (oszlop) adatát tárolja:</p>
+<ul>
+<li>KinArMFt: lakás ára millió Ft-ban (MFt)</li>
+<li>Terulet: lakás területe négyzetméterben</li>
+<li>Terasz: teraszok száma a lakásban</li>
+<li>Szoba: szobák száma a lakásban</li>
+<li>Felszoba: félszobák száma a lakásban</li>
+<li>Furdoszoba: fürdőszobák száma a lakásban</li>
+<li>Emelet: emeletek száma a lakásban</li>
+<li>DeliTaj: lakás déli fekvésű-e? (1 = igen; 0 = nem)</li>
+<li>Buda: lakás déli fekvésű-e? (1 = igen; 0 = nem)</li>
+<li>Kerulet: lakás kerülete (1 - 22)</li>
+</ul>
+<p>Majd a konkrét beolvasás:</p>
+<div class="sourceCode" id="cb981"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb981-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb981-1" tabindex="-1"></a>BP_Lakas <span class="op">=</span> pd.read_csv(<span class="st">&quot;BP_Lakas.csv&quot;</span>)</span>
+<span id="cb981-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb981-2" tabindex="-1"></a>BP_Lakas.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 1406 entries, 0 to 1405
+## Data columns (total 10 columns):
+##  #   Column      Non-Null Count  Dtype  
+## ---  ------      --------------  -----  
+##  0   KinArMFt    1406 non-null   float64
+##  1   Terulet     1406 non-null   float64
+##  2   Terasz      1406 non-null   float64
+##  3   Szoba       1406 non-null   int64  
+##  4   Felszoba    1406 non-null   int64  
+##  5   Furdoszoba  1406 non-null   int64  
+##  6   Emelet      1406 non-null   int64  
+##  7   DeliTaj     1406 non-null   int64  
+##  8   Buda        1406 non-null   int64  
+##  9   Kerulet     1406 non-null   int64  
+## dtypes: float64(3), int64(7)
+## memory usage: 110.0 KB</code></pre>
+<p>Most nem szenvedünk az adattípusokkal, mindent hagyunk numerikusan.</p>
+<p>Nézzünk most meg egy olyan modellt a lakásárak becslésére, amiben a <strong>BP_Lakas</strong> <code>data frame</code> minden változója szerepel magyarázóváltozóként a <strong>Kerulet</strong> kivételével:</p>
+<div class="sourceCode" id="cb983"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb983-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-1" tabindex="-1"></a><span class="co"># eredményváltozó megadása</span></span>
+<span id="cb983-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-2" tabindex="-1"></a>Y <span class="op">=</span> BP_Lakas.KinArMFt</span>
+<span id="cb983-3"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-3" tabindex="-1"></a></span>
+<span id="cb983-4"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-4" tabindex="-1"></a><span class="co"># magyarázóváltozók megadása a konstanshoz szükséges csupa 1 oszlop hozzáadásával</span></span>
+<span id="cb983-5"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-5" tabindex="-1"></a>X <span class="op">=</span> BP_Lakas.iloc[:,<span class="dv">1</span>:<span class="dv">9</span>]</span>
+<span id="cb983-6"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-6" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(X)</span>
+<span id="cb983-7"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-7" tabindex="-1"></a></span>
+<span id="cb983-8"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-8" tabindex="-1"></a><span class="co"># létrehozzuk az új regressziót</span></span>
+<span id="cb983-9"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-9" tabindex="-1"></a>nagymodell <span class="op">=</span> sm.OLS(Y, X).fit()</span>
+<span id="cb983-10"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-10" tabindex="-1"></a></span>
+<span id="cb983-11"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-11" tabindex="-1"></a><span class="co"># lássuk az eredménytáblát</span></span>
+<span id="cb983-12"><a href="többváltozós-ols-regresszió-alapjai.html#cb983-12" tabindex="-1"></a><span class="bu">print</span>(nagymodell.summary())</span></code></pre></div>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:               KinArMFt   R-squared:                       0.818
+## Model:                            OLS   Adj. R-squared:                  0.817
+## Method:                 Least Squares   F-statistic:                     783.3
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):               0.00
+## Time:                        15:22:29   Log-Likelihood:                -4984.1
+## No. Observations:                1406   AIC:                             9986.
+## Df Residuals:                    1397   BIC:                         1.003e+04
+## Df Model:                           8                                         
+## Covariance Type:            nonrobust                                         
+## ==============================================================================
+##                  coef    std err          t      P&gt;|t|      [0.025      0.975]
+## ------------------------------------------------------------------------------
+## const         -9.0189      0.779    -11.580      0.000     -10.547      -7.491
+## Terulet        0.2975      0.010     29.153      0.000       0.277       0.318
+## Terasz         0.3105      0.021     15.022      0.000       0.270       0.351
+## Szoba          0.6898      0.349      1.977      0.048       0.005       1.374
+## Felszoba      -0.3851      0.406     -0.949      0.343      -1.181       0.411
+## Furdoszoba     5.1301      0.682      7.526      0.000       3.793       6.467
+## Emelet         0.0545      0.132      0.412      0.680      -0.205       0.314
+## DeliTaj        1.1916      0.458      2.604      0.009       0.294       2.089
+## Buda           6.2197      0.475     13.091      0.000       5.288       7.152
+## ==============================================================================
+## Omnibus:                      421.833   Durbin-Watson:                   1.271
+## Prob(Omnibus):                  0.000   Jarque-Bera (JB):             2922.930
+## Skew:                           1.211   Prob(JB):                         0.00
+## Kurtosis:                       9.635   Cond. No.                         363.
+## ==============================================================================
+## 
+## Notes:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+<p>Látjuk, hogy a modell magyarázóereje a mintában 81.76%, azaz a modellben lévő magyarázóváltozók együttesen kb. 82%-ban magyarázzák a lakásárak alakulását a megfigyelt 1406 lakás esetében. Ha a többi egyéb változó hatását is kiszűrjük, akkor a szobaszám közvetlen hatása <span class="math inline">\(\alpha = 5\%\)</span>-on még éppen szignifikáns, de <span class="math inline">\(\alpha = 1\%\)</span>-on már nem! A félszobák száma és az emeletek száma pedig egyik szokásos <span class="math inline">\(\alpha\)</span>-n sem szignifikáns magyarázóváltozó már a megfigyelt lakásokon túli világban.</p>
+<p>A magyarázóváltozók fontossági sorrendjét a változók p-értéke alapján növekvő sorba rendezéssel tudom megadni, mert minél kisebb a p-érték annál kisebb az esélye, hogy az adott <span class="math inline">\(X_j\)</span>-t nem szignifikáns magyarázóváltozónak venni hibás döntés.</p>
+Ennek a folyamata egy kicsit macerás Pythonban. Először elmentjük a <code>summary</code> függvény eredményét egy külön Python változóba, és ennek a <code>tables</code> tulajdonságának a második (azaz 1. indexű) elemét olvasom ki egy következő külön változóba **html kódként, azaz
+<table>
+<p>tagekkel!!**<br>
+Ezt utána arra tudom használni, hogy a <code>pandas</code> csomag <code>read_html</code> függvényével be tudom olvasni a regresszió nagy együtthatótábláját a p-értékekkel együtt egy <code>data frame</code>-be. Arra kell még figyelni, hogy a <em>html</em> tábla 0. indexű sora legyen a <code>read_html</code>-el beolvasott <code>data frame</code> sorindexe (<code>index_col</code> paraméter) és ugyan ezen tábla 0. indexű oszlopa pedig legyen ugyanitt az oszlopfejléc (<code>header</code> paraméter).<br>
+Annyi technikai dologra kell még odafigyelni, hogy a <code>read_html</code> függvény egy egyelemű listaként adja vissza az eredményt, így ahhoz, hogy közvetlenül a <code>data frame</code>-t kapjuk vissza, ennek az eredménylistának a 0. indexű elemét külön ki kell venni <code>[0]</code> kódrészlettel a végén.<br>
+Lássuk is hát a konkrét Python kódokat és az eredményül kapott <code>data frame</code>-et!</p>
+<div class="sourceCode" id="cb985"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb985-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb985-1" tabindex="-1"></a>BetaTablaHTML <span class="op">=</span> nagymodell.summary().tables[<span class="dv">1</span>].as_html()</span>
+<span id="cb985-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb985-2" tabindex="-1"></a>BetaTabla_df <span class="op">=</span> pd.read_html(BetaTablaHTML, header<span class="op">=</span><span class="dv">0</span>, index_col<span class="op">=</span><span class="dv">0</span>)[<span class="dv">0</span>]</span></code></pre></div>
+<pre><code>## &lt;string&gt;:1: FutureWarning: Passing literal html to &#39;read_html&#39; is deprecated and will be removed in a future version. To read from a literal string, wrap it in a &#39;StringIO&#39; object.</code></pre>
+<div class="sourceCode" id="cb987"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb987-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb987-1" tabindex="-1"></a>BetaTabla_df</span></code></pre></div>
+<pre><code>##               coef  std err       t  P&gt;|t|  [0.025  0.975]
+## const      -9.0189    0.779 -11.580  0.000 -10.547  -7.491
+## Terulet     0.2975    0.010  29.153  0.000   0.277   0.318
+## Terasz      0.3105    0.021  15.022  0.000   0.270   0.351
+## Szoba       0.6898    0.349   1.977  0.048   0.005   1.374
+## Felszoba   -0.3851    0.406  -0.949  0.343  -1.181   0.411
+## Furdoszoba  5.1301    0.682   7.526  0.000   3.793   6.467
+## Emelet      0.0545    0.132   0.412  0.680  -0.205   0.314
+## DeliTaj     1.1916    0.458   2.604  0.009   0.294   2.089
+## Buda        6.2197    0.475  13.091  0.000   5.288   7.152</code></pre>
+<p>Ha megvan a <code>data frame</code>, akkor pedig rendezzük növekvő sorrendbe a 4. (3. indexű) oszlop, azaz a <span class="math inline">\(\beta_j\)</span> együtthatók <strong>p-értékei</strong> szerint. Előtte a tengelymetszet (<span class="math inline">\(\beta_0\)</span>) sorát, a <code>const</code>-t kihagyjuk a <code>data frame</code>-ből, mert ugyebár az nem egy magyarázóváltozó együtthatója a regressziós egyenletben.</p>
+<div class="sourceCode" id="cb989"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb989-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb989-1" tabindex="-1"></a>BetaTabla_df.iloc[<span class="dv">1</span>:<span class="dv">9</span>,:].sort_values(by<span class="op">=</span>BetaTabla_df.columns[<span class="dv">3</span>])</span></code></pre></div>
+<pre><code>##               coef  std err       t  P&gt;|t|  [0.025  0.975]
+## Terulet     0.2975    0.010  29.153  0.000   0.277   0.318
+## Terasz      0.3105    0.021  15.022  0.000   0.270   0.351
+## Furdoszoba  5.1301    0.682   7.526  0.000   3.793   6.467
+## Buda        6.2197    0.475  13.091  0.000   5.288   7.152
+## DeliTaj     1.1916    0.458   2.604  0.009   0.294   2.089
+## Szoba       0.6898    0.349   1.977  0.048   0.005   1.374
+## Felszoba   -0.3851    0.406  -0.949  0.343  -1.181   0.411
+## Emelet      0.0545    0.132   0.412  0.680  -0.205   0.314</code></pre>
+<p>Láthatjuk, hogy a Terület a legfontosabb magyarázóváltozó, míg a pl. szobák száma a <em>3. legkevésbé fontos</em> magyarázóváltozó.</p>
+</div>
+<div id="konfidencia-intervallumok-és-a-t-próba-kapcsolata" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> 5. Konfidencia-intervallumok és a t-próba kapcsolata<a href="többváltozós-ols-regresszió-alapjai.html#konfidencia-intervallumok-és-a-t-próba-kapcsolata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A többváltozós regressziós modell együtthatóira (béták) is lehet egy adott megbízhatósági szintű konfidencia-intervallumot is készíteni Pythonban a regressziós modellek <code>confint</code> metódusának segítségével.<br>
+Pl. <strong>egy 97% megbízhatóságú konfidencia-intervallum <span class="math inline">\(\beta_j\)</span>-re azt adja meg, hogy 97%-os valószínűséggel milyen értékhatárok között mozoghat <span class="math inline">\(\beta_j\)</span> együttható a megfyigelt lakásokon túli világban</strong>.</p>
+<p>Nézzük is meg a Python számítást:</p>
+<div class="sourceCode" id="cb991"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb991-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb991-1" tabindex="-1"></a>nagymodell.conf_int() <span class="co"># alapból 95%-os megbízhatóságú</span></span></code></pre></div>
+<pre><code>##                     0         1
+## const      -10.546693 -7.491181
+## Terulet      0.277475  0.317511
+## Terasz       0.269945  0.351035
+## Szoba        0.005311  1.374306
+## Felszoba    -1.180769  0.410579
+## Furdoszoba   3.792974  6.467229
+## Emelet      -0.204826  0.313728
+## DeliTaj      0.293935  2.089167
+## Buda         5.287680  7.151671</code></pre>
+<div class="sourceCode" id="cb993"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb993-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb993-1" tabindex="-1"></a>nagymodell.conf_int(alpha <span class="op">=</span> <span class="fl">0.03</span>) <span class="co"># de lehet pl. 97%-os is (alfa = 1-0.97)</span></span></code></pre></div>
+<pre><code>##                     0         1
+## const      -10.710745 -7.327129
+## Terulet      0.275325  0.319660
+## Terasz       0.265591  0.355389
+## Szoba       -0.068191  1.447808
+## Felszoba    -1.266210  0.496020
+## Furdoszoba   3.649391  6.610811
+## Emelet      -0.232668  0.341570
+## DeliTaj      0.197548  2.185555
+## Buda         5.187601  7.251750</code></pre>
+<p>Pl. az első eredménytábla alapján a <strong>Terulet</strong> változó <span class="math inline">\(\beta\)</span>-ja 95%-os valószínűséggel 0.277 és 0.317 között kötne ki valahol, ha nem 1406 budapesti lakást vizsgálnánk, hanem az össeset (azaz a lakások sokaságát).</p>
+<p>Az eredményből megjelenik egy olyan összefüggés is, miszerint, <strong>ha egy <span class="math inline">\(X_j\)</span> nem szignifikáns <span class="math inline">\(\alpha\)</span> szignifikancia-szinten, akkor az <span class="math inline">\(1-\alpha\)</span> megbízhatóságú konfidencia-intervallumának határai előjelet váltanak</strong>.<br>
+legjobb példa a <strong>Szoba</strong> változó esete: azt mondtuk rá, hogy hatása az árakra 5%-on még épp szignifikáns -&gt; a 95%-os megbízhatóságú intervalluma még épp nem vált előjelet. Viszont a változó 3%-on már nem szignifikáns, így az intervalluma előjelet vált.</p>
+<p>Ezzel egy érdekes nézőponthoz jutottunk: <em>ha egy <span class="math inline">\(X_j\)</span> változó nem szignifikáns <span class="math inline">\(\alpha\)</span>-n az azt jelenti, hogy <span class="math inline">\(1-\alpha\)</span> megbízhatósági szinten azt sem tudom eldönteni, hogy minden más változatlansága mellett +1 egység <span class="math inline">\(X_j\)</span> növeli vagy csökkenti-e az eredmányváltozót a mintán kívüli világban</em>.</p>
+<p>A háttérben amúgy annyi történik, hogy a Python kiszámolja a parciális t-próba esetén is alkalmazott <span class="math inline">\(n-p=n-k-1\)</span> szabadságfokú t-eloszlás inverz értékét <span class="math inline">\(1-\alpha/2\)</span> valószínűség mellett, és az ezzel beszorzott standard hibát adja hozzá és vonja le <span class="math inline">\(\forall \beta_j\)</span>-ből:</p>
+<div class="sourceCode" id="cb995"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb995-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb995-1" tabindex="-1"></a>BetaTabla_df</span></code></pre></div>
+<pre><code>##               coef  std err       t  P&gt;|t|  [0.025  0.975]
+## const      -9.0189    0.779 -11.580  0.000 -10.547  -7.491
+## Terulet     0.2975    0.010  29.153  0.000   0.277   0.318
+## Terasz      0.3105    0.021  15.022  0.000   0.270   0.351
+## Szoba       0.6898    0.349   1.977  0.048   0.005   1.374
+## Felszoba   -0.3851    0.406  -0.949  0.343  -1.181   0.411
+## Furdoszoba  5.1301    0.682   7.526  0.000   3.793   6.467
+## Emelet      0.0545    0.132   0.412  0.680  -0.205   0.314
+## DeliTaj     1.1916    0.458   2.604  0.009   0.294   2.089
+## Buda        6.2197    0.475  13.091  0.000   5.288   7.152</code></pre>
+<div class="sourceCode" id="cb997"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb997-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb997-1" tabindex="-1"></a>alfa <span class="op">=</span> <span class="fl">0.02</span></span>
+<span id="cb997-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb997-2" tabindex="-1"></a>p <span class="op">=</span> <span class="bu">len</span>(BetaTabla_df) <span class="co"># így a tengelymetszetet is beszámítjuk p-be</span></span>
+<span id="cb997-3"><a href="többváltozós-ols-regresszió-alapjai.html#cb997-3" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(BP_Lakas) <span class="co"># mintaelemszám</span></span>
+<span id="cb997-4"><a href="többváltozós-ols-regresszió-alapjai.html#cb997-4" tabindex="-1"></a>szorzo <span class="op">=</span> stats.t.ppf(<span class="dv">1</span><span class="op">-</span>alfa<span class="op">/</span><span class="dv">2</span>, df <span class="op">=</span> n<span class="op">-</span>p)</span>
+<span id="cb997-5"><a href="többváltozós-ols-regresszió-alapjai.html#cb997-5" tabindex="-1"></a></span>
+<span id="cb997-6"><a href="többváltozós-ols-regresszió-alapjai.html#cb997-6" tabindex="-1"></a>Terulet_AH <span class="op">=</span> BetaTabla_df.iloc[<span class="dv">1</span>,<span class="dv">0</span>] <span class="op">-</span> szorzo <span class="op">*</span> BetaTabla_df.iloc[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Terulet 98% alsó határ</span></span>
+<span id="cb997-7"><a href="többváltozós-ols-regresszió-alapjai.html#cb997-7" tabindex="-1"></a>Terulet_FH <span class="op">=</span> BetaTabla_df.iloc[<span class="dv">1</span>,<span class="dv">0</span>] <span class="op">+</span> szorzo <span class="op">*</span> BetaTabla_df.iloc[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Terulet 98% felső határ</span></span>
+<span id="cb997-8"><a href="többváltozós-ols-regresszió-alapjai.html#cb997-8" tabindex="-1"></a><span class="bu">print</span>([Terulet_AH, Terulet_FH])</span></code></pre></div>
+<pre><code>## [0.2742097984822436, 0.3207902015177564]</code></pre>
+<p>Formális képlettel leírva a műveletet:</p>
+<center>
+<img src="BetaCI.jpg" style="width:50.0%" />
+</center>
+</div>
+<div id="nominális-magyarázóváltozók---használtautó-adatok" class="section level2 hasAnchor" number="13.6">
+<h2><span class="header-section-number">13.6</span> Nominális magyarázóváltozók - Használtautó adatok<a href="többváltozós-ols-regresszió-alapjai.html#nominális-magyarázóváltozók---használtautó-adatok" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Most egy új, <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/auto.xlsx" target="_blank">auto.xlsx</a> fájlból fogunk dolgozni, ami 100 db használtautóról tartalmaz 8 változót:</p>
+<ul>
+<li>Vetelar: Vételár Ft-ban</li>
+<li>Kor: Az autó kora években</li>
+<li>Kilometerora: A kilóméteróra állása</li>
+<li>Teljes_tomeg: Az autó tömege kg-ban</li>
+<li>Hengerurtartalom: Hengerűrtartalom <em>ccm</em>-ben (köbcenti)</li>
+<li>Teljesitmeny: A motor teljesítménye Kw/h-ban</li>
+<li>Allapot: Az autó állapota szöveges minősítéssel</li>
+<li>Uzemanyag: Üzemanyag típusa (benzin/dízel)</li>
+</ul>
+<p>Láthatjuk, hogy ez nem <em>csv</em>, hanem Excel, azaz <em>xlsx</em> fájl. Úgyhogy olvassuk is be egy pandas <code>data frame</code>-be!</p>
+<div class="sourceCode" id="cb999"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb999-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb999-1" tabindex="-1"></a>autok <span class="op">=</span> pd.read_excel(<span class="st">&quot;auto.xlsx&quot;</span>)</span>
+<span id="cb999-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb999-2" tabindex="-1"></a>autok.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 100 entries, 0 to 99
+## Data columns (total 8 columns):
+##  #   Column            Non-Null Count  Dtype 
+## ---  ------            --------------  ----- 
+##  0   Vetelar           100 non-null    int64 
+##  1   Kor               100 non-null    int64 
+##  2   Kilometerora      100 non-null    int64 
+##  3   Teljes_tomeg      100 non-null    int64 
+##  4   Hengerurtartalom  100 non-null    int64 
+##  5   Teljesitmeny      100 non-null    int64 
+##  6   Allapot           100 non-null    object
+##  7   Uzemanyag         100 non-null    object
+## dtypes: int64(6), object(2)
+## memory usage: 6.4+ KB</code></pre>
+<p>Minden szupinak néz ki! Megvan mind a 100 megfigyelési egység és a 8 db változó.</p>
+<p>Vessünk még egy pillantást arra, hogy az <strong>Allapot</strong> változónak milyen lehetséges értékei vannak:</p>
+<div class="sourceCode" id="cb1001"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1001-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb1001-1" tabindex="-1"></a>autok.Allapot.unique()</span></code></pre></div>
+<pre><code>## array([&#39;Normal&#39;, &#39;Kituno&#39;, &#39;Megkimelt&#39;, &#39;Serulesmentes&#39;, &#39;Ujszeru&#39;],
+##       dtype=object)</code></pre>
+</div>
+<div id="dummy-változók-és-működésük-pythonban" class="section level2 hasAnchor" number="13.7">
+<h2><span class="header-section-number">13.7</span> Dummy változók és működésük Pythonban<a href="többváltozós-ols-regresszió-alapjai.html#dummy-változók-és-működésük-pythonban" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>No, ha egy sima OLS regresszióba magyarázóváltozóként nominális változót akarunk bevenni, mint amilyen jelen példánkban az <strong>Allapot</strong> vagy az <strong>Uzemanyag</strong>, akkor az R az úgynevezett <strong>dummy-kódolást</strong> veti be. A nominális változó lehetséges értékeiből kiválaszt egyet, mint <strong>referencia kategória</strong>, azt “<em>elteszi</em>”, és a maradéknak pedig csinál külön-külön egy <em>bináris = dummy</em> változót, aminek értéke 1, ha a megfigyelés a vizsgált szöveges változóban épp a dummy változónak megfelelő értéket vesz fel, egyébként 0:</p>
+<center>
+<img src="Dummy.jpg" style="width:50.0%" />
+</center>
+<p>A fenti táblázatban az <span class="math inline">\(R_A\)</span> és <span class="math inline">\(R_B\)</span> lennének a regresszióban használt dummy változók, és a referencia kategória a <span class="math inline">\(C\)</span> érték. Ezt a <span class="math inline">\(C\)</span> kategóriát azért nem szabad a modellben szerepeltetni, mert egyértelmű, hogy ha <span class="math inline">\(D_A=0\)</span> és <span class="math inline">\(D_B=0\)</span>, akkor <span class="math inline">\(D_C=1\)</span>. Ezzel egy teljesen redundáns magyarázóváltozót raknánk a modellbe, amitől az egész rendszer megdöglik, mert a <span class="math inline">\(\beta\)</span>-k becslése során alkalmazott <span class="math inline">\(\beta=(X^TX)^{-1}X^Ty\)</span> képletben az <span class="math inline">\((X^TX)^{-1}\)</span> inverzet nem lehet elvégezni, ha <span class="math inline">\(X\)</span> mátrix oszlopai olyanok, hogy az egyiket hibátlanul elő lehet állítani a többiből. Ez a jelenség az <strong>egzakt multikollinearitás</strong> nevet kapta a keresztségben.</p>
+<p>Ezekkel a megfontolásokkal lássunk is neki a dummy változóink legyártásához a két nominális változónk (<strong>Uzemanyag</strong> és <strong>Allapot</strong>) esetében!<br>
+Először a <code>pandas</code> csomag <code>get_dummies</code> függvényével létrehozzuk a két szöveges változó minden kategóriájához a megfelelő 0/1, azaz dummy változókat. A függvény első paramétere az érintett változókat tartalmazó <code>data frame</code>, a második (<code>columns</code>) azon oszlopnevek listája, amelyekből dummy változókat akarunk csinálni, még az utolsó, <code>dtype</code> paraméterben a dummy változók adattípusát lehet megadni. Ez utolsó paraméter azért szükséges, mert egy dummy változó logikusan lehet akár <code>bool</code> adattípusú, de ad abszurdum <code>int</code> is. Most mi ez utóbbi opcióval megyünk, mert a <code>statsmodels</code> csomag nem tud <code>bool</code> típusú váltizókkal dolgozni.</p>
+<div class="sourceCode" id="cb1003"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1003-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb1003-1" tabindex="-1"></a>autok_dummy <span class="op">=</span> pd.get_dummies(autok, columns<span class="op">=</span>[<span class="st">&#39;Uzemanyag&#39;</span>, <span class="st">&#39;Allapot&#39;</span>], dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb1003-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb1003-2" tabindex="-1"></a>autok_dummy.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 100 entries, 0 to 99
+## Data columns (total 13 columns):
+##  #   Column                 Non-Null Count  Dtype
+## ---  ------                 --------------  -----
+##  0   Vetelar                100 non-null    int64
+##  1   Kor                    100 non-null    int64
+##  2   Kilometerora           100 non-null    int64
+##  3   Teljes_tomeg           100 non-null    int64
+##  4   Hengerurtartalom       100 non-null    int64
+##  5   Teljesitmeny           100 non-null    int64
+##  6   Uzemanyag_Benzin       100 non-null    int32
+##  7   Uzemanyag_Dizel        100 non-null    int32
+##  8   Allapot_Kituno         100 non-null    int32
+##  9   Allapot_Megkimelt      100 non-null    int32
+##  10  Allapot_Normal         100 non-null    int32
+##  11  Allapot_Serulesmentes  100 non-null    int32
+##  12  Allapot_Ujszeru        100 non-null    int32
+## dtypes: int32(7), int64(6)
+## memory usage: 7.6 KB</code></pre>
+<p>Szuper, megvan minden szükséges új változó, és a megfelelő, azaz <code>int</code> adattípuson is vannak!</p>
+<p>Ezek után lássunk hozzá a regressziós modell legyártásához, amely az autók vételárát magyarázza az összes többi változóval a táblában. Arra kell figyelni, hogy a magyarázóváltozók (<span class="math inline">\(X\)</span> mátrix) kijelölésénél ne válasszuk ki a két nominális változó refrencia kategóriáinak oszlopait. Legyen most az <strong>Uzemanyag</strong> változó esetén a kihagyott refrencia kategória a <em>Benzin</em> (6. oszlopindex), míg <strong>Allapot</strong> esetén a <em>Kituno</em> (8. oszlopindex).</p>
+<div class="sourceCode" id="cb1005"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1005-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb1005-1" tabindex="-1"></a>Y <span class="op">=</span> autok_dummy.Vetelar</span>
+<span id="cb1005-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb1005-2" tabindex="-1"></a>X <span class="op">=</span> autok_dummy.iloc[:,[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>]] <span class="co"># megfelelő oszlopindexek kiválasztása</span></span>
+<span id="cb1005-3"><a href="többváltozós-ols-regresszió-alapjai.html#cb1005-3" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(X)</span>
+<span id="cb1005-4"><a href="többváltozós-ols-regresszió-alapjai.html#cb1005-4" tabindex="-1"></a></span>
+<span id="cb1005-5"><a href="többváltozós-ols-regresszió-alapjai.html#cb1005-5" tabindex="-1"></a><span class="co"># létrehozzuk az új regressziót</span></span>
+<span id="cb1005-6"><a href="többváltozós-ols-regresszió-alapjai.html#cb1005-6" tabindex="-1"></a>autos_modell <span class="op">=</span> sm.OLS(Y, X).fit()</span>
+<span id="cb1005-7"><a href="többváltozós-ols-regresszió-alapjai.html#cb1005-7" tabindex="-1"></a></span>
+<span id="cb1005-8"><a href="többváltozós-ols-regresszió-alapjai.html#cb1005-8" tabindex="-1"></a><span class="co"># lássuk az eredménytáblát</span></span>
+<span id="cb1005-9"><a href="többváltozós-ols-regresszió-alapjai.html#cb1005-9" tabindex="-1"></a><span class="bu">print</span>(autos_modell.summary())</span></code></pre></div>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                Vetelar   R-squared:                       0.728
+## Model:                            OLS   Adj. R-squared:                  0.697
+## Method:                 Least Squares   F-statistic:                     23.81
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           4.10e-21
+## Time:                        15:22:30   Log-Likelihood:                -1345.2
+## No. Observations:                 100   AIC:                             2712.
+## Df Residuals:                      89   BIC:                             2741.
+## Df Model:                          10                                         
+## Covariance Type:            nonrobust                                         
+## =========================================================================================
+##                             coef    std err          t      P&gt;|t|      [0.025      0.975]
+## -----------------------------------------------------------------------------------------
+## const                  2.323e+06   6.15e+05      3.777      0.000     1.1e+06    3.55e+06
+## Kor                   -7.273e+04   9353.425     -7.776      0.000   -9.13e+04   -5.41e+04
+## Kilometerora             -2.4542      0.362     -6.784      0.000      -3.173      -1.735
+## Teljes_tomeg           -164.4405    371.805     -0.442      0.659    -903.210     574.329
+## Hengerurtartalom         42.0239    160.600      0.262      0.794    -277.084     361.132
+## Teljesitmeny           4647.0879   1600.722      2.903      0.005    1466.488    7827.688
+## Uzemanyag_Dizel       -3.763e+04   4.67e+04     -0.806      0.422    -1.3e+05    5.51e+04
+## Allapot_Megkimelt      4.186e+04   5.08e+04      0.824      0.412   -5.91e+04    1.43e+05
+## Allapot_Normal        -1.192e+05   4.95e+04     -2.411      0.018   -2.18e+05    -2.1e+04
+## Allapot_Serulesmentes -9418.8363   1.13e+05     -0.084      0.934   -2.33e+05    2.15e+05
+## Allapot_Ujszeru        2.266e+05   1.14e+05      1.980      0.051    -742.588    4.54e+05
+## ==============================================================================
+## Omnibus:                        8.736   Durbin-Watson:                   1.598
+## Prob(Omnibus):                  0.013   Jarque-Bera (JB):                8.434
+## Skew:                          -0.646   Prob(JB):                       0.0147
+## Kurtosis:                       3.597   Cond. No.                     6.58e+06
+## ==============================================================================
+## 
+## Notes:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+## [2] The condition number is large, 6.58e+06. This might indicate that there are
+## strong multicollinearity or other numerical problems.</code></pre>
+<p>Úgy néz ki rendben vagyunk, a magyarázóváltozók együttesen <span class="math inline">\(72.8\%\)</span>-ban magyraázzák az autók vételárának alakulását.</p>
+<p>Nézzük meg a nominális magyarázóváltozókhoz köthető dummy változók <span class="math inline">\(\beta_j\)</span> együtthatóinak értelmezését! Az eddigi okoskodásaink alapján alapján az egyes együtthatók értelmezése mindig a <strong>referencia kategóriához</strong> képest értednő:</p>
+<ul>
+<li><span class="math inline">\(\beta_{Dizel}=-37630\)</span>: Minden más magyarázóváltozó változatlansága mellett egy dízelautó várhatóan 37630 Ft-al lesz olcsóbb, mint egy <em>benzines</em>.</li>
+<li><span class="math inline">\(\beta_{Normal}=-119200\)</span>: Minden más magyarázóváltozó változatlansága mellett egy normál állapotú autó várhatóan kb. 119 200 Ft-tal lesz olcsóbb, mint egy <em>kitűnő</em> állapotban lévő.</li>
+</ul>
+<div id="referencia-kategória-megváltoztatása" class="section level3 hasAnchor" number="13.7.1">
+<h3><span class="header-section-number">13.7.1</span> Referencia kategória megváltoztatása<a href="többváltozós-ols-regresszió-alapjai.html#referencia-kategória-megváltoztatása" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Az előző modellben nem feltétlenül a legszerencsésebb az, ha a <em>Kituno</em> a referencia kategória az <strong>Allapot</strong> változóban. Logikusabb lenne a <em>Normal</em> állapotot referenciának venni. A módosítást simán meg tudjuk tenni. Egyszerűen az <span class="math inline">\(X\)</span> mátixból a 10. oszlopindexet hagyom ki a 8. helyett, és így újrafuttatom a modellt.</p>
+<p>Alapvetően a <code>levels</code> függvény eredményéből látható, hogy a referencia kategória az <strong>Allapot</strong> változóban azért a volt a <em>Kituno</em>, mert az van betűrend szerint a legelöl az <strong>Allapot</strong> változó lehetséges értékei közül:</p>
+<div class="sourceCode" id="cb1007"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1007-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb1007-1" tabindex="-1"></a>X <span class="op">=</span> autok_dummy.iloc[:,[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">11</span>,<span class="dv">12</span>]] <span class="co"># megfelelő oszlopindexek kiválasztása</span></span>
+<span id="cb1007-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb1007-2" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(X)</span>
+<span id="cb1007-3"><a href="többváltozós-ols-regresszió-alapjai.html#cb1007-3" tabindex="-1"></a></span>
+<span id="cb1007-4"><a href="többváltozós-ols-regresszió-alapjai.html#cb1007-4" tabindex="-1"></a><span class="co"># újra lefuttatjuk a regressziót</span></span>
+<span id="cb1007-5"><a href="többváltozós-ols-regresszió-alapjai.html#cb1007-5" tabindex="-1"></a>autos_modell <span class="op">=</span> sm.OLS(Y, X).fit()</span>
+<span id="cb1007-6"><a href="többváltozós-ols-regresszió-alapjai.html#cb1007-6" tabindex="-1"></a></span>
+<span id="cb1007-7"><a href="többváltozós-ols-regresszió-alapjai.html#cb1007-7" tabindex="-1"></a><span class="co"># lássuk az eredménytáblát</span></span>
+<span id="cb1007-8"><a href="többváltozós-ols-regresszió-alapjai.html#cb1007-8" tabindex="-1"></a><span class="bu">print</span>(autos_modell.summary())</span></code></pre></div>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                Vetelar   R-squared:                       0.728
+## Model:                            OLS   Adj. R-squared:                  0.697
+## Method:                 Least Squares   F-statistic:                     23.81
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           4.10e-21
+## Time:                        15:22:30   Log-Likelihood:                -1345.2
+## No. Observations:                 100   AIC:                             2712.
+## Df Residuals:                      89   BIC:                             2741.
+## Df Model:                          10                                         
+## Covariance Type:            nonrobust                                         
+## =========================================================================================
+##                             coef    std err          t      P&gt;|t|      [0.025      0.975]
+## -----------------------------------------------------------------------------------------
+## const                  2.204e+06   6.08e+05      3.626      0.000    9.96e+05    3.41e+06
+## Kor                   -7.273e+04   9353.425     -7.776      0.000   -9.13e+04   -5.41e+04
+## Kilometerora             -2.4542      0.362     -6.784      0.000      -3.173      -1.735
+## Teljes_tomeg           -164.4405    371.805     -0.442      0.659    -903.210     574.329
+## Hengerurtartalom         42.0239    160.600      0.262      0.794    -277.084     361.132
+## Teljesitmeny           4647.0879   1600.722      2.903      0.005    1466.488    7827.688
+## Uzemanyag_Dizel       -3.763e+04   4.67e+04     -0.806      0.422    -1.3e+05    5.51e+04
+## Allapot_Kituno         1.192e+05   4.95e+04      2.411      0.018     2.1e+04    2.18e+05
+## Allapot_Megkimelt      1.611e+05   4.35e+04      3.704      0.000    7.47e+04    2.48e+05
+## Allapot_Serulesmentes  1.098e+05   1.09e+05      1.007      0.317   -1.07e+05    3.27e+05
+## Allapot_Ujszeru        3.458e+05   1.15e+05      3.015      0.003    1.18e+05    5.74e+05
+## ==============================================================================
+## Omnibus:                        8.736   Durbin-Watson:                   1.598
+## Prob(Omnibus):                  0.013   Jarque-Bera (JB):                8.434
+## Skew:                          -0.646   Prob(JB):                       0.0147
+## Kurtosis:                       3.597   Cond. No.                     6.50e+06
+## ==============================================================================
+## 
+## Notes:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+## [2] The condition number is large, 6.5e+06. This might indicate that there are
+## strong multicollinearity or other numerical problems.</code></pre>
+<p>Így már azt mondhatom, hogy egy kitűnő állapotban lévő autó várhatóan <span class="math inline">\(\beta_{Kituno}=+119200\)</span> Ft-tal kerül többe egy normál állapotú autónál minden egyéb változó változatlansága mellett. Teljesen logikus módon abszolút értékben ugyan akkora a hatás az árakra, mint az előző modellben, ahol a <em>Kituno</em> vot a referencia kategória és <span class="math inline">\(\beta_{Normal}=-119200\)</span>-t viszgáltuk, csak ellentétes előjelű.</p>
+</div>
+</div>
+<div id="a-korrigált-r-négyzet-mutató" class="section level2 hasAnchor" number="13.8">
+<h2><span class="header-section-number">13.8</span> A korrigált R-négyzet mutató<a href="többváltozós-ols-regresszió-alapjai.html#a-korrigált-r-négyzet-mutató" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Az előző fejezet végi modell eredménytáblázatát elnézegetve azt láthatjuk, hogy a modell két legkevésbé fontos, azaz legmagasabb p-értékű magyarázóváltozója a <strong>Hengerurtartalom</strong> és a <strong>Teljes_tomeg</strong>. Ha ezeknek a változóknak tényleg nincs közük az autók vételárához, akkor egy logikus gondolat, hogy potyogtassuk is ki őket a modellünkből! Ha emlékszünk még az <code>autok_dummy</code> táblára, akkor tudhatjuk, hogy ez a két változó rendre a 4. és 3. oszlopindexen futott, szóval csak ezeket az oszlopokat kell kiszedni az <span class="math inline">\(X\)</span> mátrixból, és már meg is szabadultunk ezektől a azvaró tényezőktől.</p>
+<div class="sourceCode" id="cb1009"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1009-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb1009-1" tabindex="-1"></a>X_szuk <span class="op">=</span> autok_dummy.iloc[:,[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">11</span>,<span class="dv">12</span>]] <span class="co"># megfelelő oszlopindexek kiválasztása</span></span>
+<span id="cb1009-2"><a href="többváltozós-ols-regresszió-alapjai.html#cb1009-2" tabindex="-1"></a>X_szuk <span class="op">=</span> sm.add_constant(X_szuk)</span>
+<span id="cb1009-3"><a href="többváltozós-ols-regresszió-alapjai.html#cb1009-3" tabindex="-1"></a></span>
+<span id="cb1009-4"><a href="többváltozós-ols-regresszió-alapjai.html#cb1009-4" tabindex="-1"></a><span class="co"># újra lefuttatjuk a regressziót</span></span>
+<span id="cb1009-5"><a href="többváltozós-ols-regresszió-alapjai.html#cb1009-5" tabindex="-1"></a>autos_modell_szuk <span class="op">=</span> sm.OLS(Y, X_szuk).fit()</span>
+<span id="cb1009-6"><a href="többváltozós-ols-regresszió-alapjai.html#cb1009-6" tabindex="-1"></a></span>
+<span id="cb1009-7"><a href="többváltozós-ols-regresszió-alapjai.html#cb1009-7" tabindex="-1"></a><span class="co"># lássuk az eredménytáblát</span></span>
+<span id="cb1009-8"><a href="többváltozós-ols-regresszió-alapjai.html#cb1009-8" tabindex="-1"></a><span class="bu">print</span>(autos_modell_szuk.summary())</span></code></pre></div>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                Vetelar   R-squared:                       0.727
+## Model:                            OLS   Adj. R-squared:                  0.703
+## Method:                 Least Squares   F-statistic:                     30.33
+## Date:                 H, 30 jún. 2025   Prob (F-statistic):           1.50e-22
+## Time:                        15:22:31   Log-Likelihood:                -1345.4
+## No. Observations:                 100   AIC:                             2709.
+## Df Residuals:                      91   BIC:                             2732.
+## Df Model:                           8                                         
+## Covariance Type:            nonrobust                                         
+## =========================================================================================
+##                             coef    std err          t      P&gt;|t|      [0.025      0.975]
+## -----------------------------------------------------------------------------------------
+## const                  1.968e+06   1.79e+05     10.982      0.000    1.61e+06    2.32e+06
+## Kor                   -7.279e+04   9027.563     -8.063      0.000   -9.07e+04   -5.49e+04
+## Kilometerora             -2.4477      0.353     -6.942      0.000      -3.148      -1.747
+## Teljesitmeny           4754.5406   1086.245      4.377      0.000    2596.848    6912.234
+## Uzemanyag_Dizel       -3.822e+04   4.02e+04     -0.952      0.344   -1.18e+05    4.15e+04
+## Allapot_Kituno         1.164e+05   4.83e+04      2.408      0.018    2.04e+04    2.12e+05
+## Allapot_Megkimelt      1.619e+05    4.3e+04      3.762      0.000    7.64e+04    2.47e+05
+## Allapot_Serulesmentes  1.031e+05   1.07e+05      0.964      0.338   -1.09e+05    3.16e+05
+## Allapot_Ujszeru         3.45e+05   1.13e+05      3.055      0.003    1.21e+05    5.69e+05
+## ==============================================================================
+## Omnibus:                        8.420   Durbin-Watson:                   1.624
+## Prob(Omnibus):                  0.015   Jarque-Bera (JB):                8.060
+## Skew:                          -0.639   Prob(JB):                       0.0178
+## Kurtosis:                       3.550   Cond. No.                     1.98e+06
+## ==============================================================================
+## 
+## Notes:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+## [2] The condition number is large, 1.98e+06. This might indicate that there are
+## strong multicollinearity or other numerical problems.</code></pre>
+<p>Első ránézésre minden rendben, de nézzük csak össze ennek a szűkített modellnek az <span class="math inline">\(R^2\)</span> értékét az eredeti modell <span class="math inline">\(R^2\)</span> értékével, ami még tartalmazta a hengerűrtartalmat és a teljes tömeget! Ezt legkönnyebben úgy tudjuk megkérdezni, hogy mindkét modellnek lekérdezzük az <code>rsquared</code> tulajdonságát.</p>
+<div class="sourceCode" id="cb1011"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1011-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb1011-1" tabindex="-1"></a>[autos_modell.rsquared, autos_modell_szuk.rsquared]</span></code></pre></div>
+<pre><code>## [0.7279480731232686, 0.7272297252691152]</code></pre>
+<p>Ajjaj! A modellünk magyarázóereje leromlott <span class="math inline">\(72.72\%\)</span>-ra az eredeti <span class="math inline">\(72.79\%\)</span>-ról! De hát azért eléggé nem szignifikánsnak kinéző változókat szedtünk ki! A legalacsonyabb t-próba p-érték <span class="math inline">\(65.9\%\)</span> volt a kihagyott magyarázóváltozók között (<strong>Teljes_tomeg</strong>)! Miért csökken az <span class="math inline">\(R^2\)</span>?</p>
+<p>Sajnos a jó öreg <span class="math inline">\(R^2\)</span> nem fog soha javulni akkor, ha a modellből elhagyunk egy magyarázóváltozót. Legyen az bármennyire is haszontalan.</p>
+<p>Miért is? Ugye <span class="math inline">\(R^2=1-\frac{SSE}{SST}\)</span> és hát <span class="math inline">\(SSE\)</span> minimalizálásával szüljük meg a <span class="math inline">\(\beta_j\)</span> együtthatókat. Konkrétan úgy választjük meg az értéküket, hogy a MEGFIGYELT <span class="math inline">\(y\)</span> értékekre a lehető legjobban illeszkedjen a regresszióból nyert <span class="math inline">\(\hat{y}\)</span> becslés!</p>
+<p>Ezt az illeszkedést pedig egy újabb magyarázóváltozó bevonása biztosan NEM RONTJA el, legyen bármennyire irreleváns <span class="math inline">\(y\)</span> szempontjából. Hiszen eggyel több <span class="math inline">\(\beta_j\)</span> van arra, hogy minimalizáljuk a modellhibát (<span class="math inline">\(SSE\)</span>). De ha kilépünk a megfigyeléseinken túli világba (sokaságba), akkor már az <span class="math inline">\(\hat{y}\)</span> becslések jóságát elrontják ezek az irreleváns magyarázóváltozók a modellben. Ez a jelenség a <strong>túltanítás</strong> jelensége!</p>
+<p>Nézzük ezt meg az alábbi képen:</p>
+<center>
+<img src="Tultan1.jpg" style="width:100.0%" />
+</center>
+<p>A pontokra illesztett görbék mögött a következő egyenletek vannak:</p>
+<ul>
+<li>Lineáris = <span class="math inline">\(5.13x-0.46\)</span></li>
+<li>Harmadfokú = <span class="math inline">\(2.48x^3+3.17x^2−1.06x +1.08\)</span></li>
+<li>Hetedfokú = <span class="math inline">\(−7426x^7+28047x^6−42886x^5+33991x^4−14814x^3+3457x^2−380x+14\)</span></li>
+</ul>
+<p>Az ábráról láthatjuk, hogy a pontokra a legreálisabb illeszkedést a 3 db magyarázóváltozót (<span class="math inline">\(x^3, x^2, x\)</span>) használó <em>Harmadfokú</em> görbe adja. De az <span class="math inline">\(R^2\)</span> mégis a legtöbb magyarázóváltozót használó Hetedfokú opciót részesíti előnyben a <em>túltanulás</em> miatt!</p>
+<p>Ennek kiküszöbölésére bevezetjük a korrigált <span class="math inline">\(R^2\)</span> mutatót:</p>
+<center>
+<img src="AdjR2.jpg" style="width:50.0%" />
+</center>
+<p>A korrekciós képlet lényege, hogy ez a mutató csökkenhet is, ha irreleváns (erősen nem szignifikáns) magyarázóváltozókat vonunk be a modellbe. Ezért van a képletben a megfigyelések száma (<span class="math inline">\(n\)</span>) mellett a magyarázóváltozók száma, <span class="math inline">\(k\)</span> is.</p>
+<p>Láthatjuk, hogy a korábbi példánkban <span class="math inline">\(\bar{R}^2\)</span> már a harmadfokú modellt preferálja, nagyon helyesen!</p>
+<center>
+<img src="Tultan2.jpg" style="width:100.0%" />
+</center>
+<p>A <span class="math inline">\(\bar{R}^2\)</span> mutató értékét megtaláljuk a sima <code>summary</code> függvény eredménytáblájában is, de praktikusabb lekérdezni, mint a regressziós modellek <code>rsquared_adj</code> tulajdonsága.</p>
+<div class="sourceCode" id="cb1013"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1013-1"><a href="többváltozós-ols-regresszió-alapjai.html#cb1013-1" tabindex="-1"></a>[autos_modell.rsquared_adj, autos_modell_szuk.rsquared_adj]</span></code></pre></div>
+<pre><code>## [0.697380440889928, 0.7032499208971693]</code></pre>
+<p>Hurrá! Láthatjuk, hogy a korrigált R-négyzet már heylesen azt mutatja, hogy a nem szignifikáns változók kihagyásával kapott szűkített modell magyarázóereje nagyobb (<span class="math inline">\(70.3\%\)</span>), mint az eredeti modellé (<span class="math inline">\(69.7\%\)</span>), amiben ez a két haszontalan változó is benne volt.</p>
+
 </div>
 </div>
             </section>

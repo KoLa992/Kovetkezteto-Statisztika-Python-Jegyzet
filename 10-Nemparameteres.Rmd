@@ -16,7 +16,7 @@ De a **négy alaplépés változatlan** az eddigiekhez képest!
 4. Döntés p-érték alapján $\rightarrow H_0$ vagy $H_1$ vehető-e igaznak a sokaságban?
 
 
-A nemparaméteres próbák témakörét a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/StackOverflowHungary2020.xlsx" target="_blank">StackOverflowHungary2020.xlsx</a> adattáblán járjuk majd végig, ami a Stack Overflow programozói közösségi oldal 2020-as felmérése a világ amatőr és profi programozóiról *60* változó szerint. A teljes adatbázis (és a korábbi+újabb évek felmérései) [erről a linkről](https://insights.stackoverflow.com/survey) elérhető.<br>
+A nemparaméteres próbák témakörét a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/StackOverflowHungary2020.xlsx" target="_blank">StackOverflowHungary2020.xlsx</a> adattáblán járjuk majd végig, ami a Stack Overflow programozói közösségi oldal 2020-as felmérése a világ amatőr és profi programozóiról *60* változó szerint. A teljes adatbázis (és a korábbi+újabb évek felmérései) [erről a linkről](https://insights.stackoverflow.com/survey) elérhető.<br>
 A mi Moodle-n található Excel fájlunkban csak a 2020-as felmérés *210 magyar kitöltőjének* válaszai szerepelnek az alábbi *9* változó szerint :
 
 - **Age**: A válaszadó életkora (év)
@@ -74,7 +74,7 @@ A képletben szereplő betűk jelentése:
 - $f_j$: tény gyakoriságok
 - $f^*_j$: reprezentativitás esetén fennálló elvi gyakoriságok a mintában
 
-A **p-érték**et a $\chi^2(k-1)$ eloszlásból **mindig jobboldali** módon számítjuk. Részletek a jobboldali p-érték számításról a <a href="Gyak07.html" target="_blank">7. heti tananyag 2. fejezetében</a>.
+A **p-érték**et a $\chi^2(k-1)$ eloszlásból **mindig jobboldali** módon számítjuk. Részletek a jobboldali p-érték számításról a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/hipot%C3%A9zisvizsg%C3%A1lat-alapjai.html#a-sokas%C3%A1gi-%C3%A1tlagra-vonatkoz%C3%B3-t-pr%C3%B3ba" target="_blank">9.2. fejezetben</a>.
 
 Számítsuk ki a szükséges $f_j$ gyakoriságokat.
 
@@ -182,7 +182,7 @@ Tehát, pl. $31$ főnyi munkájával nagyon elégedett Windows felhasználó van
 
 Sajnos, a kereszttáblában van olyan elem (azaz van olyan $i$ sor és $j$ oszlop), ahol a gyakoriság kisebb, mint $5$, azaz $\exists f_{ij}<5$. Láasd pl. A semleges érzelmű Linuxosok esetét. Ekkor **valószínűleg NEM fog teljesülni a nagy minta előfeltétel**, mert nem lesz minden kereszttábla gyakoirság legalább $5$.
 
-Emiatt a problémát úgy hidaljuk át, hogy a *Very satisfied* és *Slightly satisfied* kategóriákból készítünk egy *Satisfied* kategóriát, a többiekből pedig egy *Not satisdfied kategóriát*. Ezt a `numpy` csomag `where` függvényével tudjuk intézni, mint az <a href="Gyak05.html" target="_blank">5. heti tananyag 2. fejezetében</a> az arányok konfidencia-intervallum számolásához a $0-1$ értékű új oszlop létrehozását.
+Emiatt a problémát úgy hidaljuk át, hogy a *Very satisfied* és *Slightly satisfied* kategóriákból készítünk egy *Satisfied* kategóriát, a többiekből pedig egy *Not satisdfied kategóriát*. Ezt a `numpy` csomag `where` függvényével tudjuk intézni, mint az <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/tov%C3%A1bbi-fae-becsl%C3%A9sek-%C3%A9s-a-bootstrap-m%C3%B3dszer.html#ar%C3%A1nyok-konfidencia-intervalluma" target="_blank">7.2. fejezetben</a> az arányok konfidencia-intervallum számolásához a $0-1$ értékű új oszlop létrehozását.
 
 ```{python}
 sfH['JS_v2'] = np.where(sfH.JobSat.isin(['Very satisfied',

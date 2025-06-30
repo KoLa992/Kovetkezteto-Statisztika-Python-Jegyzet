@@ -2,7 +2,7 @@
 
 ## Ismétlés: Balaton átúszás eredmények és ezek FAE mintái
 
-Folytassuk ott a dolgainkat, ahol a 2. heti anyagban abbahagytuk. Töltsük be egy `pandas` data frame-be a <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájl adatait. Ebben az Excelben a 2022-es LIDL Balaton átúszás résztvevőinek *neve, neme és percben mért időeredménye* található. Ez az adatsor lesz most nekünk a **sokaságunk**.
+Folytassuk ott a dolgainkat, ahol a 2. heti anyagban abbahagytuk. Töltsük be egy `pandas` data frame-be a <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/LIDLBalaton2022.xlsx" target="_blank">LIDLBalaton2022.xlsx</a> fájl adatait. Ebben az Excelben a 2022-es LIDL Balaton átúszás résztvevőinek *neve, neme és percben mért időeredménye* található. Ez az adatsor lesz most nekünk a **sokaságunk**.
 
 ```{python}
 # Elemzéshez és ábrázoláshoz szükséges csomagok betöltése
@@ -24,7 +24,7 @@ Oké, meg is vagyunk! A sokságnak $N=9751$ eleme van, tehát ennyi versenyző �
 - Az egyéni idők **szórás**át Jele: $\sigma$
 - A 3 óra (180 perc) felett teljesítők **arányát** Jele: $P$
 
-Ahogy a <a href="Gyak02.html" target="_blank">2. heti tananyagban</a> ezt tisztáztuk, egy **teljes statisztikai** adatsor, azaz **sokaság statisztikai mutatóit/paramétereit együttesen $\theta$-val jelöljük**.
+Ahogy a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/eloszl%C3%A1sok-%C3%A9s-mintav%C3%A9telez%C3%A9s.html#statisztikai-sokas%C3%A1gok-fae-mintav%C3%A9telez%C3%A9se" target="_blank">4.3. fejezetben</a> ezt tisztáztuk, egy **teljes statisztikai** adatsor, azaz **sokaság statisztikai mutatóit/paramétereit együttesen $\theta$-val jelöljük**.
 
 Akkor hát **számoljuk is ki ezeket** a $\theta$-kat! Még kiszámoljuk az időeredmények varianciáját (szórásnégyzetét) is, mert erre is szükségünk lesz a későbbiekben.
 
@@ -61,12 +61,12 @@ Ezek szerint összefoglalva statisztikai **paramétereink mintából becsült é
 - $s^* = 38.6$ perc
 - $p = 0.3=30\%$
 
-Szintén a <a href="Gyak02.html" target="_blank">2. heti tananyagban</a> szerepelt, hogy a **statisztikai paraméterek mintából becsült értékeit együttesen $\hat{\theta}$-val jelöljük**. A $\hat{\theta}$-ok **speciális elnevezése: becslőfüggvény** a *valódi, sokasági* $\theta$-hoz. Szóval, a mintaátlag ($\bar{y}$) a sokasági átlag $\bar{Y}=\mu$ *becslőfüggvénye*, a mintából számolt szórás ($s^*$) a valós, sokasági szórás ($\sigma$) *becslőfüggvénye* és a mintából számított 3 órán túli úszók aránya ($p$), a sokasági arány ($P$) *becslőfüggvénye*.
+Szintén a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/eloszl%C3%A1sok-%C3%A9s-mintav%C3%A9telez%C3%A9s.html#statisztikai-sokas%C3%A1gok-fae-mintav%C3%A9telez%C3%A9se" target="_blank">4.3. fejezetben</a> szerepelt, hogy a **statisztikai paraméterek mintából becsült értékeit együttesen $\hat{\theta}$-val jelöljük**. A $\hat{\theta}$-ok **speciális elnevezése: becslőfüggvény** a *valódi, sokasági* $\theta$-hoz. Szóval, a mintaátlag ($\bar{y}$) a sokasági átlag $\bar{Y}=\mu$ *becslőfüggvénye*, a mintából számolt szórás ($s^*$) a valós, sokasági szórás ($\sigma$) *becslőfüggvénye* és a mintából számított 3 órán túli úszók aránya ($p$), a sokasági arány ($P$) *becslőfüggvénye*.
 
-A feladatunk pedig az lenne, hogy rájöjjünk: **Hogyan tudunk egyetlen egy db $n$ elemű minta $\hat{\theta}$ becslőfüggvény értékeiből következtetni a teljes $N$ elemű sokaság valós $\theta$ paraméter értékeire?** Ez a **statisztikai becsléselmélet alapfeladata**. Azt is körbejártuk a <a href="Gyak02.html" target="_blank">2. heti tananyagban</a>, hogy ha a mintavételünk tényleg rendes FAE mintavétel, akkor ami $\hat{\theta}$ és a valós $\theta$ között áll az nem más, mint a **mintavételi hiba (MVH)**. A feladatunk tehát konkrétabban nézve az **MVH kiszámítása vagy legalábbis valamilyen közelítése**.
+A feladatunk pedig az lenne, hogy rájöjjünk: **Hogyan tudunk egyetlen egy db $n$ elemű minta $\hat{\theta}$ becslőfüggvény értékeiből következtetni a teljes $N$ elemű sokaság valós $\theta$ paraméter értékeire?** Ez a **statisztikai becsléselmélet alapfeladata**. Azt is körbejártuk a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/eloszl%C3%A1sok-%C3%A9s-mintav%C3%A9telez%C3%A9s.html#statisztikai-sokas%C3%A1gok-fae-mintav%C3%A9telez%C3%A9se" target="_blank">4.3. fejezetben</a>, hogy ha a mintavételünk tényleg rendes FAE mintavétel, akkor ami $\hat{\theta}$ és a valós $\theta$ között áll az nem más, mint a **mintavételi hiba (MVH)**. A feladatunk tehát konkrétabban nézve az **MVH kiszámítása vagy legalábbis valamilyen közelítése**.
 
 Ahhoz, hogy **elinduljunk az MVH számítás rögös útján egy olyan trükkel élünk, ami kihasználja, hogy most éppen ismerjük a teljes Balatont átúszó sokaságot**. Nyilván a gyakorlatban azért kell becsléselmélettel meg MVH számítással foglalkozni, mert a sokaságot nem tudjuk megismerni. :) De most mivel megvannak a sokasági adatok, így **kivehetünk a sokasági időeredményekből nagyon-nagyon sok, mondjuk $10000$ db $n=100$ elemű mintát**.<br>
-Ezt meg is tettük a <a href="Gyak02.html" target="_blank">2. heti tananyag legvégén</a>. Most csak **visszatöltjük az eredményt tartalmazó Excel táblát egy data frame-be**. Az Excel fájl, amit ebben a jegyzetben használok <a href="https://github.com/KoLa992/Statisztika-II-Python-Jegyzet/blob/main/MintaDataFrame.xlsx" target="_blank">innen</a> elérhető.
+Ezt meg is tettük a <a href="https://kola992.github.io/Kovetkezteto-Statisztika-Python-Jegyzet/eloszl%C3%A1sok-%C3%A9s-mintav%C3%A9telez%C3%A9s.html#statisztikai-sokas%C3%A1gok-fae-mintav%C3%A9telez%C3%A9se" target="_blank">4.3. fejezet legvégén</a>. Most csak **visszatöltjük az eredményt tartalmazó Excel táblát egy data frame-be**. Az Excel fájl, amit ebben a jegyzetben használok <a href="https://github.com/KoLa992/Kovetkezteto-Statisztika-Python-Jegyzet/blob/main/MintaDataFrame.xlsx" target="_blank">innen</a> elérhető.
 
 ```{python}
 MintaVetelek100Elem = pd.read_excel("MintaDataFrame.xlsx")
